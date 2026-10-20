@@ -1,0 +1,79 @@
+{
+  "version": "seed-20261019",
+  "note": "冒烟用种子题(10 题,五类覆盖)。金标为人工核对的单点 rfid/区间;数字不进报告。正式评测集 v0(30 题)见 Day 3。时序题 S07/S08 的两处证据恰在同/邻 chunk,是为冒烟检索链路;真正的跨场景时序题留待正式集(金标须人工核对,注意选择肢附近 rfid 顺序≠游玩时序)。S10 类不可回答题 gold_evidence_rfids 为空,不计入检索指标。",
+  "questions": [
+    {
+      "qid": "S01",
+      "type": "fact",
+      "question": "路易斯是什么国籍？",
+      "gold_answer": "巴西",
+      "gold_evidence_rfids": [14]
+    },
+    {
+      "qid": "S02",
+      "type": "fact",
+      "question": "瑚太朗是怎么形容自己的脑袋的？",
+      "gold_answer": "石头脑袋",
+      "gold_evidence_rfids": [11]
+    },
+    {
+      "qid": "S03",
+      "type": "fact",
+      "question": "与守护者敌对的组织被象征性地叫做什么？",
+      "gold_answer": "盖亚",
+      "gold_evidence_rfids": [2563, 2564]
+    },
+    {
+      "qid": "S04",
+      "type": "fact",
+      "question": "风祭市对盖亚来说是什么地方？",
+      "gold_answer": "圣地",
+      "gold_evidence_rfids": [3772]
+    },
+    {
+      "qid": "S05",
+      "type": "yesno",
+      "question": "瑚太朗答应和路易斯一起喝酒了吗？",
+      "gold_answer": "没有。他回答「我不喝酒的」，最后改成路易斯请客吃饭。",
+      "gold_verdict": "no",
+      "gold_evidence_rfids": [18, 20, 22, 24]
+    },
+    {
+      "qid": "S06",
+      "type": "yesno",
+      "question": "瑚太朗他们有人提到路边有烧焦下陷的痕迹吗？",
+      "gold_answer": "有，司机提到烧焦下陷的痕迹并猜测是地雷。",
+      "gold_verdict": "yes",
+      "gold_evidence_rfids": [44, 45]
+    },
+    {
+      "qid": "S07",
+      "type": "temporal",
+      "question": "路易斯指出车辆残骸、队长发出警示的命令，哪件事先发生？",
+      "gold_answer": "路易斯指出车辆残骸在先，队长随后向先头车辆发出警示命令。",
+      "gold_evidence_rfids": [60, 63]
+    },
+    {
+      "qid": "S08",
+      "type": "temporal",
+      "question": "瑚太朗回答「石头脑袋」是在被问「你没事吧」之前还是之后？",
+      "gold_answer": "之后。",
+      "gold_evidence_rfids": [3, 11]
+    },
+    {
+      "qid": "S09",
+      "type": "aggregate",
+      "question": "故事开头乘坐这辆车的是哪几个人？",
+      "gold_answer": "四人：瑚太朗、路易斯、队长、司机。",
+      "gold_evidence_rfids": [[1, 43]]
+    },
+    {
+      "qid": "S10",
+      "type": "unanswerable",
+      "question": "小鸟的义眼是怎么来的？",
+      "gold_answer": "语料(Terra 线)中无「义眼」相关内容，应拒答。",
+      "gold_verdict": "unknown",
+      "gold_evidence_rfids": []
+    }
+  ]
+}
