@@ -100,7 +100,8 @@ def eval_retrieval(index, locator: RfidLocator, qaset: dict, k_values: list[int]
     ks = sorted(k_values)
 
     for q in qaset["questions"]:
-        entry = {"qid": q["qid"], "type": q["type"], "question": q["question"]}
+        entry = {"qid": q["qid"], "type": q["type"], "question": q["question"],
+                 "anchor_layer": q.get("anchor_layer", "")}
         ivs = gold_intervals(q)
         if not ivs:
             entry["skipped"] = "gold_evidence_rfids 为空(不可回答题),不计检索指标"
@@ -131,6 +132,9 @@ def eval_retrieval(index, locator: RfidLocator, qaset: dict, k_values: list[int]
     by_type: dict[str, dict] = {}
     for t in dict.fromkeys(e["type"] for e in evaluated):
         by_type[t] = agg([e for e in evaluated if e["type"] == t])
+    by_layer: dict[str, dict] = {}
+    for t in dict.fromkeys(e.get("anchor_layer") or "?" for e in evaluated):
+        by_layer[t] = agg([e for e in evaluated if e.get("anchor_layer") == t])
 
     metrics = {
         "arm": arm or index.tokenize_fn.__name__ if hasattr(index, "tokenize_fn") else "",
@@ -139,6 +143,7 @@ def eval_retrieval(index, locator: RfidLocator, qaset: dict, k_values: list[int]
         "n_skipped_unanswerable": len(per_q) - len(evaluated),
         "overall": agg(evaluated),
         "by_type": by_type,
+        "by_layer": by_layer,
     }
     return metrics, per_q
 

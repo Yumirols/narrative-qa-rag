@@ -1,0 +1,88 @@
+{
+  "bm25_jieba": {
+    "arm": "bm25_jieba",
+    "n_questions": 10,
+    "n_evaluated": 9,
+    "n_skipped_unanswerable": 1,
+    "overall": {
+      "n": 9,
+      "recall@3": 0.7778,
+      "recall@5": 0.7778,
+      "recall@10": 0.8889,
+      "mrr": 0.642
+    },
+    "by_type": {
+      "fact": {
+        "n": 4,
+        "recall@3": 0.75,
+        "recall@5": 0.75,
+        "recall@10": 1.0,
+        "mrr": 0.4444
+      },
+      "yesno": {
+        "n": 2,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0
+      },
+      "temporal": {
+        "n": 2,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0
+      },
+      "aggregate": {
+        "n": 1,
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0
+      }
+    }
+  },
+  "bm25_bigram": {
+    "arm": "bm25_bigram",
+    "n_questions": 10,
+    "n_evaluated": 9,
+    "n_skipped_unanswerable": 1,
+    "overall": {
+      "n": 9,
+      "recall@3": 0.5556,
+      "recall@5": 0.6667,
+      "recall@10": 0.8889,
+      "mrr": 0.6012
+    },
+    "by_type": {
+      "fact": {
+        "n": 4,
+        "recall@3": 0.25,
+        "recall@5": 0.5,
+        "recall@10": 0.75,
+        "mrr": 0.3278
+      },
+      "yesno": {
+        "n": 2,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0
+      },
+      "temporal": {
+        "n": 2,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0
+      },
+      "aggregate": {
+        "n": 1,
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "mrr": 0.1
+      }
+    }
+  }
+}

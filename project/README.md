@@ -1,11 +1,12 @@
 # galgame 剧本叙事问答 · 检索层（课程项目方向 A：领域 RAG 问答）
 
-Rewrite Terra 线（约 18.5 万字、1.1 万行台词）叙事问答的检索层与非大模型基线①：
+Rewrite Terra 线（约 19.5 万字、1.1 万行台词）叙事问答的检索层与非大模型基线①：
 **jieba 自定义词典 + BM25**，配评测脚本骨架（Recall@k / MRR + 答案层标签准确率接口）。
 技术路线与知识地图见 `../项目知识框架_剧本问答.md`。
 
-当前状态：**Day 2 完成**（12 天路径 §14）。检索层跑通、双臂对照可复现；Day 3 起
-接入 word2vec 平均基线（基线②）与正式评测集 v0。
+当前状态：**Day 2 完成**（12 天路径 §14）。检索层跑通、双臂对照可复现；T1 已完成
+检索器化重构（config `retrievers:` 列表驱动，工厂见 `src/retrievers.py`），待接入
+word2vec / bge 检索器与正式评测集 v0（Day 3~4，见 `../阶段计划_词向量与稠密检索.md`）。
 
 ## 快速开始
 
@@ -21,12 +22,12 @@ python run_all.py --config configs/main.yaml
   瑚太朗是民间警备队的成员。
     前: 瑚 | 太朗 | 是 | 民间 | 警备队 | 的 | 成员
     后: 瑚太朗 | 是 | 民间警备队 | 的 | 成员  (有变化)
-== 建索引 [jieba] ==
+== 建检索器 [bm25_jieba] (bm25) ==
   chunks=480  tokens=99,949  avg=208.2  vocab=11,599
 == 检索评测(种子集: 评 9 题, 不可回答跳过 1 题) ==
-  arm     Recall@3   Recall@5   Recall@10  MRR
-  jieba   0.7778     0.7778     0.8889     0.642
-  bigram  0.5556     0.6667     0.8889     0.6012
+  retriever   Recall@3   Recall@5   Recall@10  MRR
+  bm25_jieba  0.7778     0.7778     0.8889     0.642
+  bm25_bigram 0.5556     0.6667     0.8889     0.6012
 日志已落盘: runs/<timestamp>
 ```
 
@@ -77,6 +78,7 @@ project/
 │   ├── tokenization.py      # 全角→半角归一化 + jieba/字符bigram 双臂
 │   ├── build_userdict.py    # 词典候选发现（speaker 真值 + 语料频次 + OOV）
 │   ├── index_bm25.py        # BM25Okapi 建索引/检索（含 CLI demo）
+│   ├── retrievers.py        # 检索器工厂: config retrievers 条目 → 统一 search 接口
 │   └── evaluate.py          # Recall@k / MRR + 标签准确率接口 + rfid 查表
 ├── data/user_dict.txt       # jieba 自定义词典（36 词条，进 zip）
 ├── eval/qaset_seed.json     # 种子评测集 10 题（冒烟用，数字不进报告）

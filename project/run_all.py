@@ -4,8 +4,9 @@
 用法:
     python run_all.py --config configs/main.yaml
 
-流程: 加载真值 chunk → 分词对照样例(自定义词典前/后) → 双臂建 BM25 索引
-      → 种子集检索评测(Recall@k / MRR,总体+分题型) → demo 查询 → 日志落盘
+流程: 加载真值 chunk → 分词对照样例(自定义词典前/后) → 按 config 的 retrievers
+      列表循环建检索器(工厂见 src/retrievers.py) → 评测集检索评测(Recall@k / MRR,
+      总体+分题型) → demo 查询 → 日志落盘
       runs/<timestamp>/{config_copy.yaml, env_info.json, segmentation_demo.txt,
       retrieval_results.json, metrics.json}
 
@@ -32,7 +33,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from src.config import PROJECT_ROOT, load_config, resolve_paths
 from src.evaluate import TYPE_LABELS, RfidLocator, eval_label_accuracy, eval_retrieval, load_qaset
-from src.index_bm25 import BM25Index, load_chunks
+from src.index_bm25 import load_chunks
+from src.retrievers import build_retriever
 from src.tokenization import jieba_tokenize
 
 # 覆盖自定义词典关键词条 + 全角归一化的样例句(对照素材,报告 §实现细节用)
@@ -92,22 +94,20 @@ def main() -> None:
     # ---- 2. 分词对照(必须先于任何带词典的 jieba 调用) ----
     segmentation_demo(paths["user_dict"], run_dir)
 
-    # ---- 3. 双臂建索引 + 检索评测 ----
+    # ---- 3. 按 retrievers 列表建检索器 + 检索评测 ----
     qaset = load_qaset(paths["qaset"])
     locator = RfidLocator(chunks)
     all_metrics, all_results, indexes = {}, {}, {}
-    for arm in cfg["index"]["tokenizers"]:
-        from src.tokenization import get_tokenizer
-        index = BM25Index(chunks, get_tokenizer(arm, paths.get("user_dict")),
-                          k1=cfg["index"]["k1"], b=cfg["index"]["b"],
-                          index_speakers=cfg["index"]["index_speakers"])
-        indexes[arm] = index
-        st = index.stats()
-        print(f"\n== 建索引 [{arm}] ==\n  chunks={st['n_chunks']}  tokens={st['n_tokens']:,}  "
-              f"avg={st['avg_tokens']}  vocab={st['vocab']:,}")
-        metrics, per_q = eval_retrieval(index, locator, qaset,
-                                        cfg["eval"]["k_values"], cfg["eval"]["mrr_depth"], arm)
-        all_metrics[arm], all_results[arm] = metrics, per_q
+    for entry in cfg["retrievers"]:
+        name = entry["name"]
+        retriever = build_retriever(entry, chunks, paths, index_cfg=cfg["index"])
+        indexes[name] = retriever
+        st = retriever.stats()
+        print(f"\n== 建检索器 [{name}] ({entry['type']}) ==\n  chunks={st['n_chunks']}  "
+              f"tokens={st['n_tokens']:,}  avg={st['avg_tokens']}  vocab={st['vocab']:,}")
+        metrics, per_q = eval_retrieval(retriever, locator, qaset,
+                                        cfg["eval"]["k_values"], cfg["eval"]["mrr_depth"], name)
+        all_metrics[name], all_results[name] = metrics, per_q
 
     # ---- 4. 答案层(Day 4 接入后自动生效) ----
     answers = eval_label_accuracy(qaset, paths["answers"])
@@ -118,11 +118,11 @@ def main() -> None:
         print(f"\n== 答案层 ==\n  {paths['answers']} 不存在,跳过(Day 4 生成模块接入后自动生效)")
 
     # ---- 5. demo 查询(录屏素材) ----
-    print("\n== demo 查询(jieba 臂 top-3) ==")
-    demo_arm = cfg["index"]["tokenizers"][0]
+    demo_name = cfg["retrievers"][0]["name"]
+    print(f"\n== demo 查询({demo_name} top-3) ==")
     demo_dir = []
     for q in cfg["demo"]["sample_queries"]:
-        hits = indexes[demo_arm].search(q, 3)
+        hits = indexes[demo_name].search(q, 3)
         demo_dir.append({"query": q, "hits": hits})
         print(f"  Q: {q}")
         for r in hits:
@@ -134,20 +134,26 @@ def main() -> None:
     (run_dir / "retrieval_results.json").write_text(
         json.dumps({"demo": demo_dir, "per_question": all_results},
                    ensure_ascii=False, indent=2), encoding="utf-8")
+    # 检索器附加日志(如 w2v 训练 loss 曲线/最近邻 sanity/OOV 统计, 见 index_w2v.extra_logs)
+    for r in indexes.values():
+        for fname, content in getattr(r, "extra_logs", {}).items():
+            (run_dir / fname).write_text(
+                json.dumps(content, ensure_ascii=False, indent=2), encoding="utf-8")
 
     # ---- 7. 摘要表 ----
     ks = cfg["eval"]["k_values"]
-    m0 = all_metrics[cfg["index"]["tokenizers"][0]]
-    print(f"\n== 检索评测(种子集: 评 {m0['n_evaluated']} 题, "
+    m0 = all_metrics[cfg["retrievers"][0]["name"]]
+    qaset_label = Path(paths["qaset"]).stem
+    print(f"\n== 检索评测({qaset_label}: 评 {m0['n_evaluated']} 题, "
           f"不可回答跳过 {m0['n_skipped_unanswerable']} 题) ==")
-    head = "arm".ljust(8) + "".join(f"Recall@{k}".ljust(11) for k in ks) + "MRR"
+    head = "retriever".ljust(12) + "".join(f"Recall@{k}".ljust(11) for k in ks) + "MRR"
     print("  " + head)
-    for arm, m in all_metrics.items():
-        row = arm.ljust(8) + "".join(f"{m['overall'][f'recall@{k}']:<11}" for k in ks)
+    for name, m in all_metrics.items():
+        row = name.ljust(12) + "".join(f"{m['overall'][f'recall@{k}']:<11}" for k in ks)
         print("  " + row + f"{m['overall']['mrr']}")
-    for arm in all_metrics:
-        print(f"  -- 分题型 ({arm}) --")
-        for t, m in all_metrics[arm]["by_type"].items():
+    for name in all_metrics:
+        print(f"  -- 分题型 ({name}) --")
+        for t, m in all_metrics[name]["by_type"].items():
             r5 = m.get(f"recall@{ks[1]}", float("nan"))
             print(f"    {TYPE_LABELS.get(t, t).ljust(6)} n={m['n']}  Recall@{ks[1]}={r5}  MRR={m['mrr']}")
     print(f"\n日志已落盘: {run_dir}")

@@ -2,3 +2,12 @@ numpy>=1.24
 jieba==0.42.1
 rank_bm25==0.2.2
 PyYAML==6.0.3
+matplotlib==3.11.2
+torch==2.14.1
+sentence-transformers==6.1.0
+transformers==5.20.2
+huggingface_hub==1.33.0
+# torch 须装 CPU 轮子(默认 PyPI 会拉 CUDA 版, 2.5GB+):
+#   pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+# 模型缓存放仓库根 models/: 首次运行前设 HF_HOME/HF_HUB_CACHE=E:/dev/NLP/models
+#   (必须在 import sentence_transformers 之前), 之后 HF_HUB_OFFLINE=1 可离线

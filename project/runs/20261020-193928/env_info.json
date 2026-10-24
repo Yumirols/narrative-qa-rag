@@ -1,0 +1,40 @@
+{
+  "timestamp": "20261020-193928",
+  "python": "3.11.4",
+  "jieba": "0.42.1",
+  "rank_bm25": "0.2.2",
+  "numpy": "2.4.6",
+  "config": {
+    "paths": {
+      "scenes": "../Rewrite_terra/data/scenes.jsonl",
+      "user_dict": "data/user_dict.txt",
+      "qaset": "eval/qaset_seed.json",
+      "answers": "eval/answers.jsonl",
+      "runs_dir": "runs"
+    },
+    "index": {
+      "tokenizers": [
+        "jieba",
+        "bigram"
+      ],
+      "k1": 1.5,
+      "b": 0.75,
+      "index_speakers": false
+    },
+    "eval": {
+      "k_values": [
+        3,
+        5,
+        10
+      ],
+      "mrr_depth": 10
+    },
+    "demo": {
+      "sample_queries": [
+        "路易斯是什么国籍？",
+        "瑚太朗和路易斯约定了什么？",
+        "盖亚和守护者是什么关系？"
+      ]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "retriever": "w2v_avg (pre-fix reference)",
+  "note": "一次性诊断产物(非管线步骤),确定性 seed=0 可复现: 复现 train_skipgram_stream 修复前的发散——v 以视图取自 W_in[c],W_in[c] 原地更新后被后续 W_out 更新误用(梯度未用旧值,与 uo 的 copy 处理不一致),形成正反馈: epoch 0 内点火,|W_in| 均值 增至 1e28 量级,sigmoid 在 ±30 clip 处饱和震荡。现行代码已改为 v=W_in[c].copy()。",
+  "params": {
+    "dim": 100,
+    "window": 2,
+    "neg_k": 4,
+    "epochs": 15,
+    "lr": 0.05,
+    "seed": 0,
+    "min_count": 1,
+    "variant": "v_as_view(bug复现)"
+  },
+  "loss_curve": [
+    35.9919,
+    49.9639,
+    49.6531,
+    49.3597,
+    49.1107,
+    48.5353,
+    48.2478,
+    47.5273,
+    47.0101,
+    46.3138,
+    45.2316,
+    43.8554,
+    42.0822,
+    38.6783,
+    32.3788
+  ],
+  "final_w_in_norm_mean": 4.505017770880303e+113
+}
