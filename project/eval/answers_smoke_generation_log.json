@@ -1,0 +1,439 @@
+{
+  "config": {
+    "retriever": "hybrid_rrf",
+    "top_k": 5,
+    "llm": {
+      "provider": "deepseek",
+      "base_url": "https://api.deepseek.com",
+      "model": "deepseek-flash",
+      "thinking": "disabled",
+      "temperature": 0,
+      "max_tokens": 1024,
+      "api_key_env": "DEEPSEEK_API_KEY"
+    },
+    "few_shot": true,
+    "qaset": "eval\\qaset_seed.json"
+  },
+  "summary": {
+    "n_questions": 10,
+    "parse": {
+      "fail_first": 0,
+      "fail_first_rate": 0.0,
+      "fail_final": 0,
+      "fail_final_rate": 0.0,
+      "parse_path_counts": {
+        "direct": 10
+      }
+    },
+    "citations": {
+      "intervals_total": 9,
+      "intervals_valid": 9,
+      "entry_valid_rate": 1.0,
+      "q_all_valid": 7,
+      "q_all_valid_rate": 0.7,
+      "q_zero_citation": 3,
+      "invalid_reasons": {}
+    },
+    "tokens": {
+      "prompt": 33754,
+      "completion": 551,
+      "prompt_cache_hit": 13056,
+      "cost_usd_offpeak": 0.0035,
+      "cost_usd_peak": 0.0069
+    },
+    "latency": {
+      "n_calls": 10,
+      "n_cache_hits": 10,
+      "n_network": 0,
+      "p50_s": null,
+      "p95_s": null,
+      "mean_s": null
+    },
+    "models_observed": [
+      "deepseek-flash"
+    ],
+    "max_reasoning_tokens": null
+  },
+  "questions": [
+    {
+      "qid": "S01",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.905,
+          "usage": {
+            "prompt_tokens": 3521,
+            "completion_tokens": 49,
+            "total_tokens": 3570,
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 3521
+          },
+          "content": "{\"answer\": \"证据中没有说明路易斯的国籍,只提到他过去想当足球运动员、被谍报局找上等经历,缺少国籍信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "e2c80aa7299c954f5ffd02b886331644361592cd941088dd820b0953f707344b"
+        }
+      ],
+      "prompt_sha": "e2c80aa7299c954f5ffd02b886331644361592cd941088dd820b0953f707344b",
+      "retrieved_chunk_ids": [
+        "seen08000_c189",
+        "seen08000_c211",
+        "seen08000_c190",
+        "seen08000_c208",
+        "seen08000_c205"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "S02",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.467,
+          "usage": {
+            "prompt_tokens": 3645,
+            "completion_tokens": 33,
+            "total_tokens": 3678,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 2237
+          },
+          "content": "{\"answer\": \"证据中没有瑚太朗形容自己脑袋的内容,无法回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "5a003df3a74ded6a166982dfa87ac0ec4868bc2d83bec734481e8b3ae256fa38"
+        }
+      ],
+      "prompt_sha": "5a003df3a74ded6a166982dfa87ac0ec4868bc2d83bec734481e8b3ae256fa38",
+      "retrieved_chunk_ids": [
+        "seen08000_c289",
+        "seen08000_c228",
+        "seen08000_c205",
+        "seen08000_c396",
+        "seen08000_c311"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "S03",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.355,
+          "usage": {
+            "prompt_tokens": 3241,
+            "completion_tokens": 62,
+            "total_tokens": 3303,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1833
+          },
+          "content": "{\"answer\": \"证据中只提到瑚太朗加入的组织被象征性地叫做「守护者」,但没有说明与守护者敌对的组织被象征性地叫做什么,缺少该信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[2397, 2435]]}",
+          "request_hash": "3cf61a53654787d4c8b8d68c52f1d3716f3eafb78a65fe0ff1521259a1facd10"
+        }
+      ],
+      "prompt_sha": "3cf61a53654787d4c8b8d68c52f1d3716f3eafb78a65fe0ff1521259a1facd10",
+      "retrieved_chunk_ids": [
+        "seen08000_c079",
+        "seen08000_c372",
+        "seen08000_c219",
+        "seen08000_c206",
+        "seen08000_c439"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            2397,
+            2435
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "S04",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.354,
+          "usage": {
+            "prompt_tokens": 3332,
+            "completion_tokens": 75,
+            "total_tokens": 3407,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1924
+          },
+          "content": "{\"answer\": \"风祭市对盖亚来说是圣地。证据中提到风祭市是盖亚的圣地,也是被称为「键」的存在有可能在此地产生的圣地。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[3760, 3783], [4154, 4203], [4509, 4539]]}",
+          "request_hash": "c1f130765d4a2a9d0c8c28623fa4de3bf9ef848f4b4b8c3ae6065c90c2fc0d5c"
+        }
+      ],
+      "prompt_sha": "c1f130765d4a2a9d0c8c28623fa4de3bf9ef848f4b4b8c3ae6065c90c2fc0d5c",
+      "retrieved_chunk_ids": [
+        "seen08000_c123",
+        "seen08000_c302",
+        "seen08000_c233",
+        "seen08000_c135",
+        "seen08000_c145"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            3760,
+            3783
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            4154,
+            4203
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            4509,
+            4539
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "S05",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 2.487,
+          "usage": {
+            "prompt_tokens": 3371,
+            "completion_tokens": 76,
+            "total_tokens": 3447,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1963
+          },
+          "content": "{\"answer\": \"证据中瑚太朗说自己不喝酒,但在路易斯说「至少也要享受一下气氛吧」后,瑚太朗提出「你请客吃饭的话」,路易斯答「就这么定了」,双方碰拳,可视为答应了。\", \"verdict\": \"yes\", \"evidence_rfids\": [[1, 43]]}",
+          "request_hash": "a6430ac87f2bb3de0a7b96b4403bf2f7d7c544d77147aae4b9d92040396b42cd"
+        }
+      ],
+      "prompt_sha": "a6430ac87f2bb3de0a7b96b4403bf2f7d7c544d77147aae4b9d92040396b42cd",
+      "retrieved_chunk_ids": [
+        "seen08000_c001",
+        "seen08000_c211",
+        "seen08000_c208",
+        "seen08000_c206",
+        "seen08000_c205"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            1,
+            43
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "S06",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.393,
+          "usage": {
+            "prompt_tokens": 3318,
+            "completion_tokens": 42,
+            "total_tokens": 3360,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1910
+          },
+          "content": "{\"answer\": \"有。证据5中司机提到「路边有些烧焦下陷的痕迹」。\", \"verdict\": \"yes\", \"evidence_rfids\": [[44, 66]]}",
+          "request_hash": "60f4ca89607cfde778b9b4c77c444d46ecf7e3b23dfceb2ec4ad31507c0a9d0b"
+        }
+      ],
+      "prompt_sha": "60f4ca89607cfde778b9b4c77c444d46ecf7e3b23dfceb2ec4ad31507c0a9d0b",
+      "retrieved_chunk_ids": [
+        "seen08000_c363",
+        "seen08000_c416",
+        "seen08000_c208",
+        "seen08000_c450",
+        "seen08000_c002"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            44,
+            66
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "S07",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.415,
+          "usage": {
+            "prompt_tokens": 3237,
+            "completion_tokens": 57,
+            "total_tokens": 3294,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1829
+          },
+          "content": "{\"answer\": \"证据1中先叙述路易斯指出车辆残骸,随后才提到队长联系先头车辆发出警示命令,因此路易斯指出残骸在先。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[44, 66]]}",
+          "request_hash": "40a2cf2e7030a1aedd85f76bc3a847eef6a6c5b7f51c8b27b0f028744858e38c"
+        }
+      ],
+      "prompt_sha": "40a2cf2e7030a1aedd85f76bc3a847eef6a6c5b7f51c8b27b0f028744858e38c",
+      "retrieved_chunk_ids": [
+        "seen08000_c002",
+        "seen08000_c006",
+        "seen08000_c204",
+        "seen08000_c004",
+        "seen08000_c211"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            44,
+            66
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "S08",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.113,
+          "usage": {
+            "prompt_tokens": 3268,
+            "completion_tokens": 53,
+            "total_tokens": 3321,
+            "prompt_cache_hit_tokens": 1792,
+            "prompt_cache_miss_tokens": 1476
+          },
+          "content": "{\"answer\": \"是在之后。证据中先出现「你没事吧？」的询问，随后瑚太朗回答「没事。我，石头脑袋。」\", \"verdict\": \"unknown\", \"evidence_rfids\": [[1, 43]]}",
+          "request_hash": "971afffc8b35466984e0b1f9da794e9ac8b65cf4c1cfe4c06550b3e516986a5f"
+        }
+      ],
+      "prompt_sha": "971afffc8b35466984e0b1f9da794e9ac8b65cf4c1cfe4c06550b3e516986a5f",
+      "retrieved_chunk_ids": [
+        "seen08000_c001",
+        "seen08000_c434",
+        "seen08000_c068",
+        "seen08000_c053",
+        "seen08000_c013"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            1,
+            43
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "S09",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.506,
+          "usage": {
+            "prompt_tokens": 3272,
+            "completion_tokens": 71,
+            "total_tokens": 3343,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1864
+          },
+          "content": "{\"answer\": \"证据中未明确说明故事开头乘坐这辆车的是哪几个人；证据2只提到瑚太朗坐在路易斯邻座、队长在副驾驶席、司机握着方向盘，但无法据此确定完整的乘车人员名单。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[1, 43]]}",
+          "request_hash": "cc21ebb55cad4174c0a099aad8b6f3ff532b6a02fb23b072b45d6d47990d1227"
+        }
+      ],
+      "prompt_sha": "cc21ebb55cad4174c0a099aad8b6f3ff532b6a02fb23b072b45d6d47990d1227",
+      "retrieved_chunk_ids": [
+        "seen08000_c006",
+        "seen08000_c001",
+        "seen08000_c290",
+        "seen08000_c003",
+        "seen08000_c202"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            1,
+            43
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "S10",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.305,
+          "usage": {
+            "prompt_tokens": 3549,
+            "completion_tokens": 33,
+            "total_tokens": 3582,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 2141
+          },
+          "content": "{\"answer\": \"证据中没有关于小鸟义眼来源的任何信息,无法回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "2fcd18dfa460d9411ceccc945c5f66c4a15f54344f87cd190d62133f441c4338"
+        }
+      ],
+      "prompt_sha": "2fcd18dfa460d9411ceccc945c5f66c4a15f54344f87cd190d62133f441c4338",
+      "retrieved_chunk_ids": [
+        "seen08000_c060",
+        "seen08000_c368",
+        "seen08000_c062",
+        "seen08000_c273",
+        "seen08000_c053"
+      ],
+      "citations": []
+    }
+  ]
+}

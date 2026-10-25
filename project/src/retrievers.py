@@ -11,17 +11,18 @@ sentence_transformers 导入——保持"零 LLM、轻量、可复现"的运行�
 
 用法(run_all.py):
     for entry in cfg["retrievers"]:
-        retriever = build_retriever(entry, chunks, paths, index_cfg=cfg["index"])
+        retriever = build_retriever(entry, chunks, paths, index_cfg=cfg["index"], built=built)
 """
 from __future__ import annotations
 
 
 def build_retriever(entry: dict, chunks: list[dict], paths: dict,
-                    index_cfg: dict | None = None):
+                    index_cfg: dict | None = None, built: dict | None = None):
     """按 config 条目构建检索器。
 
     entry: {"name", "type", ...各自超参}; name 作 metrics 键(报告列名)。
     index_cfg: bm25 型的共享默认超参(config 的 index: 节),条目内同名字段可逐臂覆盖。
+    built: {name: 检索器实例} 已构建实例表(hybrid 型按名引用臂, 复用实例不重建)。
     """
     rtype = entry["type"]
 
@@ -60,6 +61,17 @@ def build_retriever(entry: dict, chunks: list[dict], paths: dict,
                         batch_size=entry.get("batch_size", 32),
                         use_cache=entry.get("use_cache", True),
                         name=entry.get("name", "bge"))
+
+    if rtype == "hybrid":
+        # T6 融合臂: 按名引用同级 retrievers 条目对应的已建实例(单一配置源,
+        # 臂超参不内联复制);被引用臂必须排在 hybrid 条目之前, 违反即显式报错。
+        # 实现见 src/index_hybrid.py, 零 LLM、零新依赖。
+        from src.index_hybrid import HybridRRFIndex
+
+        return HybridRRFIndex(entry["arms"], built or {},
+                              depth=entry.get("depth", 20),
+                              rrf_k=entry.get("rrf_k", 60),
+                              name=entry["name"])
 
     raise ValueError(f"未知检索器类型: {rtype!r} (name={entry.get('name')!r})——"
                      f"在 src/retrievers.py 的 build_retriever 注册新分支")

@@ -1,0 +1,10 @@
+{"qid": "S01", "verdict": "unknown", "answer": "证据中没有说明路易斯的国籍,只提到他过去想当足球运动员、被谍报局找上等经历,缺少国籍信息。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "S02", "verdict": "unknown", "answer": "证据中没有瑚太朗形容自己脑袋的内容,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "S03", "verdict": "unknown", "answer": "证据中只提到瑚太朗加入的组织被象征性地叫做「守护者」,但没有说明与守护者敌对的组织被象征性地叫做什么,缺少该信息。", "evidence_rfids": [[2397, 2435]], "all_citations_valid": true}
+{"qid": "S04", "verdict": "unknown", "answer": "风祭市对盖亚来说是圣地。证据中提到风祭市是盖亚的圣地,也是被称为「键」的存在有可能在此地产生的圣地。", "evidence_rfids": [[3760, 3783], [4154, 4203], [4509, 4539]], "all_citations_valid": true}
+{"qid": "S05", "verdict": "yes", "answer": "证据中瑚太朗说自己不喝酒,但在路易斯说「至少也要享受一下气氛吧」后,瑚太朗提出「你请客吃饭的话」,路易斯答「就这么定了」,双方碰拳,可视为答应了。", "evidence_rfids": [[1, 43]], "all_citations_valid": true}
+{"qid": "S06", "verdict": "yes", "answer": "有。证据5中司机提到「路边有些烧焦下陷的痕迹」。", "evidence_rfids": [[44, 66]], "all_citations_valid": true}
+{"qid": "S07", "verdict": "unknown", "answer": "证据1中先叙述路易斯指出车辆残骸,随后才提到队长联系先头车辆发出警示命令,因此路易斯指出残骸在先。", "evidence_rfids": [[44, 66]], "all_citations_valid": true}
+{"qid": "S08", "verdict": "unknown", "answer": "是在之后。证据中先出现「你没事吧？」的询问，随后瑚太朗回答「没事。我，石头脑袋。」", "evidence_rfids": [[1, 43]], "all_citations_valid": true}
+{"qid": "S09", "verdict": "unknown", "answer": "证据中未明确说明故事开头乘坐这辆车的是哪几个人；证据2只提到瑚太朗坐在路易斯邻座、队长在副驾驶席、司机握着方向盘，但无法据此确定完整的乘车人员名单。", "evidence_rfids": [[1, 43]], "all_citations_valid": true}
+{"qid": "S10", "verdict": "unknown", "answer": "证据中没有关于小鸟义眼来源的任何信息,无法回答。", "evidence_rfids": [], "all_citations_valid": true}

@@ -148,27 +148,57 @@ def eval_retrieval(index, locator: RfidLocator, qaset: dict, k_values: list[int]
     return metrics, per_q
 
 
-# ---------- 答案层指标(骨架,Day 4 接入) ----------
+# ---------- 答案层指标(T7 生成接入, T8.2 扩展引用/解析指标) ----------
+
+def _load_answers(answers_path: Path) -> list[dict]:
+    with open(answers_path, encoding="utf-8") as f:
+        return [json.loads(l) for l in f if l.strip()]
+
+
+def eval_citations(rows: list[dict]) -> dict:
+    """引用规则校验指标(T8.2, 确定性): 从 answers.jsonl 行内字段直接计算。
+
+    条级 = 有效引用区间数 / 总引用区间数(无效 = n_invalid_citations, 生成侧两规则
+    校验的失败计数);题级 = "全部引用有效且至少 1 条引用"的题占比;零引用题单列
+    (多为拒答行,协议允许 evidence_rfids=[],不算"全部有效"也不算无效)。
+    n_invalid_citations 为向后兼容字段, 旧 answers 行缺省按 0(与生成侧实测一致)。
+    """
+    total = sum(len(r.get("evidence_rfids") or []) for r in rows)
+    invalid = sum(r.get("n_invalid_citations", 0) for r in rows)
+    n = len(rows)
+    q_all = sum(1 for r in rows if r.get("all_citations_valid") and r.get("evidence_rfids"))
+    return {"intervals_total": total,
+            "intervals_valid": total - invalid,
+            "entry_valid_rate": round((total - invalid) / total, 4) if total else None,
+            "q_all_valid": q_all,
+            "q_all_valid_rate": round(q_all / n, 4) if n else None,
+            "q_zero_citation": sum(1 for r in rows
+                                   if not r.get("evidence_rfids") and not r.get("parse_failed"))}
+
+
+def eval_parse_failures(rows: list[dict]) -> dict:
+    """JSON 解析失败率(重试后终态, §7.3 工程指标;逐次尝试口径在 generation_log)。"""
+    n = len(rows)
+    failed = sum(1 for r in rows if r.get("parse_failed"))
+    return {"n": n, "n_parse_failed": failed,
+            "fail_rate": round(failed / n, 4) if n else None}
+
 
 def eval_label_accuracy(qaset: dict, answers_path: Path) -> dict | None:
-    """verdict 标签准确率 + 拒答正确率。answers.jsonl 不存在时返回 None。"""
+    """verdict 标签准确率 + 拒答正确率 + 引用/解析指标(T8.2)。answers 不存在返回 None。"""
     if not answers_path.exists():
         return None
     gold = {q["qid"]: q for q in qaset["questions"] if q.get("gold_verdict")}
-    pred = {}
-    with open(answers_path, encoding="utf-8") as f:
-        for line in f:
-            if line.strip():
-                a = json.loads(line)
-                pred[a["qid"]] = a["verdict"]
+    rows = _load_answers(answers_path)
+    pred = {r["qid"]: r["verdict"] for r in rows}
 
-    rows = [(gold[qid], pred[qid]) for qid in gold if qid in pred]
-    if not rows:
+    rows_acc = [(gold[qid], pred[qid]) for qid in gold if qid in pred]
+    if not rows_acc:
         return None
-    n = len(rows)
-    correct = sum(1 for q, v in rows if q["gold_verdict"] == v)
-    unans = [(q, v) for q, v in rows if q["type"] == "unanswerable"]
-    ans = [(q, v) for q, v in rows if q["type"] != "unanswerable"]
+    n = len(rows_acc)
+    correct = sum(1 for q, v in rows_acc if q["gold_verdict"] == v)
+    unans = [(q, v) for q, v in rows_acc if q["type"] == "unanswerable"]
+    ans = [(q, v) for q, v in rows_acc if q["type"] != "unanswerable"]
     return {
         "n": n,
         "label_acc": round(correct / n, 4),
@@ -177,6 +207,8 @@ def eval_label_accuracy(qaset: dict, answers_path: Path) -> dict | None:
         "no_overrefusal_answerable": round(
             sum(1 for _, v in ans if v != "unknown") / len(ans), 4) if ans else None,
         "n_missing_answers": len(gold) - n,
+        "citations": eval_citations(rows),
+        "parse_failure": eval_parse_failures(rows),
     }
 
 
