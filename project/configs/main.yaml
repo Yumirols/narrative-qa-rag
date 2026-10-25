@@ -19,10 +19,11 @@ retrievers:           # 检索器列表: name=metrics 键=报告列名; 工厂�
   - {name: bm25_bigram, type: bm25, tokenizer: bigram}  # 原理点①字符 bigram 对照臂
   - {name: w2v_avg,     type: w2v,  tokenizer: jieba, dim: 100, window: 2,
      neg_k: 4, epochs: 15, lr: 0.05, seed: 0, min_count: 1}   # T3 基线②;全量实测 15 epochs≈3.7min
-  # T4 追加: {name: bge_small, type: bge, model: BAAI/bge-small-zh-v1.5,
-  #           device: cpu, batch_size: 32, use_cache: true}
-  #           {name: bge_base,  type: bge, model: BAAI/bge-base-zh-v1.5,
-  #            device: cpu, batch_size: 16, use_cache: true}   # 模型规模消融臂
+  # T4 追加(阶段二接入): 稠密检索两臂, 分支见 src/retrievers.py, 实现见 src/index_vector.py
+  - {name: bge_small, type: bge, model: BAAI/bge-small-zh-v1.5,
+     device: cpu, batch_size: 32, use_cache: true}   # 全库向量缓存已热(cache/)
+  - {name: bge_base,  type: bge, model: BAAI/bge-base-zh-v1.5,
+     device: cpu, batch_size: 16, use_cache: true}   # 模型规模消融臂; 首跑全库编码约 4~5min
 
 eval:
   k_values: [3, 5, 10]

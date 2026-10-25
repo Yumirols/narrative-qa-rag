@@ -1,0 +1,12 @@
+{
+  "model": "BAAI/bge-base-zh-v1.5",
+  "revision": "f03589ceff5aac7111bd60cfc7d497ca17ecac65",
+  "device": "cpu",
+  "batch_size": 16,
+  "n_chunks": 483,
+  "dim": 768,
+  "encode_seconds": 0.0012,
+  "cache_hit": true,
+  "n_truncated": 187,
+  "truncated_ratio": 0.387164
+}

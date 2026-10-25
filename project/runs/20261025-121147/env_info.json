@@ -1,0 +1,77 @@
+{
+  "timestamp": "20261025-121147",
+  "python": "3.11.9",
+  "jieba": "0.42.1",
+  "rank_bm25": "0.2.2",
+  "numpy": "2.4.6",
+  "config": {
+    "paths": {
+      "scenes": "../Rewrite_terra/data/scenes.jsonl",
+      "user_dict": "data/user_dict.txt",
+      "qaset": "eval/qaset_v0.json",
+      "answers": "eval/answers.jsonl",
+      "runs_dir": "runs",
+      "models": "../models"
+    },
+    "index": {
+      "k1": 1.5,
+      "b": 0.75,
+      "index_speakers": false
+    },
+    "retrievers": [
+      {
+        "name": "bm25_jieba",
+        "type": "bm25",
+        "tokenizer": "jieba"
+      },
+      {
+        "name": "bm25_bigram",
+        "type": "bm25",
+        "tokenizer": "bigram"
+      },
+      {
+        "name": "w2v_avg",
+        "type": "w2v",
+        "tokenizer": "jieba",
+        "dim": 100,
+        "window": 2,
+        "neg_k": 4,
+        "epochs": 15,
+        "lr": 0.05,
+        "seed": 0,
+        "min_count": 1
+      },
+      {
+        "name": "bge_small",
+        "type": "bge",
+        "model": "BAAI/bge-small-zh-v1.5",
+        "device": "cpu",
+        "batch_size": 32,
+        "use_cache": true
+      },
+      {
+        "name": "bge_base",
+        "type": "bge",
+        "model": "BAAI/bge-base-zh-v1.5",
+        "device": "cpu",
+        "batch_size": 16,
+        "use_cache": true
+      }
+    ],
+    "eval": {
+      "k_values": [
+        3,
+        5,
+        10
+      ],
+      "mrr_depth": 10
+    },
+    "demo": {
+      "sample_queries": [
+        "路易斯是什么国籍？",
+        "瑚太朗和路易斯约定了什么？",
+        "盖亚和守护者是什么关系？"
+      ]
+    }
+  }
+}

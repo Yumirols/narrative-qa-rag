@@ -48,5 +48,18 @@ def build_retriever(entry: dict, chunks: list[dict], paths: dict,
                            lr=entry.get("lr", 0.05), seed=entry.get("seed", 0),
                            min_count=entry.get("min_count", 1), name=entry["name"])
 
+    if rtype == "bge":
+        # T4 稠密臂: 只 import src.index_vector(模块级仅 numpy); torch /
+        # sentence_transformers 由 BGEIndex.__init__ 内部延迟导入——
+        # bm25-only 运行零 torch 依赖的性质不变(同文件头约束)。
+        # 缺省值与 BGEIndex.__init__ 签名一致(device="cpu"/batch_size=32/use_cache=True)。
+        from src.index_vector import BGEIndex
+
+        return BGEIndex(chunks, entry["model"], paths["models"],
+                        device=entry.get("device", "cpu"),
+                        batch_size=entry.get("batch_size", 32),
+                        use_cache=entry.get("use_cache", True),
+                        name=entry.get("name", "bge"))
+
     raise ValueError(f"未知检索器类型: {rtype!r} (name={entry.get('name')!r})——"
                      f"在 src/retrievers.py 的 build_retriever 注册新分支")

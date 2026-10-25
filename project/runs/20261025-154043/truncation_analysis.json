@@ -1,0 +1,3191 @@
+{
+  "model_tokenizer": "BAAI/bge-base-zh-v1.5",
+  "keep_content_tokens": 510,
+  "verification": {
+    "rebuilt_lines_match": "483/483",
+    "token_additivity": "483/483"
+  },
+  "chunk_level": {
+    "n_chunks": 483,
+    "n_truncated": 187,
+    "truncated_ratio": 0.387164,
+    "overflow_tokens_mean": 52.9,
+    "overflow_tokens_max": 271
+  },
+  "question_level": {
+    "n_evaluated": 72,
+    "n_gold_truncated": 56,
+    "n_evidence_lost": 5,
+    "gold_chunk_instances": 174,
+    "gold_chunk_truncated": 86,
+    "evidence_lost_qids": [
+      "Q04",
+      "Q41",
+      "Q49",
+      "Q51",
+      "Q89"
+    ]
+  },
+  "groups": {
+    "A": 16,
+    "B": 51,
+    "C": 5
+  },
+  "group_metrics": {
+    "bm25_jieba": {
+      "A": {
+        "n": 16,
+        "recall@3": 0.3854,
+        "recall@5": 0.4896,
+        "recall@10": 0.5938,
+        "mrr": 0.5469
+      },
+      "B": {
+        "n": 51,
+        "recall@3": 0.3296,
+        "recall@5": 0.3904,
+        "recall@10": 0.4718,
+        "mrr": 0.482
+      },
+      "C": {
+        "n": 5,
+        "recall@3": 0.2667,
+        "recall@5": 0.3667,
+        "recall@10": 0.4333,
+        "mrr": 0.45
+      }
+    },
+    "bm25_bigram": {
+      "A": {
+        "n": 16,
+        "recall@3": 0.6354,
+        "recall@5": 0.6771,
+        "recall@10": 0.7083,
+        "mrr": 0.625
+      },
+      "B": {
+        "n": 51,
+        "recall@3": 0.3634,
+        "recall@5": 0.4179,
+        "recall@10": 0.5196,
+        "mrr": 0.5183
+      },
+      "C": {
+        "n": 5,
+        "recall@3": 0.2667,
+        "recall@5": 0.3667,
+        "recall@10": 0.4667,
+        "mrr": 0.4622
+      }
+    },
+    "w2v_avg": {
+      "A": {
+        "n": 16,
+        "recall@3": 0.0833,
+        "recall@5": 0.1458,
+        "recall@10": 0.2917,
+        "mrr": 0.1677
+      },
+      "B": {
+        "n": 51,
+        "recall@3": 0.1572,
+        "recall@5": 0.1737,
+        "recall@10": 0.2785,
+        "mrr": 0.2042
+      },
+      "C": {
+        "n": 5,
+        "recall@3": 0.1,
+        "recall@5": 0.2,
+        "recall@10": 0.2667,
+        "mrr": 0.24
+      }
+    },
+    "bge_small": {
+      "A": {
+        "n": 16,
+        "recall@3": 0.5729,
+        "recall@5": 0.5729,
+        "recall@10": 0.75,
+        "mrr": 0.6001
+      },
+      "B": {
+        "n": 51,
+        "recall@3": 0.2758,
+        "recall@5": 0.3385,
+        "recall@10": 0.4928,
+        "mrr": 0.3999
+      },
+      "C": {
+        "n": 5,
+        "recall@3": 0.2333,
+        "recall@5": 0.2333,
+        "recall@10": 0.4,
+        "mrr": 0.4667
+      }
+    },
+    "bge_base": {
+      "A": {
+        "n": 16,
+        "recall@3": 0.4271,
+        "recall@5": 0.5208,
+        "recall@10": 0.6667,
+        "mrr": 0.4965
+      },
+      "B": {
+        "n": 51,
+        "recall@3": 0.353,
+        "recall@5": 0.426,
+        "recall@10": 0.5554,
+        "mrr": 0.504
+      },
+      "C": {
+        "n": 5,
+        "recall@3": 0.3667,
+        "recall@5": 0.4333,
+        "recall@10": 0.5667,
+        "mrr": 0.65
+      }
+    }
+  },
+  "per_question": {
+    "Q01": {
+      "layer": "literal",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c177"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c177",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            10
+          ],
+          "chunk_total_tokens": 575,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c177",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            10,
+            30
+          ],
+          "chunk_total_tokens": 575,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q02": {
+      "layer": "semantic_gap",
+      "type": "fact",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c084"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c084",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            140,
+            173
+          ],
+          "chunk_total_tokens": 497,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c084",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            173,
+            196
+          ],
+          "chunk_total_tokens": 497,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q03": {
+      "layer": "literal",
+      "type": "fact",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c113"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c113",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            26
+          ],
+          "chunk_total_tokens": 62,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c113",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            26,
+            45
+          ],
+          "chunk_total_tokens": 62,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c113",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            45,
+            62
+          ],
+          "chunk_total_tokens": 62,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q04": {
+      "layer": "semantic_gap",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": true,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c448",
+        "seen08000_c449"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c448",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            590,
+            611
+          ],
+          "chunk_total_tokens": 611,
+          "evidence_lost_frac": 1.0
+        },
+        {
+          "chunk_id": "seen08000_c449",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            17
+          ],
+          "chunk_total_tokens": 454,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c449",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            17,
+            30
+          ],
+          "chunk_total_tokens": 454,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c449",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            199,
+            206
+          ],
+          "chunk_total_tokens": 454,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q05": {
+      "layer": "structural",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 3,
+      "gold_chunks": [
+        "seen08000_c075",
+        "seen08000_c077",
+        "seen08000_c273"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c075",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            9,
+            30
+          ],
+          "chunk_total_tokens": 48,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c077",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            47,
+            58
+          ],
+          "chunk_total_tokens": 598,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c273",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            153,
+            179
+          ],
+          "chunk_total_tokens": 589,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q06": {
+      "layer": "literal",
+      "type": "fact",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c348"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c348",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            16
+          ],
+          "chunk_total_tokens": 492,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c348",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            31,
+            56
+          ],
+          "chunk_total_tokens": 492,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c348",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            99,
+            113
+          ],
+          "chunk_total_tokens": 492,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q07": {
+      "layer": "semantic_gap",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c044"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c044",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            97,
+            117
+          ],
+          "chunk_total_tokens": 589,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c044",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            125,
+            139
+          ],
+          "chunk_total_tokens": 589,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c044",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            161,
+            188
+          ],
+          "chunk_total_tokens": 589,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q08": {
+      "layer": "literal",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c455"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c455",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            27
+          ],
+          "chunk_total_tokens": 567,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c455",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            27,
+            42
+          ],
+          "chunk_total_tokens": 567,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q09": {
+      "layer": "literal",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c177"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c177",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            196,
+            202
+          ],
+          "chunk_total_tokens": 575,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c177",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            202,
+            217
+          ],
+          "chunk_total_tokens": 575,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q10": {
+      "layer": "semantic_gap",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c465",
+        "seen08000_c466"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c465",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            209,
+            217
+          ],
+          "chunk_total_tokens": 244,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c466",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            17,
+            41
+          ],
+          "chunk_total_tokens": 524,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c466",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            365,
+            392
+          ],
+          "chunk_total_tokens": 524,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q11": {
+      "layer": "semantic_gap",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c394"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c394",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            44,
+            66
+          ],
+          "chunk_total_tokens": 596,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q12": {
+      "layer": "literal",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c098",
+        "seen08000_c100"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c098",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            254,
+            266
+          ],
+          "chunk_total_tokens": 510,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c100",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            56,
+            74
+          ],
+          "chunk_total_tokens": 573,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c100",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            81,
+            91
+          ],
+          "chunk_total_tokens": 573,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c100",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            138,
+            165
+          ],
+          "chunk_total_tokens": 573,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q13": {
+      "layer": "structural",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 5,
+      "gold_chunks": [
+        "seen08000_c295",
+        "seen08000_c320",
+        "seen08000_c323",
+        "seen08000_c324",
+        "seen08000_c325"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c295",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            74,
+            89
+          ],
+          "chunk_total_tokens": 575,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c295",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            248,
+            270
+          ],
+          "chunk_total_tokens": 575,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c320",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            66,
+            83
+          ],
+          "chunk_total_tokens": 489,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c323",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            39,
+            79
+          ],
+          "chunk_total_tokens": 543,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c324",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            202,
+            217
+          ],
+          "chunk_total_tokens": 330,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c325",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            444,
+            462
+          ],
+          "chunk_total_tokens": 577,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c325",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            470,
+            494
+          ],
+          "chunk_total_tokens": 577,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q14": {
+      "layer": "literal",
+      "type": "yesno",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c363"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c363",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            20,
+            74
+          ],
+          "chunk_total_tokens": 205,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c363",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            74,
+            81
+          ],
+          "chunk_total_tokens": 205,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c363",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            81,
+            98
+          ],
+          "chunk_total_tokens": 205,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q15": {
+      "layer": "literal",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c084",
+        "seen08000_c135"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c084",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            6
+          ],
+          "chunk_total_tokens": 497,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c084",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            6,
+            20
+          ],
+          "chunk_total_tokens": 497,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c135",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            12
+          ],
+          "chunk_total_tokens": 592,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q16": {
+      "layer": "structural",
+      "type": "temporal",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c055",
+        "seen08000_c084"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c055",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            42
+          ],
+          "chunk_total_tokens": 323,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c084",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            6
+          ],
+          "chunk_total_tokens": 497,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q17": {
+      "layer": "structural",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 4,
+      "gold_chunks": [
+        "seen08000_c013",
+        "seen08000_c015",
+        "seen08000_c040",
+        "seen08000_c048"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c013",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            50,
+            68
+          ],
+          "chunk_total_tokens": 235,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c015",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            7
+          ],
+          "chunk_total_tokens": 158,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c040",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            347,
+            366
+          ],
+          "chunk_total_tokens": 513,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c048",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            89,
+            112
+          ],
+          "chunk_total_tokens": 603,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q18": {
+      "layer": "literal",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c288",
+        "seen08000_c302"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c288",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            22,
+            52
+          ],
+          "chunk_total_tokens": 97,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c302",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            103,
+            119
+          ],
+          "chunk_total_tokens": 546,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q19": {
+      "layer": "structural",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 3,
+      "gold_chunks": [
+        "seen08000_c321",
+        "seen08000_c322",
+        "seen08000_c325"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c321",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            325,
+            344
+          ],
+          "chunk_total_tokens": 498,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c322",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            347,
+            364
+          ],
+          "chunk_total_tokens": 544,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c325",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            158,
+            180
+          ],
+          "chunk_total_tokens": 577,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q20": {
+      "layer": "structural",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c455",
+        "seen08000_c465"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c455",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            27
+          ],
+          "chunk_total_tokens": 567,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c455",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            27,
+            42
+          ],
+          "chunk_total_tokens": 567,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c465",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            8
+          ],
+          "chunk_total_tokens": 244,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q21": {
+      "layer": "structural",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 5,
+      "gold_chunks": [
+        "seen08000_c123",
+        "seen08000_c131",
+        "seen08000_c232",
+        "seen08000_c295",
+        "seen08000_c397"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c123",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            299,
+            314
+          ],
+          "chunk_total_tokens": 314,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c131",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            16
+          ],
+          "chunk_total_tokens": 593,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c232",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            281,
+            295
+          ],
+          "chunk_total_tokens": 318,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c295",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            232,
+            248
+          ],
+          "chunk_total_tokens": 575,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c397",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            420,
+            434
+          ],
+          "chunk_total_tokens": 434,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q22": {
+      "layer": "floor",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c473",
+        "seen08000_c480"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c473",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            103
+          ],
+          "chunk_total_tokens": 103,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c480",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            186
+          ],
+          "chunk_total_tokens": 611,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q23": {
+      "layer": "literal",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c131",
+        "seen08000_c295"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c131",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            379,
+            386
+          ],
+          "chunk_total_tokens": 593,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c295",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            4
+          ],
+          "chunk_total_tokens": 575,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c295",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            412,
+            429
+          ],
+          "chunk_total_tokens": 575,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q24": {
+      "layer": "structural",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 5,
+      "gold_chunks": [
+        "seen08000_c318",
+        "seen08000_c319",
+        "seen08000_c320",
+        "seen08000_c322",
+        "seen08000_c324"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c318",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            185,
+            217
+          ],
+          "chunk_total_tokens": 576,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c319",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            388,
+            406
+          ],
+          "chunk_total_tokens": 566,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c320",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            47,
+            66
+          ],
+          "chunk_total_tokens": 489,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c322",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            347,
+            364
+          ],
+          "chunk_total_tokens": 544,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c324",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            202,
+            217
+          ],
+          "chunk_total_tokens": 330,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q25": {
+      "layer": "literal",
+      "type": "aggregate",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c268",
+        "seen08000_c270"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c268",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            15,
+            57
+          ],
+          "chunk_total_tokens": 82,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c270",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            111,
+            140
+          ],
+          "chunk_total_tokens": 489,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c270",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            290,
+            313
+          ],
+          "chunk_total_tokens": 489,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q31": {
+      "layer": "literal",
+      "type": "fact",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c011"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c011",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            1,
+            61
+          ],
+          "chunk_total_tokens": 510,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q32": {
+      "layer": "literal",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c091"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c091",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            59
+          ],
+          "chunk_total_tokens": 538,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q33": {
+      "layer": "literal",
+      "type": "fact",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c239"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c239",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            9,
+            89
+          ],
+          "chunk_total_tokens": 483,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q34": {
+      "layer": "semantic_gap",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c298"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c298",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            583
+          ],
+          "chunk_total_tokens": 583,
+          "evidence_lost_frac": 0.1252
+        }
+      ]
+    },
+    "Q35": {
+      "layer": "semantic_gap",
+      "type": "fact",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c101"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c101",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            19,
+            300
+          ],
+          "chunk_total_tokens": 360,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q36": {
+      "layer": "semantic_gap",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c211"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c211",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            172
+          ],
+          "chunk_total_tokens": 585,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q37": {
+      "layer": "semantic_gap",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c279"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c279",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            143,
+            204
+          ],
+          "chunk_total_tokens": 516,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q38": {
+      "layer": "semantic_gap",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c273"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c273",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            153,
+            312
+          ],
+          "chunk_total_tokens": 589,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q39": {
+      "layer": "structural",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 3,
+      "gold_chunks": [
+        "seen08000_c413",
+        "seen08000_c414",
+        "seen08000_c415"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c413",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            252,
+            499
+          ],
+          "chunk_total_tokens": 499,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c414",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            332
+          ],
+          "chunk_total_tokens": 332,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c415",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            327
+          ],
+          "chunk_total_tokens": 520,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q40": {
+      "layer": "semantic_gap",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c285",
+        "seen08000_c287"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c285",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            406,
+            470
+          ],
+          "chunk_total_tokens": 497,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c287",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            22,
+            37
+          ],
+          "chunk_total_tokens": 524,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q41": {
+      "layer": "literal",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": true,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c192",
+        "seen08000_c207"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c192",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            22,
+            73
+          ],
+          "chunk_total_tokens": 540,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c207",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            30,
+            40
+          ],
+          "chunk_total_tokens": 532,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c207",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            480,
+            521
+          ],
+          "chunk_total_tokens": 532,
+          "evidence_lost_frac": 0.2683
+        },
+        {
+          "chunk_id": "seen08000_c207",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            521,
+            532
+          ],
+          "chunk_total_tokens": 532,
+          "evidence_lost_frac": 1.0
+        }
+      ]
+    },
+    "Q42": {
+      "layer": "semantic_gap",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c087",
+        "seen08000_c088"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c087",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            429,
+            518
+          ],
+          "chunk_total_tokens": 518,
+          "evidence_lost_frac": 0.0899
+        },
+        {
+          "chunk_id": "seen08000_c088",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            60
+          ],
+          "chunk_total_tokens": 559,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q43": {
+      "layer": "literal",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c381",
+        "seen08000_c448"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c381",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            281,
+            322
+          ],
+          "chunk_total_tokens": 340,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c448",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            19,
+            35
+          ],
+          "chunk_total_tokens": 611,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q44": {
+      "layer": "semantic_gap",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c427",
+        "seen08000_c428"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c427",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            297,
+            603
+          ],
+          "chunk_total_tokens": 603,
+          "evidence_lost_frac": 0.3039
+        },
+        {
+          "chunk_id": "seen08000_c428",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            280
+          ],
+          "chunk_total_tokens": 571,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q45": {
+      "layer": "semantic_gap",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c308"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c308",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            360,
+            565
+          ],
+          "chunk_total_tokens": 565,
+          "evidence_lost_frac": 0.2683
+        }
+      ]
+    },
+    "Q46": {
+      "layer": "semantic_gap",
+      "type": "yesno",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c315"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c315",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            129,
+            257
+          ],
+          "chunk_total_tokens": 496,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q47": {
+      "layer": "semantic_gap",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c325"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c325",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            57,
+            180
+          ],
+          "chunk_total_tokens": 577,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q48": {
+      "layer": "structural",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 3,
+      "gold_chunks": [
+        "seen08000_c437",
+        "seen08000_c438",
+        "seen08000_c439"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c437",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            28,
+            103
+          ],
+          "chunk_total_tokens": 103,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c438",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            103
+          ],
+          "chunk_total_tokens": 103,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c439",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            144
+          ],
+          "chunk_total_tokens": 630,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q49": {
+      "layer": "semantic_gap",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": true,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c303",
+        "seen08000_c304"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c303",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            544,
+            568
+          ],
+          "chunk_total_tokens": 568,
+          "evidence_lost_frac": 1.0
+        },
+        {
+          "chunk_id": "seen08000_c304",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            57
+          ],
+          "chunk_total_tokens": 550,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q50": {
+      "layer": "semantic_gap",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c226"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c226",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            107,
+            221
+          ],
+          "chunk_total_tokens": 591,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q51": {
+      "layer": "structural",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": true,
+      "n_gold_chunks": 3,
+      "gold_chunks": [
+        "seen08000_c434",
+        "seen08000_c441",
+        "seen08000_c442"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c434",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            14,
+            211
+          ],
+          "chunk_total_tokens": 280,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c441",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            535,
+            572
+          ],
+          "chunk_total_tokens": 572,
+          "evidence_lost_frac": 1.0
+        },
+        {
+          "chunk_id": "seen08000_c442",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            148
+          ],
+          "chunk_total_tokens": 631,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c442",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            262,
+            446
+          ],
+          "chunk_total_tokens": 631,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q52": {
+      "layer": "structural",
+      "type": "yesno",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 3,
+      "gold_chunks": [
+        "seen08000_c351",
+        "seen08000_c352",
+        "seen08000_c353"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c351",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            365,
+            493
+          ],
+          "chunk_total_tokens": 493,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c352",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            509
+          ],
+          "chunk_total_tokens": 509,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c353",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            202
+          ],
+          "chunk_total_tokens": 531,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q53": {
+      "layer": "structural",
+      "type": "yesno",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 3,
+      "gold_chunks": [
+        "seen08000_c418",
+        "seen08000_c432",
+        "seen08000_c447"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c418",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            80,
+            314
+          ],
+          "chunk_total_tokens": 314,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c432",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            95
+          ],
+          "chunk_total_tokens": 446,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c447",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            289,
+            301
+          ],
+          "chunk_total_tokens": 357,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q54": {
+      "layer": "structural",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c066",
+        "seen08000_c074"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c066",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            420,
+            445
+          ],
+          "chunk_total_tokens": 520,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c074",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            191,
+            208
+          ],
+          "chunk_total_tokens": 513,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q55": {
+      "layer": "structural",
+      "type": "yesno",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 3,
+      "gold_chunks": [
+        "seen08000_c097",
+        "seen08000_c474",
+        "seen08000_c475"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c097",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            25,
+            83
+          ],
+          "chunk_total_tokens": 478,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c474",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            27,
+            107
+          ],
+          "chunk_total_tokens": 107,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c475",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            213
+          ],
+          "chunk_total_tokens": 213,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q56": {
+      "layer": "literal",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c091",
+        "seen08000_c094"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c091",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            59
+          ],
+          "chunk_total_tokens": 538,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c094",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            77
+          ],
+          "chunk_total_tokens": 570,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q57": {
+      "layer": "semantic_gap",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c292",
+        "seen08000_c397"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c292",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            91
+          ],
+          "chunk_total_tokens": 556,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c397",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            183
+          ],
+          "chunk_total_tokens": 434,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q58": {
+      "layer": "structural",
+      "type": "temporal",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c262",
+        "seen08000_c288"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c262",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            198,
+            381
+          ],
+          "chunk_total_tokens": 381,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c288",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            22,
+            52
+          ],
+          "chunk_total_tokens": 97,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q59": {
+      "layer": "structural",
+      "type": "temporal",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 3,
+      "gold_chunks": [
+        "seen08000_c159",
+        "seen08000_c160",
+        "seen08000_c165"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c159",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            420,
+            484
+          ],
+          "chunk_total_tokens": 484,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c160",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            71
+          ],
+          "chunk_total_tokens": 467,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c165",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            396
+          ],
+          "chunk_total_tokens": 509,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q60": {
+      "layer": "structural",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 3,
+      "gold_chunks": [
+        "seen08000_c077",
+        "seen08000_c078",
+        "seen08000_c273"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c077",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            507,
+            598
+          ],
+          "chunk_total_tokens": 598,
+          "evidence_lost_frac": 0.967
+        },
+        {
+          "chunk_id": "seen08000_c078",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            169
+          ],
+          "chunk_total_tokens": 339,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c273",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            14
+          ],
+          "chunk_total_tokens": 589,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q61": {
+      "layer": "structural",
+      "type": "temporal",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c366",
+        "seen08000_c369"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c366",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            72,
+            264
+          ],
+          "chunk_total_tokens": 344,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c369",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            400,
+            435
+          ],
+          "chunk_total_tokens": 505,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q62": {
+      "layer": "literal",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c384",
+        "seen08000_c387"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c384",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            100,
+            123
+          ],
+          "chunk_total_tokens": 472,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c387",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            331,
+            344
+          ],
+          "chunk_total_tokens": 604,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c387",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            483,
+            496
+          ],
+          "chunk_total_tokens": 604,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q63": {
+      "layer": "structural",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 3,
+      "gold_chunks": [
+        "seen08000_c238",
+        "seen08000_c241",
+        "seen08000_c285"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c238",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            60,
+            142
+          ],
+          "chunk_total_tokens": 498,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c238",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            395,
+            450
+          ],
+          "chunk_total_tokens": 498,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c241",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            28,
+            56
+          ],
+          "chunk_total_tokens": 527,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c285",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            406,
+            426
+          ],
+          "chunk_total_tokens": 497,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q64": {
+      "layer": "structural",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 5,
+      "gold_chunks": [
+        "seen08000_c006",
+        "seen08000_c196",
+        "seen08000_c197",
+        "seen08000_c408",
+        "seen08000_c420"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c006",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            134
+          ],
+          "chunk_total_tokens": 134,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c196",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            399,
+            485
+          ],
+          "chunk_total_tokens": 485,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c197",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            30
+          ],
+          "chunk_total_tokens": 486,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c408",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            347,
+            393
+          ],
+          "chunk_total_tokens": 610,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c420",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            364,
+            496
+          ],
+          "chunk_total_tokens": 508,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q65": {
+      "layer": "structural",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 7,
+      "gold_chunks": [
+        "seen08000_c092",
+        "seen08000_c093",
+        "seen08000_c140",
+        "seen08000_c253",
+        "seen08000_c384",
+        "seen08000_c439",
+        "seen08000_c477"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c092",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            137,
+            156
+          ],
+          "chunk_total_tokens": 567,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c093",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            38
+          ],
+          "chunk_total_tokens": 150,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c140",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            92,
+            121
+          ],
+          "chunk_total_tokens": 609,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c253",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            253,
+            275
+          ],
+          "chunk_total_tokens": 306,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c384",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            100,
+            123
+          ],
+          "chunk_total_tokens": 472,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c439",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            477,
+            501
+          ],
+          "chunk_total_tokens": 630,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c477",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            81,
+            102
+          ],
+          "chunk_total_tokens": 139,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q66": {
+      "layer": "structural",
+      "type": "aggregate",
+      "trunc_any": false,
+      "evidence_lost": false,
+      "n_gold_chunks": 3,
+      "gold_chunks": [
+        "seen08000_c111",
+        "seen08000_c125",
+        "seen08000_c280"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c111",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            497,
+            506
+          ],
+          "chunk_total_tokens": 506,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c125",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            81,
+            90
+          ],
+          "chunk_total_tokens": 90,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c280",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            322,
+            331
+          ],
+          "chunk_total_tokens": 331,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q67": {
+      "layer": "structural",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 5,
+      "gold_chunks": [
+        "seen08000_c158",
+        "seen08000_c159",
+        "seen08000_c361",
+        "seen08000_c443",
+        "seen08000_c444"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c158",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            100,
+            125
+          ],
+          "chunk_total_tokens": 163,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c159",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            420,
+            424
+          ],
+          "chunk_total_tokens": 484,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c361",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            135,
+            323
+          ],
+          "chunk_total_tokens": 528,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c443",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            218,
+            241
+          ],
+          "chunk_total_tokens": 241,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c444",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            100
+          ],
+          "chunk_total_tokens": 522,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q68": {
+      "layer": "structural",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 4,
+      "gold_chunks": [
+        "seen08000_c245",
+        "seen08000_c271",
+        "seen08000_c304",
+        "seen08000_c396"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c245",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            284,
+            307
+          ],
+          "chunk_total_tokens": 543,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c271",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            166,
+            208
+          ],
+          "chunk_total_tokens": 353,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c304",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            171,
+            196
+          ],
+          "chunk_total_tokens": 550,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c396",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            172,
+            223
+          ],
+          "chunk_total_tokens": 567,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q78": {
+      "layer": "structural",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 6,
+      "gold_chunks": [
+        "seen08000_c306",
+        "seen08000_c312",
+        "seen08000_c316",
+        "seen08000_c320",
+        "seen08000_c339",
+        "seen08000_c451"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c306",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            334,
+            446
+          ],
+          "chunk_total_tokens": 446,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c316",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            331,
+            431
+          ],
+          "chunk_total_tokens": 492,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c320",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            379,
+            443
+          ],
+          "chunk_total_tokens": 489,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c339",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            433,
+            460
+          ],
+          "chunk_total_tokens": 479,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c312",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            27
+          ],
+          "chunk_total_tokens": 544,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c451",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            457,
+            485
+          ],
+          "chunk_total_tokens": 522,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q79": {
+      "layer": "structural",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c403",
+        "seen08000_c468"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c403",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            19
+          ],
+          "chunk_total_tokens": 603,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c403",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            103,
+            181
+          ],
+          "chunk_total_tokens": 603,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c403",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            290,
+            309
+          ],
+          "chunk_total_tokens": 603,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c403",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            416,
+            438
+          ],
+          "chunk_total_tokens": 603,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c468",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            53
+          ],
+          "chunk_total_tokens": 488,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q80": {
+      "layer": "structural",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 7,
+      "gold_chunks": [
+        "seen08000_c228",
+        "seen08000_c381",
+        "seen08000_c392",
+        "seen08000_c402",
+        "seen08000_c408",
+        "seen08000_c433",
+        "seen08000_c465"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c228",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            23
+          ],
+          "chunk_total_tokens": 542,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c381",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            157
+          ],
+          "chunk_total_tokens": 340,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c392",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            223,
+            251
+          ],
+          "chunk_total_tokens": 497,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c402",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            41
+          ],
+          "chunk_total_tokens": 516,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c402",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            212,
+            251
+          ],
+          "chunk_total_tokens": 516,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c408",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            27,
+            47
+          ],
+          "chunk_total_tokens": 610,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c433",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            434,
+            463
+          ],
+          "chunk_total_tokens": 576,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c465",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            13,
+            26
+          ],
+          "chunk_total_tokens": 244,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q83": {
+      "layer": "semantic_gap",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c058",
+        "seen08000_c077"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c058",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            501
+          ],
+          "chunk_total_tokens": 501,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c077",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            598
+          ],
+          "chunk_total_tokens": 598,
+          "evidence_lost_frac": 0.1472
+        }
+      ]
+    },
+    "Q84": {
+      "layer": "semantic_gap",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 2,
+      "gold_chunks": [
+        "seen08000_c039",
+        "seen08000_c041"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c039",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            601
+          ],
+          "chunk_total_tokens": 601,
+          "evidence_lost_frac": 0.1514
+        },
+        {
+          "chunk_id": "seen08000_c041",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            496
+          ],
+          "chunk_total_tokens": 496,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q85": {
+      "layer": "structural",
+      "type": "temporal",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 3,
+      "gold_chunks": [
+        "seen08000_c050",
+        "seen08000_c059",
+        "seen08000_c060"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c050",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            0,
+            220
+          ],
+          "chunk_total_tokens": 220,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c059",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            542
+          ],
+          "chunk_total_tokens": 542,
+          "evidence_lost_frac": 0.059
+        },
+        {
+          "chunk_id": "seen08000_c060",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            0,
+            590
+          ],
+          "chunk_total_tokens": 590,
+          "evidence_lost_frac": 0.1356
+        }
+      ]
+    },
+    "Q88": {
+      "layer": "structural",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 4,
+      "gold_chunks": [
+        "seen08000_c300",
+        "seen08000_c322",
+        "seen08000_c351",
+        "seen08000_c405"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c300",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            107,
+            160
+          ],
+          "chunk_total_tokens": 563,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c322",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            88,
+            136
+          ],
+          "chunk_total_tokens": 544,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c351",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            35,
+            96
+          ],
+          "chunk_total_tokens": 493,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c405",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            164,
+            241
+          ],
+          "chunk_total_tokens": 513,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q89": {
+      "layer": "structural",
+      "type": "aggregate",
+      "trunc_any": true,
+      "evidence_lost": true,
+      "n_gold_chunks": 6,
+      "gold_chunks": [
+        "seen08000_c094",
+        "seen08000_c099",
+        "seen08000_c103",
+        "seen08000_c114",
+        "seen08000_c145",
+        "seen08000_c187"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c094",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            526,
+            570
+          ],
+          "chunk_total_tokens": 570,
+          "evidence_lost_frac": 1.0
+        },
+        {
+          "chunk_id": "seen08000_c099",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            55,
+            85
+          ],
+          "chunk_total_tokens": 504,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c099",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            128,
+            145
+          ],
+          "chunk_total_tokens": 504,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c103",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            256,
+            287
+          ],
+          "chunk_total_tokens": 506,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c114",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            205,
+            222
+          ],
+          "chunk_total_tokens": 486,
+          "evidence_lost_frac": 0.0
+        },
+        {
+          "chunk_id": "seen08000_c145",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            509,
+            528
+          ],
+          "chunk_total_tokens": 528,
+          "evidence_lost_frac": 0.9474
+        },
+        {
+          "chunk_id": "seen08000_c187",
+          "chunk_truncated": false,
+          "evidence_token_span": [
+            146,
+            253
+          ],
+          "chunk_total_tokens": 488,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    },
+    "Q90": {
+      "layer": "semantic_gap",
+      "type": "fact",
+      "trunc_any": true,
+      "evidence_lost": false,
+      "n_gold_chunks": 1,
+      "gold_chunks": [
+        "seen08000_c227"
+      ],
+      "detail": [
+        {
+          "chunk_id": "seen08000_c227",
+          "chunk_truncated": true,
+          "evidence_token_span": [
+            53,
+            184
+          ],
+          "chunk_total_tokens": 597,
+          "evidence_lost_frac": 0.0
+        }
+      ]
+    }
+  },
+  "source_run": "20261025-154043",
+  "note": "截尾与长文池化稀释完全共线, A/B/C 组间差是两机制的联合效应;观察性结论, 非因果分解"
+}

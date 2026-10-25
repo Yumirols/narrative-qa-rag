@@ -1,0 +1,221 @@
+{
+  "bm25_jieba": {
+    "arm": "bm25_jieba",
+    "n_questions": 90,
+    "n_evaluated": 72,
+    "n_skipped_unanswerable": 18,
+    "overall": {
+      "n": 72,
+      "recall@3": 0.3377,
+      "recall@5": 0.4108,
+      "recall@10": 0.4963,
+      "mrr": 0.4942
+    },
+    "by_type": {
+      "fact": {
+        "n": 20,
+        "recall@3": 0.3667,
+        "recall@5": 0.4583,
+        "recall@10": 0.525,
+        "mrr": 0.4433
+      },
+      "yesno": {
+        "n": 18,
+        "recall@3": 0.2519,
+        "recall@5": 0.3185,
+        "recall@10": 0.3852,
+        "mrr": 0.2894
+      },
+      "temporal": {
+        "n": 18,
+        "recall@3": 0.4398,
+        "recall@5": 0.5231,
+        "recall@10": 0.5972,
+        "mrr": 0.6963
+      },
+      "aggregate": {
+        "n": 16,
+        "recall@3": 0.283,
+        "recall@5": 0.3289,
+        "recall@10": 0.4717,
+        "mrr": 0.561
+      }
+    },
+    "by_layer": {
+      "literal": {
+        "n": 18,
+        "recall@3": 0.8611,
+        "recall@5": 0.9722,
+        "recall@10": 1.0,
+        "mrr": 0.9213
+      },
+      "semantic_gap": {
+        "n": 22,
+        "recall@3": 0.0682,
+        "recall@5": 0.0909,
+        "recall@10": 0.1818,
+        "mrr": 0.1383
+      },
+      "structural": {
+        "n": 31,
+        "recall@3": 0.2359,
+        "recall@5": 0.3251,
+        "recall@10": 0.4429,
+        "mrr": 0.5148
+      },
+      "floor": {
+        "n": 1,
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0
+      }
+    }
+  },
+  "bm25_bigram": {
+    "arm": "bm25_bigram",
+    "n_questions": 90,
+    "n_evaluated": 72,
+    "n_skipped_unanswerable": 18,
+    "overall": {
+      "n": 72,
+      "recall@3": 0.4171,
+      "recall@5": 0.472,
+      "recall@10": 0.5579,
+      "mrr": 0.5381
+    },
+    "by_type": {
+      "fact": {
+        "n": 20,
+        "recall@3": 0.4667,
+        "recall@5": 0.5583,
+        "recall@10": 0.675,
+        "mrr": 0.4734
+      },
+      "yesno": {
+        "n": 18,
+        "recall@3": 0.3296,
+        "recall@5": 0.3667,
+        "recall@10": 0.413,
+        "mrr": 0.3951
+      },
+      "temporal": {
+        "n": 18,
+        "recall@3": 0.537,
+        "recall@5": 0.5648,
+        "recall@10": 0.6296,
+        "mrr": 0.7407
+      },
+      "aggregate": {
+        "n": 16,
+        "recall@3": 0.3186,
+        "recall@5": 0.378,
+        "recall@10": 0.4937,
+        "mrr": 0.5521
+      }
+    },
+    "by_layer": {
+      "literal": {
+        "n": 18,
+        "recall@3": 0.8889,
+        "recall@5": 0.9167,
+        "recall@10": 1.0,
+        "mrr": 0.8333
+      },
+      "semantic_gap": {
+        "n": 22,
+        "recall@3": 0.1818,
+        "recall@5": 0.2727,
+        "recall@10": 0.3636,
+        "mrr": 0.2599
+      },
+      "structural": {
+        "n": 31,
+        "recall@3": 0.3236,
+        "recall@5": 0.3704,
+        "recall@10": 0.457,
+        "mrr": 0.5815
+      },
+      "floor": {
+        "n": 1,
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0
+      }
+    }
+  },
+  "w2v_avg": {
+    "arm": "w2v_avg",
+    "n_questions": 90,
+    "n_evaluated": 72,
+    "n_skipped_unanswerable": 18,
+    "overall": {
+      "n": 72,
+      "recall@3": 0.1368,
+      "recall@5": 0.1693,
+      "recall@10": 0.2806,
+      "mrr": 0.1986
+    },
+    "by_type": {
+      "fact": {
+        "n": 20,
+        "recall@3": 0.1917,
+        "recall@5": 0.2417,
+        "recall@10": 0.3083,
+        "mrr": 0.165
+      },
+      "yesno": {
+        "n": 18,
+        "recall@3": 0.1315,
+        "recall@5": 0.1315,
+        "recall@10": 0.3167,
+        "mrr": 0.1806
+      },
+      "temporal": {
+        "n": 18,
+        "recall@3": 0.1435,
+        "recall@5": 0.1713,
+        "recall@10": 0.2917,
+        "mrr": 0.2901
+      },
+      "aggregate": {
+        "n": 16,
+        "recall@3": 0.0667,
+        "recall@5": 0.1193,
+        "recall@10": 0.1929,
+        "mrr": 0.158
+      }
+    },
+    "by_layer": {
+      "literal": {
+        "n": 18,
+        "recall@3": 0.1667,
+        "recall@5": 0.1944,
+        "recall@10": 0.3889,
+        "mrr": 0.2201
+      },
+      "semantic_gap": {
+        "n": 22,
+        "recall@3": 0.1818,
+        "recall@5": 0.2273,
+        "recall@10": 0.3409,
+        "mrr": 0.1688
+      },
+      "structural": {
+        "n": 31,
+        "recall@3": 0.0919,
+        "recall@5": 0.1191,
+        "recall@10": 0.1839,
+        "mrr": 0.2137
+      },
+      "floor": {
+        "n": 1,
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0
+      }
+    }
+  }
+}

@@ -47,6 +47,15 @@ SEGMENTATION_SAMPLES = [
 ]
 
 
+def _pkg_ver(dist: str) -> str:
+    """importlib.metadata 只读发行版版本号(阶段三); 绝不 import 包本身——
+    import torch 会连带拉起整个权重加载栈, 审计只需要版本号。缺失填 "(missing)" 不崩。"""
+    try:
+        return pkg_version(dist)
+    except Exception:  # PackageNotFoundError 等, 包不存在时兜底
+        return "(missing)"
+
+
 def segmentation_demo(userdict: Path, run_dir: Path) -> None:
     """词典加载前/后的切分对照。jieba 词典只能增量加载,顺序不可颠倒。"""
     before = [" | ".join(jieba_tokenize(s)) for s in SEGMENTATION_SAMPLES]
@@ -75,17 +84,6 @@ def main() -> None:
     run_dir.mkdir(parents=True, exist_ok=True)
     shutil.copy(PROJECT_ROOT / args.config, run_dir / "config_copy.yaml")
 
-    env_info = {
-        "timestamp": run_dir.name,
-        "python": sys.version.split()[0],
-        "jieba": pkg_version("jieba"),
-        "rank_bm25": pkg_version("rank_bm25"),
-        "numpy": pkg_version("numpy"),
-        "config": cfg,
-    }
-    (run_dir / "env_info.json").write_text(
-        json.dumps(env_info, ensure_ascii=False, indent=2), encoding="utf-8")
-
     # ---- 1. 语料 ----
     chunks = load_chunks(paths["scenes"])
     n_chars = sum(c["n_chars"] for c in chunks)
@@ -104,7 +102,7 @@ def main() -> None:
         indexes[name] = retriever
         st = retriever.stats()
         print(f"\n== 建检索器 [{name}] ({entry['type']}) ==\n  chunks={st['n_chunks']}  "
-              f"tokens={st['n_tokens']:,}  avg={st['avg_tokens']}  vocab={st['vocab']:,}")
+              f"tokens={st['n_tokens']:,}  avg={st['avg_tokens']}  vocab={st['vocab']}")
         metrics, per_q = eval_retrieval(retriever, locator, qaset,
                                         cfg["eval"]["k_values"], cfg["eval"]["mrr_depth"], name)
         all_metrics[name], all_results[name] = metrics, per_q
@@ -129,6 +127,29 @@ def main() -> None:
             print(f"    #{r['rank']} {r['chunk_id']} score={r['score']}")
 
     # ---- 6. 落盘 ----
+    # env_info 挪到检索器建完之后写盘(阶段三): bge 臂的 hf_info 要等检索器建好才拿得到;
+    # 无 bge 臂时不加 torch 系字段, 结构与 bm25-only 阶段保持一致
+    env_info = {
+        "timestamp": run_dir.name,
+        "python": sys.version.split()[0],
+        "jieba": pkg_version("jieba"),
+        "rank_bm25": pkg_version("rank_bm25"),
+        "numpy": pkg_version("numpy"),
+        "config": cfg,
+    }
+    bge_info = {}  # 按检索器名分组: {name: hf_info}; 只有 BGEIndex 有该属性, 其余臂跳过
+    for name, r in indexes.items():
+        hf = getattr(r, "hf_info", None)
+        if hf is not None:
+            bge_info[name] = hf
+    if bge_info:
+        env_info["torch"] = _pkg_ver("torch")
+        env_info["sentence_transformers"] = _pkg_ver("sentence-transformers")
+        env_info["transformers"] = _pkg_ver("transformers")
+        env_info["bge"] = bge_info
+    (run_dir / "env_info.json").write_text(
+        json.dumps(env_info, ensure_ascii=False, indent=2), encoding="utf-8")
+
     (run_dir / "metrics.json").write_text(
         json.dumps(all_metrics, ensure_ascii=False, indent=2), encoding="utf-8")
     (run_dir / "retrieval_results.json").write_text(
