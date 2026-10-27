@@ -73,5 +73,33 @@ def build_retriever(entry: dict, chunks: list[dict], paths: dict,
                               rrf_k=entry.get("rrf_k", 60),
                               name=entry["name"])
 
+    if rtype == "graph":
+        # T11 图扩展臂: 实体路(T9 实体-场景索引, T9.3 交集门槛)+ 卡片路(T10
+        # 事件卡小 BM25)+ 扩展路(基座 seed + 图 1 跳邻居)三路臂内 RRF。base 按
+        # 名引用同级已建臂(机制同 hybrid 的 arms 引用, 单一配置源);实现见
+        # src/index_graph.py。卡片 BM25 超参缺省取 index 节(与 bm25 型同源);
+        # seed_top 缺省 20(T6 depth 先验: ≥ 评测/生成侧一切 k)。
+        from src.index_graph import GraphExpandIndex
+
+        base_name = entry.get("base", "bm25_bigram")
+        if base_name not in (built or {}):
+            raise ValueError(
+                f"graph 检索器 {entry['name']!r} 的基座臂 {base_name!r} 不在已构建"
+                f"实例表中——config 的 retrievers 列表里, 被引用臂必须排在 graph "
+                f"条目之前(按 name 复用实例)")
+        params = {"k1": 1.5, "b": 0.75}
+        params.update(index_cfg or {})
+        params.update({key: entry[key] for key in ("k1", "b") if key in entry})
+        return GraphExpandIndex(chunks, built[base_name], paths,
+                                base_name=base_name,
+                                k1=params["k1"], b=params["b"],
+                                entity_top=entry.get("entity_top", 10),
+                                card_top=entry.get("card_top", 10),
+                                neighbor_top=entry.get("neighbor_top", 5),
+                                hop=entry.get("hop", 1),
+                                seed_top=entry.get("seed_top", 20),
+                                rrf_k=entry.get("rrf_k", 60),
+                                name=entry["name"])
+
     raise ValueError(f"未知检索器类型: {rtype!r} (name={entry.get('name')!r})——"
                      f"在 src/retrievers.py 的 build_retriever 注册新分支")

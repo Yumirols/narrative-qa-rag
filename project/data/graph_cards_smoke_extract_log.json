@@ -1,0 +1,344 @@
+{
+  "config": {
+    "template": "v2",
+    "extract": {
+      "max_events_per_chunk": 3,
+      "context_meta": true
+    },
+    "llm": {
+      "provider": "deepseek",
+      "base_url": "https://api.deepseek.com",
+      "model": "deepseek-flash",
+      "thinking": "disabled",
+      "temperature": 0,
+      "max_tokens": 1024,
+      "api_key_env": "DEEPSEEK_API_KEY"
+    },
+    "n_chunks_selected": 10
+  },
+  "summary": {
+    "n_cards": 10,
+    "needs_review": 0,
+    "n_suspect_cards": 1,
+    "suspect_names": [
+      "派罗"
+    ],
+    "events": {
+      "total": 26,
+      "avg_per_card": 2.6,
+      "empty_event_cards": 0,
+      "type_counts": {
+        "对话": 7,
+        "冲突": 2,
+        "转折": 5,
+        "背景说明": 5,
+        "行动": 7
+      },
+      "dropped": 0,
+      "truncated": 0,
+      "pronoun_dropped": 1
+    },
+    "parse": {
+      "fail_first": 0,
+      "parse_path_counts": {
+        "direct": 10
+      }
+    },
+    "tokens": {
+      "prompt": 7651,
+      "completion": 2098,
+      "prompt_cache_hit": 2304,
+      "cost_usd_offpeak": 0.002068,
+      "cost_usd_peak": 0.004136
+    },
+    "latency": {
+      "n_calls": 10,
+      "n_cache_hits": 10,
+      "n_network": 0,
+      "p50_s": null,
+      "p95_s": null
+    }
+  },
+  "chunks": [
+    {
+      "chunk_id": "seen08000_c001",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 2.766,
+          "usage": {
+            "prompt_tokens": 876,
+            "completion_tokens": 212,
+            "total_tokens": 1088,
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 876
+          },
+          "content": "{\"events\": [{\"participants\": [\"瑚太朗\", \"路易斯\"], \"event\": \"瑚太朗与路易斯在车内以英语简单交谈,约定工作后一起喝酒\", \"event_type\": \"对话\", \"leads_to_hint\": \"两人关系融洽,为后续同行铺垫\"}, {\"participants\": [\"队长\", \"瑚太朗\", \"路易斯\"], \"event\": \"队长斥责瑚太朗与路易斯喧闹,两人道歉\", \"event_type\": \"冲突\", \"leads_to_hint\": \"车内气氛略显紧张\"}, {\"participants\": [\"司机\", \"队长\"], \"event\": \"司机报告附近有火药味,队长询问情况\", \"event_type\": \"转折\", \"leads_to_hint\": \"暗示即将发生危险状况\"}], \"chunk_summary\": \"在行驶的车内,瑚太朗与邻座友人路易斯闲聊并约定下班后喝酒,遭队长斥责;随后司机报告附近有火药味,气氛转为紧张。\"}",
+          "request_hash": "34a9f48ba5a735372a1f3dd267192c85bb47d048bc6bdfc7a7fd54159703c726"
+        }
+      ],
+      "prompt_sha": "34a9f48ba5a735372a1f3dd267192c85bb47d048bc6bdfc7a7fd54159703c726",
+      "flags": {
+        "n_events_dropped": 0,
+        "n_events_truncated": 0,
+        "n_suspects": 0,
+        "n_pronoun_dropped": 0
+      }
+    },
+    {
+      "chunk_id": "seen08000_c055",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 2.173,
+          "usage": {
+            "prompt_tokens": 711,
+            "completion_tokens": 197,
+            "total_tokens": 908,
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 455
+          },
+          "content": "{\"events\": [{\"participants\": [\"瑚太朗\", \"江坂\"], \"event\": \"瑚太朗与江坂频繁会面,一起品尝美食并无所不谈\", \"event_type\": \"对话\", \"leads_to_hint\": \"瑚太朗的精神状态因此变得安定\"}, {\"participants\": [\"瑚太朗\"], \"event\": \"瑚太朗刻意回避触及森林中发生的秘密\", \"event_type\": \"背景说明\", \"leads_to_hint\": \"暗示森林事件隐藏着重大秘密\"}, {\"participants\": [\"派罗\"], \"event\": \"派罗来到神户家\", \"event_type\": \"转折\", \"leads_to_hint\": \"为后续剧情发展埋下伏笔\"}], \"chunk_summary\": \"瑚太朗与江坂频繁会面交谈,借此排解压力、获得精神安定,同时刻意回避森林中的秘密;此时派罗来到神户家。\"}",
+          "request_hash": "4fa6af6c7ab078849dba15db45240f0e925d11a6df6e251ec46ac02640b490cd"
+        }
+      ],
+      "prompt_sha": "4fa6af6c7ab078849dba15db45240f0e925d11a6df6e251ec46ac02640b490cd",
+      "flags": {
+        "n_events_dropped": 0,
+        "n_events_truncated": 0,
+        "n_suspects": 1,
+        "n_pronoun_dropped": 0
+      }
+    },
+    {
+      "chunk_id": "seen08000_c108",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 2.417,
+          "usage": {
+            "prompt_tokens": 877,
+            "completion_tokens": 232,
+            "total_tokens": 1109,
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 621
+          },
+          "content": "{\"events\": [{\"participants\": [\"瑚太朗\", \"江坂\"], \"event\": \"瑚太朗选择匕首作为武器,并宣布将使用必杀技,江坂则提出自己也可使用能力\", \"event_type\": \"对话\", \"leads_to_hint\": \"江坂透露自己的能力属于采伐系,双方实力差距明显\"}, {\"participants\": [\"江坂\"], \"event\": \"江坂说明自己的能力是切开或剥离,无法掌握下手轻重\", \"event_type\": \"背景说明\", \"leads_to_hint\": \"瑚太朗意识到双方实力差距巨大\"}, {\"participants\": [\"瑚太朗\"], \"event\": \"瑚太朗在江坂面前站稳,集中注意力推演各种进攻路线\", \"event_type\": \"行动\", \"leads_to_hint\": \"瑚太朗需要看透正确的进攻路线\"}], \"chunk_summary\": \"瑚太朗选定匕首并宣布使用必杀技,江坂则透露自己采伐系能力的危险性;面对毫无破绽的江坂,瑚太朗集中精神推演各种进攻方案。\"}",
+          "request_hash": "8f482530e734f4d92446a33878a876a9a3bba284cb454882d341ad873b2de44e"
+        }
+      ],
+      "prompt_sha": "8f482530e734f4d92446a33878a876a9a3bba284cb454882d341ad873b2de44e",
+      "flags": {
+        "n_events_dropped": 0,
+        "n_events_truncated": 0,
+        "n_suspects": 0,
+        "n_pronoun_dropped": 0
+      }
+    },
+    {
+      "chunk_id": "seen08000_c162",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 2.141,
+          "usage": {
+            "prompt_tokens": 839,
+            "completion_tokens": 227,
+            "total_tokens": 1066,
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 583
+          },
+          "content": "{\"events\": [{\"participants\": [\"瑚太朗\", \"三国\"], \"event\": \"瑚太朗前往现场确认三国遗体,发现其已被龙牙咬得不成人形\", \"event_type\": \"背景说明\", \"leads_to_hint\": \"瑚太朗意识到战场上的死亡随时可能降临\"}, {\"participants\": [\"瑚太朗\"], \"event\": \"瑚太朗因目睹惨状而呕吐,并陷入对死亡的恐惧与思考\", \"event_type\": \"转折\", \"leads_to_hint\": \"瑚太朗以比自己更弱小的人为动力重新站起\"}, {\"participants\": [\"瑚太朗\", \"朱音\"], \"event\": \"瑚太朗循着朱音的鞋印追踪,在大树高处找到朱音\", \"event_type\": \"行动\", \"leads_to_hint\": \"瑚太朗与躲在高处的朱音即将接触\"}], \"chunk_summary\": \"瑚太朗前往现场确认三国惨死的遗体,因恐惧与呕吐而动摇,随后循着朱音的足迹在树上找到了她。\"}",
+          "request_hash": "81c13ad111c662234ee5b4a34c7d38c75b307469f1f1d604a2edc9cbb366d20a"
+        }
+      ],
+      "prompt_sha": "81c13ad111c662234ee5b4a34c7d38c75b307469f1f1d604a2edc9cbb366d20a",
+      "flags": {
+        "n_events_dropped": 0,
+        "n_events_truncated": 0,
+        "n_suspects": 0,
+        "n_pronoun_dropped": 0
+      }
+    },
+    {
+      "chunk_id": "seen08000_c215",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 2.459,
+          "usage": {
+            "prompt_tokens": 680,
+            "completion_tokens": 182,
+            "total_tokens": 862,
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 424
+          },
+          "content": "{\"events\": [{\"participants\": [\"瑚太朗\", \"亚斯茗\"], \"event\": \"瑚太朗背叛同伴救下亚斯茗等三个孩子,带着他们逃亡\", \"event_type\": \"转折\", \"leads_to_hint\": \"瑚太朗失去立足之地,但坚定了自己活着的理由\"}, {\"participants\": [\"瑚太朗\", \"亚斯茗\"], \"event\": \"亚斯茗昏倒,瑚太朗停下脚步让三人躺下\", \"event_type\": \"行动\", \"leads_to_hint\": \"三人濒临极限,瑚太朗考虑动用体内力量\"}], \"chunk_summary\": \"瑚太朗背叛同伴救出亚斯茗等三个孩子并带其逃亡,途中亚斯茗昏倒,三人在无水情况下到达极限,瑚太朗决定尝试动用体内沸腾的力量。\"}",
+          "request_hash": "4b1320a10d35906baffe4d63400b418d9f49fa08ede21a2ab3c8ec7818ddd299"
+        }
+      ],
+      "prompt_sha": "4b1320a10d35906baffe4d63400b418d9f49fa08ede21a2ab3c8ec7818ddd299",
+      "flags": {
+        "n_events_dropped": 0,
+        "n_events_truncated": 0,
+        "n_suspects": 0,
+        "n_pronoun_dropped": 0
+      }
+    },
+    {
+      "chunk_id": "seen08000_c269",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 2.458,
+          "usage": {
+            "prompt_tokens": 673,
+            "completion_tokens": 261,
+            "total_tokens": 934,
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 417
+          },
+          "content": "{\"events\": [{\"participants\": [\"Ｊａｓｍｉｎｅ２０１５\", \"Ｋｏｋｏ１０１０\"], \"event\": \"Ｊａｓｍｉｎｅ２０１５质问Ｋｏｋｏ１０１０无视自己的话，Ｋｏｋｏ１０１０表示不想让家人被卷入\", \"event_type\": \"对话\", \"leads_to_hint\": \"Ｊａｓｍｉｎｅ２０１５强调彼此是家人，流露担忧\"}, {\"participants\": [\"Ｋｏｋｏ１０１０\"], \"event\": \"Ｋｏｋｏ１０１０支付先付报酬并要求送达后确认\", \"event_type\": \"行动\", \"leads_to_hint\": \"暗示Ｋｏｋｏ１０１０有需要交付的任务\"}], \"chunk_summary\": \"Ｊａｓｍｉｎｅ２０１５与Ｋｏｋｏ１０１０就卷入风险发生争执，Ｋｏｋｏ１０１０以支付报酬的方式推进委托，Ｊａｓｍｉｎｅ２０１５则表达了对Ｋｏｋｏ１０１０的担心。\"}",
+          "request_hash": "54a8b689ee1438f8d616e0367867f0d0640d3e7bd8706b6599fe7d42cca75200"
+        }
+      ],
+      "prompt_sha": "54a8b689ee1438f8d616e0367867f0d0640d3e7bd8706b6599fe7d42cca75200",
+      "flags": {
+        "n_events_dropped": 0,
+        "n_events_truncated": 0,
+        "n_suspects": 0,
+        "n_pronoun_dropped": 0
+      }
+    },
+    {
+      "chunk_id": "seen08000_c322",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 2.354,
+          "usage": {
+            "prompt_tokens": 883,
+            "completion_tokens": 217,
+            "total_tokens": 1100,
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 627
+          },
+          "content": "{\"events\": [{\"participants\": [\"樱\", \"洲崎\"], \"event\": \"樱在干部会议上宣布下一代圣女为缘之家的千里朱音\", \"event_type\": \"转折\", \"leads_to_hint\": \"洲崎随即表示要就同一少女发言,樱预判其反对圣女制度\"}, {\"participants\": [\"樱\", \"洲崎\"], \"event\": \"樱与洲崎在会议发言顺序上发生争执\", \"event_type\": \"冲突\", \"leads_to_hint\": \"樱坚持先打招呼再发言\"}, {\"participants\": [\"樱\"], \"event\": \"樱在面包车内通过窃听器监听会议室会议\", \"event_type\": \"行动\", \"leads_to_hint\": \"樱等人按计划在福利院附近待机\"}], \"chunk_summary\": \"樱等人在缘之家附近的面包车内待机,通过窃听器监听母神会干部会议。会上樱宣布下一代圣女为千里朱音,洲崎则准备就同一少女提出异议。\"}",
+          "request_hash": "8a62e8affca45916c24030d8b62928ff96eb4938326a3b99cc89c8918e8b883f"
+        }
+      ],
+      "prompt_sha": "8a62e8affca45916c24030d8b62928ff96eb4938326a3b99cc89c8918e8b883f",
+      "flags": {
+        "n_events_dropped": 0,
+        "n_events_truncated": 0,
+        "n_suspects": 0,
+        "n_pronoun_dropped": 0
+      }
+    },
+    {
+      "chunk_id": "seen08000_c376",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 2.32,
+          "usage": {
+            "prompt_tokens": 816,
+            "completion_tokens": 191,
+            "total_tokens": 1007,
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 560
+          },
+          "content": "{\"events\": [{\"participants\": [\"瑚太朗\", \"江坂\"], \"event\": \"瑚太朗与江坂进行模拟刀对决，瑚太朗决定全力展示实力\", \"event_type\": \"行动\", \"leads_to_hint\": \"瑚太朗在劣势中挥出最后一击，即将败北\"}, {\"participants\": [\"瑚太朗\"], \"event\": \"瑚太朗将对决比作将棋与国际象棋，思考中盘到终盘是夺取对方可能性的过程\", \"event_type\": \"背景说明\", \"leads_to_hint\": \"暗示瑚太朗对胜负与选择的理解\"}], \"chunk_summary\": \"瑚太朗与江坂进行模拟刀对决，虽本应隐藏实力，却决定把成果展示给对方看。他精密操控身体仍不断失误，最终陷入必败的穷途末路，挥出最后一击。\"}",
+          "request_hash": "efcb13cd0a7ea05ae042611521989af7b3a3eded845f598055300bffa78d9d8e"
+        }
+      ],
+      "prompt_sha": "efcb13cd0a7ea05ae042611521989af7b3a3eded845f598055300bffa78d9d8e",
+      "flags": {
+        "n_events_dropped": 0,
+        "n_events_truncated": 0,
+        "n_suspects": 0,
+        "n_pronoun_dropped": 0
+      }
+    },
+    {
+      "chunk_id": "seen08000_c429",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.906,
+          "usage": {
+            "prompt_tokens": 575,
+            "completion_tokens": 154,
+            "total_tokens": 729,
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 319
+          },
+          "content": "{\"events\": [{\"participants\": [\"江坂先生\"], \"event\": \"江坂先生喉咙深处发出含糊的咳嗽声\", \"event_type\": \"背景说明\", \"leads_to_hint\": \"暗示江坂先生身体状况不佳\"}, {\"participants\": [\"我\", \"江坂先生\"], \"event\": \"我为了不让江坂先生看到自己没出息的样子而决然跑开\", \"event_type\": \"行动\", \"leads_to_hint\": \"体现江坂先生不愿被人看护,我选择离开\"}], \"chunk_summary\": \"江坂先生发出含糊的咳嗽声,我因他不愿被人看护而决然跑开,挺直身体不让他看到自己没出息的样子。\"}",
+          "request_hash": "00fdeb72e501208f1b70670f9bbda16f73910c7d52f665174bfb876eb8b1f4b7"
+        }
+      ],
+      "prompt_sha": "00fdeb72e501208f1b70670f9bbda16f73910c7d52f665174bfb876eb8b1f4b7",
+      "flags": {
+        "n_events_dropped": 0,
+        "n_events_truncated": 0,
+        "n_suspects": 0,
+        "n_pronoun_dropped": 1
+      }
+    },
+    {
+      "chunk_id": "seen08000_c483",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 2.224,
+          "usage": {
+            "prompt_tokens": 721,
+            "completion_tokens": 225,
+            "total_tokens": 946,
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 465
+          },
+          "content": "{\"events\": [{\"participants\": [\"小鸟\", \"朱音\", \"静流\", \"露西娅\", \"千早\", \"？\"], \"event\": \"众人讨论前往天体的可能性与费用，半信半疑地决定尝试\", \"event_type\": \"对话\", \"leads_to_hint\": \"众人对能否抵达天体心存疑虑，但仍决定一试\"}, {\"participants\": [\"朱音\", \"静流\"], \"event\": \"朱音提出创办公司召集契约者，静流调侃其又在考虑赚钱\", \"event_type\": \"对话\", \"leads_to_hint\": \"暗示朱音有组织契约者的打算\"}, {\"participants\": [\"？\", \"小鸟\"], \"event\": \"？声称前往天体只是很短的时间\", \"event_type\": \"对话\", \"leads_to_hint\": \"为后续行动埋下伏笔\"}], \"chunk_summary\": \"众人乘车途中讨论前往天体的运费与可行性，对？的说法半信半疑，最终决定试一试；朱音则盘算着创办公司召集契约者。\"}",
+          "request_hash": "af2db3fcc23525216433e8ed9b2a970c13928a8ee1ef6b25348dac5c37f9d321"
+        }
+      ],
+      "prompt_sha": "af2db3fcc23525216433e8ed9b2a970c13928a8ee1ef6b25348dac5c37f9d321",
+      "flags": {
+        "n_events_dropped": 0,
+        "n_events_truncated": 0,
+        "n_suspects": 0,
+        "n_pronoun_dropped": 0
+      }
+    }
+  ]
+}

@@ -50,6 +50,28 @@ from src.index_bm25 import load_chunks
 from src.retrievers import build_retriever
 
 
+def rrf_fuse(hit_lists: list[list[dict]], rrf_k: int, k: int,
+             chunks: list[dict]) -> list[dict]:
+    """多路命中列表 → RRF 融合 top-k(T6 机制, T11 图扩展臂臂内复用)。
+
+    输入每路 = 统一命中 dict 列表(rank 从 1 起, idx 为语料序);融合只用 rank
+    不用原始分数, 同分按 idx 升序(与各单臂的稳定排序契约一致)。
+    输出与单臂 search 完全同构, score 换为 RRF 融合分(量纲 1/(rrf_k+rank))。
+    """
+    fused: dict[int, float] = {}
+    for hits in hit_lists:
+        for hit in hits:
+            fused[hit["idx"]] = fused.get(hit["idx"], 0.0) + 1.0 / (rrf_k + hit["rank"])
+    order = sorted(fused, key=lambda i: (-fused[i], i))[:k]
+    out = []
+    for rank, i in enumerate(order, 1):
+        c = chunks[i]
+        out.append({"rank": rank, "idx": i, "chunk_id": c["chunk_id"],
+                    "score": round(fused[i], 6),
+                    "rfid_start": c["rfid_start"], "rfid_end": c["rfid_end"]})
+    return out
+
+
 class HybridRRFIndex:
     """RRF 融合检索器: 持有 N 个已建好的臂实例, search 时各取 top-depth 后融合。
 
@@ -75,19 +97,8 @@ class HybridRRFIndex:
 
     def search(self, query: str, k: int = 5) -> list[dict]:
         depth = max(self.depth, k)
-        fused: dict[int, float] = {}
-        for arm in self.arms:
-            for hit in arm.search(query, depth):   # 臂的 rank 从 1 起
-                fused[hit["idx"]] = fused.get(hit["idx"], 0.0) + 1.0 / (self.rrf_k + hit["rank"])
-        # 同分按 idx 升序(与各单臂的稳定排序契约一致)
-        order = sorted(fused, key=lambda i: (-fused[i], i))[:k]
-        out = []
-        for rank, i in enumerate(order, 1):
-            c = self.chunks[i]
-            out.append({"rank": rank, "idx": i, "chunk_id": c["chunk_id"],
-                        "score": round(fused[i], 6),
-                        "rfid_start": c["rfid_start"], "rfid_end": c["rfid_end"]})
-        return out
+        return rrf_fuse([arm.search(query, depth) for arm in self.arms],
+                        self.rrf_k, k, self.chunks)
 
     def stats(self) -> dict:
         # n_tokens 对各臂求和(单位随臂: 词数或字符数, 仅满足 run_all 的打印键,

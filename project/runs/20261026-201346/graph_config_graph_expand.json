@@ -1,0 +1,34 @@
+{
+  "base": "bm25_bigram",
+  "params": {
+    "entity_top": 10,
+    "card_top": 10,
+    "neighbor_top": 5,
+    "hop": 1,
+    "seed_top": 20,
+    "rrf_k": 60
+  },
+  "entity_gate": {
+    "rule": "多实体非空交集<=entity_top 才发全权重票(T9.3)",
+    "n_multi_entity_queries": 74,
+    "n_fired": 20
+  },
+  "routes": {
+    "entity": {
+      "n_entities": 80,
+      "n_choices": 47
+    },
+    "card": {
+      "ok": true,
+      "n_cards": 483,
+      "n_tokens": 48872
+    },
+    "expansion": {
+      "ok": true,
+      "n_next": 480,
+      "n_participant_edges": 985,
+      "n_labels": 46
+    }
+  },
+  "degraded": []
+}

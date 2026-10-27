@@ -1,0 +1,3457 @@
+{
+  "meta": {
+    "scheme": "entities_v1",
+    "scene": "seen08000",
+    "n_chunks": 483,
+    "n_entities": 80,
+    "n_speaker_entities": 72,
+    "n_text_entities": 8,
+    "n_aliases": 28,
+    "n_choices": 47,
+    "n_choices_branch": 5,
+    "rules": [
+      "说话人名文本匹配以 user_dict 为界: 具名做叙述提及匹配回接, 泛指角色名(男人/学生/少女 等不在词典者)不做",
+      "文本匹配 = 全角归一+小写后子串匹配, 仅 len>=2 的 CJK 形或 ASCII 形",
+      "别名 = user_dict nr 全名含说话人名(3 例) + 语义例外 篝<-键之少女(框架 3.1) + 全角显示名归一合并",
+      "user_dict 词性 nr/nt/ns/nz 入实体, 普通名词 n 不入; 语料零提及专名不建实体"
+    ],
+    "sources": [
+      "scenes.jsonl",
+      "user_dict.txt",
+      "choices.json"
+    ]
+  },
+  "entities": [
+    {
+      "name": "三国",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "三国"
+      ],
+      "chunk_ids": [
+        "seen08000_c094",
+        "seen08000_c095",
+        "seen08000_c121",
+        "seen08000_c141",
+        "seen08000_c142",
+        "seen08000_c086",
+        "seen08000_c112",
+        "seen08000_c117",
+        "seen08000_c120",
+        "seen08000_c122",
+        "seen08000_c145",
+        "seen08000_c146",
+        "seen08000_c155",
+        "seen08000_c156",
+        "seen08000_c159",
+        "seen08000_c160",
+        "seen08000_c161",
+        "seen08000_c162",
+        "seen08000_c164",
+        "seen08000_c175",
+        "seen08000_c177",
+        "seen08000_c181",
+        "seen08000_c187",
+        "seen08000_c257",
+        "seen08000_c334",
+        "seen08000_c349",
+        "seen08000_c361"
+      ],
+      "n_chunks": 27,
+      "grounding": {
+        "speakers": 5,
+        "text": 22
+      }
+    },
+    {
+      "name": "不良",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c038"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "主妇",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c405"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "井子",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "井子"
+      ],
+      "chunk_ids": [
+        "seen08000_c012",
+        "seen08000_c013",
+        "seen08000_c014",
+        "seen08000_c018",
+        "seen08000_c019",
+        "seen08000_c130",
+        "seen08000_c131",
+        "seen08000_c133",
+        "seen08000_c134",
+        "seen08000_c448",
+        "seen08000_c449",
+        "seen08000_c017",
+        "seen08000_c132",
+        "seen08000_c137",
+        "seen08000_c292",
+        "seen08000_c381",
+        "seen08000_c447"
+      ],
+      "n_chunks": 17,
+      "grounding": {
+        "speakers": 11,
+        "text": 6
+      }
+    },
+    {
+      "name": "亚斯茗",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "亚斯茗"
+      ],
+      "chunk_ids": [
+        "seen08000_c202",
+        "seen08000_c203",
+        "seen08000_c206",
+        "seen08000_c207",
+        "seen08000_c214",
+        "seen08000_c216",
+        "seen08000_c205",
+        "seen08000_c208",
+        "seen08000_c211",
+        "seen08000_c215",
+        "seen08000_c218",
+        "seen08000_c219",
+        "seen08000_c224",
+        "seen08000_c225",
+        "seen08000_c245",
+        "seen08000_c267",
+        "seen08000_c402"
+      ],
+      "n_chunks": 17,
+      "grounding": {
+        "speakers": 6,
+        "text": 11
+      }
+    },
+    {
+      "name": "今宫",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "今宫"
+      ],
+      "chunk_ids": [
+        "seen08000_c081",
+        "seen08000_c085",
+        "seen08000_c086",
+        "seen08000_c087",
+        "seen08000_c088",
+        "seen08000_c089",
+        "seen08000_c090",
+        "seen08000_c091",
+        "seen08000_c092",
+        "seen08000_c093",
+        "seen08000_c094",
+        "seen08000_c102",
+        "seen08000_c103",
+        "seen08000_c114",
+        "seen08000_c115",
+        "seen08000_c116",
+        "seen08000_c117",
+        "seen08000_c119",
+        "seen08000_c139",
+        "seen08000_c140",
+        "seen08000_c141",
+        "seen08000_c142",
+        "seen08000_c143",
+        "seen08000_c144",
+        "seen08000_c145",
+        "seen08000_c146",
+        "seen08000_c147",
+        "seen08000_c148",
+        "seen08000_c149",
+        "seen08000_c150",
+        "seen08000_c151",
+        "seen08000_c152",
+        "seen08000_c153",
+        "seen08000_c177",
+        "seen08000_c178",
+        "seen08000_c179",
+        "seen08000_c253",
+        "seen08000_c254",
+        "seen08000_c255",
+        "seen08000_c256",
+        "seen08000_c257",
+        "seen08000_c258",
+        "seen08000_c271",
+        "seen08000_c277",
+        "seen08000_c281",
+        "seen08000_c282",
+        "seen08000_c283",
+        "seen08000_c314",
+        "seen08000_c348",
+        "seen08000_c349",
+        "seen08000_c354",
+        "seen08000_c361",
+        "seen08000_c362",
+        "seen08000_c384",
+        "seen08000_c385",
+        "seen08000_c386",
+        "seen08000_c387",
+        "seen08000_c388",
+        "seen08000_c403",
+        "seen08000_c404",
+        "seen08000_c433",
+        "seen08000_c434",
+        "seen08000_c435",
+        "seen08000_c439",
+        "seen08000_c440",
+        "seen08000_c441",
+        "seen08000_c442",
+        "seen08000_c097",
+        "seen08000_c120",
+        "seen08000_c123",
+        "seen08000_c154",
+        "seen08000_c166",
+        "seen08000_c279",
+        "seen08000_c316",
+        "seen08000_c334",
+        "seen08000_c351",
+        "seen08000_c355",
+        "seen08000_c359",
+        "seen08000_c360",
+        "seen08000_c394",
+        "seen08000_c436",
+        "seen08000_c437"
+      ],
+      "n_chunks": 82,
+      "grounding": {
+        "speakers": 67,
+        "text": 15
+      }
+    },
+    {
+      "name": "作战部长",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c192"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "侦查员",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c430"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "军事负责人",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c192"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "勤务人员",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c396"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "千早",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "千早"
+      ],
+      "chunk_ids": [
+        "seen08000_c473",
+        "seen08000_c474",
+        "seen08000_c475",
+        "seen08000_c477",
+        "seen08000_c478",
+        "seen08000_c479",
+        "seen08000_c480",
+        "seen08000_c481",
+        "seen08000_c482",
+        "seen08000_c483"
+      ],
+      "n_chunks": 10,
+      "grounding": {
+        "speakers": 10,
+        "text": 0
+      }
+    },
+    {
+      "name": "博士",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c010",
+        "seen08000_c011",
+        "seen08000_c012",
+        "seen08000_c016",
+        "seen08000_c017"
+      ],
+      "n_chunks": 5,
+      "grounding": {
+        "speakers": 5,
+        "text": 0
+      }
+    },
+    {
+      "name": "司仪",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c016"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "司机",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c001",
+        "seen08000_c002",
+        "seen08000_c004"
+      ],
+      "n_chunks": 3,
+      "grounding": {
+        "speakers": 3,
+        "text": 0
+      }
+    },
+    {
+      "name": "同班同学",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c008",
+        "seen08000_c009"
+      ],
+      "n_chunks": 2,
+      "grounding": {
+        "speakers": 2,
+        "text": 0
+      }
+    },
+    {
+      "name": "听讲的男子",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c241"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "听讲者",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c245"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "圣女会成员",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c397"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "圭介",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "圭介"
+      ],
+      "chunk_ids": [
+        "seen08000_c047",
+        "seen08000_c076",
+        "seen08000_c077",
+        "seen08000_c078",
+        "seen08000_c058",
+        "seen08000_c336",
+        "seen08000_c369",
+        "seen08000_c407"
+      ],
+      "n_chunks": 8,
+      "grounding": {
+        "speakers": 4,
+        "text": 4
+      }
+    },
+    {
+      "name": "地龙",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "地龙"
+      ],
+      "chunk_ids": [
+        "seen08000_c361",
+        "seen08000_c443",
+        "seen08000_c444",
+        "seen08000_c445",
+        "seen08000_c175"
+      ],
+      "n_chunks": 5,
+      "grounding": {
+        "speakers": 4,
+        "text": 1
+      }
+    },
+    {
+      "name": "大家",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c479"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "大西",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c348",
+        "seen08000_c349",
+        "seen08000_c363",
+        "seen08000_c364",
+        "seen08000_c366"
+      ],
+      "n_chunks": 5,
+      "grounding": {
+        "speakers": 5,
+        "text": 0
+      }
+    },
+    {
+      "name": "女人",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c241",
+        "seen08000_c396",
+        "seen08000_c450",
+        "seen08000_c451"
+      ],
+      "n_chunks": 4,
+      "grounding": {
+        "speakers": 4,
+        "text": 0
+      }
+    },
+    {
+      "name": "女孩子",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c012",
+        "seen08000_c013"
+      ],
+      "n_chunks": 2,
+      "grounding": {
+        "speakers": 2,
+        "text": 0
+      }
+    },
+    {
+      "name": "学生",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c396"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "小孩子",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c012"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "小鸟",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "小鸟",
+        "神户小鸟"
+      ],
+      "chunk_ids": [
+        "seen08000_c048",
+        "seen08000_c049",
+        "seen08000_c050",
+        "seen08000_c052",
+        "seen08000_c053",
+        "seen08000_c056",
+        "seen08000_c057",
+        "seen08000_c058",
+        "seen08000_c059",
+        "seen08000_c060",
+        "seen08000_c061",
+        "seen08000_c062",
+        "seen08000_c077",
+        "seen08000_c078",
+        "seen08000_c273",
+        "seen08000_c274",
+        "seen08000_c275",
+        "seen08000_c276",
+        "seen08000_c307",
+        "seen08000_c308",
+        "seen08000_c309",
+        "seen08000_c330",
+        "seen08000_c336",
+        "seen08000_c367",
+        "seen08000_c368",
+        "seen08000_c407",
+        "seen08000_c408",
+        "seen08000_c409",
+        "seen08000_c473",
+        "seen08000_c474",
+        "seen08000_c475",
+        "seen08000_c476",
+        "seen08000_c477",
+        "seen08000_c478",
+        "seen08000_c479",
+        "seen08000_c480",
+        "seen08000_c481",
+        "seen08000_c482",
+        "seen08000_c483",
+        "seen08000_c040",
+        "seen08000_c047",
+        "seen08000_c051",
+        "seen08000_c054",
+        "seen08000_c063",
+        "seen08000_c076",
+        "seen08000_c171",
+        "seen08000_c172",
+        "seen08000_c173",
+        "seen08000_c289",
+        "seen08000_c293",
+        "seen08000_c294",
+        "seen08000_c316",
+        "seen08000_c317",
+        "seen08000_c321",
+        "seen08000_c334",
+        "seen08000_c335",
+        "seen08000_c344",
+        "seen08000_c353",
+        "seen08000_c358",
+        "seen08000_c366",
+        "seen08000_c369",
+        "seen08000_c371",
+        "seen08000_c382",
+        "seen08000_c384",
+        "seen08000_c406",
+        "seen08000_c439"
+      ],
+      "n_chunks": 66,
+      "grounding": {
+        "speakers": 39,
+        "text": 27
+      }
+    },
+    {
+      "name": "少女",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c040",
+        "seen08000_c130",
+        "seen08000_c272",
+        "seen08000_c396"
+      ],
+      "n_chunks": 4,
+      "grounding": {
+        "speakers": 4,
+        "text": 0
+      }
+    },
+    {
+      "name": "少年",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c038",
+        "seen08000_c039",
+        "seen08000_c040"
+      ],
+      "n_chunks": 3,
+      "grounding": {
+        "speakers": 3,
+        "text": 0
+      }
+    },
+    {
+      "name": "幸枝",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "幸枝"
+      ],
+      "chunk_ids": [
+        "seen08000_c017",
+        "seen08000_c047",
+        "seen08000_c048"
+      ],
+      "n_chunks": 3,
+      "grounding": {
+        "speakers": 3,
+        "text": 0
+      }
+    },
+    {
+      "name": "店员",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c128",
+        "seen08000_c177"
+      ],
+      "n_chunks": 2,
+      "grounding": {
+        "speakers": 2,
+        "text": 0
+      }
+    },
+    {
+      "name": "店长",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c070",
+        "seen08000_c071"
+      ],
+      "n_chunks": 2,
+      "grounding": {
+        "speakers": 2,
+        "text": 0
+      }
+    },
+    {
+      "name": "情报人员",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c394",
+        "seen08000_c410",
+        "seen08000_c411"
+      ],
+      "n_chunks": 3,
+      "grounding": {
+        "speakers": 3,
+        "text": 0
+      }
+    },
+    {
+      "name": "情报官",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c175",
+        "seen08000_c176",
+        "seen08000_c192",
+        "seen08000_c193"
+      ],
+      "n_chunks": 4,
+      "grounding": {
+        "speakers": 4,
+        "text": 0
+      }
+    },
+    {
+      "name": "情报组长",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c394",
+        "seen08000_c395",
+        "seen08000_c404"
+      ],
+      "n_chunks": 3,
+      "grounding": {
+        "speakers": 3,
+        "text": 0
+      }
+    },
+    {
+      "name": "报导员",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c314"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "操作员",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c411"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "教官",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c081"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "数夫",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c032",
+        "seen08000_c047"
+      ],
+      "n_chunks": 2,
+      "grounding": {
+        "speakers": 2,
+        "text": 0
+      }
+    },
+    {
+      "name": "朱音",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "千里朱音",
+        "朱音"
+      ],
+      "chunk_ids": [
+        "seen08000_c016",
+        "seen08000_c130",
+        "seen08000_c131",
+        "seen08000_c134",
+        "seen08000_c291",
+        "seen08000_c295",
+        "seen08000_c296",
+        "seen08000_c451",
+        "seen08000_c473",
+        "seen08000_c474",
+        "seen08000_c475",
+        "seen08000_c476",
+        "seen08000_c477",
+        "seen08000_c479",
+        "seen08000_c480",
+        "seen08000_c481",
+        "seen08000_c482",
+        "seen08000_c483",
+        "seen08000_c015",
+        "seen08000_c017",
+        "seen08000_c154",
+        "seen08000_c155",
+        "seen08000_c158",
+        "seen08000_c162",
+        "seen08000_c163",
+        "seen08000_c165",
+        "seen08000_c166",
+        "seen08000_c177",
+        "seen08000_c180",
+        "seen08000_c292",
+        "seen08000_c293",
+        "seen08000_c294",
+        "seen08000_c319",
+        "seen08000_c322",
+        "seen08000_c323",
+        "seen08000_c325",
+        "seen08000_c326",
+        "seen08000_c448",
+        "seen08000_c450",
+        "seen08000_c452",
+        "seen08000_c453",
+        "seen08000_c454",
+        "seen08000_c455"
+      ],
+      "n_chunks": 43,
+      "grounding": {
+        "speakers": 18,
+        "text": 25
+      }
+    },
+    {
+      "name": "樱",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c066",
+        "seen08000_c067",
+        "seen08000_c068",
+        "seen08000_c069",
+        "seen08000_c286",
+        "seen08000_c287",
+        "seen08000_c288",
+        "seen08000_c322",
+        "seen08000_c323",
+        "seen08000_c325",
+        "seen08000_c326"
+      ],
+      "n_chunks": 11,
+      "grounding": {
+        "speakers": 11,
+        "text": 0
+      }
+    },
+    {
+      "name": "江坂",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "江坂"
+      ],
+      "chunk_ids": [
+        "seen08000_c043",
+        "seen08000_c044",
+        "seen08000_c045",
+        "seen08000_c046",
+        "seen08000_c055",
+        "seen08000_c070",
+        "seen08000_c071",
+        "seen08000_c072",
+        "seen08000_c073",
+        "seen08000_c074",
+        "seen08000_c075",
+        "seen08000_c076",
+        "seen08000_c079",
+        "seen08000_c105",
+        "seen08000_c106",
+        "seen08000_c107",
+        "seen08000_c108",
+        "seen08000_c109",
+        "seen08000_c110",
+        "seen08000_c111",
+        "seen08000_c112",
+        "seen08000_c114",
+        "seen08000_c119",
+        "seen08000_c120",
+        "seen08000_c121",
+        "seen08000_c122",
+        "seen08000_c123",
+        "seen08000_c124",
+        "seen08000_c125",
+        "seen08000_c126",
+        "seen08000_c135",
+        "seen08000_c136",
+        "seen08000_c137",
+        "seen08000_c138",
+        "seen08000_c140",
+        "seen08000_c175",
+        "seen08000_c176",
+        "seen08000_c180",
+        "seen08000_c181",
+        "seen08000_c182",
+        "seen08000_c220",
+        "seen08000_c221",
+        "seen08000_c222",
+        "seen08000_c252",
+        "seen08000_c253",
+        "seen08000_c266",
+        "seen08000_c277",
+        "seen08000_c278",
+        "seen08000_c279",
+        "seen08000_c280",
+        "seen08000_c281",
+        "seen08000_c282",
+        "seen08000_c283",
+        "seen08000_c315",
+        "seen08000_c316",
+        "seen08000_c373",
+        "seen08000_c375",
+        "seen08000_c377",
+        "seen08000_c378",
+        "seen08000_c379",
+        "seen08000_c393",
+        "seen08000_c394",
+        "seen08000_c395",
+        "seen08000_c403",
+        "seen08000_c404",
+        "seen08000_c410",
+        "seen08000_c411",
+        "seen08000_c412",
+        "seen08000_c420",
+        "seen08000_c422",
+        "seen08000_c424",
+        "seen08000_c425",
+        "seen08000_c426",
+        "seen08000_c427",
+        "seen08000_c428",
+        "seen08000_c042",
+        "seen08000_c080",
+        "seen08000_c081",
+        "seen08000_c083",
+        "seen08000_c088",
+        "seen08000_c094",
+        "seen08000_c117",
+        "seen08000_c143",
+        "seen08000_c162",
+        "seen08000_c168",
+        "seen08000_c177",
+        "seen08000_c178",
+        "seen08000_c179",
+        "seen08000_c205",
+        "seen08000_c219",
+        "seen08000_c225",
+        "seen08000_c232",
+        "seen08000_c254",
+        "seen08000_c314",
+        "seen08000_c334",
+        "seen08000_c349",
+        "seen08000_c354",
+        "seen08000_c371",
+        "seen08000_c372",
+        "seen08000_c374",
+        "seen08000_c376",
+        "seen08000_c385",
+        "seen08000_c386",
+        "seen08000_c421",
+        "seen08000_c429",
+        "seen08000_c430",
+        "seen08000_c431",
+        "seen08000_c433",
+        "seen08000_c441"
+      ],
+      "n_chunks": 109,
+      "grounding": {
+        "speakers": 75,
+        "text": 34
+      }
+    },
+    {
+      "name": "法袍女",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c324"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "津久野",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "津久野"
+      ],
+      "chunk_ids": [
+        "seen08000_c295",
+        "seen08000_c296",
+        "seen08000_c318",
+        "seen08000_c319",
+        "seen08000_c320",
+        "seen08000_c324",
+        "seen08000_c326",
+        "seen08000_c452"
+      ],
+      "n_chunks": 8,
+      "grounding": {
+        "speakers": 2,
+        "text": 6
+      }
+    },
+    {
+      "name": "洲崎",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "洲崎"
+      ],
+      "chunk_ids": [
+        "seen08000_c259",
+        "seen08000_c260",
+        "seen08000_c261",
+        "seen08000_c262",
+        "seen08000_c297",
+        "seen08000_c298",
+        "seen08000_c299",
+        "seen08000_c300",
+        "seen08000_c301",
+        "seen08000_c302",
+        "seen08000_c303",
+        "seen08000_c304",
+        "seen08000_c305",
+        "seen08000_c306",
+        "seen08000_c318",
+        "seen08000_c319",
+        "seen08000_c320",
+        "seen08000_c322",
+        "seen08000_c323",
+        "seen08000_c380",
+        "seen08000_c393",
+        "seen08000_c266",
+        "seen08000_c267",
+        "seen08000_c284",
+        "seen08000_c285",
+        "seen08000_c286",
+        "seen08000_c287",
+        "seen08000_c288",
+        "seen08000_c307",
+        "seen08000_c308",
+        "seen08000_c310",
+        "seen08000_c316",
+        "seen08000_c317",
+        "seen08000_c324",
+        "seen08000_c325",
+        "seen08000_c334",
+        "seen08000_c349",
+        "seen08000_c350",
+        "seen08000_c371",
+        "seen08000_c394",
+        "seen08000_c397"
+      ],
+      "n_chunks": 41,
+      "grounding": {
+        "speakers": 21,
+        "text": 20
+      }
+    },
+    {
+      "name": "清水",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "清水"
+      ],
+      "chunk_ids": [
+        "seen08000_c081",
+        "seen08000_c082",
+        "seen08000_c083",
+        "seen08000_c102",
+        "seen08000_c103",
+        "seen08000_c105",
+        "seen08000_c116",
+        "seen08000_c119",
+        "seen08000_c139",
+        "seen08000_c140",
+        "seen08000_c141",
+        "seen08000_c142",
+        "seen08000_c175",
+        "seen08000_c176",
+        "seen08000_c277",
+        "seen08000_c281",
+        "seen08000_c282",
+        "seen08000_c283",
+        "seen08000_c403",
+        "seen08000_c404",
+        "seen08000_c410",
+        "seen08000_c411",
+        "seen08000_c431",
+        "seen08000_c433",
+        "seen08000_c138",
+        "seen08000_c354",
+        "seen08000_c386",
+        "seen08000_c394",
+        "seen08000_c430"
+      ],
+      "n_chunks": 29,
+      "grounding": {
+        "speakers": 24,
+        "text": 5
+      }
+    },
+    {
+      "name": "源",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c410",
+        "seen08000_c411"
+      ],
+      "n_chunks": 2,
+      "grounding": {
+        "speakers": 2,
+        "text": 0
+      }
+    },
+    {
+      "name": "理香子",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "理香子"
+      ],
+      "chunk_ids": [
+        "seen08000_c047",
+        "seen08000_c076",
+        "seen08000_c308",
+        "seen08000_c336",
+        "seen08000_c369",
+        "seen08000_c407"
+      ],
+      "n_chunks": 6,
+      "grounding": {
+        "speakers": 2,
+        "text": 4
+      }
+    },
+    {
+      "name": "瑚太朗",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "瑚太朗"
+      ],
+      "chunk_ids": [
+        "seen08000_c001",
+        "seen08000_c003",
+        "seen08000_c004",
+        "seen08000_c005",
+        "seen08000_c008",
+        "seen08000_c012",
+        "seen08000_c013",
+        "seen08000_c014",
+        "seen08000_c016",
+        "seen08000_c017",
+        "seen08000_c018",
+        "seen08000_c019",
+        "seen08000_c020",
+        "seen08000_c021",
+        "seen08000_c022",
+        "seen08000_c023",
+        "seen08000_c024",
+        "seen08000_c025",
+        "seen08000_c027",
+        "seen08000_c028",
+        "seen08000_c029",
+        "seen08000_c031",
+        "seen08000_c033",
+        "seen08000_c038",
+        "seen08000_c039",
+        "seen08000_c040",
+        "seen08000_c042",
+        "seen08000_c043",
+        "seen08000_c044",
+        "seen08000_c045",
+        "seen08000_c046",
+        "seen08000_c047",
+        "seen08000_c048",
+        "seen08000_c049",
+        "seen08000_c050",
+        "seen08000_c052",
+        "seen08000_c053",
+        "seen08000_c055",
+        "seen08000_c056",
+        "seen08000_c057",
+        "seen08000_c059",
+        "seen08000_c060",
+        "seen08000_c061",
+        "seen08000_c062",
+        "seen08000_c066",
+        "seen08000_c067",
+        "seen08000_c068",
+        "seen08000_c069",
+        "seen08000_c070",
+        "seen08000_c071",
+        "seen08000_c072",
+        "seen08000_c073",
+        "seen08000_c075",
+        "seen08000_c076",
+        "seen08000_c077",
+        "seen08000_c078",
+        "seen08000_c079",
+        "seen08000_c083",
+        "seen08000_c085",
+        "seen08000_c086",
+        "seen08000_c087",
+        "seen08000_c088",
+        "seen08000_c089",
+        "seen08000_c091",
+        "seen08000_c094",
+        "seen08000_c095",
+        "seen08000_c097",
+        "seen08000_c098",
+        "seen08000_c099",
+        "seen08000_c100",
+        "seen08000_c101",
+        "seen08000_c104",
+        "seen08000_c105",
+        "seen08000_c106",
+        "seen08000_c107",
+        "seen08000_c108",
+        "seen08000_c109",
+        "seen08000_c111",
+        "seen08000_c112",
+        "seen08000_c115",
+        "seen08000_c116",
+        "seen08000_c119",
+        "seen08000_c120",
+        "seen08000_c121",
+        "seen08000_c122",
+        "seen08000_c123",
+        "seen08000_c124",
+        "seen08000_c125",
+        "seen08000_c126",
+        "seen08000_c130",
+        "seen08000_c131",
+        "seen08000_c133",
+        "seen08000_c134",
+        "seen08000_c135",
+        "seen08000_c136",
+        "seen08000_c137",
+        "seen08000_c138",
+        "seen08000_c139",
+        "seen08000_c140",
+        "seen08000_c141",
+        "seen08000_c143",
+        "seen08000_c145",
+        "seen08000_c146",
+        "seen08000_c147",
+        "seen08000_c148",
+        "seen08000_c149",
+        "seen08000_c151",
+        "seen08000_c153",
+        "seen08000_c154",
+        "seen08000_c155",
+        "seen08000_c156",
+        "seen08000_c157",
+        "seen08000_c161",
+        "seen08000_c162",
+        "seen08000_c165",
+        "seen08000_c166",
+        "seen08000_c168",
+        "seen08000_c174",
+        "seen08000_c175",
+        "seen08000_c176",
+        "seen08000_c177",
+        "seen08000_c178",
+        "seen08000_c179",
+        "seen08000_c180",
+        "seen08000_c181",
+        "seen08000_c182",
+        "seen08000_c189",
+        "seen08000_c190",
+        "seen08000_c193",
+        "seen08000_c198",
+        "seen08000_c200",
+        "seen08000_c202",
+        "seen08000_c203",
+        "seen08000_c204",
+        "seen08000_c205",
+        "seen08000_c206",
+        "seen08000_c207",
+        "seen08000_c208",
+        "seen08000_c209",
+        "seen08000_c211",
+        "seen08000_c212",
+        "seen08000_c213",
+        "seen08000_c214",
+        "seen08000_c215",
+        "seen08000_c216",
+        "seen08000_c220",
+        "seen08000_c221",
+        "seen08000_c222",
+        "seen08000_c223",
+        "seen08000_c225",
+        "seen08000_c226",
+        "seen08000_c227",
+        "seen08000_c228",
+        "seen08000_c229",
+        "seen08000_c230",
+        "seen08000_c231",
+        "seen08000_c235",
+        "seen08000_c236",
+        "seen08000_c237",
+        "seen08000_c240",
+        "seen08000_c241",
+        "seen08000_c244",
+        "seen08000_c245",
+        "seen08000_c247",
+        "seen08000_c248",
+        "seen08000_c249",
+        "seen08000_c250",
+        "seen08000_c251",
+        "seen08000_c252",
+        "seen08000_c253",
+        "seen08000_c254",
+        "seen08000_c255",
+        "seen08000_c256",
+        "seen08000_c257",
+        "seen08000_c258",
+        "seen08000_c259",
+        "seen08000_c261",
+        "seen08000_c262",
+        "seen08000_c263",
+        "seen08000_c264",
+        "seen08000_c265",
+        "seen08000_c271",
+        "seen08000_c272",
+        "seen08000_c273",
+        "seen08000_c274",
+        "seen08000_c275",
+        "seen08000_c276",
+        "seen08000_c278",
+        "seen08000_c279",
+        "seen08000_c280",
+        "seen08000_c281",
+        "seen08000_c282",
+        "seen08000_c283",
+        "seen08000_c284",
+        "seen08000_c287",
+        "seen08000_c288",
+        "seen08000_c289",
+        "seen08000_c290",
+        "seen08000_c291",
+        "seen08000_c292",
+        "seen08000_c293",
+        "seen08000_c294",
+        "seen08000_c295",
+        "seen08000_c296",
+        "seen08000_c297",
+        "seen08000_c298",
+        "seen08000_c299",
+        "seen08000_c300",
+        "seen08000_c302",
+        "seen08000_c303",
+        "seen08000_c304",
+        "seen08000_c305",
+        "seen08000_c306",
+        "seen08000_c307",
+        "seen08000_c308",
+        "seen08000_c309",
+        "seen08000_c310",
+        "seen08000_c311",
+        "seen08000_c312",
+        "seen08000_c313",
+        "seen08000_c314",
+        "seen08000_c315",
+        "seen08000_c318",
+        "seen08000_c319",
+        "seen08000_c320",
+        "seen08000_c324",
+        "seen08000_c325",
+        "seen08000_c326",
+        "seen08000_c327",
+        "seen08000_c328",
+        "seen08000_c329",
+        "seen08000_c330",
+        "seen08000_c331",
+        "seen08000_c332",
+        "seen08000_c333",
+        "seen08000_c334",
+        "seen08000_c336",
+        "seen08000_c342",
+        "seen08000_c344",
+        "seen08000_c346",
+        "seen08000_c347",
+        "seen08000_c348",
+        "seen08000_c349",
+        "seen08000_c352",
+        "seen08000_c353",
+        "seen08000_c354",
+        "seen08000_c357",
+        "seen08000_c358",
+        "seen08000_c361",
+        "seen08000_c362",
+        "seen08000_c363",
+        "seen08000_c364",
+        "seen08000_c367",
+        "seen08000_c368",
+        "seen08000_c369",
+        "seen08000_c373",
+        "seen08000_c375",
+        "seen08000_c378",
+        "seen08000_c379",
+        "seen08000_c380",
+        "seen08000_c381",
+        "seen08000_c382",
+        "seen08000_c383",
+        "seen08000_c384",
+        "seen08000_c385",
+        "seen08000_c386",
+        "seen08000_c387",
+        "seen08000_c388",
+        "seen08000_c389",
+        "seen08000_c390",
+        "seen08000_c391",
+        "seen08000_c392",
+        "seen08000_c394",
+        "seen08000_c396",
+        "seen08000_c397",
+        "seen08000_c402",
+        "seen08000_c404",
+        "seen08000_c405",
+        "seen08000_c406",
+        "seen08000_c407",
+        "seen08000_c408",
+        "seen08000_c409",
+        "seen08000_c412",
+        "seen08000_c415",
+        "seen08000_c416",
+        "seen08000_c418",
+        "seen08000_c419",
+        "seen08000_c420",
+        "seen08000_c421",
+        "seen08000_c427",
+        "seen08000_c428",
+        "seen08000_c433",
+        "seen08000_c434",
+        "seen08000_c438",
+        "seen08000_c439",
+        "seen08000_c441",
+        "seen08000_c442",
+        "seen08000_c443",
+        "seen08000_c444",
+        "seen08000_c445",
+        "seen08000_c447",
+        "seen08000_c448",
+        "seen08000_c449",
+        "seen08000_c450",
+        "seen08000_c451",
+        "seen08000_c453",
+        "seen08000_c454",
+        "seen08000_c455",
+        "seen08000_c460",
+        "seen08000_c464",
+        "seen08000_c465",
+        "seen08000_c466",
+        "seen08000_c467",
+        "seen08000_c399",
+        "seen08000_c458"
+      ],
+      "n_chunks": 315,
+      "grounding": {
+        "speakers": 313,
+        "text": 2
+      }
+    },
+    {
+      "name": "男人",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c001",
+        "seen08000_c002",
+        "seen08000_c004",
+        "seen08000_c037",
+        "seen08000_c042",
+        "seen08000_c396",
+        "seen08000_c450",
+        "seen08000_c451"
+      ],
+      "n_chunks": 8,
+      "grounding": {
+        "speakers": 8,
+        "text": 0
+      }
+    },
+    {
+      "name": "男孩子",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c051",
+        "seen08000_c052"
+      ],
+      "n_chunks": 2,
+      "grounding": {
+        "speakers": 2,
+        "text": 0
+      }
+    },
+    {
+      "name": "篝",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "篝",
+        "键之少女"
+      ],
+      "chunk_ids": [
+        "seen08000_c174",
+        "seen08000_c226",
+        "seen08000_c227",
+        "seen08000_c228",
+        "seen08000_c229",
+        "seen08000_c230",
+        "seen08000_c231",
+        "seen08000_c235",
+        "seen08000_c236",
+        "seen08000_c237",
+        "seen08000_c247",
+        "seen08000_c248",
+        "seen08000_c249",
+        "seen08000_c250",
+        "seen08000_c251",
+        "seen08000_c265",
+        "seen08000_c273",
+        "seen08000_c274",
+        "seen08000_c275",
+        "seen08000_c289",
+        "seen08000_c290",
+        "seen08000_c291",
+        "seen08000_c292",
+        "seen08000_c293",
+        "seen08000_c294",
+        "seen08000_c310",
+        "seen08000_c311",
+        "seen08000_c312",
+        "seen08000_c313",
+        "seen08000_c327",
+        "seen08000_c328",
+        "seen08000_c329",
+        "seen08000_c331",
+        "seen08000_c332",
+        "seen08000_c333",
+        "seen08000_c382",
+        "seen08000_c383",
+        "seen08000_c389",
+        "seen08000_c390",
+        "seen08000_c391",
+        "seen08000_c392",
+        "seen08000_c396",
+        "seen08000_c402",
+        "seen08000_c416",
+        "seen08000_c418",
+        "seen08000_c465",
+        "seen08000_c466",
+        "seen08000_c467",
+        "seen08000_c168"
+      ],
+      "n_chunks": 49,
+      "grounding": {
+        "speakers": 48,
+        "text": 1
+      }
+    },
+    {
+      "name": "老婆婆",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c065"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "职员",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c283",
+        "seen08000_c295"
+      ],
+      "n_chunks": 2,
+      "grounding": {
+        "speakers": 2,
+        "text": 0
+      }
+    },
+    {
+      "name": "营业员",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c070"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "西九条",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "西九条"
+      ],
+      "chunk_ids": [
+        "seen08000_c092",
+        "seen08000_c093",
+        "seen08000_c102",
+        "seen08000_c104",
+        "seen08000_c115",
+        "seen08000_c116",
+        "seen08000_c119",
+        "seen08000_c139",
+        "seen08000_c140",
+        "seen08000_c141",
+        "seen08000_c143",
+        "seen08000_c144",
+        "seen08000_c145",
+        "seen08000_c146",
+        "seen08000_c147",
+        "seen08000_c148",
+        "seen08000_c149",
+        "seen08000_c150",
+        "seen08000_c151",
+        "seen08000_c152",
+        "seen08000_c153",
+        "seen08000_c177",
+        "seen08000_c178",
+        "seen08000_c179",
+        "seen08000_c253",
+        "seen08000_c254",
+        "seen08000_c255",
+        "seen08000_c277",
+        "seen08000_c282",
+        "seen08000_c283",
+        "seen08000_c384",
+        "seen08000_c385",
+        "seen08000_c386",
+        "seen08000_c387",
+        "seen08000_c388",
+        "seen08000_c404",
+        "seen08000_c435",
+        "seen08000_c439",
+        "seen08000_c441",
+        "seen08000_c442",
+        "seen08000_c094",
+        "seen08000_c097",
+        "seen08000_c100",
+        "seen08000_c103",
+        "seen08000_c120",
+        "seen08000_c123",
+        "seen08000_c316",
+        "seen08000_c348",
+        "seen08000_c362",
+        "seen08000_c372"
+      ],
+      "n_chunks": 50,
+      "grounding": {
+        "speakers": 40,
+        "text": 10
+      }
+    },
+    {
+      "name": "训练生",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c116",
+        "seen08000_c117"
+      ],
+      "n_chunks": 2,
+      "grounding": {
+        "speakers": 2,
+        "text": 0
+      }
+    },
+    {
+      "name": "讲师",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c242",
+        "seen08000_c243",
+        "seen08000_c244",
+        "seen08000_c245",
+        "seen08000_c246"
+      ],
+      "n_chunks": 5,
+      "grounding": {
+        "speakers": 5,
+        "text": 0
+      }
+    },
+    {
+      "name": "路易斯",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "路易斯"
+      ],
+      "chunk_ids": [
+        "seen08000_c001",
+        "seen08000_c002",
+        "seen08000_c003",
+        "seen08000_c004",
+        "seen08000_c005",
+        "seen08000_c187",
+        "seen08000_c189",
+        "seen08000_c190",
+        "seen08000_c193",
+        "seen08000_c198",
+        "seen08000_c200",
+        "seen08000_c201",
+        "seen08000_c202",
+        "seen08000_c203",
+        "seen08000_c204",
+        "seen08000_c205",
+        "seen08000_c206",
+        "seen08000_c207",
+        "seen08000_c208",
+        "seen08000_c209",
+        "seen08000_c210",
+        "seen08000_c211",
+        "seen08000_c006",
+        "seen08000_c186",
+        "seen08000_c188",
+        "seen08000_c191",
+        "seen08000_c195",
+        "seen08000_c196",
+        "seen08000_c197",
+        "seen08000_c199",
+        "seen08000_c212",
+        "seen08000_c213",
+        "seen08000_c214",
+        "seen08000_c216",
+        "seen08000_c217",
+        "seen08000_c334",
+        "seen08000_c413",
+        "seen08000_c415"
+      ],
+      "n_chunks": 38,
+      "grounding": {
+        "speakers": 22,
+        "text": 16
+      }
+    },
+    {
+      "name": "通信",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c410"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "键",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c226"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "长居",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "长居"
+      ],
+      "chunk_ids": [
+        "seen08000_c093",
+        "seen08000_c097",
+        "seen08000_c098",
+        "seen08000_c099",
+        "seen08000_c100",
+        "seen08000_c101",
+        "seen08000_c102",
+        "seen08000_c115",
+        "seen08000_c116",
+        "seen08000_c118",
+        "seen08000_c114",
+        "seen08000_c119",
+        "seen08000_c120",
+        "seen08000_c121",
+        "seen08000_c122",
+        "seen08000_c129",
+        "seen08000_c139",
+        "seen08000_c148",
+        "seen08000_c181",
+        "seen08000_c295",
+        "seen08000_c319",
+        "seen08000_c325",
+        "seen08000_c334"
+      ],
+      "n_chunks": 23,
+      "grounding": {
+        "speakers": 10,
+        "text": 13
+      }
+    },
+    {
+      "name": "队长",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c001",
+        "seen08000_c003",
+        "seen08000_c004",
+        "seen08000_c005",
+        "seen08000_c193",
+        "seen08000_c194",
+        "seen08000_c204",
+        "seen08000_c352",
+        "seen08000_c353"
+      ],
+      "n_chunks": 9,
+      "grounding": {
+        "speakers": 9,
+        "text": 0
+      }
+    },
+    {
+      "name": "露西娅",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "露西娅"
+      ],
+      "chunk_ids": [
+        "seen08000_c473",
+        "seen08000_c474",
+        "seen08000_c475",
+        "seen08000_c476",
+        "seen08000_c477",
+        "seen08000_c478",
+        "seen08000_c479",
+        "seen08000_c480",
+        "seen08000_c481",
+        "seen08000_c482",
+        "seen08000_c483"
+      ],
+      "n_chunks": 11,
+      "grounding": {
+        "speakers": 11,
+        "text": 0
+      }
+    },
+    {
+      "name": "青年",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c149"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "静流",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "中津静流",
+        "静流"
+      ],
+      "chunk_ids": [
+        "seen08000_c384",
+        "seen08000_c387",
+        "seen08000_c473",
+        "seen08000_c476",
+        "seen08000_c477",
+        "seen08000_c479",
+        "seen08000_c480",
+        "seen08000_c481",
+        "seen08000_c482",
+        "seen08000_c483"
+      ],
+      "n_chunks": 10,
+      "grounding": {
+        "speakers": 10,
+        "text": 0
+      }
+    },
+    {
+      "name": "驾驶员",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c324"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 1,
+        "text": 0
+      }
+    },
+    {
+      "name": "高砂",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c298",
+        "seen08000_c299"
+      ],
+      "n_chunks": 2,
+      "grounding": {
+        "speakers": 2,
+        "text": 0
+      }
+    },
+    {
+      "name": "魔物使",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c341",
+        "seen08000_c343"
+      ],
+      "n_chunks": 2,
+      "grounding": {
+        "speakers": 2,
+        "text": 0
+      }
+    },
+    {
+      "name": "？",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c456",
+        "seen08000_c457",
+        "seen08000_c458",
+        "seen08000_c480",
+        "seen08000_c481",
+        "seen08000_c482",
+        "seen08000_c483"
+      ],
+      "n_chunks": 7,
+      "grounding": {
+        "speakers": 7,
+        "text": 0
+      }
+    },
+    {
+      "name": "Ｊａｓｍｉｎｅ２０１５",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "Jasmine2015"
+      ],
+      "chunk_ids": [
+        "seen08000_c267",
+        "seen08000_c268",
+        "seen08000_c269",
+        "seen08000_c270",
+        "seen08000_c398",
+        "seen08000_c399",
+        "seen08000_c400",
+        "seen08000_c401"
+      ],
+      "n_chunks": 8,
+      "grounding": {
+        "speakers": 8,
+        "text": 0
+      }
+    },
+    {
+      "name": "Ｋｏｋｏ１０１０",
+      "pos": "nr",
+      "source": "speakers",
+      "aliases": [
+        "Koko1010"
+      ],
+      "chunk_ids": [
+        "seen08000_c267",
+        "seen08000_c268",
+        "seen08000_c269",
+        "seen08000_c270",
+        "seen08000_c398",
+        "seen08000_c399",
+        "seen08000_c400",
+        "seen08000_c401"
+      ],
+      "n_chunks": 8,
+      "grounding": {
+        "speakers": 8,
+        "text": 0
+      }
+    },
+    {
+      "name": "加岛",
+      "pos": "nr",
+      "source": "text",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c066",
+        "seen08000_c067",
+        "seen08000_c068",
+        "seen08000_c069",
+        "seen08000_c082",
+        "seen08000_c087",
+        "seen08000_c259",
+        "seen08000_c284",
+        "seen08000_c285",
+        "seen08000_c286",
+        "seen08000_c287",
+        "seen08000_c288",
+        "seen08000_c298",
+        "seen08000_c299",
+        "seen08000_c300",
+        "seen08000_c305",
+        "seen08000_c317",
+        "seen08000_c318",
+        "seen08000_c319",
+        "seen08000_c320",
+        "seen08000_c321",
+        "seen08000_c322",
+        "seen08000_c323",
+        "seen08000_c324",
+        "seen08000_c325",
+        "seen08000_c326",
+        "seen08000_c334",
+        "seen08000_c349",
+        "seen08000_c380",
+        "seen08000_c381",
+        "seen08000_c397",
+        "seen08000_c403",
+        "seen08000_c404",
+        "seen08000_c430",
+        "seen08000_c432",
+        "seen08000_c435",
+        "seen08000_c447",
+        "seen08000_c448",
+        "seen08000_c450",
+        "seen08000_c451"
+      ],
+      "n_chunks": 40,
+      "grounding": {
+        "speakers": 0,
+        "text": 40
+      }
+    },
+    {
+      "name": "圣女会",
+      "pos": "nt",
+      "source": "text",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c397"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 0,
+        "text": 1
+      }
+    },
+    {
+      "name": "守护者",
+      "pos": "nt",
+      "source": "text",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c079",
+        "seen08000_c081",
+        "seen08000_c082",
+        "seen08000_c083",
+        "seen08000_c085",
+        "seen08000_c086",
+        "seen08000_c113",
+        "seen08000_c114",
+        "seen08000_c123",
+        "seen08000_c124",
+        "seen08000_c168",
+        "seen08000_c182",
+        "seen08000_c184",
+        "seen08000_c205",
+        "seen08000_c206",
+        "seen08000_c218",
+        "seen08000_c219",
+        "seen08000_c224",
+        "seen08000_c230",
+        "seen08000_c240",
+        "seen08000_c247",
+        "seen08000_c248",
+        "seen08000_c250",
+        "seen08000_c251",
+        "seen08000_c252",
+        "seen08000_c256",
+        "seen08000_c261",
+        "seen08000_c266",
+        "seen08000_c267",
+        "seen08000_c275",
+        "seen08000_c284",
+        "seen08000_c285",
+        "seen08000_c295",
+        "seen08000_c305",
+        "seen08000_c316",
+        "seen08000_c317",
+        "seen08000_c332",
+        "seen08000_c334",
+        "seen08000_c337",
+        "seen08000_c338",
+        "seen08000_c348",
+        "seen08000_c351",
+        "seen08000_c352",
+        "seen08000_c353",
+        "seen08000_c354",
+        "seen08000_c366",
+        "seen08000_c368",
+        "seen08000_c369",
+        "seen08000_c370",
+        "seen08000_c371",
+        "seen08000_c372",
+        "seen08000_c380",
+        "seen08000_c389",
+        "seen08000_c402",
+        "seen08000_c405",
+        "seen08000_c412",
+        "seen08000_c415",
+        "seen08000_c416",
+        "seen08000_c427",
+        "seen08000_c435",
+        "seen08000_c436",
+        "seen08000_c439",
+        "seen08000_c441",
+        "seen08000_c442",
+        "seen08000_c450"
+      ],
+      "n_chunks": 65,
+      "grounding": {
+        "speakers": 0,
+        "text": 65
+      }
+    },
+    {
+      "name": "拜恩带剑绿地骑士团",
+      "pos": "nz",
+      "source": "text",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c113",
+        "seen08000_c220"
+      ],
+      "n_chunks": 2,
+      "grounding": {
+        "speakers": 0,
+        "text": 2
+      }
+    },
+    {
+      "name": "民间警备队",
+      "pos": "nt",
+      "source": "text",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c002"
+      ],
+      "n_chunks": 1,
+      "grounding": {
+        "speakers": 0,
+        "text": 1
+      }
+    },
+    {
+      "name": "盖亚",
+      "pos": "nt",
+      "source": "text",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c085",
+        "seen08000_c121",
+        "seen08000_c123",
+        "seen08000_c130",
+        "seen08000_c135",
+        "seen08000_c136",
+        "seen08000_c145",
+        "seen08000_c157",
+        "seen08000_c175",
+        "seen08000_c193",
+        "seen08000_c218",
+        "seen08000_c219",
+        "seen08000_c224",
+        "seen08000_c225",
+        "seen08000_c230",
+        "seen08000_c233",
+        "seen08000_c234",
+        "seen08000_c239",
+        "seen08000_c243",
+        "seen08000_c246",
+        "seen08000_c247",
+        "seen08000_c248",
+        "seen08000_c250",
+        "seen08000_c251",
+        "seen08000_c252",
+        "seen08000_c255",
+        "seen08000_c257",
+        "seen08000_c263",
+        "seen08000_c266",
+        "seen08000_c267",
+        "seen08000_c275",
+        "seen08000_c284",
+        "seen08000_c317",
+        "seen08000_c332",
+        "seen08000_c337",
+        "seen08000_c345",
+        "seen08000_c346",
+        "seen08000_c348",
+        "seen08000_c351",
+        "seen08000_c352",
+        "seen08000_c353",
+        "seen08000_c354",
+        "seen08000_c364",
+        "seen08000_c368",
+        "seen08000_c370",
+        "seen08000_c371",
+        "seen08000_c372",
+        "seen08000_c380",
+        "seen08000_c389",
+        "seen08000_c394",
+        "seen08000_c395",
+        "seen08000_c402",
+        "seen08000_c405",
+        "seen08000_c412",
+        "seen08000_c416",
+        "seen08000_c427",
+        "seen08000_c431",
+        "seen08000_c432",
+        "seen08000_c433",
+        "seen08000_c441",
+        "seen08000_c444",
+        "seen08000_c446"
+      ],
+      "n_chunks": 62,
+      "grounding": {
+        "speakers": 0,
+        "text": 62
+      }
+    },
+    {
+      "name": "维和部队",
+      "pos": "nt",
+      "source": "text",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c002",
+        "seen08000_c187",
+        "seen08000_c188"
+      ],
+      "n_chunks": 3,
+      "grounding": {
+        "speakers": 0,
+        "text": 3
+      }
+    },
+    {
+      "name": "风祭市",
+      "pos": "ns",
+      "source": "text",
+      "aliases": [],
+      "chunk_ids": [
+        "seen08000_c021",
+        "seen08000_c079",
+        "seen08000_c121",
+        "seen08000_c123",
+        "seen08000_c128",
+        "seen08000_c230",
+        "seen08000_c256",
+        "seen08000_c302",
+        "seen08000_c303",
+        "seen08000_c304",
+        "seen08000_c307",
+        "seen08000_c313",
+        "seen08000_c396",
+        "seen08000_c403",
+        "seen08000_c404",
+        "seen08000_c469"
+      ],
+      "n_chunks": 16,
+      "grounding": {
+        "speakers": 0,
+        "text": 16
+      }
+    }
+  ],
+  "choices": [
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "回答说“我不知道”"
+      ],
+      "src_line": 2792,
+      "label": 66,
+      "addr": "0003DC2F",
+      "rfid": 2079,
+      "has_branch": false,
+      "seq": 1,
+      "chunk_id": "seen08000_c068"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "阻止他们",
+        "不阻止他们"
+      ],
+      "src_line": 3144,
+      "label": 1,
+      "addr": "000454E6",
+      "rfid": 2312,
+      "has_branch": false,
+      "seq": 2,
+      "chunk_id": "seen08000_c077"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "往后退",
+        "不后退",
+        "往侧面躲闪"
+      ],
+      "src_line": 3982,
+      "label": 72,
+      "addr": "00058ACC",
+      "rfid": 2936,
+      "has_branch": false,
+      "seq": 3,
+      "chunk_id": "seen08000_c097"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "从左面进攻",
+        "从右面进攻",
+        "投掷匕首",
+        "出其不意进行突袭"
+      ],
+      "src_line": 4012,
+      "label": 72,
+      "addr": "00058F6B",
+      "rfid": 2946,
+      "has_branch": false,
+      "seq": 4,
+      "chunk_id": "seen08000_c098"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "从正面",
+        "从左边",
+        "从右边",
+        "跃起"
+      ],
+      "src_line": 4574,
+      "label": 94,
+      "addr": "00063ED6",
+      "rfid": 3327,
+      "has_branch": true,
+      "gate_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "seq": 10,
+      "chunk_id": "seen08000_c109",
+      "branches": [
+        {
+          "idx": 0,
+          "chunk_ids": [],
+          "outcome": "continue"
+        },
+        {
+          "idx": 1,
+          "chunk_ids": [],
+          "outcome": "continue"
+        },
+        {
+          "idx": 2,
+          "chunk_ids": [],
+          "outcome": "continue"
+        },
+        {
+          "idx": 3,
+          "chunk_ids": [],
+          "outcome": "continue"
+        }
+      ]
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "用匕首",
+        "用拳打",
+        "用腿踢",
+        "用头顶"
+      ],
+      "src_line": 4600,
+      "label": 97,
+      "addr": "00064183",
+      "rfid": 3328,
+      "has_branch": true,
+      "gate_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "seq": 11,
+      "chunk_id": "seen08000_c109",
+      "branches": [
+        {
+          "idx": 0,
+          "chunk_ids": [],
+          "outcome": "continue"
+        },
+        {
+          "idx": 1,
+          "chunk_ids": [],
+          "outcome": "continue"
+        },
+        {
+          "idx": 2,
+          "chunk_ids": [],
+          "outcome": "continue"
+        },
+        {
+          "idx": 3,
+          "chunk_ids": [],
+          "outcome": "continue"
+        }
+      ]
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "瞄准要害",
+        "寻找破绽",
+        "销声匿迹",
+        "一记佯攻"
+      ],
+      "src_line": 4627,
+      "label": 102,
+      "addr": "00064455",
+      "rfid": 3329,
+      "has_branch": true,
+      "gate_values": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "seq": 12,
+      "chunk_id": "seen08000_c109",
+      "branches": [
+        {
+          "idx": 0,
+          "chunk_ids": [],
+          "outcome": "continue"
+        },
+        {
+          "idx": 1,
+          "chunk_ids": [],
+          "outcome": "continue"
+        },
+        {
+          "idx": 2,
+          "chunk_ids": [],
+          "outcome": "continue"
+        },
+        {
+          "idx": 3,
+          "chunk_ids": [],
+          "outcome": "continue"
+        }
+      ]
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "连续进攻",
+        "赌上最后一击"
+      ],
+      "src_line": 4654,
+      "label": 107,
+      "addr": "000646F1",
+      "rfid": 3330,
+      "has_branch": true,
+      "gate_values": [
+        0,
+        1
+      ],
+      "seq": 13,
+      "chunk_id": "seen08000_c109",
+      "branches": [
+        {
+          "idx": 0,
+          "chunk_ids": [
+            "seen08000_c110",
+            "seen08000_c111",
+            "seen08000_c112",
+            "seen08000_c113",
+            "seen08000_c114",
+            "seen08000_c115",
+            "seen08000_c116",
+            "seen08000_c117",
+            "seen08000_c118",
+            "seen08000_c119",
+            "seen08000_c120",
+            "seen08000_c121",
+            "seen08000_c122",
+            "seen08000_c123",
+            "seen08000_c124",
+            "seen08000_c125",
+            "seen08000_c126",
+            "seen08000_c127",
+            "seen08000_c128",
+            "seen08000_c129",
+            "seen08000_c130",
+            "seen08000_c131",
+            "seen08000_c132",
+            "seen08000_c133",
+            "seen08000_c134",
+            "seen08000_c135",
+            "seen08000_c136",
+            "seen08000_c137",
+            "seen08000_c138",
+            "seen08000_c139",
+            "seen08000_c140",
+            "seen08000_c141",
+            "seen08000_c142",
+            "seen08000_c143",
+            "seen08000_c144",
+            "seen08000_c145",
+            "seen08000_c146",
+            "seen08000_c147",
+            "seen08000_c148",
+            "seen08000_c149",
+            "seen08000_c150",
+            "seen08000_c151",
+            "seen08000_c152",
+            "seen08000_c153"
+          ],
+          "outcome": "continue"
+        },
+        {
+          "idx": 1,
+          "chunk_ids": [
+            "seen08000_c110",
+            "seen08000_c111",
+            "seen08000_c112",
+            "seen08000_c113",
+            "seen08000_c114",
+            "seen08000_c115",
+            "seen08000_c116",
+            "seen08000_c117",
+            "seen08000_c118",
+            "seen08000_c119",
+            "seen08000_c120",
+            "seen08000_c121",
+            "seen08000_c122",
+            "seen08000_c123",
+            "seen08000_c124",
+            "seen08000_c125",
+            "seen08000_c126",
+            "seen08000_c127",
+            "seen08000_c128",
+            "seen08000_c129",
+            "seen08000_c130",
+            "seen08000_c131",
+            "seen08000_c132",
+            "seen08000_c133",
+            "seen08000_c134",
+            "seen08000_c135",
+            "seen08000_c136",
+            "seen08000_c137",
+            "seen08000_c138",
+            "seen08000_c139",
+            "seen08000_c140",
+            "seen08000_c141",
+            "seen08000_c142",
+            "seen08000_c143",
+            "seen08000_c144",
+            "seen08000_c145",
+            "seen08000_c146",
+            "seen08000_c147",
+            "seen08000_c148",
+            "seen08000_c149",
+            "seen08000_c150",
+            "seen08000_c151",
+            "seen08000_c152",
+            "seen08000_c153"
+          ],
+          "outcome": "continue"
+        }
+      ]
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "追",
+        "不追"
+      ],
+      "src_line": 6608,
+      "label": 121,
+      "addr": "000936C6",
+      "rfid": 4740,
+      "has_branch": false,
+      "seq": 14,
+      "chunk_id": "seen08000_c153"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "路线Ａ",
+        "路线Ｂ",
+        "路线Ｃ",
+        "路线Ｄ"
+      ],
+      "src_line": 6721,
+      "label": 121,
+      "addr": "00095016",
+      "rfid": 4801,
+      "has_branch": false,
+      "seq": 15,
+      "chunk_id": "seen08000_c155"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "路线Ａ",
+        "路线Ｂ",
+        "路线Ｃ",
+        "路线Ｄ"
+      ],
+      "src_line": 7048,
+      "label": 121,
+      "addr": "0009A8D0",
+      "rfid": 4999,
+      "has_branch": false,
+      "seq": 16,
+      "chunk_id": "seen08000_c162"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "爬上去",
+        "跟她说话（大声）",
+        "跟她说话（小声）",
+        "敲树干",
+        "扔些小石子让她注意到",
+        "叫人来帮忙",
+        "在她掉下来的瞬间接住她"
+      ],
+      "src_line": 7093,
+      "label": 121,
+      "addr": "0009B2CC",
+      "rfid": 5021,
+      "has_branch": false,
+      "seq": 17,
+      "chunk_id": "seen08000_c163"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "方案Ａ",
+        "方案Ｂ",
+        "方案Ｃ",
+        "方案Ｄ",
+        "方案Ｅ",
+        "方案Ｆ",
+        "方案Ｇ",
+        "方案Ｈ",
+        "方案Ｉ",
+        "方案Ｊ",
+        "方案Ｋ",
+        "方案Ｌ",
+        "方案Ｍ",
+        "方案Ｎ",
+        "方案Ｏ",
+        "方案Ｐ",
+        "方案Ｑ",
+        "方案Ｒ",
+        "方案Ｓ",
+        "方案Ｔ",
+        "方案Ｕ",
+        "方案Ｖ",
+        "方案Ｗ",
+        "方案Ｘ",
+        "方案Ｙ",
+        "方案Ｚ",
+        "方案∞"
+      ],
+      "src_line": 7174,
+      "label": 121,
+      "addr": "0009C7AD",
+      "rfid": 5061,
+      "has_branch": false,
+      "seq": 18,
+      "chunk_id": "seen08000_c164"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "去",
+        "不去"
+      ],
+      "src_line": 7284,
+      "label": 121,
+      "addr": "0009DDCC",
+      "rfid": 5112,
+      "has_branch": false,
+      "seq": 19,
+      "chunk_id": "seen08000_c167"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "捕捉她",
+        "除掉她",
+        "逃走"
+      ],
+      "src_line": 7369,
+      "label": 121,
+      "addr": "0009F0EA",
+      "rfid": 5161,
+      "has_branch": true,
+      "gate_values": [
+        0,
+        1,
+        2
+      ],
+      "seq": 20,
+      "chunk_id": "seen08000_c168",
+      "branches": [
+        {
+          "idx": 0,
+          "chunk_ids": [
+            "seen08000_c169",
+            "seen08000_c171",
+            "seen08000_c172",
+            "seen08000_c173"
+          ],
+          "outcome": "bad_end"
+        },
+        {
+          "idx": 1,
+          "chunk_ids": [
+            "seen08000_c170",
+            "seen08000_c171",
+            "seen08000_c172",
+            "seen08000_c173"
+          ],
+          "outcome": "bad_end"
+        },
+        {
+          "idx": 2,
+          "chunk_ids": [
+            "seen08000_c174",
+            "seen08000_c175",
+            "seen08000_c176",
+            "seen08000_c177",
+            "seen08000_c178",
+            "seen08000_c179",
+            "seen08000_c180",
+            "seen08000_c181",
+            "seen08000_c182",
+            "seen08000_c183",
+            "seen08000_c184",
+            "seen08000_c185",
+            "seen08000_c186",
+            "seen08000_c187",
+            "seen08000_c188",
+            "seen08000_c189",
+            "seen08000_c190",
+            "seen08000_c191",
+            "seen08000_c192",
+            "seen08000_c193",
+            "seen08000_c194",
+            "seen08000_c195",
+            "seen08000_c196",
+            "seen08000_c197",
+            "seen08000_c198",
+            "seen08000_c199"
+          ],
+          "outcome": "continue"
+        }
+      ]
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "停下脚步",
+        "寻找敌人的身影",
+        "防御",
+        "无视它继续往前跑"
+      ],
+      "src_line": 8445,
+      "label": 143,
+      "addr": "000B72A9",
+      "rfid": 5920,
+      "has_branch": false,
+      "seq": 21,
+      "chunk_id": "seen08000_c199"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "西",
+        "西北"
+      ],
+      "src_line": 8791,
+      "label": 149,
+      "addr": "000BE5C2",
+      "rfid": 6182,
+      "has_branch": false,
+      "seq": 22,
+      "chunk_id": "seen08000_c207"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "留在这儿",
+        "听路易斯的话",
+        "阻止拦截行动带路易斯一起走"
+      ],
+      "src_line": 8925,
+      "label": 149,
+      "addr": "000C1AC0",
+      "rfid": 6310,
+      "has_branch": false,
+      "seq": 23,
+      "chunk_id": "seen08000_c211"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "路线Ａ",
+        "路线Ｂ",
+        "路线Ｃ",
+        "路线Ｄ",
+        "路线Ｅ",
+        "路线Ｆ",
+        "路线Ｇ",
+        "路线Ｈ",
+        "路线Ｉ",
+        "路线Ｊ",
+        "路线Ｋ",
+        "路线Ｌ",
+        "路线Ｍ",
+        "路线Ｎ",
+        "路线Ｏ",
+        "路线Ｐ",
+        "路线Ｑ",
+        "路线Ｒ",
+        "路线Ｓ",
+        "路线Ｔ",
+        "路线Ｕ",
+        "路线Ｖ",
+        "路线Ｗ",
+        "路线Ｘ",
+        "路线Ｙ",
+        "路线Ｚ",
+        "路线∞"
+      ],
+      "src_line": 9078,
+      "label": 149,
+      "addr": "000C4390",
+      "rfid": 6401,
+      "has_branch": false,
+      "seq": 24,
+      "chunk_id": "seen08000_c214"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "改写",
+        "不改写"
+      ],
+      "src_line": 9138,
+      "label": 149,
+      "addr": "000C4BE6",
+      "rfid": 6419,
+      "has_branch": false,
+      "seq": 25,
+      "chunk_id": "seen08000_c215"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "路线Ａ",
+        "路线Ｂ",
+        "路线Ｃ",
+        "路线Ｄ",
+        "路线Ｅ",
+        "路线Ｆ",
+        "路线Ｇ",
+        "路线Ｈ",
+        "路线Ｉ",
+        "路线Ｊ",
+        "路线Ｋ",
+        "路线Ｌ",
+        "路线Ｍ",
+        "路线Ｎ",
+        "路线Ｏ",
+        "路线Ｐ",
+        "路线Ｑ",
+        "路线Ｒ",
+        "路线Ｓ",
+        "路线Ｔ",
+        "路线Ｕ",
+        "路线Ｖ",
+        "路线Ｗ",
+        "路线Ｘ",
+        "路线Ｙ",
+        "路线Ｚ",
+        "路线∞"
+      ],
+      "src_line": 9212,
+      "label": 149,
+      "addr": "000C659A",
+      "rfid": 6473,
+      "has_branch": false,
+      "seq": 26,
+      "chunk_id": "seen08000_c216"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "帮忙",
+        "不帮"
+      ],
+      "src_line": 9847,
+      "label": 161,
+      "addr": "000D5201",
+      "rfid": 6935,
+      "has_branch": false,
+      "seq": 27,
+      "chunk_id": "seen08000_c229"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "用铃木凡人的名字",
+        "硬要用天王寺瑚太朗的名字",
+        "用风祭凡人的名字",
+        "用詹姆斯凡人的名字",
+        "随机应变地报名字"
+      ],
+      "src_line": 12406,
+      "label": 7,
+      "addr": "00115A1D",
+      "rfid": 8909,
+      "has_branch": false,
+      "seq": 28,
+      "chunk_id": "seen08000_c286"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "全部用演技解决",
+        "基本上是说真心话，但也混杂演技",
+        "完全说实话",
+        "根据情况不同随机应变（ＣＢＣ）地说话"
+      ],
+      "src_line": 12426,
+      "label": 7,
+      "addr": "00115C8F",
+      "rfid": 8912,
+      "has_branch": false,
+      "seq": 29,
+      "chunk_id": "seen08000_c286"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "隐瞒跟洲崎接触过的事",
+        "一口咬定不认识洲崎",
+        "不隐瞒跟洲崎接触过的事",
+        "ＣＢＣ"
+      ],
+      "src_line": 12445,
+      "label": 7,
+      "addr": "00115EF5",
+      "rfid": 8915,
+      "has_branch": false,
+      "seq": 30,
+      "chunk_id": "seen08000_c286"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "伪装出盖亚主义的样子",
+        "表现出狩猎本能",
+        "拥护洲崎",
+        "果然还是ＣＢＣ"
+      ],
+      "src_line": 12464,
+      "label": 7,
+      "addr": "0011615B",
+      "rfid": 8918,
+      "has_branch": false,
+      "seq": 31,
+      "chunk_id": "seen08000_c286"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "成为加岛派",
+        "成为洲崎派",
+        "装作要当加岛派的样子",
+        "还是ＣＢＣ"
+      ],
+      "src_line": 12483,
+      "label": 7,
+      "addr": "001163C1",
+      "rfid": 8921,
+      "has_branch": false,
+      "seq": 32,
+      "chunk_id": "seen08000_c286"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "谈一些关于“键”的话题",
+        "完全不谈关于“键”的事",
+        "运用说话技巧接近，ＣＢＣ"
+      ],
+      "src_line": 12502,
+      "label": 7,
+      "addr": "0011660C",
+      "rfid": 8924,
+      "has_branch": false,
+      "seq": 33,
+      "chunk_id": "seen08000_c286"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "强行说些话",
+        "表现出混乱的样子",
+        "笑",
+        "保持沉默",
+        "人生全部都是ＣＢＣ"
+      ],
+      "src_line": 12520,
+      "label": 7,
+      "addr": "00116881",
+      "rfid": 8927,
+      "has_branch": false,
+      "seq": 34,
+      "chunk_id": "seen08000_c286"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "抵抗",
+        "不抵抗"
+      ],
+      "src_line": 13098,
+      "label": 8,
+      "addr": "00125337",
+      "rfid": 9415,
+      "has_branch": false,
+      "seq": 35,
+      "chunk_id": "seen08000_c298"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "接受",
+        "拒绝"
+      ],
+      "src_line": 13984,
+      "label": 9,
+      "addr": "0013D775",
+      "rfid": 10263,
+      "has_branch": false,
+      "seq": 36,
+      "chunk_id": "seen08000_c319"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "向加岛告发",
+        "执行洲崎的计划"
+      ],
+      "src_line": 14071,
+      "label": 9,
+      "addr": "0013F0BE",
+      "rfid": 10329,
+      "has_branch": false,
+      "seq": 37,
+      "chunk_id": "seen08000_c321"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "抽耳光",
+        "砸头顶",
+        "精神攻击",
+        "能力攻击"
+      ],
+      "src_line": 14528,
+      "label": 9,
+      "addr": "0014B107",
+      "rfid": 10728,
+      "has_branch": false,
+      "seq": 38,
+      "chunk_id": "seen08000_c331"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "改写",
+        "不改写"
+      ],
+      "src_line": 15369,
+      "label": 10,
+      "addr": "0015AE65",
+      "rfid": 11336,
+      "has_branch": false,
+      "seq": 39,
+      "chunk_id": "seen08000_c355"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "向左跳",
+        "向右跳",
+        "低头",
+        "双臂交叉防御"
+      ],
+      "src_line": 15530,
+      "label": 10,
+      "addr": "0015DA64",
+      "rfid": 11443,
+      "has_branch": false,
+      "seq": 40,
+      "chunk_id": "seen08000_c359"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "给他看",
+        "不给他看",
+        "投降"
+      ],
+      "src_line": 16134,
+      "label": 185,
+      "addr": "0016A480",
+      "rfid": 11877,
+      "has_branch": false,
+      "seq": 41,
+      "chunk_id": "seen08000_c376"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "改写",
+        "不改写"
+      ],
+      "src_line": 17852,
+      "label": 12,
+      "addr": "00194176",
+      "rfid": 13226,
+      "has_branch": false,
+      "seq": 42,
+      "chunk_id": "seen08000_c413"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "迎击",
+        "继续逃跑",
+        "改写自己的能力之后迎击",
+        "改写能力，然后继续逃跑"
+      ],
+      "src_line": 18125,
+      "label": 12,
+      "addr": "001992FB",
+      "rfid": 13409,
+      "has_branch": false,
+      "seq": 43,
+      "chunk_id": "seen08000_c419"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "让魔物攻击",
+        "寻找反击的机会",
+        "用手臂防御…",
+        "牺牲一条腿"
+      ],
+      "src_line": 18310,
+      "label": 12,
+      "addr": "0019C3D8",
+      "rfid": 13485,
+      "has_branch": false,
+      "seq": 44,
+      "chunk_id": "seen08000_c421"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "从正面",
+        "跳起来",
+        "从右侧",
+        "从左侧"
+      ],
+      "src_line": 18380,
+      "label": 12,
+      "addr": "0019D3FB",
+      "rfid": 13520,
+      "has_branch": false,
+      "seq": 45,
+      "chunk_id": "seen08000_c423"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "攻击手部",
+        "攻击脚下",
+        "攻击身体",
+        "攻击头部",
+        "攻击他的武器"
+      ],
+      "src_line": 18398,
+      "label": 12,
+      "addr": "0019D5D6",
+      "rfid": 13521,
+      "has_branch": false,
+      "seq": 46,
+      "chunk_id": "seen08000_c423"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "将浑身的力量集中在右手上攻击",
+        "出奇不意使用左手攻击",
+        "同时使用双手攻击",
+        "用踢击",
+        "用头槌"
+      ],
+      "src_line": 18418,
+      "label": 12,
+      "addr": "0019D7E2",
+      "rfid": 13522,
+      "has_branch": false,
+      "seq": 47,
+      "chunk_id": "seen08000_c423"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "捶击",
+        "按住他",
+        "目的在破坏"
+      ],
+      "src_line": 18438,
+      "label": 12,
+      "addr": "0019D9B8",
+      "rfid": 13523,
+      "has_branch": false,
+      "seq": 48,
+      "chunk_id": "seen08000_c423"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "放弃",
+        "不放弃"
+      ],
+      "src_line": 18495,
+      "label": 12,
+      "addr": "0019E6D2",
+      "rfid": 13540,
+      "has_branch": false,
+      "seq": 49,
+      "chunk_id": "seen08000_c424"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "改写",
+        "不改写"
+      ],
+      "src_line": 19257,
+      "label": 13,
+      "addr": "001AF7CC",
+      "rfid": 14087,
+      "has_branch": false,
+      "seq": 50,
+      "chunk_id": "seen08000_c444"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "改写",
+        "不改写"
+      ],
+      "src_line": 19705,
+      "label": 209,
+      "addr": "001B9FE0",
+      "rfid": 14417,
+      "has_branch": false,
+      "seq": 51,
+      "chunk_id": "seen08000_c456"
+    },
+    {
+      "kind": "selbtn_start",
+      "options": [
+        "不可以这么做",
+        "不可以这么做",
+        "不可以这么做",
+        "不可以这么做",
+        "不可以这么做",
+        "听从她",
+        "不可以这么做",
+        "不可以这么做",
+        "不可以这么做",
+        "不可以这么做",
+        "不可以这么做"
+      ],
+      "src_line": 20020,
+      "label": 15,
+      "addr": "001C027A",
+      "rfid": 14609,
+      "has_branch": false,
+      "seq": 52,
+      "chunk_id": "seen08000_c465"
+    }
+  ]
+}
