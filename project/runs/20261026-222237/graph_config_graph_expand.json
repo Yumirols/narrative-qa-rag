@@ -1,0 +1,40 @@
+{
+  "base": "bm25_bigram",
+  "params": {
+    "entity_top": 10,
+    "card_top": 10,
+    "neighbor_top": 5,
+    "hop": 1,
+    "seed_top": 20,
+    "rrf_k": 60
+  },
+  "entity_gate": {
+    "rule": "多实体非空交集<=entity_top 才发全权重票(T9.3)",
+    "n_multi_entity_queries": 37,
+    "n_fired": 10
+  },
+  "routes": {
+    "entity": {
+      "n_entities": 80,
+      "n_choices": 47
+    },
+    "card": {
+      "ok": false,
+      "n_cards": 0,
+      "n_tokens": 0
+    },
+    "expansion": {
+      "ok": false,
+      "n_next": 0,
+      "n_participant_edges": 0,
+      "n_labels": 46
+    }
+  },
+  "degraded": [
+    [
+      "card",
+      "E:\\dev\\NLP\\project\\data\\absent_cards_for_test.jsonl"
+    ],
+    "expansion"
+  ]
+}

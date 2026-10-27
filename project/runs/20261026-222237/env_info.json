@@ -1,0 +1,140 @@
+{
+  "timestamp": "20261026-222237",
+  "python": "3.11.9",
+  "jieba": "0.42.1",
+  "rank_bm25": "0.2.2",
+  "numpy": "2.4.6",
+  "config": {
+    "paths": {
+      "scenes": "../Rewrite_terra/data/scenes.jsonl",
+      "user_dict": "data/user_dict.txt",
+      "qaset": "eval/qaset_v0.json",
+      "answers": "eval/answers.jsonl",
+      "runs_dir": "runs",
+      "models": "../models",
+      "entities": "data/graph_entities_degrade_test.json",
+      "choices": "../Rewrite_terra/data/choices.json",
+      "cards": "data/absent_cards_for_test.jsonl",
+      "events": "data/absent_events_for_test.json"
+    },
+    "graph": {
+      "extract": {
+        "max_events_per_chunk": 3,
+        "context_meta": true
+      },
+      "edges": {
+        "temporal_gap": 1
+      }
+    },
+    "index": {
+      "k1": 1.5,
+      "b": 0.75,
+      "index_speakers": false
+    },
+    "retrievers": [
+      {
+        "name": "bm25_bigram",
+        "type": "bm25",
+        "tokenizer": "bigram"
+      },
+      {
+        "name": "graph_expand",
+        "type": "graph",
+        "base": "bm25_bigram",
+        "entity_top": 10,
+        "card_top": 10,
+        "neighbor_top": 5,
+        "hop": 1,
+        "seed_top": 20
+      }
+    ],
+    "generation": {
+      "retriever": "hybrid_rrf",
+      "top_k": 5,
+      "llm": {
+        "provider": "deepseek",
+        "base_url": "https://api.deepseek.com",
+        "model": "deepseek-flash",
+        "thinking": "disabled",
+        "temperature": 0,
+        "max_tokens": 1024,
+        "api_key_env": "DEEPSEEK_API_KEY"
+      },
+      "prompt": {
+        "few_shot": true,
+        "rerank": false
+      }
+    },
+    "eval": {
+      "k_values": [
+        3,
+        5,
+        10
+      ],
+      "mrr_depth": 10
+    },
+    "demo": {
+      "sample_queries": [
+        "路易斯是什么国籍？",
+        "瑚太朗和路易斯约定了什么？",
+        "盖亚和守护者是什么关系？"
+      ]
+    }
+  },
+  "generation": {
+    "retriever": "hybrid_rrf",
+    "top_k": 5,
+    "llm": {
+      "provider": "deepseek",
+      "base_url": "https://api.deepseek.com",
+      "model": "deepseek-flash",
+      "thinking": "disabled",
+      "temperature": 0,
+      "max_tokens": 1024,
+      "api_key_env": "DEEPSEEK_API_KEY"
+    },
+    "openai": "3.37.0",
+    "executed": false,
+    "skip_reason": "DEEPSEEK_API_KEY 未设置"
+  },
+  "graph": {
+    "entities": {
+      "scheme": "entities_v1",
+      "scene": "seen08000",
+      "n_chunks": 483,
+      "n_entities": 80,
+      "n_speaker_entities": 72,
+      "n_text_entities": 8,
+      "n_aliases": 28,
+      "n_choices": 47,
+      "n_choices_branch": 5,
+      "rules": [
+        "说话人名文本匹配以 user_dict 为界: 具名做叙述提及匹配回接, 泛指角色名(男人/学生/少女 等不在词典者)不做",
+        "文本匹配 = 全角归一+小写后子串匹配, 仅 len>=2 的 CJK 形或 ASCII 形",
+        "别名 = user_dict nr 全名含说话人名(3 例) + 语义例外 篝<-键之少女(框架 3.1) + 全角显示名归一合并",
+        "user_dict 词性 nr/nt/ns/nz 入实体, 普通名词 n 不入; 语料零提及专名不建实体"
+      ],
+      "sources": [
+        "scenes.jsonl",
+        "user_dict.txt",
+        "choices.json"
+      ],
+      "action": "loaded(与盘上逐字节一致)"
+    },
+    "events": {
+      "present": false
+    },
+    "arm_degraded": [
+      {
+        "arm": "graph_expand",
+        "degraded": [
+          [
+            "card",
+            "E:\\dev\\NLP\\project\\data\\absent_cards_for_test.jsonl"
+          ],
+          "expansion"
+        ]
+      }
+    ]
+  }
+}

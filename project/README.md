@@ -1,16 +1,20 @@
-# galgame 剧本叙事问答 · RAG 主流程（课程项目方向 A：领域 RAG 问答）
+# galgame 剧本叙事问答 · RAG + 图谱增强（课程项目方向 A：领域 RAG 问答）
 
-Rewrite Terra 线（约 19.5 万字、1.1 万行台词）叙事问答的检索与生成全链：**六臂检索**
-（bm25_jieba / bm25_bigram / w2v_avg / bge_small / bge_base / **hybrid_rrf**）× 正式评测集
-`eval/qaset_v0.json`（90 题，评 72、不可回答跳过 18）+ **生成层**（hybrid top-5 证据块 →
-DeepSeek 结构化 JSON 回答 → 引用规则校验）+ 答案层指标（标签准确率/拒答正确率/引用
-有效率/解析失败率）。技术路线与知识地图见 `../项目知识框架_剧本问答.md`，阶段执行
-记录见 `../Rewrite_terra/report/`。
+Rewrite Terra 线（约 19.5 万字、1.1 万行台词）叙事问答的检索与生成全链：**八臂检索**
+（bm25_jieba / bm25_bigram / w2v_avg / bge_small / bge_base / hybrid_rrf / **graph_expand** /
+**hybrid3_rrf**）× 正式评测集 `eval/qaset_v0.json`（90 题，评 72、不可回答跳过 18）+ **生成层**
+（检索 top-5 证据块 → DeepSeek 结构化 JSON 回答 → 引用规则校验）+ 答案层指标（标签准确率/
+拒答正确率/引用有效率/解析失败率）+ **图谱管线**（T9 实体-场景索引零 LLM → T10 事件卡
+LLM 抽取 + 确定性边表 → T11 图扩展召回臂）。技术路线与知识地图见
+`../项目知识框架_剧本问答.md`，阶段执行记录见 `../Rewrite_terra/report/`。
 
-当前状态：**RAG 主流程收口**（阶段三 T6~T8 完成）。hybrid RRF 总体双超最佳单臂、
-90 题生成解析失败率 0 / 引用条级有效率 1.0、label_acc 0.8056、不可回答拒答 18/18、
-全量成本 $0.03；一条命令全链跑通、无 Key 自动降级检索层、缓存重跑逐字节一致。
-下一阶段为图谱扩展召回（阶段四，动机证据链见阶段报告 §5.3）。
+当前状态：**阶段四（图谱增强）收口**（T9~T12 完成，报告见
+`../Rewrite_terra/report/阶段报告_T9~T12_图谱增强.md`）。图谱开（hybrid3_rrf）检索总体
+R@5=0.5465 > 图谱关 0.5194（temporal +0.070 / semantic_gap +0.045 / aggregate +0.044 /
+literal 反超），但答案层消融净回退（label_acc 0.8056→0.6944、过度拒答 0.611→0.389，
+0 翻正 / 4 翻错全为新过度拒答）——检索增益与 verdict 题型错位的机制归因见报告 §4；
+建图全程 ¥0.68、阶段四 LLM 合计 ≈$0.125。一条命令全链跑通、无 Key 自动降级
+（实体索引重建 + 图臂降级提示 + 生成段跳过）、缓存重跑逐字节一致。
 
 ## 快速开始
 
@@ -20,7 +24,7 @@ export DEEPSEEK_API_KEY=sk-…           # 生成层用; 不设则 run_all 自�
 python run_all.py --config configs/main.yaml
 ```
 
-六臂总体表（evaluate.py 口径，qaset_v0，2026-10-25 两跑逐字节一致）：
+八臂总体表（evaluate.py 口径，qaset_v0，2026-10-26 三 run 检索指标逐字节一致）：
 
 ```
 retriever     Recall@3   Recall@5   Recall@10  MRR
@@ -30,6 +34,8 @@ w2v_avg       0.1368     0.1693     0.2806     0.1986
 bge_small     0.3389     0.3833     0.5435     0.4490
 bge_base      0.3704     0.4476     0.5809     0.5125
 hybrid_rrf    0.4391     0.5194     0.6553     0.5461   # RRF(bigram∥bge_base) T6
+graph_expand  0.4204     0.5127     0.5966     0.5628   # 图扩展臂 T11: MRR 全场最高
+hybrid3_rrf   0.4490     0.5465     0.6236     0.5496   # RRF(bigram∥bge∥graph) T11
 ```
 
 **总体表必须配分层表解读**（bge_small 与 bm25_jieba 总体持平是两股力量对消的假象）：
@@ -45,19 +51,27 @@ hybrid_rrf    0.4391     0.5194     0.6553     0.5461   # RRF(bigram∥bge_base)
 hybrid literal R@3=0.75 / semantic_gap 0.3864 / **structural R@5 0.3137→0.4322**，
 总体 R@5=0.5194 双超最佳单臂（bigram 0.4720 / bge_base 0.4476）。融合参数敏感性
 （rrf_k/depth/臂组合）见阶段报告 §2.3——总体增益对参数稳健，默认值为先验选择
-（防测试集泄漏，不据评测集调参）。
+（防测试集泄漏，不据评测集调参）。阶段四加入图扩展第三路后（T11，
+`src/index_graph.py`）：hybrid3_rrf 分层 R@5 = literal 0.8611（反超关臂 0.8333）/
+semantic_gap 0.4545 / structural 0.4467，temporal 分型 0.5324→**0.6019**、aggregate
+0.4426→0.4863；机制迭代消融归因与实体路 T9.3 门槛设计见阶段四报告 §3。
 
-答案层指标（90 题全量生成，`runs/20261025-184856/metrics.json` → label_accuracy）：
+答案层指标（阶段四图谱开/关消融对，`runs/20261026-222529`[关] vs
+`runs/20261026-223110`[开]，generation top_k=5）：
 
-| 指标 | 值 | 说明 |
+| 指标 | 图谱关 hybrid_rrf | 图谱开 hybrid3_rrf |
 | --- | --- | --- |
-| verdict 标签准确率 | **0.8056**（29/36） | 36 题 = yesno 18 + unanswerable 18 |
-| 不可回答题拒答正确率 | **1.0**（18/18） | 检索全部返回了字面相似非空证据，拒答只靠 prompt 约束 |
-| 可答题过度拒答 | 0.6111（11/18） | 7 题错题全为"该答而拒答"，归因：5 检索失败 + 2 部分证据 |
-| 引用有效率（条级，规则校验） | **1.0**（83/83） | 题级"全有效且非空"0.5556（40 题拒答行零引用） |
-| JSON 解析失败率（重试后） | **0**（90/90 direct） | 三级降级与重试一次机制备而未用 |
-| token / 成本 | 输入 299,383（前缀缓存命中 129,536）/ 输出 6,315 | **$0.0297**（谷）/ $0.0593（峰）/ 全量一次 |
-| 延迟（首网） | P50=1.48s / P95=2.18s / 均值 1.544s | 缓存命中重跑零网络 |
+| verdict 标签准确率 | **0.8056**（29/36） | 0.6944（25/36） |
+| 不可回答题拒答正确率 | **1.0**（18/18） | **1.0**（18/18） |
+| 可答题过度拒答 | **0.6111**（答出 11/18） | 0.3889（答出 7/18） |
+| 引用有效率（条级，规则校验） | **1.0**（83/83） | **1.0**（87/87） |
+| JSON 解析失败率（重试后） | **0** | **0** |
+| token / 成本 | 90 题全缓存命中 $0（首轮 $0.0297） | 输入 303,976（前缀命中 57%）/ 输出 6,299，**$0.024** |
+
+消融结论（报告 §4）：图谱开检索层净增益，答案层净回退——verdict 题全落在
+yesno/unanswerable，而图谱增益落在 fact/temporal/aggregate（不载 verdict）、yesno
+恰回退 0.046；叠加卡片路尾部干扰块引发 4 题新过度拒答（0 翻正/4 翻错，Q44/Q50
+干扰注入、Q52 融合挤出 gold、Q51 侥幸推断打断）。原 7 错题全部维持（检索层未翻正）。
 
 单模块入口：
 
@@ -67,6 +81,8 @@ python src/index_w2v.py "路易斯是什么国籍？"                      # w2v
 python src/index_vector.py "路易斯是什么国籍？" --offline         # bge demo(首跑编码,毫秒级缓存)
 python src/index_vector.py --offline                              # 前缀方向冒烟(坑8)
 python src/index_hybrid.py "盖亚和守护者是什么关系？" -k 3         # hybrid RRF demo(只建引用臂)
+python src/graph_build.py --query "瑚太朗和路易斯约定了什么？"      # T9 实体识别+候选集演示
+python src/index_graph.py "盖亚和守护者是什么关系？" -k 5          # T11 图扩展臂三路明细+融合
 python src/analyze_truncation.py --offline                        # 512 截尾影响评估
 python src/demo_tokenize_impact.py    # 三臂分词对照(原理点①演示,须全新进程单独跑)
 python src/build_userdict.py          # 词典候选统计; --check 抽查切分
@@ -99,14 +115,15 @@ python src/generate.py --qaset eval/qaset_seed.json --out eval/answers_smoke.jso
   版本只承诺方向与量级。
 - bge 文档向量缓存命中时纯矩阵加载（首跑 small ≈10s / base ≈140s CPU，命中
   毫秒级）；w2v 每 run 重训（设计取舍，约 214~226s，loss 曲线为复现指纹）。
-- 每次运行落盘 `runs/<timestamp>/`：`config_copy.yaml`、`env_info.json`、
-  `segmentation_demo.txt`（分词对照）、`metrics.json`（报告图表唯一数据源，
-  含六臂检索 + label_accuracy 块）、`retrieval_results.json`（每题 top-k 与命中标记）、
+- 每次运行落盘 `runs/<timestamp>/`：`config_copy.yaml`、`env_info.json`（含 T12.3 graph
+  块：实体索引动作/图谱统计/抽取溯源/图臂降级面）、`segmentation_demo.txt`（分词对照）、
+  `graph_build_log.json`（T12.3 图数据段日志）、`metrics.json`（报告图表唯一数据源，
+  含八臂检索 + label_accuracy 块）、`retrieval_results.json`（每题 top-k 与命中标记）、
   **`answers.jsonl` + `generation_log.json`**（T8 生成产物，含每题 prompt 哈希/usage/
   延迟/原始响应/引用校验明细；answers 同时回填 `eval/answers.jsonl`）、
   `w2v_train_log.json`、`bge_encode_log_<name>.json`（按检索器名隔离）、
-  `hybrid_config_<name>.json`；`truncation_analysis.json` 由
-  `src/analyze_truncation.py` 补挂到指定 run 目录。
+  `hybrid_config_<name>.json`、`graph_config_graph_expand.json`（图臂参数/实体门槛计数/
+  降级状态）；`truncation_analysis.json` 由 `src/analyze_truncation.py` 补挂到指定 run 目录。
 - 评测口径：gold 用 **rfid**（全局唯一已读标记）；chunk 的 rfid 区间严格递增不
   重叠，gold→chunk 为确定性二分查表；rfid 落在区间外立即报错（防金标静默错评）。
   gold_evidence_rfids 为空的不可回答题不计入检索指标，留给答案层拒答评测。
@@ -143,6 +160,27 @@ python src/generate.py --qaset eval/qaset_seed.json --out eval/answers_smoke.jso
   峰时（工作日 09-12/14-18 点）×2。全量 90 题实测 $0.0297（谷口径），
   其中前缀缓存命中 129,536/299,383 输入 token。
 
+## 图谱管线（阶段四 T9~T11）
+
+```
+scenes.jsonl ──graph_build.py(T9, 零 LLM)──▶ data/graph_entities.json   80 实体/47 选择肢
+scenes.jsonl ──graph_extract.py(T10, LLM ¥0.68)──▶ data/graph_cards.jsonl   483 事件卡
+cards+entities ──graph_assemble.py(T10.3, 确定性)──▶ data/graph_events.json 530 节点/1634 边
+entities+cards+events ──index_graph.py(T11)──▶ graph_expand / hybrid3_rrf 检索臂
+```
+
+- **建图三步全部一条命令**，前两步产物 `--check` 重建逐字节一致；事件卡为 LLM 抽取产物，
+  **从 `cache/llm_*.json` 响应缓存重抽零费用、逐字节一致**（模板版本常量 v2 入卡片与日志，
+  改模板自动换缓存键）。
+- **graph_expand 臂内三路 RRF**（`src/index_graph.py`）：实体路（T9.3 门槛——多实体非空
+  交集 ≤entity_top 才投票，主角星型/宽集不投票）∥ 卡片路（规范化转述小 BM25，弥合换说法）
+  ∥ 扩展路（基座 seed top-20 + 图上 1 跳邻居固定尾部小分值：时序前后件>共参与者>同 label）。
+- **降级（无 Key 环境红线）**：entities 缺失 run_all 自动重建（零 LLM）；cards/events 缺失
+  图臂对应路静默降级（实体路+seed 仍可用）并打印重建链路提示；生成段整段跳过——一条命令
+  照跑（`runs/20261026-222237` 实证）。
+- 成本：建图 493 次 ¥0.68（单卡 ≈$0.0002）；生成图谱开 $0.024 / 图谱关 $0（缓存命中）；
+  阶段四 LLM 合计 ≈$0.125，低于 $0.6 预算上限。
+
 ## 数据（不进 zip）
 
 `configs/main.yaml` 指向 `../Rewrite_terra/data/`（Day 1 产物）：
@@ -152,6 +190,12 @@ python src/generate.py --qaset eval/qaset_seed.json --out eval/answers_smoke.jso
 | `lines.jsonl` | 11,033 行台词，行级真值结构（rfid/说话人/src_line/bgm） |
 | `scenes.jsonl` | 483 个 chunk（三级边界信号真值切分），rfid 区间 1→15084 |
 | `choices.json` | 47 个选择肢节点 |
+
+图谱派生数据在 `project/data/`（**进 git、不进 zip**，重建链路见上节：graph_build →
+graph_extract → graph_assemble，前两步可从缓存零费用复现）：`graph_entities.json`（T9 零
+LLM）/ `graph_cards.jsonl` + `graph_cards_extract_log.json`（T10 LLM 抽取卡与 usage 日志）/
+`graph_events.json`（T10.4 确定性组装，meta 含抽取溯源与费用）。`graph_cards_smoke.jsonl`
+为冒烟产物（隔离存放）。
 
 **长度口径警告**：`scenes.jsonl` 的 `n_chars` 字段 = **正文长**（len(text) −
 所有【说话人标签】 − 换行），不是喂给模型的编码长度。编码长度以 `text` 全文计
@@ -169,8 +213,8 @@ python src/generate.py --qaset eval/qaset_seed.json --out eval/answers_smoke.jso
 
 ```
 project/
-├── run_all.py               # 一条命令全流程(六臂检索 × qaset_v0 + 生成 + 答案层)
-├── configs/main.yaml        # 路径 / retrievers 六臂 / generation 节 / 评测 k 值
+├── run_all.py               # 一条命令全流程(八臂检索 × qaset_v0 + 图数据段 + 生成 + 答案层)
+├── configs/main.yaml        # 路径 / retrievers 八臂 / graph 参数 / generation 节 / 评测 k 值
 ├── .env.example             # DEEPSEEK_API_KEY 模板(复制为 .env, 不进 git)
 ├── src/
 │   ├── tokenization.py      # 全角→半角归一化 + jieba/字符bigram 分词
@@ -178,7 +222,11 @@ project/
 │   ├── index_bm25.py        # BM25Okapi 建索引/检索（含 CLI demo）
 │   ├── index_w2v.py         # w2v 平均基线：课程 skip-gram 改造 + W2VAvgIndex
 │   ├── index_vector.py      # bge 稠密检索：BGEIndex + 前缀常量 + HF 重定向 + 方向冒烟
-│   ├── index_hybrid.py      # hybrid RRF 融合臂(T6): 按名复用已建臂, 纯确定性
+│   ├── index_hybrid.py      # hybrid RRF 融合臂(T6): 按名复用已建臂 + rrf_fuse 融合函数
+│   ├── graph_build.py       # T9 实体-场景索引(零 LLM) + EntityIndex 识别器
+│   ├── graph_extract.py     # T10 事件卡抽取(DeepSeek, 模板 v2, 冒烟/全量 CLI)
+│   ├── graph_assemble.py    # T10.3/10.4 确定性边表 + networkx 组装校验落盘
+│   ├── index_graph.py       # T11 图扩展臂: 实体/卡片/扩展三路臂内 RRF
 │   ├── retrievers.py        # 检索器工厂: config retrievers 条目 → 统一 search 接口
 │   ├── llm.py               # DeepSeek 客户端(T7): env Key/.env/缓存/三级解析/退避重试
 │   ├── generate.py          # 生成层(T7): prompt 组装/few-shot 防泄漏/重试/引用校验
@@ -187,6 +235,7 @@ project/
 │   │                        # 评测集构建/校验/层标定工具链
 │   └── analyze_truncation.py# 512 截尾影响评估（三级口径 + A/B/C 分组对照）
 ├── data/user_dict.txt       # jieba 自定义词典（进 zip）
+├── data/graph_*.json[l]     # 图谱派生数据(进 git 不进 zip; 重建链路见"图谱管线"节)
 ├── cache/                   # 可再生缓存(不进 git): emb_*.npy 向量 + llm_*.json 响应
 ├── eval/qaset_v0.json       # 正式评测集 90 题定稿（冻结；数字唯一来源）
 ├── eval/qaset_seed.json     # 种子评测集 10 题（冒烟用，数字不进报告）
@@ -248,19 +297,23 @@ project/
 
 ## 红线自查（提交前）
 
-不进 zip：`runs/`、`../Rewrite_terra/data/`、剧本/反汇编文本、虚拟环境、**API Key
+不进 zip：`runs/`、`../Rewrite_terra/data/`、`project/data/graph_*.json[l]`（图谱派生数据，
+进 git、重建链路见"图谱管线"节）、剧本/反汇编文本、虚拟环境、**API Key
 （`DEEPSEEK_API_KEY` 环境变量 / `project/.env`，绝不进仓库）**、模型权重（`models/`）、
 向量与 LLM 响应缓存（`project/cache/`，可再生）、`eval/answers*.jsonl`（生成实验产物，
 重跑可再生）。`data/user_dict.txt`、`.env.example` 与 `eval/qaset_*.json` 评测集是
 代码性产物，进包。生成阶段三条红线落地：检索/展示分离（展示永远 chunk 全文原文）、
 few-shot 证据排除评测集 gold chunk 且题目全部自编（防泄漏）、引用规则校验确定性
-（孤儿 rfid catch 不崩评测）。
+（孤儿 rfid catch 不崩评测）。阶段四新增红线落地：跨 chunk 边全部确定性推导
+（不采信 LLM 标注跨卡引用，leads_to_hint 不入召回）、图臂无 Key 降级路径明确
+（实体索引零 LLM 独立可用，runs/20261026-222237 实证）。
 
-## 下一步（阶段四）
+## 下一步（阶段五/六）
 
-图谱扩展召回：以本阶段失败归因为动机——structural 层六臂同败（hybrid R@5 仍仅
-0.4322）、7 道 verdict 错题中 4 道在 semantic_gap 层（换说法召回失败）、2 道在
-structural 层（跨 chunk 聚合不全→过度拒答）。图谱（实体-关系-事件边）扩展召回
-对准这两层；`retrievers.py` 加工厂分支即成第七臂。阶段五（LLM-as-judge 答文质量/
-支持性引用复核）与阶段六（k∈{3,5,10} 消融、报告）从本轮 `answers.jsonl` +
-`generation_log.json` 起算。
+阶段五（LLM-as-judge 答文质量/支持性引用复核）：以阶段四图谱开/关两组 `answers.jsonl`
+（runs/20261026-223110 与 222529）为评估对象；judge 口径需裁决"缺证即 no vs unknown"边界
+（阶段三 Q45/Q51 诚实注记，阶段四 Q51 翻错强化该议题）。阶段六（k∈{3,5,10} 消融 ×
+图谱开/关 × rerank 开关、终报）：图谱开的答案层回退对证据组合高度敏感（4 翻错中 2 题
+仅第 5 证据位一个块之差），k 消融可量化该敏感度；图谱开/关默认取舍以 judge 数据定夺。
+图谱后续机制方向（future work）：稠密卡片向量对准 str/agg 未达线与 Q10/Q46/Q49 三型
+词法失配；RAPTOR-lite 按计划默认不做。

@@ -1,0 +1,168 @@
+{
+  "bm25_bigram": {
+    "arm": "bm25_bigram",
+    "n_questions": 90,
+    "n_evaluated": 72,
+    "n_skipped_unanswerable": 18,
+    "overall": {
+      "n": 72,
+      "recall@3": 0.4171,
+      "recall@5": 0.472,
+      "recall@10": 0.5579,
+      "mrr": 0.5381
+    },
+    "by_type": {
+      "fact": {
+        "n": 20,
+        "recall@3": 0.4667,
+        "recall@5": 0.5583,
+        "recall@10": 0.675,
+        "mrr": 0.4734
+      },
+      "yesno": {
+        "n": 18,
+        "recall@3": 0.3296,
+        "recall@5": 0.3667,
+        "recall@10": 0.413,
+        "mrr": 0.3951
+      },
+      "temporal": {
+        "n": 18,
+        "recall@3": 0.537,
+        "recall@5": 0.5648,
+        "recall@10": 0.6296,
+        "mrr": 0.7407
+      },
+      "aggregate": {
+        "n": 16,
+        "recall@3": 0.3186,
+        "recall@5": 0.378,
+        "recall@10": 0.4937,
+        "mrr": 0.5521
+      }
+    },
+    "by_layer": {
+      "literal": {
+        "n": 18,
+        "recall@3": 0.8889,
+        "recall@5": 0.9167,
+        "recall@10": 1.0,
+        "mrr": 0.8333
+      },
+      "semantic_gap": {
+        "n": 22,
+        "recall@3": 0.1818,
+        "recall@5": 0.2727,
+        "recall@10": 0.3636,
+        "mrr": 0.2599
+      },
+      "structural": {
+        "n": 31,
+        "recall@3": 0.3236,
+        "recall@5": 0.3704,
+        "recall@10": 0.457,
+        "mrr": 0.5815
+      },
+      "floor": {
+        "n": 1,
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0
+      }
+    }
+  },
+  "graph_expand": {
+    "arm": "graph_expand",
+    "n_questions": 90,
+    "n_evaluated": 72,
+    "n_skipped_unanswerable": 18,
+    "overall": {
+      "n": 72,
+      "recall@3": 0.3995,
+      "recall@5": 0.459,
+      "recall@10": 0.5579,
+      "mrr": 0.5115
+    },
+    "by_type": {
+      "fact": {
+        "n": 20,
+        "recall@3": 0.4667,
+        "recall@5": 0.5583,
+        "recall@10": 0.675,
+        "mrr": 0.4734
+      },
+      "yesno": {
+        "n": 18,
+        "recall@3": 0.3185,
+        "recall@5": 0.3667,
+        "recall@10": 0.413,
+        "mrr": 0.3951
+      },
+      "temporal": {
+        "n": 18,
+        "recall@3": 0.5,
+        "recall@5": 0.5463,
+        "recall@10": 0.6296,
+        "mrr": 0.662
+      },
+      "aggregate": {
+        "n": 16,
+        "recall@3": 0.2936,
+        "recall@5": 0.3405,
+        "recall@10": 0.4937,
+        "mrr": 0.5208
+      }
+    },
+    "by_layer": {
+      "literal": {
+        "n": 18,
+        "recall@3": 0.8889,
+        "recall@5": 0.9167,
+        "recall@10": 1.0,
+        "mrr": 0.8333
+      },
+      "semantic_gap": {
+        "n": 22,
+        "recall@3": 0.1818,
+        "recall@5": 0.2727,
+        "recall@10": 0.3636,
+        "mrr": 0.2599
+      },
+      "structural": {
+        "n": 31,
+        "recall@3": 0.2827,
+        "recall@5": 0.3402,
+        "recall@10": 0.457,
+        "mrr": 0.5197
+      },
+      "floor": {
+        "n": 1,
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "mrr": 0.0
+      }
+    }
+  },
+  "label_accuracy": {
+    "n": 36,
+    "label_acc": 0.8056,
+    "refusal_correct_unanswerable": 1.0,
+    "no_overrefusal_answerable": 0.6111,
+    "n_missing_answers": 0,
+    "citations": {
+      "intervals_total": 83,
+      "intervals_valid": 83,
+      "entry_valid_rate": 1.0,
+      "q_all_valid": 50,
+      "q_all_valid_rate": 0.5556,
+      "q_zero_citation": 40
+    },
+    "parse_failure": {
+      "n": 90,
+      "n_parse_failed": 0,
+      "fail_rate": 0.0
+    }
+  }
+}

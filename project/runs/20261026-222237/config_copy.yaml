@@ -1,0 +1,58 @@
+paths:
+  scenes: ../Rewrite_terra/data/scenes.jsonl
+  user_dict: data/user_dict.txt
+  qaset: eval/qaset_v0.json
+  answers: eval/answers.jsonl
+  runs_dir: runs
+  models: ../models
+  entities: data/graph_entities_degrade_test.json
+  choices: ../Rewrite_terra/data/choices.json
+  cards: data/absent_cards_for_test.jsonl
+  events: data/absent_events_for_test.json
+graph:
+  extract:
+    max_events_per_chunk: 3
+    context_meta: true
+  edges:
+    temporal_gap: 1
+index:
+  k1: 1.5
+  b: 0.75
+  index_speakers: false
+retrievers:
+- name: bm25_bigram
+  type: bm25
+  tokenizer: bigram
+- name: graph_expand
+  type: graph
+  base: bm25_bigram
+  entity_top: 10
+  card_top: 10
+  neighbor_top: 5
+  hop: 1
+  seed_top: 20
+generation:
+  retriever: hybrid_rrf
+  top_k: 5
+  llm:
+    provider: deepseek
+    base_url: https://api.deepseek.com
+    model: deepseek-flash
+    thinking: disabled
+    temperature: 0
+    max_tokens: 1024
+    api_key_env: DEEPSEEK_API_KEY
+  prompt:
+    few_shot: true
+    rerank: false
+eval:
+  k_values:
+  - 3
+  - 5
+  - 10
+  mrr_depth: 10
+demo:
+  sample_queries:
+  - 路易斯是什么国籍？
+  - 瑚太朗和路易斯约定了什么？
+  - 盖亚和守护者是什么关系？

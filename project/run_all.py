@@ -5,13 +5,15 @@
     python run_all.py --config configs/main.yaml        # 有 DEEPSEEK_API_KEY: 全链
     python run_all.py --config configs/main.yaml        # 无 Key: 检索层全流程, 生成段跳过
 
-流程: 加载真值 chunk → 分词对照样例(自定义词典前/后) → 按 config 的 retrievers
-      列表循环建检索器(工厂见 src/retrievers.py) → 评测集检索评测(Recall@k / MRR,
+流程: 加载真值 chunk → 分词对照样例(自定义词典前/后) → 图数据段(T12.3: 实体索引
+      必建/事件图谱统计, 缺失降级提示) → 按 config 的 retrievers 列表循环建检索器
+      (工厂见 src/retrievers.py) → 评测集检索评测(Recall@k / MRR,
       总体+分题型+分层) → 生成阶段(T8: 复用已建检索臂, 产出 answers.jsonl 并回填
       eval/answers.jsonl;Key 缺失整段跳过) → 答案层指标(标签准确率/拒答正确率/
       引用有效率/解析失败率) → demo 查询 → 日志落盘
       runs/<timestamp>/{config_copy.yaml, env_info.json, segmentation_demo.txt,
-      retrieval_results.json, metrics.json, answers.jsonl, generation_log.json}
+      graph_build_log.json, retrieval_results.json, metrics.json, answers.jsonl,
+      generation_log.json}
 
 检索层零随机性:同配置重跑 metrics 逐字节一致;生成层复现性 = LLM 响应缓存
 (同 prompt 命中即逐字节一致,Key 与缓存均在 project/cache/llm_*.json,不进 git)。
@@ -95,6 +97,43 @@ def main() -> None:
     # ---- 2. 分词对照(必须先于任何带词典的 jieba 调用) ----
     segmentation_demo(paths["user_dict"], run_dir)
 
+    # ---- 2.5 图数据段(T12.3, 仅 config 含 graph 型臂时): 实体索引必建(零 LLM
+    #      确定性, 盘上缺失或不一致即覆写); 事件图谱存在则统计入日志, 缺失则记
+    #      降级状态(图臂卡片路/扩展路关闭, 实体路+基座 seed 仍可用——无 Key 环境
+    #      一条命令照跑的降级口径) ----
+    graph_env: dict = {}
+    if any(e.get("type") == "graph" for e in cfg["retrievers"]):
+        from src.graph_build import build_index_doc, dump_json as dump_entities_json
+        ent_path, events_path = paths.get("entities"), paths.get("events")
+        if ent_path and paths.get("choices"):
+            ent_doc = build_index_doc(chunks, paths["user_dict"], paths["choices"])
+            ent_blob = dump_entities_json(ent_doc)
+            action = "loaded(与盘上逐字节一致)"
+            if not ent_path.exists() or ent_path.read_text(encoding="utf-8") != ent_blob:
+                ent_path.parent.mkdir(parents=True, exist_ok=True)
+                ent_path.write_text(ent_blob, encoding="utf-8", newline="\n")
+                action = "rebuilt(盘上缺失或与确定性重建不一致, 已覆写)"
+            graph_env["entities"] = {**ent_doc["meta"], "action": action}
+            em = ent_doc["meta"]
+            print(f"\n== 图数据段 ==\n  实体索引: {em['n_entities']} 实体(说话人 "
+                  f"{em['n_speaker_entities']} + 文本接地 {em['n_text_entities']}, 别名 "
+                  f"{em['n_aliases']} 形) 选择肢 {em['n_choices']} —— {action}")
+        if events_path and events_path.exists():
+            ev_meta = json.loads(events_path.read_text(encoding="utf-8"))["meta"]
+            graph_env["events"] = {k: ev_meta[k] for k in (
+                "scheme", "n_card_nodes", "n_choice_nodes", "n_edges", "edges_by_type",
+                "temporal_skipped_exclusive", "participant_unresolved", "extraction", "stats")}
+            x = ev_meta["extraction"]
+            print(f"  事件图谱: {ev_meta['n_card_nodes']} 卡 + {ev_meta['n_choice_nodes']} "
+                  f"选择肢节点, {ev_meta['n_edges']} 边 {ev_meta['edges_by_type']}"
+                  f"\n  抽取溯源: {x['model']} 模板 {x['template']}, {x['n_llm_calls']} 次调用, "
+                  f"${x['cost_usd_offpeak']}(谷)")
+        else:
+            graph_env["events"] = {"present": False}
+            print("  事件图谱: 不存在——graph 臂卡片路/扩展路将降级(实体路 + 基座 seed 仍可用);"
+                  "\n  重建链路: python src/graph_extract.py(需 DEEPSEEK_API_KEY)"
+                  " → python src/graph_assemble.py")
+
     # ---- 3. 按 retrievers 列表建检索器 + 检索评测 ----
     qaset = load_qaset(paths["qaset"])
     locator = RfidLocator(chunks)
@@ -110,6 +149,17 @@ def main() -> None:
         metrics, per_q = eval_retrieval(retriever, locator, qaset,
                                         cfg["eval"]["k_values"], cfg["eval"]["mrr_depth"], name)
         all_metrics[name], all_results[name] = metrics, per_q
+
+    # 图臂降级状态集中提示(T12.3): cards/events 任一缺失时对应路在建索引时已静默
+    # 降级(index_graph), 此处把降级面打印 + 落 env_info/graph_build_log
+    graph_degraded = [
+        {"arm": name, "degraded": content["degraded"]}
+        for name, r in indexes.items()
+        for fname, content in getattr(r, "extra_logs", {}).items()
+        if fname.startswith("graph_config_") and content.get("degraded")]
+    if graph_degraded:
+        print(f"\n  [图臂降级] {graph_degraded}——降级路不参与融合, 实体路 + 基座 seed 照常;"
+              "\n  重建链路见上方图数据段提示")
 
     # ---- 4. 生成阶段(T8.1: 检索评测之后;DEEPSEEK_API_KEY 缺失整段跳过并提示,
     #      与答案层"answers 不存在则跳过"同一模式——无 Key 环境仍一条命令跑通检索层) ----
@@ -192,6 +242,13 @@ def main() -> None:
                             ("parse", "citations", "tokens", "latency", "models_observed")}}
                if gen_executed else {"skip_reason": "DEEPSEEK_API_KEY 未设置"}),
         }
+    # T12.3: 图数据环境记录(实体索引重建动作 / 事件图谱统计与抽取溯源 / 图臂降级面),
+    # 同内容落 runs/<ts>/graph_build_log.json(报告数字溯源用)
+    if graph_env:
+        graph_env["arm_degraded"] = graph_degraded
+        env_info["graph"] = graph_env
+        (run_dir / "graph_build_log.json").write_text(
+            json.dumps(graph_env, ensure_ascii=False, indent=2), encoding="utf-8")
     (run_dir / "env_info.json").write_text(
         json.dumps(env_info, ensure_ascii=False, indent=2), encoding="utf-8")
 

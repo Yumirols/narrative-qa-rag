@@ -52,7 +52,7 @@ retrievers:           # 检索器列表: name=metrics 键=报告列名; 工厂�
      depth: 20, rrf_k: 60}
 
 generation:            # T6.4 定生成侧默认值; T7 接入 run_all 时消费并扩展 llm/prompt 子节
-  retriever: hybrid_rrf # 生成用检索臂(可切单臂作对照)
+  retriever: hybrid3_rrf # T12 起默认图谱增强臂(bigram∥bge∥graph 三路 RRF); 图谱关对照切回 hybrid_rrf
   top_k: 5             # structural 层 gold 均值 3.68 chunk → 下界; 消融轴 {3,5,10}
   llm:                 # T7.1;规格对照阶段计划 §3(2026-10-25 官方文档核对)
     provider: deepseek
