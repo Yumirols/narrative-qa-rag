@@ -1,0 +1,195 @@
+{
+  "arm": "hybrid_rrf",
+  "run_dir": "20261026-222529",
+  "compare_arm": "hybrid3_rrf",
+  "compare_run_dir": "20261026-223110",
+  "template_version": "v1",
+  "criteria": {
+    "gold_hit": "该臂 top-5 内任一 gold chunk 命中(retrieval_results hit 标志)",
+    "verdict_correct": "pred verdict == gold_verdict(evaluate.py 口径)",
+    "audit_target": "type=yesno 且 gold_verdict=no 且检索 miss 且 verdict 正确",
+    "audit_judge": "classification: reasonable_negation_inference(邻近证据合理推出否定) vs unsupported_guess(无证据猜测)"
+  },
+  "yesno_cross_table": {
+    "cells": {
+      "gold_hit|correct": {
+        "n": 9,
+        "qids": [
+          "Q09(no->no)",
+          "Q11(no->no)",
+          "Q12(yes->yes)",
+          "Q14(no->no)",
+          "Q43(yes->yes)",
+          "Q44(yes->yes)",
+          "Q50(yes->yes)",
+          "Q52(yes->yes)",
+          "Q53(yes->yes)"
+        ]
+      },
+      "gold_hit|wrong": {
+        "n": 2,
+        "qids": [
+          "Q13(no->unknown)",
+          "Q48(yes->unknown)"
+        ]
+      },
+      "gold_miss|correct": {
+        "n": 2,
+        "qids": [
+          "Q45(no->no)",
+          "Q51(no->no)"
+        ]
+      },
+      "gold_miss|wrong": {
+        "n": 5,
+        "qids": [
+          "Q10(yes->unknown)",
+          "Q46(no->unknown)",
+          "Q47(yes->unknown)",
+          "Q49(no->unknown)",
+          "Q55(no->unknown)"
+        ]
+      }
+    },
+    "audit_targets": [
+      "Q45",
+      "Q51"
+    ]
+  },
+  "compare_arm_yesno_cross_table": {
+    "cells": {
+      "gold_hit|correct": {
+        "n": 6,
+        "qids": [
+          "Q09(no->no)",
+          "Q11(no->no)",
+          "Q12(yes->yes)",
+          "Q14(no->no)",
+          "Q43(yes->yes)",
+          "Q53(yes->yes)"
+        ]
+      },
+      "gold_hit|wrong": {
+        "n": 4,
+        "qids": [
+          "Q13(no->unknown)",
+          "Q44(yes->unknown)",
+          "Q48(yes->unknown)",
+          "Q50(yes->unknown)"
+        ]
+      },
+      "gold_miss|correct": {
+        "n": 1,
+        "qids": [
+          "Q45(no->no)"
+        ]
+      },
+      "gold_miss|wrong": {
+        "n": 7,
+        "qids": [
+          "Q10(yes->unknown)",
+          "Q46(no->unknown)",
+          "Q47(yes->unknown)",
+          "Q49(no->unknown)",
+          "Q51(no->unknown)",
+          "Q52(yes->unknown)",
+          "Q55(no->unknown)"
+        ]
+      }
+    },
+    "audit_targets": [
+      "Q45"
+    ]
+  },
+  "unanswerable_row": {
+    "n": 18,
+    "expected": "全部应为 unknown",
+    "n_unknown": 18,
+    "non_unknown": []
+  },
+  "audit_targets": [
+    "Q45",
+    "Q51"
+  ],
+  "per_target_audits": [
+    {
+      "qid": "Q45",
+      "question": "小鸟一心想让逝去的双亲重新回到身边，这有可能实现吗？",
+      "answer": "证据中瑚太朗明确表示「没有相当特殊的事情发生的话…是不能实现那个的」，并说「这件事是应该放弃的」，还指出让魔物活动起来消耗的是小鸟自己的生命，是「一件悲伤的工作」。因此按证据所述，让双亲复活是无法实现的。",
+      "closed_arm": {
+        "arm": "hybrid_rrf",
+        "run_dir": "20261026-222529",
+        "verdict": "no",
+        "correct": true,
+        "gold_hit_top5": false
+      },
+      "open_arm": {
+        "arm": "hybrid3_rrf",
+        "run_dir": "20261026-223110",
+        "verdict": "no",
+        "correct": true,
+        "gold_hit_top5": false,
+        "same_verdict_as_closed": true
+      },
+      "evidence_top5_chunk_ids": [
+        "seen08000_c276",
+        "seen08000_c309",
+        "seen08000_c408",
+        "seen08000_c275",
+        "seen08000_c060"
+      ],
+      "classification": "reasonable_negation_inference",
+      "reasoning": "证据1和证据2直接讨论小鸟让双亲复活的话题，瑚太朗明确说没有特殊事情不能实现、应该放弃，并指出复活消耗小鸟生命，否定结论可从这些同话题证据合理推出。",
+      "parse_failed": false,
+      "usage": {
+        "prompt_tokens": 2537,
+        "completion_tokens": 62,
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2537
+      },
+      "latency_ms": 2091,
+      "cache_hit": false,
+      "template_version": "v1"
+    },
+    {
+      "qid": "Q51",
+      "question": "得知瑚太朗是叛徒后，今宫下令处决他了吗？",
+      "answer": "证据中没有出现今宫得知瑚太朗是叛徒后下令处决他的内容。证据1中瑚太朗自称叛徒时,今宫只是语塞并追问他在做什么,没有下令处决。",
+      "closed_arm": {
+        "arm": "hybrid_rrf",
+        "run_dir": "20261026-222529",
+        "verdict": "no",
+        "correct": true,
+        "gold_hit_top5": false
+      },
+      "open_arm": {
+        "arm": "hybrid3_rrf",
+        "run_dir": "20261026-223110",
+        "verdict": "unknown",
+        "correct": false,
+        "gold_hit_top5": false,
+        "same_verdict_as_closed": false
+      },
+      "evidence_top5_chunk_ids": [
+        "seen08000_c439",
+        "seen08000_c177",
+        "seen08000_c281",
+        "seen08000_c254",
+        "seen08000_c255"
+      ],
+      "classification": "reasonable_negation_inference",
+      "reasoning": "证据1直接呈现了瑚太朗自称叛徒的同一场景，今宫仅举枪质问、语塞追问，并无下令处决的言行，否定结论可从该邻近证据合理推出。",
+      "parse_failed": false,
+      "usage": {
+        "prompt_tokens": 2591,
+        "completion_tokens": 59,
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2591
+      },
+      "latency_ms": 1484,
+      "cache_hit": false,
+      "template_version": "v1"
+    }
+  ],
+  "note": "两臂共用一份, 放关臂 run 目录;交叉表零 LLM 调用, 仅 audit_targets 逐例调 LLM。"
+}

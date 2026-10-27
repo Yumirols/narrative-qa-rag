@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-10-27T21:35:28",
+  "argv": [
+    "--run",
+    "runs/20261026-222529",
+    "--sample",
+    "0"
+  ],
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26100-SP0",
+  "cli": {
+    "run": "E:\\dev\\NLP\\project\\runs\\20261026-222529",
+    "arm": "hybrid_rrf",
+    "limit": 0,
+    "sample": 0
+  },
+  "llm": {
+    "model": "deepseek-flash",
+    "base_url": "https://api.deepseek.com",
+    "thinking": "disabled",
+    "temperature": 0,
+    "max_tokens": 512
+  },
+  "template_version": "v2",
+  "note": "judge_metrics.json 由 judge_details 的评分与 usage 推导, 零非确定字段;本文件收纳时间/环境/参数等非确定信息(details/metrics 与 log 分离纪律)。"
+}
