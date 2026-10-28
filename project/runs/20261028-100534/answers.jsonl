@@ -1,0 +1,90 @@
+{"qid": "Q01", "verdict": "unknown", "answer": "证据1中提到瑚太朗对组织撒了两个谎:一个是朱音的事情,另一个是「她」的事情。", "evidence_rfids": [[5308, 5359]], "all_citations_valid": true}
+{"qid": "Q02", "verdict": "unknown", "answer": "证据中没有提到守护者基础训练的最低达标标准,缺少相关信息。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q03", "verdict": "unknown", "answer": "拜恩带剑绿地骑士团是守护者势力的最强战斗集团,正式名称即为拜恩带剑绿地骑士团,其历史可追溯到十字军时代的骑士修道会,作为将历史的阴影作为主战场的超人战斗集团,后来已解散。", "evidence_rfids": [[3436, 3438], [6543, 6593]], "all_citations_valid": true}
+{"qid": "Q04", "verdict": "unknown", "answer": "井子问瑚太朗:「呐,告诉我,世界变成什么样了?」", "evidence_rfids": [[14172, 14207]], "all_citations_valid": true}
+{"qid": "Q05", "verdict": "unknown", "answer": "证据中瑚太朗只是没有具体理由地觉得必须阻止他们,并未说明他预感到会发生什么事;缺少能说明具体原因的信息。", "evidence_rfids": [[2308, 2367]], "all_citations_valid": true}
+{"qid": "Q06", "verdict": "unknown", "answer": "证据1中瑚太朗把调查结果总结成报告提交给了洲崎,但证据未说明提交地点在哪里。", "evidence_rfids": [[9330, 9368]], "all_citations_valid": true}
+{"qid": "Q07", "verdict": "unknown", "answer": "证据中没有提到江坂初次见到瑚太朗时胡诌过哪些职业身份,缺少相关信息。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q08", "verdict": "unknown", "answer": "朱音瞬间掌握了四头猛犸型魔物的契约线。", "evidence_rfids": [[14359, 14404]], "all_citations_valid": true}
+{"qid": "Q09", "verdict": "no", "answer": "没有。证据中瑚太朗自称「被、被揍了。被江坂先生他们揍了」，但随后叙述「我又撒谎了。并没有被揍，只有我逃脱了惩罚」，说明他并未被揍。", "evidence_rfids": [[5308, 5359]], "all_citations_valid": true}
+{"qid": "Q10", "verdict": "unknown", "answer": "证据中没有说明瑚太朗最终是否除掉了键之少女。证据1显示瑚太朗认为她不可侵犯、不能去碰;证据3中他自问「必须要…除掉她,么?」;证据5中键之少女已能对话并自称篝。但最终结果如何,证据未给出。", "evidence_rfids": [[5243, 5261], [5129, 5159], [6749, 6811]], "all_citations_valid": true}
+{"qid": "Q11", "verdict": "no", "answer": "没有认出。证据1明确写道「洲崎至死没注意到和他在一起的我就是铃木凡人」。", "evidence_rfids": [[12561, 12602]], "all_citations_valid": true}
+{"qid": "Q12", "verdict": "yes", "answer": "是。证据中瑚太朗问「该不会是你用橡胶匕首把我的匕首切断了吧？」长居回答「没有犯规哦」，并张开手指展示被磨平的指甲，瑚太朗问「你是用这个…？」长居点头，说明是用指甲切断的。", "evidence_rfids": [[3007, 3045]], "all_citations_valid": true}
+{"qid": "Q13", "verdict": "unknown", "answer": "证据中没有提及洲崎最终是否杀死了长居和朱音,缺少相关情节信息,无法判断。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q14", "verdict": "no", "answer": "证据1中瑚太朗判断,根据周围环境的破坏情况,那三具死尸是与刚才的大型魔物不同的其他魔物作战时留下的,而且也不是篝——篝认真攻击的话切断面会很明显。因此不是篝杀的。", "evidence_rfids": [[11578, 11591]], "all_citations_valid": true}
+{"qid": "Q15", "verdict": "unknown", "answer": "证据显示瑚太朗先被江坂领到训练设施接受基础训练(证据1),之后才在基础训练课程说明中向清水提问(证据2);证据5中他已在协助新作战本部的器材搬运,但未明确说明这是「到作战部报到」,因此无法据此判断先后。", "evidence_rfids": [[2397, 2435], [2510, 2535]], "all_citations_valid": true}
+{"qid": "Q16", "verdict": "unknown", "answer": "证据不足。证据1中江坂约瑚太朗下次去吃水果点心,证据3提到基础训练课程的说明,但两段证据都没有给出各自发生的时间点或先后关系,无法判断哪件先发生。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q17", "verdict": "unknown", "answer": "证据不足以判断。证据4显示瑚太朗与小鸟初次交谈,证据5显示瑚太朗与朱音(少女)对话,但两段证据未标明先后顺序,无法确定瑚太朗先和谁说话。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q18", "verdict": "unknown", "answer": "证据中只出现了加岛樱建议瑚太朗去接近「键」的内容,没有任何关于「洲崎带瑚太朗参观石制城市」的信息,因此无法判断两者的先后顺序。", "evidence_rfids": [[8979, 8987]], "all_citations_valid": true}
+{"qid": "Q19", "verdict": "unknown", "answer": "证据中没有关于「瑚太朗向加岛樱送出警告信」的任何信息,无法判断两件事的先后顺序。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q20", "verdict": "unknown", "answer": "证据中只显示朱音掌握猛犸型魔物契约(证据1),但没有任何篝对瑚太朗说「谢谢」的内容,无法判断两者先后顺序。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q21", "verdict": "unknown", "answer": "证据中只提到瑚太朗随随便便起了个「适当」的假名并写在户籍上,但没有给出该假名的具体内容,也没有提到其他假名,因此无法回答他具体用过哪些假名。", "evidence_rfids": [[3784, 3832]], "all_citations_valid": true}
+{"qid": "Q22", "verdict": "unknown", "answer": "证据中没有标明「结尾场景」具体指哪一段,且各证据块中出声的角色不同(如证据1为瑚太朗、篝,证据3为瑚太朗、路易斯,证据4仅瑚太朗,证据5无出场),无法确定结尾场景中出声的角色。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q23", "verdict": "unknown", "answer": "证据中涉及送还朱音到缘之家的场景(证据1、证据2、证据3、证据4)出现的人物有:瑚太朗、朱音、井子、少女、篝、职员(津久野)。其中证据5为缘之家附近待机及会议场景,出现樱、洲崎,与送还朱音无关。", "evidence_rfids": [[3991, 4043], [3937, 3989], [9260, 9302], [9234, 9259]], "all_citations_valid": true}
+{"qid": "Q24", "verdict": "unknown", "answer": "洲崎的计划是:给长居(津久野)扣上间谍嫌疑,杀死年幼的后继者(下一代圣女),以排斥加岛的政治意图并牵制其行动;他把这一任务交给瑚太朗,瑚太朗接受了。结果方面,证据显示会议中加岛樱宣布下一代圣女为千里朱音,并以言语技巧压制了洲崎的发言,会议焦点转向容许圣女世代交替;随后驾驶席上的人接到「计划中止…收队」的通知,洲崎事后也未召见瑚太朗。", "evidence_rfids": [[10225, 10272], [10345, 10383], [10385, 10417], [10418, 10434]], "all_citations_valid": true}
+{"qid": "Q25", "verdict": "unknown", "answer": "根据证据,Ｋｏｋｏ１０１０让Ｊａｓｍｉｎｅ２０１５做的事包括:让那边的魔物使帮忙查送过去的资料并报告所知情况;帮忙解析资料;整理组里的事情;更新结束后把聊天记录物理破坏掉。", "evidence_rfids": [[8262, 8266], [8276, 8297], [12705, 12719]], "all_citations_valid": true}
+{"qid": "Q26", "verdict": "unknown", "answer": "证据中没有提到「咲夜」这个名字,也没有说明任何魔物的归属者,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q27", "verdict": "unknown", "answer": "证据中没有说明露西娅属于盖亚还是守护者阵营,缺少相关信息。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q28", "verdict": "unknown", "answer": "证据中没有提及千早拥有奇特大力或其原因,缺少相关信息,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q29", "verdict": "unknown", "answer": "证据中没有提及瑚太朗的生日信息,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q30", "verdict": "unknown", "answer": "证据中没有关于静流眼罩下面样子的任何信息,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q31", "verdict": "unknown", "answer": "证据3提到母神会的活动是「每周两次的活动」，但未明确说明这是瑚太朗小时候参加的ＭＴＧ课程安排，缺少直接对应信息。", "evidence_rfids": [[264, 282]], "all_citations_valid": true}
+{"qid": "Q32", "verdict": "unknown", "answer": "在训练成员42人中排名第42名。", "evidence_rfids": [[2749, 2787]], "all_citations_valid": true}
+{"qid": "Q33", "verdict": "unknown", "answer": "风祭综合文化大厅占地面积9000平方米、建筑面积6400平方米，是地上八层地下两层的塔状建筑；市里以文化发布为目的建设，但实际上是盖亚主义者的一个大型据点，由母神会资本建造，内部没有显眼的宗教装饰，周围气氛庄严，门禁很严并配有专门警卫，预定对大众开放但因结构缺陷等问题开放被搁置，不过建筑已完工且有使用痕迹。", "evidence_rfids": [[7240, 7266], [7039, 7062]], "all_citations_valid": true}
+{"qid": "Q34", "verdict": "unknown", "answer": "该男子是洲崎的秘书高砂。", "evidence_rfids": [[9370, 9420]], "all_citations_valid": true}
+{"qid": "Q35", "verdict": "no", "answer": "长居小时候苦练的是芭蕾舞(她自述从小学六年级起弹跳力突出、垂直跳打破学校记录,别人让她朝芭蕾舞方向发展)。守护者带走她时,她提出的交换条件是让她能在那个中学一直待到毕业,但长居说「那个到最后也没谈成」,她只能转而去当社团经理人,因此并未如愿。", "evidence_rfids": [[3046, 3062]], "all_citations_valid": true}
+{"qid": "Q36", "verdict": "unknown", "answer": "路易斯自白说:他过去曾因一点争吵打过朋友,朋友因此死掉了,第二天穿黑衣服的男人们就来了,所谓足球测试是谎话;他之所以志愿来这里,就是为了给自己痛苦。", "evidence_rfids": [[6272, 6322]], "all_citations_valid": true}
+{"qid": "Q37", "verdict": "unknown", "answer": "证据中没有江坂关于士兵们真正并肩作战理由的表述。证据3中江坂只提到「懂得那个道理的人才能成为合格的攻击者」以及依靠合作打倒敌人,但未说明并肩作战的真正理由,缺少相关信息。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q38", "verdict": "unknown", "answer": "证据5提到小鸟「被植入了古代智慧」，比我更精通此道，但未明确说明她操纵生物本领的具体来源。", "evidence_rfids": [[8989, 9037]], "all_citations_valid": true}
+{"qid": "Q39", "verdict": "unknown", "answer": "证据1显示,瑚太朗架起投枪,经过助跑将体重移动传递到右手,投出的投枪以超常速度贯穿天空,穿透了金发男子的额头并破坏了直升机螺旋桨的根部,导致直升机坠落。", "evidence_rfids": [[13267, 13297]], "all_citations_valid": true}
+{"qid": "Q40", "verdict": "unknown", "answer": "证据不足以判断先后顺序。证据4提到瑚太朗为见加岛樱准备了假的履历和学历,证据2中加岛樱问「我在哪儿见过你吗」,但两段证据都没有给出明确的时间先后关系。", "evidence_rfids": [[8881, 8907], [8937, 8978]], "all_citations_valid": true}
+{"qid": "Q41", "verdict": "unknown", "answer": "证据1中瑚太朗在逃跑时选择了「西北方」。", "evidence_rfids": [[6152, 6184]], "all_citations_valid": true}
+{"qid": "Q42", "verdict": "unknown", "answer": "证据中没有提到今宫未成年时被写好人生大纲或任何相关预案的信息,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q43", "verdict": "yes", "answer": "是。证据2中瑚太朗在圣歌队里发现熟人并说「井子小姐…」,证据5中井子也认出瑚太朗。", "evidence_rfids": [[12012, 12035], [14172, 14207]], "all_citations_valid": true}
+{"qid": "Q44", "verdict": "yes", "answer": "是的。江坂对瑚太朗说「高洁这种事情弱者也能做到」「但是胜利，只有强者才能获得」「你是强者呐，挺起胸来吧」，对其抉择表示了赞许。", "evidence_rfids": [[13568, 13626]], "all_citations_valid": true}
+{"qid": "Q45", "verdict": "no", "answer": "证据中瑚太朗明确表示「没有相当特殊的事情发生的话…是不能实现那个的」，并说「这件事是应该放弃的」，还指出让魔物活动起来消耗的是小鸟自己的生命，是「一件悲伤的工作」。因此按证据所述，让双亲复活是无法实现的。", "evidence_rfids": [[8540, 8596], [9819, 9865]], "all_citations_valid": true}
+{"qid": "Q46", "verdict": "unknown", "answer": "证据中没有提到江坂丢下不管的铺子,也没有关于该铺子是否盼着赚钱的信息,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q47", "verdict": "unknown", "answer": "证据中没有提到加岛樱顺着魔物留下的线索查明警告信送信人的任何内容,缺少相关信息,无法判断。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q48", "verdict": "unknown", "answer": "证据不足。证据1只描述了守护者实际行动队进入地铁隧道后遭魔物袭击、队伍崩溃,以及叙述者用吹箭和注射器狙击危险个体,但没有说明瑚太朗是否救出了该小队;其他证据也未涉及此事。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q49", "verdict": "unknown", "answer": "证据中没有关于瑚太朗被蒙眼带去的地下城市是否具备供水供电系统的任何信息,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q50", "verdict": "yes", "answer": "是。证据3中键之少女（篝）开口说出「篝。」后，瑚太朗问「这是你的…名字吗？」，她回答「虽然不是名字，但只能这么称呼吧。」，随后双方就毁灭、资格、再生等话题持续对话，表明她已能与瑚太朗正常交谈。", "evidence_rfids": [[6749, 6811]], "all_citations_valid": true}
+{"qid": "Q51", "verdict": "no", "answer": "证据中没有出现今宫得知瑚太朗是叛徒后下令处决他的内容。证据1中瑚太朗自称叛徒时,今宫只是语塞并追问他在做什么,没有下令处决。", "evidence_rfids": [[13887, 13944]], "all_citations_valid": true}
+{"qid": "Q52", "verdict": "yes", "answer": "有。证据5中瑚太朗自述「事实的发展正如我所写的剧本一样」，并「通过契约线，我唤醒了留在现场待命的四头使魔」，让缺乏实战经验的战斗集团擦枪走火，守护者先头调查小队因此失去冷静并尾随魔物展开报复性行动。", "evidence_rfids": [[11199, 11220]], "all_citations_valid": true}
+{"qid": "Q53", "verdict": "yes", "answer": "有。证据显示篝的树木化在加速,瑚太朗推测与「这首歌」有关,并指出必须让这首以「圣」为名的歌停下来,否则会对篝和世界产生致命影响;另有叙述称篝果然是受到歌声的影响,膝下开始变成根一样的东西。", "evidence_rfids": [[13371, 13391], [13724, 13745]], "all_citations_valid": true}
+{"qid": "Q54", "verdict": "unknown", "answer": "证据中只提到加岛樱受瑚太朗双亲所托与他见面,没有任何关于「江坂开口招揽他」的信息,因此无法判断两件事的先后顺序。", "evidence_rfids": [[1983, 2019]], "all_citations_valid": true}
+{"qid": "Q55", "verdict": "unknown", "answer": "证据中没有提到「结尾结伴同行的五名少女」这一信息,也没有说明她们中谁曾与瑚太朗同属一支守护者小队,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q56", "verdict": "unknown", "answer": "证据2(rfid 2749-2787)提到瑚太朗体能测试排名第42名垫底;证据1(rfid 2841-2878)提到三国把训练用大楼墙壁开了一个大洞。但两段证据均未标明各自发生的时间先后,无法判断哪件先发生。", "evidence_rfids": [[2749, 2787], [2841, 2878]], "all_citations_valid": true}
+{"qid": "Q57", "verdict": "unknown", "answer": "证据中没有关于「篝要对朱音下杀手」的任何信息,无法判断两件事的先后顺序。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q58", "verdict": "unknown", "answer": "证据中「洲崎交付装着监听魔物的圆筒」出现在 rfid 8060-8085 的对话中,而「加岛樱建议他去接近键」出现在 rfid 8979-8987 的对话中。但证据本身没有给出这两段场景的明确时间先后关系,无法判断哪件在先。", "evidence_rfids": [[8060, 8085], [8979, 8987]], "all_citations_valid": true}
+{"qid": "Q59", "verdict": "unknown", "answer": "证据显示,瑚太朗在森林中发现三国组跟班的尸体(证据4,rfid 4773-4807),之后才发生与黑犬搏斗、接住朱音并绞杀黑犬的情节(证据5,rfid 5063-5096)。因此「三国的战死」先发生。", "evidence_rfids": [[4773, 4807], [5063, 5096]], "all_citations_valid": true}
+{"qid": "Q60", "verdict": "unknown", "answer": "证据不足,无法判断先后顺序。证据1和证据3提到瑚太朗答应带小鸟逛收获祭,证据5提到小鸟在森林中与瑚太朗再会,但证据中没有给出这两件事发生时间的明确先后关系。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q61", "verdict": "unknown", "answer": "证据中只描述了大西被瑚太朗杀死的过程,没有提供「篝被转移进市内藏身处」的相关信息,无法判断两件事的先后顺序。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q62", "verdict": "unknown", "answer": "证据中没有「西九条把静流介绍给瑚太朗」这一情节的任何信息,因此无法判断两件事的先后顺序。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q63", "verdict": "unknown", "answer": "证据中没有提及瑚太朗为了取得盖亚的信任而在自己的「过去」上做了哪些文章,缺少相关信息。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q64", "verdict": "unknown", "answer": "证据中没有明确记载瑚太朗开枪的具体经历。证据3中瑚太朗表示「我能做到的」并下定决心,但未描述其实际开枪;证据1中开枪的是路易斯。缺少瑚太朗实际开枪经历的描述。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q65", "verdict": "unknown", "answer": "证据显示西九条灯花早期是沉默寡言、说话直截了当的队友,曾表示只想静心提高能力、赶紧离开垫底的队伍;后来她提到自己有一段上学的经历,感到开心,并逐渐觉得这条路并非完全不可能,还想让后辈也体会到同样的喜悦;到较晚的对话中,她已变得老练,与今宫、瑚太朗讨论监视工作和绑架母神会要员的计划。但证据只提供了零散片段,缺少完整的时间线细节,无法完整按时间顺序概述其全部轨迹。", "evidence_rfids": [[2789, 2828], [2830, 2840], [12156, 12209], [7743, 7804]], "all_citations_valid": true}
+{"qid": "Q66", "verdict": "unknown", "answer": "证据中出现三次「江坂先生的教诲」:Part2 讲健康中心是简易暂住设施中的最佳选择;Part3 讲漫才中的「吐槽」与「装傻」技巧,装傻需说出与事实明显相反的发言;Part1 讲实战要简洁而高效地运用火力,不要依赖小聪明和心理战。", "evidence_rfids": [[3834, 3840], [8705, 8739], [3351, 3402]], "all_citations_valid": true}
+{"qid": "Q67", "verdict": "unknown", "answer": "证据中地龙直接出场的场景有:证据2(rfid 14071-14112)中地龙从大厅魔法圈中走出并与瑚太朗对话;证据3(rfid 11492-11535)中地龙作为超大型魔物与今宫对峙并发言;证据1(rfid 14113-14129)中地龙继续与瑚太朗对话。", "evidence_rfids": [[14071, 14112], [11492, 11535], [14113, 14129]], "all_citations_valid": true}
+{"qid": "Q68", "verdict": "unknown", "answer": "证据中提到的风祭市怪异传闻或超常现象有:神隐现象很多(理由与现实世界和异次元空间的复写性质有关,有些波长相合的人会被拉进来);有通往异次元空间的道路的都市传说;以及蔓延开来的「歌声」流言——简直不是这个世间的声音,既有听得见的人也有听不见的人,若即若离地流淌,仿佛是人之外的生命在合唱。", "evidence_rfids": [[9612, 9650], [12625, 12665]], "all_citations_valid": true}
+{"qid": "Q69", "verdict": "unknown", "answer": "证据中没有提及风祭市市长的任何信息,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q70", "verdict": "unknown", "answer": "证据中没有提及盖亚的初代圣女是谁,缺少相关信息。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q71", "verdict": "unknown", "answer": "证据中没有关于守护者组织创始人的任何信息,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q72", "verdict": "unknown", "answer": "证据中没有提及路易斯的姓氏,缺少相关信息。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q73", "verdict": "unknown", "answer": "证据中没有说明三国的魔物是什么动物。证据3提到「龙」以及三国投掷铁器与魔物交战,但未明确该魔物属于三国;证据4、5只提及三国本人,未涉及其魔物种类。缺少相关信息。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q74", "verdict": "unknown", "answer": "证据中只提到小鸟在「本地的小学」就读,没有给出学校的具体名称,缺少该信息。", "evidence_rfids": [[1376, 1435]], "all_citations_valid": true}
+{"qid": "Q75", "verdict": "unknown", "answer": "证据中没有提及历代「键」各自的名字,只说明键会以人的形态诞生、出现过好几次,但未给出具体名称,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q76", "verdict": "unknown", "answer": "证据中只提到全日本仅有数人拥有「目」的资质,并提到大西是其中之一,但没有给出除大西之外其他「目」的具体姓名,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q77", "verdict": "unknown", "answer": "证据中没有提到「报告里目击到的『带着小孩的成人』」这一信息,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q78", "verdict": "unknown", "answer": "证据中「人工来世」被描述为小规模的第二个地球、如同置于超巨大魔物母胎内的小世界,即使现世毁灭也能维持生态稳定,可移植小规模生态系统、保留丰饶绿地,人口限定在数万人程度;洲崎的人工来世计划聚集了大量财富与人才,向上流社会老者高价出售来世居住权;此外,成为「人工来世」的魔物扩张用的粮食(强制契约导致寿命瞬间枯竭、只留白骨)被用作处刑方式;加岛樱的陷阱则是把人工来世从现世割裂出去、成为泡沫世界。", "evidence_rfids": [[9689, 9718], [10130, 10151], [10274, 10306], [14281, 14316]], "all_citations_valid": true}
+{"qid": "Q79", "verdict": "unknown", "answer": "证据中没有关于「最终决战前后」风祭市和外界异常景象的信息。证据仅提到风祭市存在神隐现象、有通往异次元空间的都市传说,以及石制城市这一被浓缩的闭锁世界,但均未涉及最终决战前后的情况,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q80", "verdict": "unknown", "answer": "证据中瑚太朗设想过或实施过的做法包括:发展比现在更发达的观测技术、直接观察和分析行星状态;调查清楚哪些资源是那边已有的、哪些需要从这边带过去;建造移民船移居其他星球(他承认这确实可能是美好的记忆,但也指出无论哪边都困难重重、来不及);此外他还答应帮助篝寻找美好的记忆以阻止再进化。", "evidence_rfids": [[12492, 12532], [6909, 6961]], "all_citations_valid": true}
+{"qid": "Q81", "verdict": "unknown", "answer": "证据中没有说明瑚太朗青年时代被派驻的战乱小镇位于哪个国家,缺少该信息,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q82", "verdict": "unknown", "answer": "证据中没有提及「教区」的最高负责人是谁,缺少相关信息。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q83", "verdict": "unknown", "answer": "证据中只提到派罗「耗尽最后一丝生命力死去」，没有任何关于小鸟一家人动身出门远游的信息，因此无法判断两件事的先后顺序。缺少小鸟一家出门远游的相关信息。", "evidence_rfids": [[1903, 1959]], "all_citations_valid": true}
+{"qid": "Q84", "verdict": "unknown", "answer": "证据中没有提到「瑚太朗路见不平撂倒地痞」或「在林中被人压制到昏死」这两件事,无法判断先后顺序。缺少这两件事件的相关信息。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q85", "verdict": "unknown", "answer": "证据中没有关于「小鸟刚搬来瑚太朗家隔壁时」的任何内容,无法判断这两件事的先后顺序。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q86", "verdict": "unknown", "answer": "证据中只提到手提箱里是「几乎和普通手枪一样大的，军用自动手枪和弹匣」，没有给出具体型号，因此无法回答。", "evidence_rfids": [[12930, 12960]], "all_citations_valid": true}
+{"qid": "Q87", "verdict": "unknown", "answer": "证据中没有提到洲崎出售人工来世居住权、也没有任何关于法院或检察机关立案追究的信息,无法回答。", "evidence_rfids": [], "all_citations_valid": true}
+{"qid": "Q88", "verdict": "unknown", "answer": "证据中只提到瑚太朗把守护者用的手机扔到河里，并将最后的窃听器安在守护者本部，设置为平时待机、只在通话时发送电波；另提到他放置在今宫笔记本电脑上的新型窃听器记录了先头调查小队的行动。证据未说明他对盖亚一方做过与窃听器或录音机相关的事，缺少这部分信息。", "evidence_rfids": [[12896, 12929], [11199, 11220]], "all_citations_valid": true}
+{"qid": "Q89", "verdict": "unknown", "answer": "证据中只提到长居是采伐系能力者,并说明超人能力分为狩猎系、采伐系、污染系三个系统;但没有给出江坂、瑚太朗、今宫、三国、路易斯各自属于哪一类的信息,因此无法完整回答。", "evidence_rfids": [[2980, 3005]], "all_citations_valid": true}
+{"qid": "Q90", "verdict": "unknown", "answer": "篝说「篝如同行星的化身」，并说明她「代替没有意志的行星，进入社会，学习人类，做出判断」，是一个巨大的系统。", "evidence_rfids": [[6813, 6862]], "all_citations_valid": true}
