@@ -1,0 +1,1459 @@
+{
+  "demo": [
+    {
+      "query": "路易斯是什么国籍？",
+      "hits": [
+        {
+          "rank": 1,
+          "idx": 2,
+          "chunk_id": "seen08000_c003",
+          "score": 11.1084,
+          "rfid_start": 67,
+          "rfid_end": 96
+        },
+        {
+          "rank": 2,
+          "idx": 203,
+          "chunk_id": "seen08000_c204",
+          "score": 7.8193,
+          "rfid_start": 6045,
+          "rfid_end": 6088
+        },
+        {
+          "rank": 3,
+          "idx": 0,
+          "chunk_id": "seen08000_c001",
+          "score": 7.8053,
+          "rfid_start": 1,
+          "rfid_end": 43
+        }
+      ]
+    },
+    {
+      "query": "瑚太朗和路易斯约定了什么？",
+      "hits": [
+        {
+          "rank": 1,
+          "idx": 407,
+          "chunk_id": "seen08000_c408",
+          "score": 12.6149,
+          "rfid_start": 13026,
+          "rfid_end": 13085
+        },
+        {
+          "rank": 2,
+          "idx": 210,
+          "chunk_id": "seen08000_c211",
+          "score": 11.2803,
+          "rfid_start": 6272,
+          "rfid_end": 6322
+        },
+        {
+          "rank": 3,
+          "idx": 207,
+          "chunk_id": "seen08000_c208",
+          "score": 11.1305,
+          "rfid_start": 6186,
+          "rfid_end": 6229
+        }
+      ]
+    },
+    {
+      "query": "盖亚和守护者是什么关系？",
+      "hits": [
+        {
+          "rank": 1,
+          "idx": 274,
+          "chunk_id": "seen08000_c275",
+          "score": 9.3591,
+          "rfid_start": 8481,
+          "rfid_end": 8538
+        },
+        {
+          "rank": 2,
+          "idx": 229,
+          "chunk_id": "seen08000_c230",
+          "score": 8.6307,
+          "rfid_start": 6963,
+          "rfid_end": 7004
+        },
+        {
+          "rank": 3,
+          "idx": 350,
+          "chunk_id": "seen08000_c351",
+          "score": 8.3476,
+          "rfid_start": 11199,
+          "rfid_end": 11220
+        }
+      ]
+    }
+  ],
+  "per_question": {
+    "jieba": [
+      {
+        "qid": "S01",
+        "type": "fact",
+        "question": "路易斯是什么国籍？",
+        "gold_chunks": [
+          "seen08000_c001"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c003",
+            "score": 11.1084,
+            "hit": false
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c204",
+            "score": 7.8193,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c001",
+            "score": 7.8053,
+            "hit": true
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c205",
+            "score": 7.6934,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c208",
+            "score": 7.6853,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c189",
+            "score": 7.5751,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c209",
+            "score": 7.5605,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c202",
+            "score": 7.5269,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c211",
+            "score": 7.3055,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c187",
+            "score": 7.0641,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 3,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "rr": 0.3333333333333333
+      },
+      {
+        "qid": "S02",
+        "type": "fact",
+        "question": "瑚太朗是怎么形容自己的脑袋的？",
+        "gold_chunks": [
+          "seen08000_c001"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c442",
+            "score": 15.9166,
+            "hit": false
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c311",
+            "score": 15.7096,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c396",
+            "score": 15.4836,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c289",
+            "score": 14.9507,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c131",
+            "score": 14.67,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c326",
+            "score": 14.4841,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c134",
+            "score": 14.4266,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c091",
+            "score": 14.3921,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c001",
+            "score": 14.3118,
+            "hit": true
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c161",
+            "score": 14.0116,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 9,
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "rr": 0.1111111111111111
+      },
+      {
+        "qid": "S03",
+        "type": "fact",
+        "question": "与守护者敌对的组织被象征性地叫做什么？",
+        "gold_chunks": [
+          "seen08000_c085"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c085",
+            "score": 23.5756,
+            "hit": true
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c079",
+            "score": 16.6958,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c317",
+            "score": 14.1028,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c331",
+            "score": 12.9804,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c219",
+            "score": 12.5019,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c224",
+            "score": 12.222,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c206",
+            "score": 12.1172,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c436",
+            "score": 12.091,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c082",
+            "score": 12.0043,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c334",
+            "score": 11.9917,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 1,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "rr": 1.0
+      },
+      {
+        "qid": "S04",
+        "type": "fact",
+        "question": "风祭市对盖亚来说是什么地方？",
+        "gold_chunks": [
+          "seen08000_c123"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c302",
+            "score": 11.6637,
+            "hit": false
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c230",
+            "score": 10.3951,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c123",
+            "score": 9.8683,
+            "hit": true
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c121",
+            "score": 9.0508,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c145",
+            "score": 8.7573,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c142",
+            "score": 8.7254,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c233",
+            "score": 8.6328,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c079",
+            "score": 7.903,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c304",
+            "score": 7.1287,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c303",
+            "score": 7.1175,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 3,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "rr": 0.3333333333333333
+      },
+      {
+        "qid": "S05",
+        "type": "yesno",
+        "question": "瑚太朗答应和路易斯一起喝酒了吗？",
+        "gold_chunks": [
+          "seen08000_c001"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c001",
+            "score": 19.1453,
+            "hit": true
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c208",
+            "score": 14.6108,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c124",
+            "score": 12.2664,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c198",
+            "score": 12.2204,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c202",
+            "score": 12.0474,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c206",
+            "score": 11.9597,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c189",
+            "score": 11.8439,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c204",
+            "score": 11.8154,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c448",
+            "score": 11.7226,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c273",
+            "score": 11.5253,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 1,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "rr": 1.0
+      },
+      {
+        "qid": "S06",
+        "type": "yesno",
+        "question": "瑚太朗他们有人提到路边有烧焦下陷的痕迹吗？",
+        "gold_chunks": [
+          "seen08000_c002"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c002",
+            "score": 26.8814,
+            "hit": true
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c154",
+            "score": 15.3057,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c380",
+            "score": 14.2376,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c145",
+            "score": 12.2991,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c290",
+            "score": 12.0717,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c319",
+            "score": 12.0545,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c462",
+            "score": 11.9971,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c250",
+            "score": 11.9648,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c208",
+            "score": 11.7169,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c261",
+            "score": 11.5259,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 1,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "rr": 1.0
+      },
+      {
+        "qid": "S07",
+        "type": "temporal",
+        "question": "路易斯指出车辆残骸、队长发出警示的命令，哪件事先发生？",
+        "gold_chunks": [
+          "seen08000_c002"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c002",
+            "score": 36.429,
+            "hit": true
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c004",
+            "score": 21.2149,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c204",
+            "score": 18.0076,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c006",
+            "score": 16.8833,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c003",
+            "score": 15.8576,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c352",
+            "score": 15.2747,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c001",
+            "score": 14.0704,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c005",
+            "score": 13.6358,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c198",
+            "score": 11.7384,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c197",
+            "score": 11.3146,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 1,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "rr": 1.0
+      },
+      {
+        "qid": "S08",
+        "type": "temporal",
+        "question": "瑚太朗回答「石头脑袋」是在被问「你没事吧」之前还是之后？",
+        "gold_chunks": [
+          "seen08000_c001"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c001",
+            "score": 25.8397,
+            "hit": true
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c273",
+            "score": 22.2593,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c039",
+            "score": 21.2877,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c068",
+            "score": 19.478,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c302",
+            "score": 18.4082,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c328",
+            "score": 18.2109,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c052",
+            "score": 18.0905,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c131",
+            "score": 18.0624,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c309",
+            "score": 17.8721,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c083",
+            "score": 17.3035,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 1,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "rr": 1.0
+      },
+      {
+        "qid": "S09",
+        "type": "aggregate",
+        "question": "故事开头乘坐这辆车的是哪几个人？",
+        "gold_chunks": [
+          "seen08000_c001"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c123",
+            "score": 17.803,
+            "hit": false
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c004",
+            "score": 11.7503,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c126",
+            "score": 11.3188,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c360",
+            "score": 11.2263,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c259",
+            "score": 11.2156,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c005",
+            "score": 10.9918,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c117",
+            "score": 10.7604,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c340",
+            "score": 10.5767,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c002",
+            "score": 10.4391,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c124",
+            "score": 10.2962,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": null,
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "rr": 0.0
+      },
+      {
+        "qid": "S10",
+        "type": "unanswerable",
+        "question": "小鸟的义眼是怎么来的？",
+        "skipped": "gold_evidence_rfids 为空(不可回答题),不计检索指标"
+      }
+    ],
+    "bigram": [
+      {
+        "qid": "S01",
+        "type": "fact",
+        "question": "路易斯是什么国籍？",
+        "gold_chunks": [
+          "seen08000_c001"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c205",
+            "score": 18.8673,
+            "hit": false
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c204",
+            "score": 13.1832,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c208",
+            "score": 12.614,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c003",
+            "score": 12.5465,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c189",
+            "score": 12.3706,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c209",
+            "score": 12.306,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c211",
+            "score": 12.1828,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c202",
+            "score": 11.5977,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c001",
+            "score": 11.4037,
+            "hit": true
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c190",
+            "score": 11.3931,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 9,
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "rr": 0.1111111111111111
+      },
+      {
+        "qid": "S02",
+        "type": "fact",
+        "question": "瑚太朗是怎么形容自己的脑袋的？",
+        "gold_chunks": [
+          "seen08000_c001"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c396",
+            "score": 18.9648,
+            "hit": false
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c311",
+            "score": 16.0816,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c091",
+            "score": 13.7781,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c134",
+            "score": 13.4259,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c289",
+            "score": 13.1864,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c442",
+            "score": 12.0668,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c439",
+            "score": 12.026,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c326",
+            "score": 10.8718,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c208",
+            "score": 10.8039,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c273",
+            "score": 10.1469,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": null,
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 0.0,
+        "rr": 0.0
+      },
+      {
+        "qid": "S03",
+        "type": "fact",
+        "question": "与守护者敌对的组织被象征性地叫做什么？",
+        "gold_chunks": [
+          "seen08000_c085"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c085",
+            "score": 40.2279,
+            "hit": true
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c079",
+            "score": 22.4575,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c230",
+            "score": 19.6899,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c267",
+            "score": 14.3797,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c219",
+            "score": 13.1603,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c372",
+            "score": 12.9974,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c081",
+            "score": 10.2527,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c247",
+            "score": 9.9776,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c114",
+            "score": 9.8783,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c224",
+            "score": 9.7975,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 1,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "rr": 1.0
+      },
+      {
+        "qid": "S04",
+        "type": "fact",
+        "question": "风祭市对盖亚来说是什么地方？",
+        "gold_chunks": [
+          "seen08000_c123"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c135",
+            "score": 17.0052,
+            "hit": false
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c302",
+            "score": 14.9242,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c230",
+            "score": 13.8285,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c121",
+            "score": 12.4465,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c123",
+            "score": 12.2246,
+            "hit": true
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c059",
+            "score": 11.2957,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c233",
+            "score": 11.1066,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c021",
+            "score": 10.3477,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c231",
+            "score": 10.1768,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c124",
+            "score": 9.7434,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 5,
+        "recall@3": 0.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "rr": 0.2
+      },
+      {
+        "qid": "S05",
+        "type": "yesno",
+        "question": "瑚太朗答应和路易斯一起喝酒了吗？",
+        "gold_chunks": [
+          "seen08000_c001"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c001",
+            "score": 21.8571,
+            "hit": true
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c202",
+            "score": 20.7656,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c198",
+            "score": 19.6315,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c205",
+            "score": 19.1333,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c204",
+            "score": 18.5847,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c187",
+            "score": 17.9554,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c208",
+            "score": 17.5474,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c207",
+            "score": 16.7495,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c211",
+            "score": 16.3344,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c193",
+            "score": 15.8812,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 1,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "rr": 1.0
+      },
+      {
+        "qid": "S06",
+        "type": "yesno",
+        "question": "瑚太朗他们有人提到路边有烧焦下陷的痕迹吗？",
+        "gold_chunks": [
+          "seen08000_c002"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c002",
+            "score": 38.4541,
+            "hit": true
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c363",
+            "score": 13.8627,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c155",
+            "score": 13.4443,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c288",
+            "score": 13.047,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c416",
+            "score": 13.0368,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c405",
+            "score": 11.5187,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c250",
+            "score": 10.79,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c386",
+            "score": 10.5283,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c442",
+            "score": 10.4353,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c154",
+            "score": 10.0798,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 1,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "rr": 1.0
+      },
+      {
+        "qid": "S07",
+        "type": "temporal",
+        "question": "路易斯指出车辆残骸、队长发出警示的命令，哪件事先发生？",
+        "gold_chunks": [
+          "seen08000_c002"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c002",
+            "score": 47.6226,
+            "hit": true
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c004",
+            "score": 21.7951,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c204",
+            "score": 20.0302,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c006",
+            "score": 17.6598,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c001",
+            "score": 16.1957,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c197",
+            "score": 15.9271,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c003",
+            "score": 15.8846,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c198",
+            "score": 13.5571,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c211",
+            "score": 12.9957,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c352",
+            "score": 12.4338,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 1,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "rr": 1.0
+      },
+      {
+        "qid": "S08",
+        "type": "temporal",
+        "question": "瑚太朗回答「石头脑袋」是在被问「你没事吧」之前还是之后？",
+        "gold_chunks": [
+          "seen08000_c001"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c001",
+            "score": 29.5609,
+            "hit": true
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c087",
+            "score": 14.5994,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c434",
+            "score": 14.0281,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c273",
+            "score": 14.0219,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c380",
+            "score": 13.7887,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c068",
+            "score": 13.4972,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c053",
+            "score": 13.3314,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c088",
+            "score": 12.395,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c180",
+            "score": 12.0307,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c013",
+            "score": 11.7747,
+            "hit": false
+          }
+        ],
+        "first_hit_rank": 1,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "rr": 1.0
+      },
+      {
+        "qid": "S09",
+        "type": "aggregate",
+        "question": "故事开头乘坐这辆车的是哪几个人？",
+        "gold_chunks": [
+          "seen08000_c001"
+        ],
+        "top": [
+          {
+            "rank": 1,
+            "chunk_id": "seen08000_c002",
+            "score": 12.7207,
+            "hit": false
+          },
+          {
+            "rank": 2,
+            "chunk_id": "seen08000_c290",
+            "score": 9.4858,
+            "hit": false
+          },
+          {
+            "rank": 3,
+            "chunk_id": "seen08000_c324",
+            "score": 8.2888,
+            "hit": false
+          },
+          {
+            "rank": 4,
+            "chunk_id": "seen08000_c117",
+            "score": 8.1873,
+            "hit": false
+          },
+          {
+            "rank": 5,
+            "chunk_id": "seen08000_c005",
+            "score": 8.0194,
+            "hit": false
+          },
+          {
+            "rank": 6,
+            "chunk_id": "seen08000_c123",
+            "score": 7.8236,
+            "hit": false
+          },
+          {
+            "rank": 7,
+            "chunk_id": "seen08000_c433",
+            "score": 7.4853,
+            "hit": false
+          },
+          {
+            "rank": 8,
+            "chunk_id": "seen08000_c006",
+            "score": 6.9393,
+            "hit": false
+          },
+          {
+            "rank": 9,
+            "chunk_id": "seen08000_c277",
+            "score": 6.6591,
+            "hit": false
+          },
+          {
+            "rank": 10,
+            "chunk_id": "seen08000_c001",
+            "score": 6.5163,
+            "hit": true
+          }
+        ],
+        "first_hit_rank": 10,
+        "recall@3": 0.0,
+        "recall@5": 0.0,
+        "recall@10": 1.0,
+        "rr": 0.1
+      },
+      {
+        "qid": "S10",
+        "type": "unanswerable",
+        "question": "小鸟的义眼是怎么来的？",
+        "skipped": "gold_evidence_rfids 为空(不可回答题),不计检索指标"
+      }
+    ]
+  }
+}

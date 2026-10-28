@@ -2,7 +2,7 @@
 # 所有相对路径相对于 project/ 根目录
 
 paths:
-  scenes: ../Rewrite_terra/data/scenes.jsonl   # Day 1 真值切分产物 (480 chunks)
+  scenes: ../Rewrite_terra/data/scenes.jsonl   # Day 1 真值切分产物 (483 chunks; P0 口径核对 2026-10-28 实测)
   user_dict: data/user_dict.txt                # jieba 自定义词典
   qaset: eval/qaset_v0.json                    # 正式评测集(90 题冻结稿;报告对比表数字来源)
   answers: eval/answers.jsonl                  # 答案层输入(Day 4 生成模块产出;不存在则跳过)

@@ -2,3 +2,12 @@ __pycache__/
 /models/
 project/cache/
 .env
+
+# —— 版权数据(不进 git/不进 zip; 2026-10-28 git filter-repo 两轮重写剔除, 本地保留, 交付走网盘链接) ——
+Rewrite_terra/Terra_汉化文本.txt
+Rewrite_terra/seen08000.dat
+Rewrite_terra/seen08000.dat.csv
+Rewrite_terra/data/
+Rewrite_terra/data_v1/
+Rewrite_terra/structure/**
+!Rewrite_terra/structure/**/*.py

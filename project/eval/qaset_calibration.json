@@ -1,0 +1,3580 @@
+{
+  "version": "calibration-1",
+  "qaset": "qaset_v0.json",
+  "qaset_version": "v0-20261023",
+  "reference_arm": "bm25_jieba",
+  "extra_arms": [],
+  "rules": {
+    "floor": "题面零实体锚 → floor 候选",
+    "structural_ge3": "gold_chunks ≥ 3 → structural",
+    "literal_r5full": "gold_chunks ≤ 2 且 recall@5 == 1 → literal",
+    "semantic_gap_miss": "gold_chunks ≤ 2 且脱靶或首命中>10 → semantic_gap",
+    "partial_keep": "gold_chunks ≤ 2 部分命中 → 维持现标签/人工裁决"
+  },
+  "apply_boundary": "anchor_layer 仅 gold_chunks==1 且 literal↔semantic_gap 自动改写;distractor_note 仅缺失时回填",
+  "per_question": [
+    {
+      "qid": "Q01",
+      "type": "fact",
+      "anchor_layer": "literal",
+      "gold_chunks": 1,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [],
+      "overlap_all": [
+        "组织",
+        "两个"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c177",
+          "rank": 1,
+          "score": 19.8988
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c077",
+          "score": 17.0666,
+          "snippet": "派罗的死对小鸟造成的心理创伤，应该还没有痊愈。\n"
+        },
+        {
+          "chunk_id": "seen08000_c387",
+          "score": 15.8397,
+          "snippet": "【今宫】「不相互关照着点儿的话真的会死的哟。」\n"
+        },
+        {
+          "chunk_id": "seen08000_c228",
+          "score": 14.677,
+          "snippet": "【篝】「阻止的方法只有一个，就是美好的记忆。」\n"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q02",
+      "type": "fact",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 1,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [
+        "基础训练"
+      ],
+      "overlap_all": [
+        "基础训练"
+      ],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c084",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c284",
+          "score": 12.2977,
+          "snippet": "内部调查，继续着。\n情报被向守护者这边泄露了。\n"
+        },
+        {
+          "chunk_id": "seen08000_c079",
+          "score": 11.8837,
+          "snippet": "我加入的这个组织，并没有一个在人前的固定称呼。\n"
+        },
+        {
+          "chunk_id": "seen08000_c083",
+          "score": 11.8199,
+          "snippet": "那个时候，我还只是刚和江坂认识。\n所以没有什么特"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q03",
+      "type": "fact",
+      "anchor_layer": "literal",
+      "gold_chunks": 1,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c113",
+          "rank": 1,
+          "score": 11.2074
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c220",
+          "score": 7.2925,
+          "snippet": "走出车站，映入眼帘那满是日本人的情景，让我畏惧了"
+        },
+        {
+          "chunk_id": "seen08000_c291",
+          "score": 3.0061,
+          "snippet": "【篝】「奖励的话我应该已经跟你约定过了。」\n【瑚"
+        },
+        {
+          "chunk_id": "seen08000_c100",
+          "score": 3.0035,
+          "snippet": "【瑚太朗】「该不会是你用橡胶匕首把我的匕首切断了"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q04",
+      "type": "fact",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 2,
+      "first_hit": 4,
+      "recall@5": 0.5,
+      "overlap": [],
+      "overlap_all": [
+        "生命"
+      ],
+      "novel_high_df": [],
+      "suggestion": "keep",
+      "rule": "partial_keep",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c448",
+          "rank": 4,
+          "score": 23.6665
+        },
+        {
+          "chunk_id": "seen08000_c449",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c019",
+          "score": 24.3898,
+          "snippet": "【井子】「很多人认为就算是像母神会这样进行着环境"
+        },
+        {
+          "chunk_id": "seen08000_c131",
+          "score": 24.1377,
+          "snippet": "【瑚太朗】「我是铃木……凡人。」\n【瑚太朗】「总"
+        },
+        {
+          "chunk_id": "seen08000_c014",
+          "score": 23.7888,
+          "snippet": "把她带到了大厅的长椅那儿。\n虽然有时候走着走着一"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q05",
+      "type": "fact",
+      "anchor_layer": "structural",
+      "gold_chunks": 3,
+      "first_hit": 1,
+      "recall@5": 0.3333,
+      "overlap": [
+        "一家",
+        "家庭",
+        "旅行"
+      ],
+      "overlap_all": [
+        "一家",
+        "家庭",
+        "旅行",
+        "觉得",
+        "阻止",
+        "他们"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c075",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c077",
+          "rank": 1,
+          "score": 29.639
+        },
+        {
+          "chunk_id": "seen08000_c273",
+          "rank": 7,
+          "score": 17.0177
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c367",
+          "score": 19.0274,
+          "snippet": "【小鸟】「瑚、瑚太朗君…？」\n小鸟颤抖的声音从背"
+        },
+        {
+          "chunk_id": "seen08000_c052",
+          "score": 18.6736,
+          "snippet": "神户一家被ＭＴＧ所邀请，也仅仅是时间上的问题。\n"
+        },
+        {
+          "chunk_id": "seen08000_c386",
+          "score": 17.8491,
+          "snippet": "【今宫】「国内的话太冒险。但是，盲目地寻找已经停"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q06",
+      "type": "fact",
+      "anchor_layer": "literal",
+      "gold_chunks": 1,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [
+        "可疑",
+        "举动",
+        "提交"
+      ],
+      "overlap_all": [
+        "可疑",
+        "举动",
+        "报告",
+        "提交"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c348",
+          "rank": 1,
+          "score": 28.7577
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c297",
+          "score": 21.2587,
+          "snippet": "我把调查结果总结成报告，提交给了洲崎。\n不久就被"
+        },
+        {
+          "chunk_id": "seen08000_c380",
+          "score": 20.0822,
+          "snippet": "好久没跟洲崎对话了。\n【洲崎】「还不算久，之前的"
+        },
+        {
+          "chunk_id": "seen08000_c004",
+          "score": 19.8064,
+          "snippet": "【路易斯】「不是，那个车是收集了各种车辆的零件拼"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q07",
+      "type": "fact",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 1,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c044",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c052",
+          "score": 11.2853,
+          "snippet": "神户一家被ＭＴＧ所邀请，也仅仅是时间上的问题。\n"
+        },
+        {
+          "chunk_id": "seen08000_c059",
+          "score": 11.0895,
+          "snippet": "手术后，派罗曾在一段时间里变得非常的惧怕人，甚至"
+        },
+        {
+          "chunk_id": "seen08000_c392",
+          "score": 11.0097,
+          "snippet": "【瑚太朗】「目前来看，需要比现在更发达的观测技术"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q08",
+      "type": "fact",
+      "anchor_layer": "literal",
+      "gold_chunks": 1,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [
+        "掌握",
+        "猛犸",
+        "契约"
+      ],
+      "overlap_all": [
+        "瞬间",
+        "掌握",
+        "猛犸",
+        "契约"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c455",
+          "rank": 1,
+          "score": 31.8008
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c244",
+          "score": 21.132,
+          "snippet": "隔了许久重逢的光芒，让我的双眼习惯花了有数秒。\n"
+        },
+        {
+          "chunk_id": "seen08000_c243",
+          "score": 19.7309,
+          "snippet": "作为魔物使的训练开始了。\n说到训练，我脑中立刻浮"
+        },
+        {
+          "chunk_id": "seen08000_c325",
+          "score": 16.618,
+          "snippet": "【樱】「以前，我有和你谈过呢。」\n【瑚太朗】「…"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q09",
+      "type": "yesno",
+      "anchor_layer": "literal",
+      "gold_chunks": 1,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [
+        "擅离职守"
+      ],
+      "overlap_all": [
+        "那样",
+        "擅离职守"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c177",
+          "rank": 1,
+          "score": 36.0275
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c178",
+          "score": 20.8962,
+          "snippet": "【今宫】「与其说是战斗，不如说是勒死了对手的感觉"
+        },
+        {
+          "chunk_id": "seen08000_c115",
+          "score": 20.6459,
+          "snippet": "【西九条】「是那样么。虽然我觉得跟两位教官做对手"
+        },
+        {
+          "chunk_id": "seen08000_c141",
+          "score": 20.5384,
+          "snippet": "【今宫】「要禁止一切人进入森林吗？」\n【清水】「"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q10",
+      "type": "yesno",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 2,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c465",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c466",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c168",
+          "score": 17.446,
+          "snippet": "（啊啊…原来是这样啊……）\n一瞬间想起来了。\n竹"
+        },
+        {
+          "chunk_id": "seen08000_c174",
+          "score": 15.3887,
+          "snippet": "…除掉什么的根本做不到。\n也不能去做。\n她是不可"
+        },
+        {
+          "chunk_id": "seen08000_c136",
+          "score": 13.2,
+          "snippet": "【江坂】「如果你小子有这样的资质的话，你就能领到"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q11",
+      "type": "yesno",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 1,
+      "first_hit": 8,
+      "recall@5": 0.0,
+      "overlap": [
+        "铃木",
+        "凡人"
+      ],
+      "overlap_all": [
+        "铃木",
+        "凡人"
+      ],
+      "novel_high_df": [],
+      "suggestion": "keep",
+      "rule": "partial_keep",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c394",
+          "rank": 8,
+          "score": 15.4913
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c259",
+          "score": 19.6848,
+          "snippet": "【洲崎】「你，是铃木君吧？」\n【瑚太朗】「是的，"
+        },
+        {
+          "chunk_id": "seen08000_c285",
+          "score": 16.3467,
+          "snippet": "在这里也有隐藏着我的胜算的可能性。\n是洲崎呢，还"
+        },
+        {
+          "chunk_id": "seen08000_c346",
+          "score": 16.2522,
+          "snippet": "战局，现在篝正被赶入圈套之中。\n时机正好。\n【瑚"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q12",
+      "type": "yesno",
+      "anchor_layer": "literal",
+      "gold_chunks": 2,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [
+        "指甲",
+        "橡胶",
+        "切断"
+      ],
+      "overlap_all": [
+        "训练",
+        "指甲",
+        "橡胶",
+        "匕首",
+        "切断"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c098",
+          "rank": 2,
+          "score": 30.2198
+        },
+        {
+          "chunk_id": "seen08000_c100",
+          "rank": 1,
+          "score": 40.9753
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c097",
+          "score": 24.3368,
+          "snippet": "【长居】「…」\n【瑚太朗】「…」\n我正在与人正面"
+        },
+        {
+          "chunk_id": "seen08000_c099",
+          "score": 21.6447,
+          "snippet": "扰乱了理论上结果的东西，不管到了何时都是“非常规"
+        },
+        {
+          "chunk_id": "seen08000_c092",
+          "score": 21.1313,
+          "snippet": "【今宫】「不要像普通人一样的提建议啊，笨蛋！」\n"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q13",
+      "type": "yesno",
+      "anchor_layer": "structural",
+      "gold_chunks": 5,
+      "first_hit": 3,
+      "recall@5": 0.4,
+      "overlap": [
+        "成长"
+      ],
+      "overlap_all": [
+        "成长"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c295",
+          "rank": 3,
+          "score": 13.2618
+        },
+        {
+          "chunk_id": "seen08000_c320",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c323",
+          "rank": 5,
+          "score": 11.7462
+        },
+        {
+          "chunk_id": "seen08000_c324",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c325",
+          "rank": 9,
+          "score": 10.7053
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c448",
+          "score": 15.0959,
+          "snippet": "【瑚太朗】「…还能说话吗，井子小姐。」\n【井子】"
+        },
+        {
+          "chunk_id": "seen08000_c299",
+          "score": 13.279,
+          "snippet": "【瑚太朗】「好疼！？」\n【洲崎】「放心了。」\n【"
+        },
+        {
+          "chunk_id": "seen08000_c292",
+          "score": 12.6117,
+          "snippet": "虽然我想否定，但是朱音通过某种形式，告诉井子小姐"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q14",
+      "type": "yesno",
+      "anchor_layer": "literal",
+      "gold_chunks": 1,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [
+        "三具",
+        "死尸"
+      ],
+      "overlap_all": [
+        "发现",
+        "三具",
+        "死尸"
+      ],
+      "novel_high_df": [],
+      "suggestion": "floor",
+      "rule": "floor",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c363",
+          "rank": 1,
+          "score": 27.4516
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c066",
+          "score": 13.2573,
+          "snippet": "说话的是一位身着高档洋装，身材高大的老太太。\n我"
+        },
+        {
+          "chunk_id": "seen08000_c341",
+          "score": 13.1194,
+          "snippet": "在回避着其他魔物使的同时，我找到了负责那个山丘的"
+        },
+        {
+          "chunk_id": "seen08000_c028",
+          "score": 13.1182,
+          "snippet": "为了忘记刚才的不快只有全速奔跑，直到疲惫不堪，身"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q15",
+      "type": "temporal",
+      "anchor_layer": "literal",
+      "gold_chunks": 2,
+      "first_hit": 3,
+      "recall@5": 1.0,
+      "overlap": [
+        "基础训练",
+        "作战部"
+      ],
+      "overlap_all": [
+        "接受",
+        "基础训练",
+        "作战部"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c084",
+          "rank": 4,
+          "score": 12.0607
+        },
+        {
+          "chunk_id": "seen08000_c135",
+          "rank": 3,
+          "score": 12.148
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c079",
+          "score": 15.9925,
+          "snippet": "我加入的这个组织，并没有一个在人前的固定称呼。\n"
+        },
+        {
+          "chunk_id": "seen08000_c203",
+          "score": 12.2015,
+          "snippet": "有心灵联系…」\n【瑚太朗】「所有人？」\n亚斯茗点"
+        },
+        {
+          "chunk_id": "seen08000_c137",
+          "score": 11.7006,
+          "snippet": "【瑚太朗】「很多古坟什么的也有很多呢。圣地就是这"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q16",
+      "type": "temporal",
+      "anchor_layer": "structural",
+      "gold_chunks": 2,
+      "first_hit": 1,
+      "recall@5": 0.5,
+      "overlap": [
+        "下次",
+        "吃水果",
+        "点心",
+        "基础训练"
+      ],
+      "overlap_all": [
+        "下次",
+        "吃水果",
+        "点心",
+        "基础训练"
+      ],
+      "novel_high_df": [],
+      "suggestion": "keep",
+      "rule": "partial_keep",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c055",
+          "rank": 1,
+          "score": 23.2774
+        },
+        {
+          "chunk_id": "seen08000_c084",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c079",
+          "score": 14.3323,
+          "snippet": "我加入的这个组织，并没有一个在人前的固定称呼。\n"
+        },
+        {
+          "chunk_id": "seen08000_c106",
+          "score": 10.9647,
+          "snippet": "【江坂】「…已经止血了啊。」\n【瑚太朗】「嗯。」"
+        },
+        {
+          "chunk_id": "seen08000_c281",
+          "score": 9.9885,
+          "snippet": "。\n【瑚太朗】「…在这种情况下，是说冤枉别人才是"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q17",
+      "type": "temporal",
+      "anchor_layer": "structural",
+      "gold_chunks": 4,
+      "first_hit": 1,
+      "recall@5": 0.25,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c013",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c015",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c040",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c048",
+          "rank": 1,
+          "score": 14.633
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c130",
+          "score": 14.5895,
+          "snippet": "【少女】「………」\n…似曾相识的感觉。\n靠近她仔"
+        },
+        {
+          "chunk_id": "seen08000_c053",
+          "score": 13.8746,
+          "snippet": "着自身。\n她父母想必是抱着些许期待才带着女儿来的"
+        },
+        {
+          "chunk_id": "seen08000_c483",
+          "score": 13.4419,
+          "snippet": "【？】「谁知道呢，为什么呢，你们几个人去想吧。」"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q18",
+      "type": "temporal",
+      "anchor_layer": "literal",
+      "gold_chunks": 2,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [
+        "石制"
+      ],
+      "overlap_all": [
+        "接近",
+        "石制",
+        "城市"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c288",
+          "rank": 1,
+          "score": 26.6232
+        },
+        {
+          "chunk_id": "seen08000_c302",
+          "rank": 4,
+          "score": 21.6094
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c287",
+          "score": 22.002,
+          "snippet": "灌注了加岛樱力量的视线，毫不留情地贯穿了我。\n【"
+        },
+        {
+          "chunk_id": "seen08000_c068",
+          "score": 21.6674,
+          "snippet": "像是审问一样的１５分钟过去了。\n加岛樱把背靠在了"
+        },
+        {
+          "chunk_id": "seen08000_c325",
+          "score": 20.8348,
+          "snippet": "【樱】「以前，我有和你谈过呢。」\n【瑚太朗】「…"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q19",
+      "type": "temporal",
+      "anchor_layer": "structural",
+      "gold_chunks": 3,
+      "first_hit": 2,
+      "recall@5": 0.3333,
+      "overlap": [
+        "干部",
+        "会议",
+        "下一代",
+        "圣女"
+      ],
+      "overlap_all": [
+        "干部",
+        "会议",
+        "下一代",
+        "圣女"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c321",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c322",
+          "rank": 2,
+          "score": 24.6238
+        },
+        {
+          "chunk_id": "seen08000_c325",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c324",
+          "score": 27.9187,
+          "snippet": "那个原狩猎者能够信赖吗，下一代圣女在组织内占有着"
+        },
+        {
+          "chunk_id": "seen08000_c319",
+          "score": 20.4025,
+          "snippet": "装作洲崎方的人，来选择措辞。\n【瑚太朗】「…不过"
+        },
+        {
+          "chunk_id": "seen08000_c323",
+          "score": 19.9182,
+          "snippet": "【洲崎】『不，今晚我…』\n【樱】『在这里我，决定"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q20",
+      "type": "temporal",
+      "anchor_layer": "structural",
+      "gold_chunks": 2,
+      "first_hit": 1,
+      "recall@5": 0.5,
+      "overlap": [
+        "掌握",
+        "猛犸",
+        "契约",
+        "谢谢"
+      ],
+      "overlap_all": [
+        "掌握",
+        "猛犸",
+        "契约",
+        "谢谢"
+      ],
+      "novel_high_df": [],
+      "suggestion": "keep",
+      "rule": "partial_keep",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c455",
+          "rank": 1,
+          "score": 26.0726
+        },
+        {
+          "chunk_id": "seen08000_c465",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c244",
+          "score": 16.5237,
+          "snippet": "隔了许久重逢的光芒，让我的双眼习惯花了有数秒。\n"
+        },
+        {
+          "chunk_id": "seen08000_c062",
+          "score": 14.9622,
+          "snippet": "【小鸟】「…什么嘛，活着回来了啊…」\n【瑚太朗】"
+        },
+        {
+          "chunk_id": "seen08000_c243",
+          "score": 14.7958,
+          "snippet": "作为魔物使的训练开始了。\n说到训练，我脑中立刻浮"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q21",
+      "type": "aggregate",
+      "anchor_layer": "structural",
+      "gold_chunks": 5,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [
+        "潜入"
+      ],
+      "overlap_all": [
+        "潜入"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c123",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c131",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c232",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c295",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c397",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c392",
+          "score": 13.348,
+          "snippet": "【瑚太朗】「目前来看，需要比现在更发达的观测技术"
+        },
+        {
+          "chunk_id": "seen08000_c084",
+          "score": 13.2654,
+          "snippet": "训练开始了。\n先是持续数周时间的基础训练。\n肉体"
+        },
+        {
+          "chunk_id": "seen08000_c124",
+          "score": 13.0711,
+          "snippet": "。\n…真是随随便便地起了个“适当”的假名啊。\n虽"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q22",
+      "type": "aggregate",
+      "anchor_layer": "floor",
+      "gold_chunks": 2,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "floor",
+      "rule": "floor",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c473",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c480",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c317",
+          "score": 9.6547,
+          "snippet": "在封闭而原始的世界里连财富与多样的物质都失去了，"
+        },
+        {
+          "chunk_id": "seen08000_c313",
+          "score": 9.3138,
+          "snippet": "【瑚太朗】「稀有的赞词呐，在此谢过了。」\n【瑚太"
+        },
+        {
+          "chunk_id": "seen08000_c255",
+          "score": 8.7319,
+          "snippet": "【今宫】「就在那种有大量盖亚主义者的地方，我们一"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q23",
+      "type": "aggregate",
+      "anchor_layer": "literal",
+      "gold_chunks": 2,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [
+        "缘之家"
+      ],
+      "overlap_all": [
+        "缘之家"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c131",
+          "rank": 1,
+          "score": 15.483
+        },
+        {
+          "chunk_id": "seen08000_c295",
+          "rank": 2,
+          "score": 14.9134
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c154",
+          "score": 14.6336,
+          "snippet": "还是决定追上他们。\n是要把他们带回来呢，还是想搭"
+        },
+        {
+          "chunk_id": "seen08000_c392",
+          "score": 13.5616,
+          "snippet": "【瑚太朗】「目前来看，需要比现在更发达的观测技术"
+        },
+        {
+          "chunk_id": "seen08000_c298",
+          "score": 12.7532,
+          "snippet": "【洲崎】「在这之前，我有要确认的事情。」\n【瑚太"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q24",
+      "type": "aggregate",
+      "anchor_layer": "structural",
+      "gold_chunks": 5,
+      "first_hit": 2,
+      "recall@5": 0.8,
+      "overlap": [
+        "下一代",
+        "圣女",
+        "制定"
+      ],
+      "overlap_all": [
+        "下一代",
+        "圣女",
+        "制定",
+        "计划"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c318",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c319",
+          "rank": 3,
+          "score": 24.2283
+        },
+        {
+          "chunk_id": "seen08000_c320",
+          "rank": 5,
+          "score": 21.8864
+        },
+        {
+          "chunk_id": "seen08000_c322",
+          "rank": 4,
+          "score": 24.1339
+        },
+        {
+          "chunk_id": "seen08000_c324",
+          "rank": 2,
+          "score": 25.8651
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c323",
+          "score": 28.9164,
+          "snippet": "【洲崎】『不，今晚我…』\n【樱】『在这里我，决定"
+        },
+        {
+          "chunk_id": "seen08000_c259",
+          "score": 20.5856,
+          "snippet": "【洲崎】「你，是铃木君吧？」\n【瑚太朗】「是的，"
+        },
+        {
+          "chunk_id": "seen08000_c286",
+          "score": 19.2735,
+          "snippet": "首先是打招呼…\n以此为前提进行吧。\n然后是作为基"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q25",
+      "type": "aggregate",
+      "anchor_layer": "literal",
+      "gold_chunks": 2,
+      "first_hit": 1,
+      "recall@5": 0.5,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "keep",
+      "rule": "partial_keep",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c268",
+          "rank": 6,
+          "score": 15.2991
+        },
+        {
+          "chunk_id": "seen08000_c270",
+          "rank": 1,
+          "score": 22.1364
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c400",
+          "score": 21.2626,
+          "snippet": "』\n【Ｋｏｋｏ１０１０】『我这边还有几件事情没完"
+        },
+        {
+          "chunk_id": "seen08000_c399",
+          "score": 20.5828,
+          "snippet": "』\n【Ｋｏｋｏ１０１０】『汇款确认了么？』\n【Ｊ"
+        },
+        {
+          "chunk_id": "seen08000_c269",
+          "score": 18.6107,
+          "snippet": "』\n【Ｋｏｋｏ１０１０】『是么。』\n【Ｊａｓｍｉ"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q31",
+      "type": "fact",
+      "anchor_layer": "literal",
+      "gold_chunks": 1,
+      "first_hit": 4,
+      "recall@5": 1.0,
+      "overlap": [
+        "课程",
+        "每周"
+      ],
+      "overlap_all": [
+        "母神会",
+        "课程",
+        "每周"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c011",
+          "rank": 4,
+          "score": 14.5593
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c031",
+          "score": 15.4912,
+          "snippet": "【瑚太朗】『森林圣歌队，成员招募中～不来参加母神"
+        },
+        {
+          "chunk_id": "seen08000_c234",
+          "score": 15.2002,
+          "snippet": "在母神会里，我成了正式的研究员。\n定期参加ＭＴＧ"
+        },
+        {
+          "chunk_id": "seen08000_c076",
+          "score": 14.7847,
+          "snippet": "早上，我离开了家。\n既没有跟人打招呼也没有留下任"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q32",
+      "type": "fact",
+      "anchor_layer": "literal",
+      "gold_chunks": 1,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [
+        "体能",
+        "测试"
+      ],
+      "overlap_all": [
+        "训练",
+        "体能",
+        "测试"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c091",
+          "rank": 1,
+          "score": 20.8976
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c097",
+          "score": 16.3735,
+          "snippet": "【长居】「…」\n【瑚太朗】「…」\n我正在与人正面"
+        },
+        {
+          "chunk_id": "seen08000_c087",
+          "score": 15.3223,
+          "snippet": "【今宫】「即使是组织上也是一直在重点关注着你的哟"
+        },
+        {
+          "chunk_id": "seen08000_c115",
+          "score": 15.1893,
+          "snippet": "【西九条】「是那样么。虽然我觉得跟两位教官做对手"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q33",
+      "type": "fact",
+      "anchor_layer": "literal",
+      "gold_chunks": 1,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [
+        "文化",
+        "大厅",
+        "建筑"
+      ],
+      "overlap_all": [
+        "文化",
+        "大厅",
+        "建筑"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c239",
+          "rank": 1,
+          "score": 23.4406
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c233",
+          "score": 20.2333,
+          "snippet": "则用其他名字准备了两个地方。\n那些在万一的时候，"
+        },
+        {
+          "chunk_id": "seen08000_c403",
+          "score": 18.5839,
+          "snippet": "【江坂】「什么？你说市内样子很诡异？」\n江坂带着"
+        },
+        {
+          "chunk_id": "seen08000_c254",
+          "score": 18.4957,
+          "snippet": "【西九条】「发生了各种各样的事哟。」\n【瑚太朗】"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q34",
+      "type": "fact",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 1,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [
+        "背后",
+        "一个"
+      ],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c298",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c168",
+          "score": 22.2752,
+          "snippet": "（啊啊…原来是这样啊……）\n一瞬间想起来了。\n竹"
+        },
+        {
+          "chunk_id": "seen08000_c241",
+          "score": 21.9355,
+          "snippet": "看来是通过了第二次面试。\n前面那人又走进来，拉起"
+        },
+        {
+          "chunk_id": "seen08000_c240",
+          "score": 20.2609,
+          "snippet": "现在也确确实实被隐藏在母神会的幽暗深处。\n在深处"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q35",
+      "type": "fact",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 1,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c101",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c100",
+          "score": 28.6049,
+          "snippet": "【瑚太朗】「该不会是你用橡胶匕首把我的匕首切断了"
+        },
+        {
+          "chunk_id": "seen08000_c295",
+          "score": 24.3383,
+          "snippet": "缘之家。\n按响了门铃之后，一个看起来像是职员一样"
+        },
+        {
+          "chunk_id": "seen08000_c468",
+          "score": 21.1073,
+          "snippet": "在电车已经无法动弹的车站前，几乎一个人都没有。\n"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q36",
+      "type": "fact",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 1,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [
+        "一个"
+      ],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c211",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c191",
+          "score": 10.5569,
+          "snippet": "过了不久，我已经能记住他们的脸和名字，分辨清楚他"
+        },
+        {
+          "chunk_id": "seen08000_c189",
+          "score": 10.0442,
+          "snippet": "要是接着玩下去的话，大概运动能力过高的事情就会暴"
+        },
+        {
+          "chunk_id": "seen08000_c040",
+          "score": 9.722,
+          "snippet": "【瑚太朗】「把母亲叫做妈妈。跟人吵架被弄哭后会跑"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q37",
+      "type": "fact",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 1,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c279",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c136",
+          "score": 17.7013,
+          "snippet": "【江坂】「如果你小子有这样的资质的话，你就能领到"
+        },
+        {
+          "chunk_id": "seen08000_c393",
+          "score": 17.0874,
+          "snippet": "洲崎也是，只要是干部就免不了外勤的活儿。\n那时候"
+        },
+        {
+          "chunk_id": "seen08000_c112",
+          "score": 16.9841,
+          "snippet": "。\n我的威胁度变了…\n也就是说，我跟江坂之间的力"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q38",
+      "type": "fact",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 1,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c273",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c403",
+          "score": 14.7082,
+          "snippet": "【江坂】「什么？你说市内样子很诡异？」\n江坂带着"
+        },
+        {
+          "chunk_id": "seen08000_c159",
+          "score": 13.9632,
+          "snippet": "（连这么大的怪物都…）\n脚直打哆嗦。\n不想靠近。"
+        },
+        {
+          "chunk_id": "seen08000_c059",
+          "score": 13.9423,
+          "snippet": "手术后，派罗曾在一段时间里变得非常的惧怕人，甚至"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q39",
+      "type": "fact",
+      "anchor_layer": "structural",
+      "gold_chunks": 3,
+      "first_hit": 5,
+      "recall@5": 0.3333,
+      "overlap": [
+        "直升机"
+      ],
+      "overlap_all": [
+        "森林",
+        "直升机"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c413",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c414",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c415",
+          "rank": 5,
+          "score": 17.3394
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c410",
+          "score": 20.895,
+          "snippet": "第二天早晨。\n我从市里收到了收获祭延期举行的紧急"
+        },
+        {
+          "chunk_id": "seen08000_c433",
+          "score": 20.8711,
+          "snippet": "【今宫】「天王寺…在这附近晃悠你到底是怎么想的，"
+        },
+        {
+          "chunk_id": "seen08000_c296",
+          "score": 18.262,
+          "snippet": "【瑚太朗】「不，是第一次见面哟。」\n【津久野】「"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q40",
+      "type": "temporal",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 2,
+      "first_hit": 1,
+      "recall@5": 0.5,
+      "overlap": [],
+      "overlap_all": [
+        "哪儿"
+      ],
+      "novel_high_df": [],
+      "suggestion": "keep",
+      "rule": "partial_keep",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c285",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c287",
+          "rank": 1,
+          "score": 29.7139
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c066",
+          "score": 24.856,
+          "snippet": "说话的是一位身着高档洋装，身材高大的老太太。\n我"
+        },
+        {
+          "chunk_id": "seen08000_c068",
+          "score": 24.5828,
+          "snippet": "像是审问一样的１５分钟过去了。\n加岛樱把背靠在了"
+        },
+        {
+          "chunk_id": "seen08000_c067",
+          "score": 24.0814,
+          "snippet": "【瑚太朗】「是想说我不参加集会的事情吗？」\n【樱"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q41",
+      "type": "fact",
+      "anchor_layer": "literal",
+      "gold_chunks": 2,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [
+        "新型",
+        "麻药",
+        "生产",
+        "工厂"
+      ],
+      "overlap_all": [
+        "新型",
+        "麻药",
+        "生产",
+        "工厂",
+        "行动",
+        "选择"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c192",
+          "rank": 1,
+          "score": 34.6139
+        },
+        {
+          "chunk_id": "seen08000_c207",
+          "rank": 3,
+          "score": 23.6157
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c351",
+          "score": 23.7009,
+          "snippet": "同日，１８：００――\n先头调查小队，进入了森林。"
+        },
+        {
+          "chunk_id": "seen08000_c059",
+          "score": 22.8789,
+          "snippet": "手术后，派罗曾在一段时间里变得非常的惧怕人，甚至"
+        },
+        {
+          "chunk_id": "seen08000_c193",
+          "score": 21.9337,
+          "snippet": "【情报官】「已经确认了的魔物大部分都是猎犬和鸟，"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q42",
+      "type": "fact",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 2,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c087",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c088",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c053",
+          "score": 24.3382,
+          "snippet": "着自身。\n她父母想必是抱着些许期待才带着女儿来的"
+        },
+        {
+          "chunk_id": "seen08000_c334",
+          "score": 23.7768,
+          "snippet": "这样的待遇，大概是被解雇了吧。\n居身之处也被破坏"
+        },
+        {
+          "chunk_id": "seen08000_c349",
+          "score": 23.698,
+          "snippet": "因为篝在全世界各地都有出现的可能性，所以如果没有"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q43",
+      "type": "yesno",
+      "anchor_layer": "literal",
+      "gold_chunks": 2,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [
+        "圣歌",
+        "熟人"
+      ],
+      "overlap_all": [
+        "圣歌",
+        "熟人"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c381",
+          "rank": 1,
+          "score": 21.1432
+        },
+        {
+          "chunk_id": "seen08000_c448",
+          "rank": 3,
+          "score": 17.3542
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c447",
+          "score": 17.4621,
+          "snippet": "（歌声…停下了？）\n那是一个平坦的空间。\n那是一"
+        },
+        {
+          "chunk_id": "seen08000_c131",
+          "score": 16.9854,
+          "snippet": "【瑚太朗】「我是铃木……凡人。」\n【瑚太朗】「总"
+        },
+        {
+          "chunk_id": "seen08000_c134",
+          "score": 16.5151,
+          "snippet": "突然井子的脸色变得阴沉了。\n【井子】「但是人手却"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q44",
+      "type": "yesno",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 2,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c427",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c428",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c452",
+          "score": 15.4495,
+          "snippet": "在我的呐喊之中，朱音虽然不能说话，但是也发出了叫"
+        },
+        {
+          "chunk_id": "seen08000_c384",
+          "score": 12.7898,
+          "snippet": "很少见地，被西九条给叫出来了。\n就在平常的家庭餐"
+        },
+        {
+          "chunk_id": "seen08000_c017",
+          "score": 11.6823,
+          "snippet": "不支撑着这个马上就要一边倒的孩子可不行。\n目光一"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q45",
+      "type": "yesno",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 1,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c308",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c276",
+          "score": 15.5684,
+          "snippet": "【小鸟】「老是发生些让人伤心的事，为什么你不能对"
+        },
+        {
+          "chunk_id": "seen08000_c439",
+          "score": 15.4452,
+          "snippet": "今宫和西九条，带着困惑的表情站立着。\n【瑚太朗】"
+        },
+        {
+          "chunk_id": "seen08000_c309",
+          "score": 14.167,
+          "snippet": "【瑚太朗】「没有相当特殊的事情发生的话…是不能实"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q46",
+      "type": "yesno",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 1,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c315",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c483",
+          "score": 16.446,
+          "snippet": "【？】「谁知道呢，为什么呢，你们几个人去想吧。」"
+        },
+        {
+          "chunk_id": "seen08000_c131",
+          "score": 14.3736,
+          "snippet": "【瑚太朗】「我是铃木……凡人。」\n【瑚太朗】「总"
+        },
+        {
+          "chunk_id": "seen08000_c124",
+          "score": 13.2954,
+          "snippet": "。\n…真是随随便便地起了个“适当”的假名啊。\n虽"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q47",
+      "type": "yesno",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 1,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c325",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c320",
+          "score": 21.7473,
+          "snippet": "【洲崎】「你只要想着在轨道上好好地跑就好了。懂了"
+        },
+        {
+          "chunk_id": "seen08000_c067",
+          "score": 20.7395,
+          "snippet": "【瑚太朗】「是想说我不参加集会的事情吗？」\n【樱"
+        },
+        {
+          "chunk_id": "seen08000_c299",
+          "score": 20.7284,
+          "snippet": "【瑚太朗】「好疼！？」\n【洲崎】「放心了。」\n【"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q48",
+      "type": "yesno",
+      "anchor_layer": "structural",
+      "gold_chunks": 3,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c437",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c438",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c439",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c436",
+          "score": 26.2741,
+          "snippet": "但是考虑到要是探路的话，还有更合适的人选，所以我"
+        },
+        {
+          "chunk_id": "seen08000_c353",
+          "score": 20.881,
+          "snippet": "【瑚太朗】「现在可不是能进行调查的状况啊。」\n【"
+        },
+        {
+          "chunk_id": "seen08000_c086",
+          "score": 17.9755,
+          "snippet": "【今宫】「但是你不是有实战经验的人吗？　怎能让我"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q49",
+      "type": "yesno",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 2,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [
+        "城市"
+      ],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c303",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c304",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c301",
+          "score": 20.5865,
+          "snippet": "【洲崎】「…“键”为什么很重要，你不想知道吗？」"
+        },
+        {
+          "chunk_id": "seen08000_c302",
+          "score": 20.5176,
+          "snippet": "眼前是，城市。\n是见惯了的风祭市。\n但是这里…不"
+        },
+        {
+          "chunk_id": "seen08000_c069",
+          "score": 18.4024,
+          "snippet": "【瑚太朗】「从刚刚开始…就不明白你在说什么。」\n"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q50",
+      "type": "yesno",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 1,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c226",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c300",
+          "score": 16.0976,
+          "snippet": "【洲崎】「真奇怪啊。只是闲聊的程度会连“键”都作"
+        },
+        {
+          "chunk_id": "seen08000_c048",
+          "score": 13.6699,
+          "snippet": "【小鸟】「…」\n【瑚太朗】「…」\n这糟糕的气氛。"
+        },
+        {
+          "chunk_id": "seen08000_c101",
+          "score": 13.3472,
+          "snippet": "【长居】「…你看起来过得也很辛苦啊。」\n【长居】"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q51",
+      "type": "yesno",
+      "anchor_layer": "structural",
+      "gold_chunks": 3,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c434",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c441",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c442",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c439",
+          "score": 17.4792,
+          "snippet": "今宫和西九条，带着困惑的表情站立着。\n【瑚太朗】"
+        },
+        {
+          "chunk_id": "seen08000_c179",
+          "score": 15.2043,
+          "snippet": "【今宫】「不积攒经验值不行啊。」\n【西九条】「天"
+        },
+        {
+          "chunk_id": "seen08000_c451",
+          "score": 14.5457,
+          "snippet": "但是…要一个个地杀掉这些人，然后把朱音一个人带走"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q52",
+      "type": "yesno",
+      "anchor_layer": "structural",
+      "gold_chunks": 3,
+      "first_hit": 4,
+      "recall@5": 0.3333,
+      "overlap": [],
+      "overlap_all": [
+        "森林"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c351",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c352",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c353",
+          "rank": 4,
+          "score": 15.1231
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c085",
+          "score": 16.5004,
+          "snippet": "我学到了，既然有魔物，必然会有操纵着那个魔物的魔"
+        },
+        {
+          "chunk_id": "seen08000_c230",
+          "score": 16.4889,
+          "snippet": "【瑚太朗】「…战争和国家间的纠纷吗？」\n不是个人"
+        },
+        {
+          "chunk_id": "seen08000_c298",
+          "score": 15.5728,
+          "snippet": "【洲崎】「在这之前，我有要确认的事情。」\n【瑚太"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q53",
+      "type": "yesno",
+      "anchor_layer": "structural",
+      "gold_chunks": 3,
+      "first_hit": 2,
+      "recall@5": 1.0,
+      "overlap": [
+        "圣歌",
+        "歌声",
+        "树木"
+      ],
+      "overlap_all": [
+        "圣歌",
+        "歌声",
+        "树木"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c418",
+          "rank": 2,
+          "score": 21.3634
+        },
+        {
+          "chunk_id": "seen08000_c432",
+          "rank": 4,
+          "score": 19.7109
+        },
+        {
+          "chunk_id": "seen08000_c447",
+          "rank": 5,
+          "score": 18.6472
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c381",
+          "score": 22.9553,
+          "snippet": "虽然我曾经认为那么做就能产生美好的记忆…现在看来"
+        },
+        {
+          "chunk_id": "seen08000_c363",
+          "score": 19.9654,
+          "snippet": "途中，发现了三具死尸。\n还有激战过的痕迹。\n虽然"
+        },
+        {
+          "chunk_id": "seen08000_c443",
+          "score": 15.8578,
+          "snippet": "我进入了神殿范围之内。\n虽然我保持着警戒，却没有"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q54",
+      "type": "temporal",
+      "anchor_layer": "structural",
+      "gold_chunks": 2,
+      "first_hit": 5,
+      "recall@5": 0.5,
+      "overlap": [
+        "双亲",
+        "招揽"
+      ],
+      "overlap_all": [
+        "双亲",
+        "招揽"
+      ],
+      "novel_high_df": [],
+      "suggestion": "keep",
+      "rule": "partial_keep",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c066",
+          "rank": 6,
+          "score": 12.7428
+        },
+        {
+          "chunk_id": "seen08000_c074",
+          "rank": 5,
+          "score": 12.7531
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c300",
+          "score": 17.5162,
+          "snippet": "【洲崎】「真奇怪啊。只是闲聊的程度会连“键”都作"
+        },
+        {
+          "chunk_id": "seen08000_c298",
+          "score": 14.258,
+          "snippet": "【洲崎】「在这之前，我有要确认的事情。」\n【瑚太"
+        },
+        {
+          "chunk_id": "seen08000_c299",
+          "score": 13.5486,
+          "snippet": "【瑚太朗】「好疼！？」\n【洲崎】「放心了。」\n【"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q55",
+      "type": "yesno",
+      "anchor_layer": "structural",
+      "gold_chunks": 3,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c097",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c474",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c475",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c353",
+          "score": 16.6326,
+          "snippet": "【瑚太朗】「现在可不是能进行调查的状况啊。」\n【"
+        },
+        {
+          "chunk_id": "seen08000_c085",
+          "score": 13.5502,
+          "snippet": "我学到了，既然有魔物，必然会有操纵着那个魔物的魔"
+        },
+        {
+          "chunk_id": "seen08000_c114",
+          "score": 13.1391,
+          "snippet": "部队。\n是给超人进行战斗技术的考察、实证、指导的"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q56",
+      "type": "temporal",
+      "anchor_layer": "literal",
+      "gold_chunks": 2,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [
+        "体能",
+        "测试",
+        "排名",
+        "墙壁"
+      ],
+      "overlap_all": [
+        "体能",
+        "测试",
+        "排名",
+        "训练",
+        "墙壁"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c091",
+          "rank": 1,
+          "score": 16.1534
+        },
+        {
+          "chunk_id": "seen08000_c094",
+          "rank": 2,
+          "score": 15.208
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c105",
+          "score": 11.1461,
+          "snippet": "早晨的训练。\n我比他人更早出来，见到清水教官和江"
+        },
+        {
+          "chunk_id": "seen08000_c449",
+          "score": 11.0392,
+          "snippet": "【井子】「天空现在是什么颜色的？」\n【瑚太朗】「"
+        },
+        {
+          "chunk_id": "seen08000_c155",
+          "score": 10.1725,
+          "snippet": "【瑚太朗】「…战斗！」\n看来是和魔物陷入了交战状"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q57",
+      "type": "temporal",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 2,
+      "first_hit": 1,
+      "recall@5": 0.5,
+      "overlap": [],
+      "overlap_all": [
+        "神殿"
+      ],
+      "novel_high_df": [],
+      "suggestion": "keep",
+      "rule": "partial_keep",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c292",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c397",
+          "rank": 1,
+          "score": 20.0679
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c254",
+          "score": 17.5269,
+          "snippet": "【西九条】「发生了各种各样的事哟。」\n【瑚太朗】"
+        },
+        {
+          "chunk_id": "seen08000_c233",
+          "score": 15.7797,
+          "snippet": "则用其他名字准备了两个地方。\n那些在万一的时候，"
+        },
+        {
+          "chunk_id": "seen08000_c239",
+          "score": 14.8468,
+          "snippet": "哦来了。\n正中红心。\n风祭综合文化大厅。\n占地面"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q58",
+      "type": "temporal",
+      "anchor_layer": "structural",
+      "gold_chunks": 2,
+      "first_hit": 1,
+      "recall@5": 0.5,
+      "overlap": [
+        "圆筒"
+      ],
+      "overlap_all": [
+        "圆筒",
+        "接近"
+      ],
+      "novel_high_df": [],
+      "suggestion": "keep",
+      "rule": "partial_keep",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c262",
+          "rank": 10,
+          "score": 19.6909
+        },
+        {
+          "chunk_id": "seen08000_c288",
+          "rank": 1,
+          "score": 27.5616
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c287",
+          "score": 25.2888,
+          "snippet": "灌注了加岛樱力量的视线，毫不留情地贯穿了我。\n【"
+        },
+        {
+          "chunk_id": "seen08000_c325",
+          "score": 23.0786,
+          "snippet": "【樱】「以前，我有和你谈过呢。」\n【瑚太朗】「…"
+        },
+        {
+          "chunk_id": "seen08000_c299",
+          "score": 22.9282,
+          "snippet": "【瑚太朗】「好疼！？」\n【洲崎】「放心了。」\n【"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q59",
+      "type": "temporal",
+      "anchor_layer": "structural",
+      "gold_chunks": 3,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c159",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c160",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c165",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c130",
+          "score": 14.6703,
+          "snippet": "【少女】「………」\n…似曾相识的感觉。\n靠近她仔"
+        },
+        {
+          "chunk_id": "seen08000_c095",
+          "score": 12.8256,
+          "snippet": "【三国】「那个人会自己出手招募新人可不是那么常见"
+        },
+        {
+          "chunk_id": "seen08000_c155",
+          "score": 12.7036,
+          "snippet": "【瑚太朗】「…战斗！」\n看来是和魔物陷入了交战状"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q60",
+      "type": "temporal",
+      "anchor_layer": "structural",
+      "gold_chunks": 3,
+      "first_hit": 1,
+      "recall@5": 0.6667,
+      "overlap": [
+        "收获",
+        "祭典",
+        "约定"
+      ],
+      "overlap_all": [
+        "收获",
+        "祭典",
+        "约定",
+        "森林"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c077",
+          "rank": 3,
+          "score": 22.2754
+        },
+        {
+          "chunk_id": "seen08000_c078",
+          "rank": 1,
+          "score": 28.9353
+        },
+        {
+          "chunk_id": "seen08000_c273",
+          "rank": 6,
+          "score": 21.3801
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c309",
+          "score": 22.3595,
+          "snippet": "【瑚太朗】「没有相当特殊的事情发生的话…是不能实"
+        },
+        {
+          "chunk_id": "seen08000_c408",
+          "score": 21.8039,
+          "snippet": "【瑚太朗】「唯一的可能性，那就是展示“美好的记忆"
+        },
+        {
+          "chunk_id": "seen08000_c060",
+          "score": 21.4256,
+          "snippet": "【小鸟】「…只要顺便注意下就行，拜托了。」\n【瑚"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q61",
+      "type": "temporal",
+      "anchor_layer": "structural",
+      "gold_chunks": 2,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [
+        "藏身处"
+      ],
+      "overlap_all": [
+        "藏身处"
+      ],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c366",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c369",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c364",
+          "score": 11.0291,
+          "snippet": "，艰难地走动着。\n【大西】「跟魔物使战斗了一场…"
+        },
+        {
+          "chunk_id": "seen08000_c354",
+          "score": 10.4243,
+          "snippet": "将鸟型魔物们放飞，试着从上空进行搜索。\n没过多久"
+        },
+        {
+          "chunk_id": "seen08000_c336",
+          "score": 9.38,
+          "snippet": "因为就一个孩子住着的原因吗，在显得格外冷清的起居"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q62",
+      "type": "temporal",
+      "anchor_layer": "literal",
+      "gold_chunks": 2,
+      "first_hit": 1,
+      "recall@5": 1.0,
+      "overlap": [
+        "介绍",
+        "战友"
+      ],
+      "overlap_all": [
+        "介绍",
+        "战友"
+      ],
+      "novel_high_df": [],
+      "suggestion": "literal",
+      "rule": "literal_r5full",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c384",
+          "rank": 2,
+          "score": 20.3289
+        },
+        {
+          "chunk_id": "seen08000_c387",
+          "rank": 1,
+          "score": 21.2488
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c386",
+          "score": 16.1646,
+          "snippet": "【今宫】「国内的话太冒险。但是，盲目地寻找已经停"
+        },
+        {
+          "chunk_id": "seen08000_c116",
+          "score": 13.4057,
+          "snippet": "【今宫】「勇者的慧眼果然与众不同，只要不是杂鱼的"
+        },
+        {
+          "chunk_id": "seen08000_c255",
+          "score": 13.4041,
+          "snippet": "【今宫】「就在那种有大量盖亚主义者的地方，我们一"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q63",
+      "type": "aggregate",
+      "anchor_layer": "structural",
+      "gold_chunks": 3,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [
+        "为了",
+        "过去"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c238",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c241",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c285",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c353",
+          "score": 21.7355,
+          "snippet": "【瑚太朗】「现在可不是能进行调查的状况啊。」\n【"
+        },
+        {
+          "chunk_id": "seen08000_c392",
+          "score": 21.6242,
+          "snippet": "【瑚太朗】「目前来看，需要比现在更发达的观测技术"
+        },
+        {
+          "chunk_id": "seen08000_c380",
+          "score": 20.0328,
+          "snippet": "好久没跟洲崎对话了。\n【洲崎】「还不算久，之前的"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q64",
+      "type": "aggregate",
+      "anchor_layer": "structural",
+      "gold_chunks": 5,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [
+        "开枪"
+      ],
+      "overlap_all": [
+        "开枪"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c006",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c196",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c197",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c408",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c420",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c202",
+          "score": 15.2264,
+          "snippet": "房间里聚集着很多人，几乎是人挤人的状态、\n其中有"
+        },
+        {
+          "chunk_id": "seen08000_c181",
+          "score": 15.0536,
+          "snippet": "【江坂】「…天王寺。那样的话，就会变成真正的“工"
+        },
+        {
+          "chunk_id": "seen08000_c254",
+          "score": 13.659,
+          "snippet": "【西九条】「发生了各种各样的事哟。」\n【瑚太朗】"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q65",
+      "type": "aggregate",
+      "anchor_layer": "structural",
+      "gold_chunks": 7,
+      "first_hit": 7,
+      "recall@5": 0.0,
+      "overlap": [
+        "灯花"
+      ],
+      "overlap_all": [
+        "灯花",
+        "时间"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c092",
+          "rank": 7,
+          "score": 19.2154
+        },
+        {
+          "chunk_id": "seen08000_c093",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c140",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c253",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c384",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c439",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c477",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c119",
+          "score": 21.9046,
+          "snippet": "基础训练课程，结束了。\n最后那天晚上，组织请我们"
+        },
+        {
+          "chunk_id": "seen08000_c181",
+          "score": 20.9039,
+          "snippet": "【江坂】「…天王寺。那样的话，就会变成真正的“工"
+        },
+        {
+          "chunk_id": "seen08000_c123",
+          "score": 20.8982,
+          "snippet": "到达了风祭市。\n虽然感觉像是离开了几年，但其实只"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q66",
+      "type": "aggregate",
+      "anchor_layer": "structural",
+      "gold_chunks": 3,
+      "first_hit": 1,
+      "recall@5": 0.3333,
+      "overlap": [
+        "教诲"
+      ],
+      "overlap_all": [
+        "先生",
+        "教诲"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c111",
+          "rank": 6,
+          "score": 16.3717
+        },
+        {
+          "chunk_id": "seen08000_c125",
+          "rank": 8,
+          "score": 16.0952
+        },
+        {
+          "chunk_id": "seen08000_c280",
+          "rank": 1,
+          "score": 19.2611
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c279",
+          "score": 18.2933,
+          "snippet": "【江坂】「在、在厕所里…吃饭！？」\n江坂震惊地颤"
+        },
+        {
+          "chunk_id": "seen08000_c403",
+          "score": 18.1334,
+          "snippet": "【江坂】「什么？你说市内样子很诡异？」\n江坂带着"
+        },
+        {
+          "chunk_id": "seen08000_c224",
+          "score": 17.9988,
+          "snippet": "（不在…吗？）\n当时。\n在收获祭作战中，我放走了"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q67",
+      "type": "aggregate",
+      "anchor_layer": "structural",
+      "gold_chunks": 5,
+      "first_hit": 3,
+      "recall@5": 0.2,
+      "overlap": [],
+      "overlap_all": [
+        "直接"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c158",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c159",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c361",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c443",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c444",
+          "rank": 3,
+          "score": 13.2539
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c317",
+          "score": 15.7136,
+          "snippet": "在封闭而原始的世界里连财富与多样的物质都失去了，"
+        },
+        {
+          "chunk_id": "seen08000_c392",
+          "score": 14.1146,
+          "snippet": "【瑚太朗】「目前来看，需要比现在更发达的观测技术"
+        },
+        {
+          "chunk_id": "seen08000_c041",
+          "score": 11.6019,
+          "snippet": "但要想制止他，肯定会演变为打架事件，这我还是明白"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q68",
+      "type": "aggregate",
+      "anchor_layer": "structural",
+      "gold_chunks": 4,
+      "first_hit": 1,
+      "recall@5": 0.5,
+      "overlap": [
+        "传闻",
+        "现象"
+      ],
+      "overlap_all": [
+        "传闻",
+        "现象"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c245",
+          "rank": 10,
+          "score": 9.7929
+        },
+        {
+          "chunk_id": "seen08000_c271",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c304",
+          "rank": 1,
+          "score": 13.3611
+        },
+        {
+          "chunk_id": "seen08000_c396",
+          "rank": 3,
+          "score": 12.787
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c325",
+          "score": 13.0281,
+          "snippet": "【樱】「以前，我有和你谈过呢。」\n【瑚太朗】「…"
+        },
+        {
+          "chunk_id": "seen08000_c392",
+          "score": 11.0861,
+          "snippet": "【瑚太朗】「目前来看，需要比现在更发达的观测技术"
+        },
+        {
+          "chunk_id": "seen08000_c079",
+          "score": 10.7107,
+          "snippet": "我加入的这个组织，并没有一个在人前的固定称呼。\n"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q78",
+      "type": "aggregate",
+      "anchor_layer": "structural",
+      "gold_chunks": 6,
+      "first_hit": 1,
+      "recall@5": 0.6667,
+      "overlap": [
+        "人工",
+        "来世",
+        "避难所"
+      ],
+      "overlap_all": [
+        "人工",
+        "来世",
+        "作为",
+        "避难所",
+        "这个",
+        "计划"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c306",
+          "rank": 1,
+          "score": 25.3473
+        },
+        {
+          "chunk_id": "seen08000_c312",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c316",
+          "rank": 2,
+          "score": 25.173
+        },
+        {
+          "chunk_id": "seen08000_c320",
+          "rank": 4,
+          "score": 19.8575
+        },
+        {
+          "chunk_id": "seen08000_c339",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c451",
+          "rank": 5,
+          "score": 17.6614
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c303",
+          "score": 22.264,
+          "snippet": "【洲崎】「因为不能够测量，所以也不会产生物理上的"
+        },
+        {
+          "chunk_id": "seen08000_c266",
+          "score": 17.2279,
+          "snippet": "洲崎说在母神会有间谍。\n关于那个，我试着委婉地试"
+        },
+        {
+          "chunk_id": "seen08000_c259",
+          "score": 17.2267,
+          "snippet": "【洲崎】「你，是铃木君吧？」\n【瑚太朗】「是的，"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q79",
+      "type": "aggregate",
+      "anchor_layer": "structural",
+      "gold_chunks": 2,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [],
+      "overlap_all": [],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c403",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c468",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c392",
+          "score": 8.4374,
+          "snippet": "【瑚太朗】「目前来看，需要比现在更发达的观测技术"
+        },
+        {
+          "chunk_id": "seen08000_c202",
+          "score": 7.633,
+          "snippet": "房间里聚集着很多人，几乎是人挤人的状态、\n其中有"
+        },
+        {
+          "chunk_id": "seen08000_c456",
+          "score": 7.3323,
+          "snippet": "我工作的成果已经出来了吗？\n我爬上了最高的大楼。"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q80",
+      "type": "aggregate",
+      "anchor_layer": "structural",
+      "gold_chunks": 7,
+      "first_hit": 1,
+      "recall@5": 0.4286,
+      "overlap": [
+        "美好",
+        "哪些",
+        "做法"
+      ],
+      "overlap_all": [
+        "为了",
+        "美好",
+        "记忆",
+        "阻止",
+        "星球",
+        "毁灭",
+        "哪些",
+        "做法"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c228",
+          "rank": 2,
+          "score": 27.6569
+        },
+        {
+          "chunk_id": "seen08000_c381",
+          "rank": 3,
+          "score": 25.6904
+        },
+        {
+          "chunk_id": "seen08000_c392",
+          "rank": 1,
+          "score": 30.7344
+        },
+        {
+          "chunk_id": "seen08000_c402",
+          "rank": 6,
+          "score": 20.0418
+        },
+        {
+          "chunk_id": "seen08000_c408",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c433",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c465",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c229",
+          "score": 22.6554,
+          "snippet": "这印象操作到底有啥意义啊。\n【瑚太朗】「…能、能"
+        },
+        {
+          "chunk_id": "seen08000_c236",
+          "score": 21.057,
+          "snippet": "【篝】「那是再进化发生的时候，现在的生命正在打开"
+        },
+        {
+          "chunk_id": "seen08000_c328",
+          "score": 19.9749,
+          "snippet": "【篝】「那就是说，你们就在一边眼睁睁地看着大地枯"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q83",
+      "type": "temporal",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 2,
+      "first_hit": 2,
+      "recall@5": 0.5,
+      "overlap": [
+        "派罗"
+      ],
+      "overlap_all": [
+        "派罗"
+      ],
+      "novel_high_df": [],
+      "suggestion": "keep",
+      "rule": "partial_keep",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c058",
+          "rank": 2,
+          "score": 29.4866
+        },
+        {
+          "chunk_id": "seen08000_c077",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c060",
+          "score": 30.9584,
+          "snippet": "【小鸟】「…只要顺便注意下就行，拜托了。」\n【瑚"
+        },
+        {
+          "chunk_id": "seen08000_c059",
+          "score": 29.4019,
+          "snippet": "手术后，派罗曾在一段时间里变得非常的惧怕人，甚至"
+        },
+        {
+          "chunk_id": "seen08000_c056",
+          "score": 27.9555,
+          "snippet": "【瑚太朗】「什么啊，那脏兮兮的狗？」\n【小鸟】「"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q84",
+      "type": "temporal",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 2,
+      "first_hit": null,
+      "recall@5": 0.0,
+      "overlap": [
+        "勒索"
+      ],
+      "overlap_all": [
+        "勒索",
+        "那个"
+      ],
+      "novel_high_df": [],
+      "suggestion": "semantic_gap",
+      "rule": "semantic_gap_miss",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c039",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c041",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c040",
+          "score": 31.0184,
+          "snippet": "【瑚太朗】「把母亲叫做妈妈。跟人吵架被弄哭后会跑"
+        },
+        {
+          "chunk_id": "seen08000_c038",
+          "score": 30.339,
+          "snippet": "遇见了三个小混混。\n其中两个被我轻松打翻在地了，"
+        },
+        {
+          "chunk_id": "seen08000_c051",
+          "score": 29.3602,
+          "snippet": "神户小鸟是个聪明的小孩。\n也许是天生的。\n就是所"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q85",
+      "type": "temporal",
+      "anchor_layer": "structural",
+      "gold_chunks": 3,
+      "first_hit": 1,
+      "recall@5": 0.6667,
+      "overlap": [
+        "自家",
+        "寻狗"
+      ],
+      "overlap_all": [
+        "自家",
+        "寻狗"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c050",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c059",
+          "rank": 1,
+          "score": 50.7522
+        },
+        {
+          "chunk_id": "seen08000_c060",
+          "rank": 3,
+          "score": 35.8229
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c056",
+          "score": 39.9553,
+          "snippet": "【瑚太朗】「什么啊，那脏兮兮的狗？」\n【小鸟】「"
+        },
+        {
+          "chunk_id": "seen08000_c058",
+          "score": 34.0531,
+          "snippet": "派罗。\n是只曾在某处被虐待过的狗。\n虽然不清楚详"
+        },
+        {
+          "chunk_id": "seen08000_c057",
+          "score": 31.6617,
+          "snippet": "【瑚太朗】「哦，你竟然是那么富有同情心的人啊。」"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q88",
+      "type": "aggregate",
+      "anchor_layer": "structural",
+      "gold_chunks": 4,
+      "first_hit": 1,
+      "recall@5": 0.5,
+      "overlap": [
+        "窃听器",
+        "录音机"
+      ],
+      "overlap_all": [
+        "窃听器",
+        "录音机"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c300",
+          "rank": 10,
+          "score": 9.596
+        },
+        {
+          "chunk_id": "seen08000_c322",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c351",
+          "rank": 1,
+          "score": 12.8938
+        },
+        {
+          "chunk_id": "seen08000_c405",
+          "rank": 2,
+          "score": 11.6203
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c247",
+          "score": 11.5901,
+          "snippet": "来到森林深处，看到了篝的身影。\n【篝】「状况怎么"
+        },
+        {
+          "chunk_id": "seen08000_c123",
+          "score": 11.4193,
+          "snippet": "到达了风祭市。\n虽然感觉像是离开了几年，但其实只"
+        },
+        {
+          "chunk_id": "seen08000_c392",
+          "score": 11.2764,
+          "snippet": "【瑚太朗】「目前来看，需要比现在更发达的观测技术"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q89",
+      "type": "aggregate",
+      "anchor_layer": "structural",
+      "gold_chunks": 6,
+      "first_hit": 1,
+      "recall@5": 0.3333,
+      "overlap": [
+        "系统"
+      ],
+      "overlap_all": [
+        "超人",
+        "能力",
+        "系统"
+      ],
+      "novel_high_df": [],
+      "suggestion": "structural",
+      "rule": "structural_ge3",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c094",
+          "rank": 1,
+          "score": 22.8912
+        },
+        {
+          "chunk_id": "seen08000_c099",
+          "rank": 3,
+          "score": 22.2804
+        },
+        {
+          "chunk_id": "seen08000_c103",
+          "rank": null,
+          "score": null
+        },
+        {
+          "chunk_id": "seen08000_c114",
+          "rank": 8,
+          "score": 19.9224
+        },
+        {
+          "chunk_id": "seen08000_c145",
+          "rank": 10,
+          "score": 17.9774
+        },
+        {
+          "chunk_id": "seen08000_c187",
+          "rank": null,
+          "score": null
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c112",
+          "score": 22.8322,
+          "snippet": "。\n我的威胁度变了…\n也就是说，我跟江坂之间的力"
+        },
+        {
+          "chunk_id": "seen08000_c181",
+          "score": 21.326,
+          "snippet": "【江坂】「…天王寺。那样的话，就会变成真正的“工"
+        },
+        {
+          "chunk_id": "seen08000_c334",
+          "score": 20.362,
+          "snippet": "这样的待遇，大概是被解雇了吧。\n居身之处也被破坏"
+        }
+      ],
+      "extra_arms": {}
+    },
+    {
+      "qid": "Q90",
+      "type": "fact",
+      "anchor_layer": "semantic_gap",
+      "gold_chunks": 1,
+      "first_hit": 6,
+      "recall@5": 0.0,
+      "overlap": [
+        "行星"
+      ],
+      "overlap_all": [
+        "行星"
+      ],
+      "novel_high_df": [],
+      "suggestion": "keep",
+      "rule": "partial_keep",
+      "gold_hits": [
+        {
+          "chunk_id": "seen08000_c227",
+          "rank": 6,
+          "score": 15.186
+        }
+      ],
+      "distractors": [
+        {
+          "chunk_id": "seen08000_c328",
+          "score": 19.3813,
+          "snippet": "【篝】「那就是说，你们就在一边眼睁睁地看着大地枯"
+        },
+        {
+          "chunk_id": "seen08000_c226",
+          "score": 17.2351,
+          "snippet": "她从山丘上眺望着城市。\n与那时相同的身姿。\n给予"
+        },
+        {
+          "chunk_id": "seen08000_c236",
+          "score": 17.1022,
+          "snippet": "【篝】「那是再进化发生的时候，现在的生命正在打开"
+        }
+      ],
+      "extra_arms": {}
+    }
+  ]
+}

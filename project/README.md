@@ -197,7 +197,7 @@ entities+cards+events ──index_graph.py(T11)──▶ graph_expand / hybrid3_
 | --- | --- |
 | `lines.jsonl` | 11,033 行台词，行级真值结构（rfid/说话人/src_line/bgm） |
 | `scenes.jsonl` | 483 个 chunk（三级边界信号真值切分），rfid 区间 1→15084 |
-| `choices.json` | 47 个选择肢节点 |
+| `choices.json` | 52 个选择肢节点（含真伪标注 `has_branch`；T9 图谱采用其中 47 个 `selbtn_start` 节点，见"图谱管线"节——引用数字时注意口径） |
 
 图谱派生数据在 `project/data/`（**进 git、不进 zip**，重建链路见上节：graph_build →
 graph_extract → graph_assemble，前两步可从缓存零费用复现）：`graph_entities.json`（T9 零
@@ -212,7 +212,8 @@ LLM）/ `graph_cards.jsonl` + `graph_cards_extract_log.json`（T10 LLM 抽取卡
 
 重建方式（README 声明，替代打包剧本）：
 1. `siglus-ssu 0.4.0 -x --disam --angou <游戏目录>` 反汇编 `seen08000.dat` → `structure/`；
-2. `python ../Rewrite_terra/src/parse_disasm.py` 解析出 `data/`。
+2. `python src/parse_disasm.py` 解析出 `data/`（脚本为本仓库内副本，与 Rewrite_terra/src/
+   原件逐字节一致；其头部 `BASE` 常量为绝对路径，跨机器重建时改成自己的 Rewrite_terra 目录）。
 
 来源声明：Rewrite © Key/VisualArt's；汉化文本来自 A·T Field 补丁。仅课程使用，
 不随 zip 分发；反汇编 `.txt` 含剧本全文，同为派生数据不进包。
@@ -241,7 +242,8 @@ project/
 │   ├── evaluate.py          # Recall@k / MRR + 答案层(标签/拒答/引用/解析) + rfid 查表
 │   ├── qaset_analysis.py / eval/validate_qaset.py / eval/calibrate_qaset.py
 │   │                        # 评测集构建/校验/层标定工具链
-│   └── analyze_truncation.py# 512 截尾影响评估（三级口径 + A/B/C 分组对照）
+│   ├── analyze_truncation.py# 512 截尾影响评估（三级口径 + A/B/C 分组对照）
+│   └── parse_disasm.py      # Day1 反汇编解析（仓库内副本，重建链路第 2 步；BASE 常量按本机修改）
 ├── data/user_dict.txt       # jieba 自定义词典（进 zip）
 ├── data/graph_*.json[l]     # 图谱派生数据(进 git 不进 zip; 重建链路见"图谱管线"节)
 ├── cache/                   # 可再生缓存(不进 git): emb_*.npy 向量 + llm_*.json 响应
