@@ -1,0 +1,1342 @@
+{
+  "task": "T16 生成侧消融: k∈{3,5,10} × 图谱开/关(重试执行)",
+  "date": "2026-10-27",
+  "axis_note": "k5 两组为既有基线 run(20261026-222529 关/20261026-223110 开); k3/k10 四组为本任务新增, config 与 main.yaml 仅 generation.{retriever,top_k} 两处不同(configs/ablation_t16/)。judge 指标一律 v2 模板(judge.py TOP_K 动态化后复评, 证据数=各 run 生成时 top_k)。",
+  "groups": [
+    "hybrid_rrf(图谱关) k=3 (runs/20261027-225235)",
+    "hybrid_rrf(图谱关) k=5 (runs/20261026-222529)",
+    "hybrid_rrf(图谱关) k=10 (runs/20261027-225935)",
+    "hybrid3_rrf(图谱开) k=3 (runs/20261027-230615)",
+    "hybrid3_rrf(图谱开) k=5 (runs/20261026-223110)",
+    "hybrid3_rrf(图谱开) k=10 (runs/20261027-231324)"
+  ],
+  "main_table": {
+    "off_k3": {
+      "arm": "off",
+      "arm_name": "hybrid_rrf(图谱关)",
+      "top_k": 3,
+      "run": "20261027-225235",
+      "new_run": true,
+      "label_acc": 0.75,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.5,
+      "citation_entry_valid_rate": 1.0,
+      "citation_intervals": [
+        74,
+        74
+      ],
+      "parse_failures": 0,
+      "judge_score_mean": 3.3148,
+      "judge_faithfulness": 4.7593,
+      "judge_completeness": 2.4259,
+      "judge_conciseness": 4.5185,
+      "judge_hallucination_rate": 0.0,
+      "judge_by_type": {
+        "fact": 3.95,
+        "temporal": 2.6111,
+        "aggregate": 3.3125
+      },
+      "judge_score_distribution": {
+        "1": 0,
+        "2": 11,
+        "3": 27,
+        "4": 4,
+        "5": 12
+      },
+      "judge_template_version": "v2",
+      "prompt_tokens": 239070,
+      "completion_tokens": 5860,
+      "prompt_cache_hit_tokens": 218496,
+      "gen_cost_usd_valley": 0.0073,
+      "gen_cost_usd_peak": 0.0145,
+      "judge_cost_usd_valley": 0.006025,
+      "judge_cost_usd_peak": 0.012051,
+      "latency_p50_s": 0.966,
+      "latency_p95_s": 1.499,
+      "n_network_calls": 90,
+      "n_cache_hits": 0
+    },
+    "off_k5": {
+      "arm": "off",
+      "arm_name": "hybrid_rrf(图谱关)",
+      "top_k": 5,
+      "run": "20261026-222529",
+      "new_run": false,
+      "label_acc": 0.8056,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.6111,
+      "citation_entry_valid_rate": 1.0,
+      "citation_intervals": [
+        83,
+        83
+      ],
+      "parse_failures": 0,
+      "judge_score_mean": 3.3704,
+      "judge_faithfulness": 4.7407,
+      "judge_completeness": 2.5556,
+      "judge_conciseness": 4.4444,
+      "judge_hallucination_rate": 0.0,
+      "judge_by_type": {
+        "fact": 3.9,
+        "temporal": 2.6111,
+        "aggregate": 3.5625
+      },
+      "judge_score_distribution": {
+        "1": 0,
+        "2": 12,
+        "3": 24,
+        "4": 4,
+        "5": 14
+      },
+      "judge_template_version": "v2",
+      "prompt_tokens": 299383,
+      "completion_tokens": 6315,
+      "prompt_cache_hit_tokens": 129536,
+      "gen_cost_usd_valley": 0.0297,
+      "gen_cost_usd_peak": 0.0593,
+      "judge_cost_usd_valley": 0.020571,
+      "judge_cost_usd_peak": 0.041142,
+      "latency_p50_s": null,
+      "latency_p95_s": null,
+      "n_network_calls": 0,
+      "n_cache_hits": 90
+    },
+    "off_k10": {
+      "arm": "off",
+      "arm_name": "hybrid_rrf(图谱关)",
+      "top_k": 10,
+      "run": "20261027-225935",
+      "new_run": true,
+      "label_acc": 0.7778,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.5556,
+      "citation_entry_valid_rate": 1.0,
+      "citation_intervals": [
+        101,
+        101
+      ],
+      "parse_failures": 0,
+      "judge_score_mean": 3.4074,
+      "judge_faithfulness": 4.6111,
+      "judge_completeness": 2.9444,
+      "judge_conciseness": 4.2778,
+      "judge_hallucination_rate": 0.0185,
+      "judge_by_type": {
+        "fact": 4.1,
+        "temporal": 2.7778,
+        "aggregate": 3.25
+      },
+      "judge_score_distribution": {
+        "1": 0,
+        "2": 20,
+        "3": 9,
+        "4": 8,
+        "5": 17
+      },
+      "judge_template_version": "v2",
+      "prompt_tokens": 447736,
+      "completion_tokens": 6825,
+      "prompt_cache_hit_tokens": 278144,
+      "gen_cost_usd_valley": 0.0304,
+      "gen_cost_usd_peak": 0.0607,
+      "judge_cost_usd_valley": 0.020258,
+      "judge_cost_usd_peak": 0.040517,
+      "latency_p50_s": 1.026,
+      "latency_p95_s": 1.597,
+      "n_network_calls": 90,
+      "n_cache_hits": 0
+    },
+    "on_k3": {
+      "arm": "on",
+      "arm_name": "hybrid3_rrf(图谱开)",
+      "top_k": 3,
+      "run": "20261027-230615",
+      "new_run": true,
+      "label_acc": 0.7778,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.5556,
+      "citation_entry_valid_rate": 1.0,
+      "citation_intervals": [
+        77,
+        77
+      ],
+      "parse_failures": 0,
+      "judge_score_mean": 3.3148,
+      "judge_faithfulness": 4.7407,
+      "judge_completeness": 2.3519,
+      "judge_conciseness": 4.4444,
+      "judge_hallucination_rate": 0.0185,
+      "judge_by_type": {
+        "fact": 3.85,
+        "temporal": 2.6667,
+        "aggregate": 3.375
+      },
+      "judge_score_distribution": {
+        "1": 0,
+        "2": 10,
+        "3": 27,
+        "4": 7,
+        "5": 10
+      },
+      "judge_template_version": "v2",
+      "prompt_tokens": 240077,
+      "completion_tokens": 5988,
+      "prompt_cache_hit_tokens": 219520,
+      "gen_cost_usd_valley": 0.0073,
+      "gen_cost_usd_peak": 0.0147,
+      "judge_cost_usd_valley": 0.006035,
+      "judge_cost_usd_peak": 0.01207,
+      "latency_p50_s": 0.997,
+      "latency_p95_s": 1.404,
+      "n_network_calls": 62,
+      "n_cache_hits": 28
+    },
+    "on_k5": {
+      "arm": "on",
+      "arm_name": "hybrid3_rrf(图谱开)",
+      "top_k": 5,
+      "run": "20261026-223110",
+      "new_run": false,
+      "label_acc": 0.6944,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.3889,
+      "citation_entry_valid_rate": 1.0,
+      "citation_intervals": [
+        87,
+        87
+      ],
+      "parse_failures": 0,
+      "judge_score_mean": 3.4074,
+      "judge_faithfulness": 4.6481,
+      "judge_completeness": 2.7037,
+      "judge_conciseness": 4.4074,
+      "judge_hallucination_rate": 0.0,
+      "judge_by_type": {
+        "fact": 3.9,
+        "temporal": 3.0,
+        "aggregate": 3.25
+      },
+      "judge_score_distribution": {
+        "1": 0,
+        "2": 14,
+        "3": 20,
+        "4": 4,
+        "5": 16
+      },
+      "judge_template_version": "v2",
+      "prompt_tokens": 303976,
+      "completion_tokens": 6299,
+      "prompt_cache_hit_tokens": 172672,
+      "gen_cost_usd_valley": 0.024,
+      "gen_cost_usd_peak": 0.048,
+      "judge_cost_usd_valley": 0.017084,
+      "judge_cost_usd_peak": 0.034168,
+      "latency_p50_s": 1.572,
+      "latency_p95_s": 2.139,
+      "n_network_calls": 81,
+      "n_cache_hits": 9
+    },
+    "on_k10": {
+      "arm": "on",
+      "arm_name": "hybrid3_rrf(图谱开)",
+      "top_k": 10,
+      "run": "20261027-231324",
+      "new_run": true,
+      "label_acc": 0.7778,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.5556,
+      "citation_entry_valid_rate": 1.0,
+      "citation_intervals": [
+        97,
+        97
+      ],
+      "parse_failures": 0,
+      "judge_score_mean": 3.463,
+      "judge_faithfulness": 4.6852,
+      "judge_completeness": 2.8333,
+      "judge_conciseness": 4.3519,
+      "judge_hallucination_rate": 0.0,
+      "judge_by_type": {
+        "fact": 4.15,
+        "temporal": 2.7778,
+        "aggregate": 3.375
+      },
+      "judge_score_distribution": {
+        "1": 0,
+        "2": 16,
+        "3": 13,
+        "4": 9,
+        "5": 16
+      },
+      "judge_template_version": "v2",
+      "prompt_tokens": 458584,
+      "completion_tokens": 6631,
+      "prompt_cache_hit_tokens": 284544,
+      "gen_cost_usd_valley": 0.0309,
+      "gen_cost_usd_peak": 0.0619,
+      "judge_cost_usd_valley": 0.020401,
+      "judge_cost_usd_peak": 0.040802,
+      "latency_p50_s": 1.098,
+      "latency_p95_s": 1.626,
+      "n_network_calls": 90,
+      "n_cache_hits": 0
+    }
+  },
+  "verdict_flip_matrix": {
+    "off": {
+      "k3_vs_k5": {
+        "n_flips": 2,
+        "flips": [
+          {
+            "qid": "Q09",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "no",
+            "gold_verdict": "no",
+            "correctness": [
+              "错",
+              "对"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c177"
+            ]
+          },
+          {
+            "qid": "Q52",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "yes",
+            "gold_verdict": "yes",
+            "correctness": [
+              "错",
+              "对"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c351",
+              "seen08000_c352",
+              "seen08000_c353"
+            ]
+          }
+        ],
+        "n_to_correct": 2,
+        "n_to_incorrect": 0
+      },
+      "k5_vs_k10": {
+        "n_flips": 4,
+        "flips": [
+          {
+            "qid": "Q15",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "yes",
+            "gold_verdict": "unknown(unanswerable)",
+            "correctness": [
+              "-",
+              "-"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c084",
+              "seen08000_c135"
+            ]
+          },
+          {
+            "qid": "Q46",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "no",
+            "gold_verdict": "no",
+            "correctness": [
+              "错",
+              "对"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c315"
+            ]
+          },
+          {
+            "qid": "Q50",
+            "verdict_k_lower": "yes",
+            "verdict_k_upper": "unknown",
+            "gold_verdict": "yes",
+            "correctness": [
+              "对",
+              "错"
+            ],
+            "gold_hit_k_lower": true,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c226"
+            ]
+          },
+          {
+            "qid": "Q51",
+            "verdict_k_lower": "no",
+            "verdict_k_upper": "unknown",
+            "gold_verdict": "no",
+            "correctness": [
+              "对",
+              "错"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": false,
+            "gold_chunks": [
+              "seen08000_c434",
+              "seen08000_c441",
+              "seen08000_c442"
+            ]
+          }
+        ],
+        "n_to_correct": 1,
+        "n_to_incorrect": 2
+      },
+      "k3_vs_k10": {
+        "n_flips": 6,
+        "flips": [
+          {
+            "qid": "Q09",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "no",
+            "gold_verdict": "no",
+            "correctness": [
+              "错",
+              "对"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c177"
+            ]
+          },
+          {
+            "qid": "Q15",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "yes",
+            "gold_verdict": "unknown(unanswerable)",
+            "correctness": [
+              "-",
+              "-"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c084",
+              "seen08000_c135"
+            ]
+          },
+          {
+            "qid": "Q46",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "no",
+            "gold_verdict": "no",
+            "correctness": [
+              "错",
+              "对"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c315"
+            ]
+          },
+          {
+            "qid": "Q50",
+            "verdict_k_lower": "yes",
+            "verdict_k_upper": "unknown",
+            "gold_verdict": "yes",
+            "correctness": [
+              "对",
+              "错"
+            ],
+            "gold_hit_k_lower": true,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c226"
+            ]
+          },
+          {
+            "qid": "Q51",
+            "verdict_k_lower": "no",
+            "verdict_k_upper": "unknown",
+            "gold_verdict": "no",
+            "correctness": [
+              "对",
+              "错"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": false,
+            "gold_chunks": [
+              "seen08000_c434",
+              "seen08000_c441",
+              "seen08000_c442"
+            ]
+          },
+          {
+            "qid": "Q52",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "yes",
+            "gold_verdict": "yes",
+            "correctness": [
+              "错",
+              "对"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c351",
+              "seen08000_c352",
+              "seen08000_c353"
+            ]
+          }
+        ],
+        "n_to_correct": 3,
+        "n_to_incorrect": 2
+      }
+    },
+    "on": {
+      "k3_vs_k5": {
+        "n_flips": 4,
+        "flips": [
+          {
+            "qid": "Q15",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "yes",
+            "gold_verdict": "unknown(unanswerable)",
+            "correctness": [
+              "-",
+              "-"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c084",
+              "seen08000_c135"
+            ]
+          },
+          {
+            "qid": "Q44",
+            "verdict_k_lower": "yes",
+            "verdict_k_upper": "unknown",
+            "gold_verdict": "yes",
+            "correctness": [
+              "对",
+              "错"
+            ],
+            "gold_hit_k_lower": true,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c427",
+              "seen08000_c428"
+            ]
+          },
+          {
+            "qid": "Q50",
+            "verdict_k_lower": "yes",
+            "verdict_k_upper": "unknown",
+            "gold_verdict": "yes",
+            "correctness": [
+              "对",
+              "错"
+            ],
+            "gold_hit_k_lower": true,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c226"
+            ]
+          },
+          {
+            "qid": "Q51",
+            "verdict_k_lower": "no",
+            "verdict_k_upper": "unknown",
+            "gold_verdict": "no",
+            "correctness": [
+              "对",
+              "错"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": false,
+            "gold_chunks": [
+              "seen08000_c434",
+              "seen08000_c441",
+              "seen08000_c442"
+            ]
+          }
+        ],
+        "n_to_correct": 0,
+        "n_to_incorrect": 3
+      },
+      "k5_vs_k10": {
+        "n_flips": 4,
+        "flips": [
+          {
+            "qid": "Q35",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "no",
+            "gold_verdict": "unknown(unanswerable)",
+            "correctness": [
+              "-",
+              "-"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c101"
+            ]
+          },
+          {
+            "qid": "Q44",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "yes",
+            "gold_verdict": "yes",
+            "correctness": [
+              "错",
+              "对"
+            ],
+            "gold_hit_k_lower": true,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c427",
+              "seen08000_c428"
+            ]
+          },
+          {
+            "qid": "Q51",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "no",
+            "gold_verdict": "no",
+            "correctness": [
+              "错",
+              "对"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": false,
+            "gold_chunks": [
+              "seen08000_c434",
+              "seen08000_c441",
+              "seen08000_c442"
+            ]
+          },
+          {
+            "qid": "Q52",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "yes",
+            "gold_verdict": "yes",
+            "correctness": [
+              "错",
+              "对"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c351",
+              "seen08000_c352",
+              "seen08000_c353"
+            ]
+          }
+        ],
+        "n_to_correct": 3,
+        "n_to_incorrect": 0
+      },
+      "k3_vs_k10": {
+        "n_flips": 4,
+        "flips": [
+          {
+            "qid": "Q15",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "yes",
+            "gold_verdict": "unknown(unanswerable)",
+            "correctness": [
+              "-",
+              "-"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c084",
+              "seen08000_c135"
+            ]
+          },
+          {
+            "qid": "Q35",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "no",
+            "gold_verdict": "unknown(unanswerable)",
+            "correctness": [
+              "-",
+              "-"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c101"
+            ]
+          },
+          {
+            "qid": "Q50",
+            "verdict_k_lower": "yes",
+            "verdict_k_upper": "unknown",
+            "gold_verdict": "yes",
+            "correctness": [
+              "对",
+              "错"
+            ],
+            "gold_hit_k_lower": true,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c226"
+            ]
+          },
+          {
+            "qid": "Q52",
+            "verdict_k_lower": "unknown",
+            "verdict_k_upper": "yes",
+            "gold_verdict": "yes",
+            "correctness": [
+              "错",
+              "对"
+            ],
+            "gold_hit_k_lower": false,
+            "gold_hit_k_upper": true,
+            "gold_chunks": [
+              "seen08000_c351",
+              "seen08000_c352",
+              "seen08000_c353"
+            ]
+          }
+        ],
+        "n_to_correct": 1,
+        "n_to_incorrect": 1
+      }
+    }
+  },
+  "q44_q52_notes": {
+    "Q44": {
+      "question": "临终之际，江坂对这位背叛者的抉择表示了赞许吗？",
+      "type": "yesno",
+      "anchor_layer": "semantic_gap",
+      "gold_verdict": "yes",
+      "gold_rfids": [
+        13599,
+        13648
+      ],
+      "gold_chunks": [
+        "seen08000_c427",
+        "seen08000_c428"
+      ],
+      "evidence_by_group": {
+        "off_k3": [
+          "seen08000_c427",
+          "seen08000_c182",
+          "seen08000_c379"
+        ],
+        "off_k5": [
+          "seen08000_c427",
+          "seen08000_c182",
+          "seen08000_c379",
+          "seen08000_c372",
+          "seen08000_c206"
+        ],
+        "off_k10": [
+          "seen08000_c427",
+          "seen08000_c182",
+          "seen08000_c379",
+          "seen08000_c372",
+          "seen08000_c206",
+          "seen08000_c394",
+          "seen08000_c452",
+          "seen08000_c073",
+          "seen08000_c241",
+          "seen08000_c426"
+        ],
+        "on_k3": [
+          "seen08000_c427",
+          "seen08000_c182",
+          "seen08000_c379"
+        ],
+        "on_k5": [
+          "seen08000_c427",
+          "seen08000_c182",
+          "seen08000_c379",
+          "seen08000_c372",
+          "seen08000_c394"
+        ],
+        "on_k10": [
+          "seen08000_c427",
+          "seen08000_c182",
+          "seen08000_c379",
+          "seen08000_c372",
+          "seen08000_c394",
+          "seen08000_c206",
+          "seen08000_c452",
+          "seen08000_c241",
+          "seen08000_c461",
+          "seen08000_c076"
+        ]
+      },
+      "verdict_by_group": {
+        "off_k3": "yes",
+        "off_k5": "yes",
+        "off_k10": "yes",
+        "on_k3": "yes",
+        "on_k5": "unknown",
+        "on_k10": "yes"
+      },
+      "distractor_c394": {
+        "in_off_k5": false,
+        "in_on_k5": true,
+        "in_off_k10": true,
+        "in_on_k10": true,
+        "in_off_k3": false,
+        "in_on_k3": false,
+        "rank_off_k10": 6,
+        "rank_on_k10": 5,
+        "rank_on_k5": 5,
+        "gold_c427_rank_off": 1,
+        "gold_c427_rank_on": 1
+      }
+    },
+    "Q52": {
+      "question": "森林里盖亚与守护者的大打出手，背后有瑚太朗推波助澜吗？",
+      "type": "yesno",
+      "anchor_layer": "structural",
+      "gold_verdict": "yes",
+      "gold_rfids": [
+        11217,
+        11262
+      ],
+      "gold_chunks": [
+        "seen08000_c351",
+        "seen08000_c352",
+        "seen08000_c353"
+      ],
+      "evidence_by_group": {
+        "off_k3": [
+          "seen08000_c230",
+          "seen08000_c247",
+          "seen08000_c250"
+        ],
+        "off_k5": [
+          "seen08000_c230",
+          "seen08000_c247",
+          "seen08000_c250",
+          "seen08000_c085",
+          "seen08000_c351"
+        ],
+        "off_k10": [
+          "seen08000_c230",
+          "seen08000_c247",
+          "seen08000_c250",
+          "seen08000_c085",
+          "seen08000_c351",
+          "seen08000_c427",
+          "seen08000_c252",
+          "seen08000_c415",
+          "seen08000_c389",
+          "seen08000_c251"
+        ],
+        "on_k3": [
+          "seen08000_c230",
+          "seen08000_c250",
+          "seen08000_c247"
+        ],
+        "on_k5": [
+          "seen08000_c230",
+          "seen08000_c250",
+          "seen08000_c247",
+          "seen08000_c427",
+          "seen08000_c085"
+        ],
+        "on_k10": [
+          "seen08000_c230",
+          "seen08000_c250",
+          "seen08000_c247",
+          "seen08000_c427",
+          "seen08000_c085",
+          "seen08000_c351",
+          "seen08000_c251",
+          "seen08000_c389",
+          "seen08000_c337",
+          "seen08000_c368"
+        ]
+      },
+      "verdict_by_group": {
+        "off_k3": "unknown",
+        "off_k5": "yes",
+        "off_k10": "yes",
+        "on_k3": "unknown",
+        "on_k5": "unknown",
+        "on_k10": "yes"
+      },
+      "gold_c351_rank": {
+        "hybrid3_rrf_223110": 6,
+        "hybrid_rrf_223110": 5,
+        "hybrid_rrf_new": 5,
+        "hybrid3_rrf_new": 6
+      }
+    }
+  },
+  "headroom_r10_minus_r5": {
+    "source": "runs/20261026-222529/metrics.json(八臂检索层, 零新跑)",
+    "note": "rerank 不实现阶段的替代分析: R@10−R@5 = k 从 5 放到 10 时检索层尚存的召回余量, 对照生成侧 k=10 的实际答案层变化判断「余量是否被转化」。",
+    "arms": {
+      "bm25_jieba": {
+        "overall": {
+          "r5": 0.4108,
+          "r10": 0.4963,
+          "delta": 0.0855
+        },
+        "by_layer": {
+          "literal": {
+            "r5": 0.9722,
+            "r10": 1.0,
+            "n": 18,
+            "delta": 0.0278
+          },
+          "semantic_gap": {
+            "r5": 0.0909,
+            "r10": 0.1818,
+            "n": 22,
+            "delta": 0.0909
+          },
+          "structural": {
+            "r5": 0.3251,
+            "r10": 0.4429,
+            "n": 31,
+            "delta": 0.1178
+          },
+          "floor": {
+            "r5": 0.0,
+            "r10": 0.0,
+            "n": 1,
+            "delta": 0.0
+          }
+        },
+        "by_type": {
+          "fact": {
+            "r5": 0.4583,
+            "r10": 0.525,
+            "delta": 0.0667
+          },
+          "yesno": {
+            "r5": 0.3185,
+            "r10": 0.3852,
+            "delta": 0.0667
+          },
+          "temporal": {
+            "r5": 0.5231,
+            "r10": 0.5972,
+            "delta": 0.0741
+          },
+          "aggregate": {
+            "r5": 0.3289,
+            "r10": 0.4717,
+            "delta": 0.1428
+          }
+        }
+      },
+      "bm25_bigram": {
+        "overall": {
+          "r5": 0.472,
+          "r10": 0.5579,
+          "delta": 0.0859
+        },
+        "by_layer": {
+          "literal": {
+            "r5": 0.9167,
+            "r10": 1.0,
+            "n": 18,
+            "delta": 0.0833
+          },
+          "semantic_gap": {
+            "r5": 0.2727,
+            "r10": 0.3636,
+            "n": 22,
+            "delta": 0.0909
+          },
+          "structural": {
+            "r5": 0.3704,
+            "r10": 0.457,
+            "n": 31,
+            "delta": 0.0866
+          },
+          "floor": {
+            "r5": 0.0,
+            "r10": 0.0,
+            "n": 1,
+            "delta": 0.0
+          }
+        },
+        "by_type": {
+          "fact": {
+            "r5": 0.5583,
+            "r10": 0.675,
+            "delta": 0.1167
+          },
+          "yesno": {
+            "r5": 0.3667,
+            "r10": 0.413,
+            "delta": 0.0463
+          },
+          "temporal": {
+            "r5": 0.5648,
+            "r10": 0.6296,
+            "delta": 0.0648
+          },
+          "aggregate": {
+            "r5": 0.378,
+            "r10": 0.4937,
+            "delta": 0.1157
+          }
+        }
+      },
+      "w2v_avg": {
+        "overall": {
+          "r5": 0.1693,
+          "r10": 0.2806,
+          "delta": 0.1113
+        },
+        "by_layer": {
+          "literal": {
+            "r5": 0.1944,
+            "r10": 0.3889,
+            "n": 18,
+            "delta": 0.1945
+          },
+          "semantic_gap": {
+            "r5": 0.2273,
+            "r10": 0.3409,
+            "n": 22,
+            "delta": 0.1136
+          },
+          "structural": {
+            "r5": 0.1191,
+            "r10": 0.1839,
+            "n": 31,
+            "delta": 0.0648
+          },
+          "floor": {
+            "r5": 0.0,
+            "r10": 0.0,
+            "n": 1,
+            "delta": 0.0
+          }
+        },
+        "by_type": {
+          "fact": {
+            "r5": 0.2417,
+            "r10": 0.3083,
+            "delta": 0.0666
+          },
+          "yesno": {
+            "r5": 0.1315,
+            "r10": 0.3167,
+            "delta": 0.1852
+          },
+          "temporal": {
+            "r5": 0.1713,
+            "r10": 0.2917,
+            "delta": 0.1204
+          },
+          "aggregate": {
+            "r5": 0.1193,
+            "r10": 0.1929,
+            "delta": 0.0736
+          }
+        }
+      },
+      "bge_small": {
+        "overall": {
+          "r5": 0.3833,
+          "r10": 0.5435,
+          "delta": 0.1602
+        },
+        "by_layer": {
+          "literal": {
+            "r5": 0.5556,
+            "r10": 0.7778,
+            "n": 18,
+            "delta": 0.2222
+          },
+          "semantic_gap": {
+            "r5": 0.4545,
+            "r10": 0.5909,
+            "n": 22,
+            "delta": 0.1364
+          },
+          "structural": {
+            "r5": 0.229,
+            "r10": 0.3753,
+            "n": 31,
+            "delta": 0.1463
+          },
+          "floor": {
+            "r5": 0.5,
+            "r10": 0.5,
+            "n": 1,
+            "delta": 0.0
+          }
+        },
+        "by_type": {
+          "fact": {
+            "r5": 0.4667,
+            "r10": 0.6667,
+            "delta": 0.2
+          },
+          "yesno": {
+            "r5": 0.3259,
+            "r10": 0.4759,
+            "delta": 0.15
+          },
+          "temporal": {
+            "r5": 0.4213,
+            "r10": 0.5972,
+            "delta": 0.1759
+          },
+          "aggregate": {
+            "r5": 0.3009,
+            "r10": 0.4052,
+            "delta": 0.1043
+          }
+        }
+      },
+      "bge_base": {
+        "overall": {
+          "r5": 0.4476,
+          "r10": 0.5809,
+          "delta": 0.1333
+        },
+        "by_layer": {
+          "literal": {
+            "r5": 0.6389,
+            "r10": 0.7778,
+            "n": 18,
+            "delta": 0.1389
+          },
+          "semantic_gap": {
+            "r5": 0.4773,
+            "r10": 0.5909,
+            "n": 22,
+            "delta": 0.1136
+          },
+          "structural": {
+            "r5": 0.3137,
+            "r10": 0.4621,
+            "n": 31,
+            "delta": 0.1484
+          },
+          "floor": {
+            "r5": 0.5,
+            "r10": 0.5,
+            "n": 1,
+            "delta": 0.0
+          }
+        },
+        "by_type": {
+          "fact": {
+            "r5": 0.5667,
+            "r10": 0.6583,
+            "delta": 0.0916
+          },
+          "yesno": {
+            "r5": 0.437,
+            "r10": 0.55,
+            "delta": 0.113
+          },
+          "temporal": {
+            "r5": 0.375,
+            "r10": 0.5602,
+            "delta": 0.1852
+          },
+          "aggregate": {
+            "r5": 0.3921,
+            "r10": 0.5423,
+            "delta": 0.1502
+          }
+        }
+      },
+      "hybrid_rrf": {
+        "overall": {
+          "r5": 0.5194,
+          "r10": 0.6553,
+          "delta": 0.1359
+        },
+        "by_layer": {
+          "literal": {
+            "r5": 0.8333,
+            "r10": 0.9722,
+            "n": 18,
+            "delta": 0.1389
+          },
+          "semantic_gap": {
+            "r5": 0.4091,
+            "r10": 0.6136,
+            "n": 22,
+            "delta": 0.2045
+          },
+          "structural": {
+            "r5": 0.4322,
+            "r10": 0.5058,
+            "n": 31,
+            "delta": 0.0736
+          },
+          "floor": {
+            "r5": 0.0,
+            "r10": 0.5,
+            "n": 1,
+            "delta": 0.5
+          }
+        },
+        "by_type": {
+          "fact": {
+            "r5": 0.6083,
+            "r10": 0.775,
+            "delta": 0.1667
+          },
+          "yesno": {
+            "r5": 0.4759,
+            "r10": 0.5611,
+            "delta": 0.0852
+          },
+          "temporal": {
+            "r5": 0.5324,
+            "r10": 0.6991,
+            "delta": 0.1667
+          },
+          "aggregate": {
+            "r5": 0.4426,
+            "r10": 0.5622,
+            "delta": 0.1196
+          }
+        }
+      },
+      "graph_expand": {
+        "overall": {
+          "r5": 0.5127,
+          "r10": 0.5966,
+          "delta": 0.0839
+        },
+        "by_layer": {
+          "literal": {
+            "r5": 0.9167,
+            "r10": 0.9722,
+            "n": 18,
+            "delta": 0.0555
+          },
+          "semantic_gap": {
+            "r5": 0.4091,
+            "r10": 0.4773,
+            "n": 22,
+            "delta": 0.0682
+          },
+          "structural": {
+            "r5": 0.3682,
+            "r10": 0.4825,
+            "n": 31,
+            "delta": 0.1143
+          },
+          "floor": {
+            "r5": 0.0,
+            "r10": 0.0,
+            "n": 1,
+            "delta": 0.0
+          }
+        },
+        "by_type": {
+          "fact": {
+            "r5": 0.6583,
+            "r10": 0.725,
+            "delta": 0.0667
+          },
+          "yesno": {
+            "r5": 0.337,
+            "r10": 0.4222,
+            "delta": 0.0852
+          },
+          "temporal": {
+            "r5": 0.5833,
+            "r10": 0.6944,
+            "delta": 0.1111
+          },
+          "aggregate": {
+            "r5": 0.4488,
+            "r10": 0.5223,
+            "delta": 0.0735
+          }
+        }
+      },
+      "hybrid3_rrf": {
+        "overall": {
+          "r5": 0.5465,
+          "r10": 0.6236,
+          "delta": 0.0771
+        },
+        "by_layer": {
+          "literal": {
+            "r5": 0.8611,
+            "r10": 0.9722,
+            "n": 18,
+            "delta": 0.1111
+          },
+          "semantic_gap": {
+            "r5": 0.4545,
+            "r10": 0.5227,
+            "n": 22,
+            "delta": 0.0682
+          },
+          "structural": {
+            "r5": 0.4467,
+            "r10": 0.513,
+            "n": 31,
+            "delta": 0.0663
+          },
+          "floor": {
+            "r5": 0.0,
+            "r10": 0.0,
+            "n": 1,
+            "delta": 0.0
+          }
+        },
+        "by_type": {
+          "fact": {
+            "r5": 0.65,
+            "r10": 0.75,
+            "delta": 0.1
+          },
+          "yesno": {
+            "r5": 0.4296,
+            "r10": 0.487,
+            "delta": 0.0574
+          },
+          "temporal": {
+            "r5": 0.6019,
+            "r10": 0.6991,
+            "delta": 0.0972
+          },
+          "aggregate": {
+            "r5": 0.4863,
+            "r10": 0.5345,
+            "delta": 0.0482
+          }
+        }
+      }
+    }
+  },
+  "retrieval_block_sanity": {
+    "20261027-225235": true,
+    "20261027-225935": true,
+    "20261027-230615": true,
+    "20261027-231324": true
+  },
+  "cost_ledger": {
+    "note": "本任务新增支出 = 4 个新 run 生成费用 + 4 次 judge 复评费用; 预算上限 $0.30(谷)。",
+    "generation_new_runs_usd_valley": 0.0759,
+    "generation_new_runs_usd_peak": 0.1518,
+    "judge_new_runs_usd_valley": 0.052719,
+    "judge_new_runs_usd_peak": 0.10544,
+    "total_new_spend_usd_valley": 0.128619,
+    "total_new_spend_usd_peak": 0.25724
+  }
+}

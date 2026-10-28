@@ -1,0 +1,77 @@
+# 检索层配置 —— T1 检索器化重构: 检索器列表驱动,BM25 基线 + 评测脚本
+# 所有相对路径相对于 project/ 根目录
+
+paths:
+  scenes: ../Rewrite_terra/data/scenes.jsonl   # Day 1 真值切分产物 (480 chunks)
+  user_dict: data/user_dict.txt                # jieba 自定义词典
+  qaset: eval/qaset_v0.json                    # 正式评测集(90 题冻结稿;报告对比表数字来源)
+  answers: eval/answers.jsonl                  # 答案层输入(Day 4 生成模块产出;不存在则跳过)
+  runs_dir: runs
+  models: ../models                            # HF 模型缓存根(T4 bge 接入; HF_HOME 重定向目标)
+  entities: data/graph_entities.json           # T9 实体-场景索引(零 LLM,确定性可重建)
+  choices: ../Rewrite_terra/data/choices.json  # T9 选择肢节点 / T10.3 分支边真值来源
+  cards: data/graph_cards.jsonl                # T10 事件卡片(LLM 抽取产物,缓存可复现)
+  events: data/graph_events.json               # T10.4 事件图谱(节点表+边表,确定性组装)
+
+graph:                          # T10/T11 参数(阶段计划 §4)
+  extract:
+    max_events_per_chunk: 3     # prompt 约束上限, 超出截断(计数入抽取日志)
+    context_meta: true          # speakers/bgm/bg/选择肢入抽取 prompt 作环境上下文
+  edges:
+    temporal_gap: 1             # 时序边跨度(相邻 1 块;消融预留)
+
+index:                # bm25 型检索器的默认超参(retrievers 条目内同名字段可逐臂覆盖)
+  k1: 1.5             # BM25 词频饱和
+  b: 0.75             # BM25 长度归一化
+  index_speakers: false  # true=把 chunk 的 speakers 元数据并入索引文本(消融开关)
+
+retrievers:           # 检索器列表: name=metrics 键=报告列名; 工厂见 src/retrievers.py
+  - {name: bm25_jieba,  type: bm25, tokenizer: jieba}   # 原理点①词典分词臂
+  - {name: bm25_bigram, type: bm25, tokenizer: bigram}  # 原理点①字符 bigram 对照臂
+  - {name: w2v_avg,     type: w2v,  tokenizer: jieba, dim: 100, window: 2,
+     neg_k: 4, epochs: 15, lr: 0.05, seed: 0, min_count: 1}   # T3 基线②;全量实测 15 epochs≈3.7min
+  # T4 追加(阶段二接入): 稠密检索两臂, 分支见 src/retrievers.py, 实现见 src/index_vector.py
+  - {name: bge_small, type: bge, model: BAAI/bge-small-zh-v1.5,
+     device: cpu, batch_size: 32, use_cache: true}   # 全库向量缓存已热(cache/)
+  - {name: bge_base,  type: bge, model: BAAI/bge-base-zh-v1.5,
+     device: cpu, batch_size: 16, use_cache: true}   # 模型规模消融臂; 首跑全库编码约 4~5min
+  # T6 混合召回(实现见 src/index_hybrid.py): BM25 字面 + bge 语义两臂 RRF 融合。
+  # arms 按名引用上方同级条目(单一配置源, 臂超参不在此重复); 被引用臂必须排在
+  # 本条目之前(按名复用已建实例, 避免 w2v 重训练/bge 重载模型)。
+  - {name: hybrid_rrf, type: hybrid, arms: [bm25_bigram, bge_base],
+     depth: 20, rrf_k: 60}   # 每臂取 top-depth 进融合; rrf_k=60 文献默认
+  # T11 图扩展臂(实现见 src/index_graph.py): 实体路(T9.3 门槛——多实体非空交集
+  # ≤entity_top 才发全权重票)+ 卡片路(T10 规范化转述小 BM25, 分词沿基座 bigram)
+  # + 扩展路(基座 seed + 图 1 跳邻居固定尾部小分值)三路臂内 RRF(rrf_fuse 同 T6)。
+  # base 按名引用上方同级条目(须排其前); 参数为先验默认(计划 §4), 不据评测集调参;
+  # seed_top=20 沿 T6 depth 先验(≥ 评测/生成侧一切 k)。机制迭代过程见阶段报告。
+  - {name: graph_expand, type: graph, base: bm25_bigram,
+     entity_top: 10, card_top: 10, neighbor_top: 5, hop: 1, seed_top: 20}   # 第七列
+  # T11 第八列: bigram ∥ bge ∥ graph 三路 RRF(graph_expand 须排其前, built 引用序)
+  - {name: hybrid3_rrf, type: hybrid, arms: [bm25_bigram, bge_base, graph_expand],
+     depth: 20, rrf_k: 60}
+
+generation:            # T6.4 定生成侧默认值; T7 接入 run_all 时消费并扩展 llm/prompt 子节
+  retriever: hybrid3_rrf # T16 消融变体(图谱开臂): 与 main.yaml 仅 generation.{retriever,top_k} 两处不同
+  top_k: 3             # T16 消融轴 {3,5,10}
+  llm:                 # T7.1;规格对照阶段计划 §3(2026-10-25 官方文档核对)
+    provider: deepseek
+    base_url: https://api.deepseek.com
+    model: deepseek-flash       # V4.1-Flash-1017;报告/代码统一此名
+    thinking: disabled          # 端点默认 enabled,必须显式关;不关 temperature 无效
+    temperature: 0              # 仅非思考模式生效;seed 端点不支持,不发送
+    max_tokens: 1024
+    api_key_env: DEEPSEEK_API_KEY   # Key 只走环境变量/project/.env,绝不进仓库(红线③)
+  prompt:
+    few_shot: true              # 3 例:正常作答/是非题 yes/拒答;证据排除 gold chunk 防泄漏
+    rerank: false               # 消融开关预留,阶段三不实现
+
+eval:
+  k_values: [3, 5, 10]
+  mrr_depth: 10                 # MRR 的检索深度
+
+demo:
+  sample_queries:
+    - 路易斯是什么国籍？
+    - 瑚太朗和路易斯约定了什么？
+    - 盖亚和守护者是什么关系？

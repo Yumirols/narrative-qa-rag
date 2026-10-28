@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-27",
+  "questions": {
+    "yesno": "Q09",
+    "unanswerable": "Q26"
+  },
+  "calls": [
+    {
+      "qid": "Q09",
+      "type": "yesno",
+      "half": "A",
+      "ok": true,
+      "local_cache_hit": false,
+      "prompt_tokens": 68957,
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 68957,
+      "completion_tokens": 69,
+      "latency_seconds": 2.08,
+      "parse_path": "direct",
+      "verdict": "no",
+      "cost_usd_offpeak": 0.01038495,
+      "request_hash": "050b64ce60fa94ab529e26044f7e855978f5a46c26053c0263c8775b62ce1f30"
+    },
+    {
+      "qid": "Q26",
+      "type": "unanswerable",
+      "half": "A",
+      "ok": true,
+      "local_cache_hit": false,
+      "prompt_tokens": 68943,
+      "prompt_cache_hit_tokens": 68736,
+      "prompt_cache_miss_tokens": 207,
+      "completion_tokens": 42,
+      "latency_seconds": 0.881,
+      "parse_path": "direct",
+      "verdict": "unknown",
+      "cost_usd_offpeak": 0.00026246,
+      "request_hash": "084a60e46111de55f8c929ed71389f98b95c70cd388e045ced5528231c54518c"
+    },
+    {
+      "qid": "Q09",
+      "type": "yesno",
+      "half": "B",
+      "ok": true,
+      "local_cache_hit": false,
+      "prompt_tokens": 72154,
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 72154,
+      "completion_tokens": 83,
+      "latency_seconds": 2.051,
+      "parse_path": "direct",
+      "verdict": "unknown",
+      "cost_usd_offpeak": 0.0108729,
+      "request_hash": "346a6ae683702bc4f6888d3737c859e2885a76e4bbcdbf855e856a8e07593f42"
+    },
+    {
+      "qid": "Q26",
+      "type": "unanswerable",
+      "half": "B",
+      "ok": true,
+      "local_cache_hit": false,
+      "prompt_tokens": 72140,
+      "prompt_cache_hit_tokens": 71936,
+      "prompt_cache_miss_tokens": 204,
+      "completion_tokens": 42,
+      "latency_seconds": 1.223,
+      "parse_path": "direct",
+      "verdict": "unknown",
+      "cost_usd_offpeak": 0.00027161,
+      "request_hash": "c855297a1993164f267768891351d966e9ecb92e658767bbe1ddf14dfc882f35"
+    }
+  ],
+  "checks": {
+    "window_ok": true,
+    "window_note": "4 调用全部成功 = 两半均装入端点上下文窗口",
+    "prefix_cache_hit": {
+      "A": true,
+      "B": true
+    },
+    "prefix_cache_hit_tokens_2nd_call": {
+      "A": 68736,
+      "B": 71936
+    },
+    "prefix_threshold_tokens": 1024,
+    "latency_seconds_all": [
+      2.08,
+      0.881,
+      2.051,
+      1.223
+    ]
+  }
+}

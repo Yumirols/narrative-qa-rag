@@ -1,0 +1,50 @@
+{
+  "n": 54,
+  "n_evaluated": 54,
+  "parse_failures": 0,
+  "score_mean": 3.4074,
+  "faithfulness_mean": 4.6111,
+  "completeness_mean": 2.9444,
+  "conciseness_mean": 4.2778,
+  "hallucination_rate": 0.0185,
+  "citation_entries": 80,
+  "citation_support_rate": 0.9625,
+  "score_distribution": {
+    "1": 0,
+    "2": 20,
+    "3": 9,
+    "4": 8,
+    "5": 17
+  },
+  "by_type": {
+    "fact": {
+      "n": 20,
+      "score_mean": 4.1,
+      "faithfulness_mean": 4.8,
+      "completeness_mean": 3.8,
+      "conciseness_mean": 4.55
+    },
+    "temporal": {
+      "n": 18,
+      "score_mean": 2.7778,
+      "faithfulness_mean": 4.5,
+      "completeness_mean": 1.8889,
+      "conciseness_mean": 4.3889
+    },
+    "aggregate": {
+      "n": 16,
+      "score_mean": 3.25,
+      "faithfulness_mean": 4.5,
+      "completeness_mean": 3.0625,
+      "conciseness_mean": 3.8125
+    }
+  },
+  "cost_usd": {
+    "valley": 0.020258,
+    "peak": 0.040517,
+    "n_calls": 54
+  },
+  "template_version": "v2",
+  "arm": "hybrid_rrf",
+  "run_dir": "20261027-225935"
+}

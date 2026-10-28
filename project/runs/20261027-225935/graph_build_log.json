@@ -1,0 +1,94 @@
+{
+  "entities": {
+    "scheme": "entities_v1",
+    "scene": "seen08000",
+    "n_chunks": 483,
+    "n_entities": 80,
+    "n_speaker_entities": 72,
+    "n_text_entities": 8,
+    "n_aliases": 28,
+    "n_choices": 47,
+    "n_choices_branch": 5,
+    "rules": [
+      "说话人名文本匹配以 user_dict 为界: 具名做叙述提及匹配回接, 泛指角色名(男人/学生/少女 等不在词典者)不做",
+      "文本匹配 = 全角归一+小写后子串匹配, 仅 len>=2 的 CJK 形或 ASCII 形",
+      "别名 = user_dict nr 全名含说话人名(3 例) + 语义例外 篝<-键之少女(框架 3.1) + 全角显示名归一合并",
+      "user_dict 词性 nr/nt/ns/nz 入实体, 普通名词 n 不入; 语料零提及专名不建实体"
+    ],
+    "sources": [
+      "scenes.jsonl",
+      "user_dict.txt",
+      "choices.json"
+    ],
+    "action": "loaded(与盘上逐字节一致)"
+  },
+  "events": {
+    "scheme": "events_v1",
+    "n_card_nodes": 483,
+    "n_choice_nodes": 47,
+    "n_edges": 1634,
+    "edges_by_type": {
+      "branch_to": 122,
+      "choice_at": 47,
+      "has_participant": 985,
+      "next": 480
+    },
+    "temporal_skipped_exclusive": 2,
+    "participant_unresolved": 0,
+    "extraction": {
+      "template": "v2",
+      "model": "deepseek-flash",
+      "needs_review": 0,
+      "n_suspect_cards": 34,
+      "cost_usd_offpeak": 0.096715,
+      "n_llm_calls": 483
+    },
+    "stats": {
+      "n_nodes_serialized": 530,
+      "n_entity_refs": 74,
+      "n_weakly_connected": 1,
+      "largest_wcc_nodes": 604,
+      "cards_isolated_in_wcc": 0,
+      "top_participants": [
+        [
+          "瑚太朗",
+          328
+        ],
+        [
+          "江坂",
+          84
+        ],
+        [
+          "今宫",
+          71
+        ],
+        [
+          "篝",
+          62
+        ],
+        [
+          "小鸟",
+          51
+        ],
+        [
+          "西九条",
+          39
+        ],
+        [
+          "路易斯",
+          34
+        ],
+        [
+          "洲崎",
+          26
+        ]
+      ],
+      "participant_degrees": {
+        "p50": 3,
+        "max": 328,
+        "n_entities": 74
+      }
+    }
+  },
+  "arm_degraded": []
+}

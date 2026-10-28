@@ -1,0 +1,274 @@
+{
+  "task": "T17.2 全文臂(剧本全文两半塞入) vs RAG",
+  "date": "2026-10-27",
+  "protocol": {
+    "system_prompt": "由 generate.py SYSTEM_PROMPT 改写(证据=剧本全文的前半/后半);JSON 协议与拒答规则逐字保留",
+    "few_shot": false,
+    "few_shot_rationale": "few-shot 的 3 块引用演示与'证据=整个半本剧本'语义不符,且会推迟共享前缀起点白付 token(见模块 docstring)",
+    "message_layout": "system(半别) + user(全文+问题)——全文在前问题在后,同半共享前缀吃 DeepSeek 前缀缓存",
+    "citation_validation": "generate.generate_one 原函数(RfidLocator 两规则,孤儿 rfid 3281/14785/14898 命中即 invalid)",
+    "llm": "deepseek-flash, temperature=0, thinking disabled, max_tokens=1024"
+  },
+  "corpus_split": {
+    "n_chunks_total": 483,
+    "split_index": 241,
+    "split_chunk_id_first_of_right": "seen08000_c243",
+    "left": {
+      "n_chunks": 242,
+      "n_chars_sum": 92207,
+      "chunk_first": "seen08000_c001",
+      "chunk_last": "seen08000_c242"
+    },
+    "right": {
+      "n_chunks": 241,
+      "n_chars_sum": 92578,
+      "chunk_first": "seen08000_c243",
+      "chunk_last": "seen08000_c483"
+    }
+  },
+  "n_questions": 36,
+  "n_calls": 72,
+  "question_set_note": null,
+  "arm": {
+    "half_A": {
+      "n": 36,
+      "label_acc": 0.5833,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.2222,
+      "citations": {
+        "intervals_total": 18,
+        "intervals_valid": 18,
+        "entry_valid_rate": 1.0,
+        "q_all_valid": 8,
+        "q_all_valid_rate": 0.2222,
+        "q_zero_citation": 28
+      },
+      "parse_failure": {
+        "n": 36,
+        "n_parse_failed": 0,
+        "fail_rate": 0.0
+      },
+      "fabricated_rfids": {
+        "orphan_or_out_of_corpus": 0,
+        "malformed": 0,
+        "not_in_prompt": 0
+      },
+      "invalid_citation_examples": [],
+      "tokens": {
+        "n_calls": 36,
+        "prompt": 2482166,
+        "prompt_cache_hit": 2405760,
+        "prompt_cache_miss": 76406,
+        "completion": 2303,
+        "prompt_per_q_mean": 68949.1
+      },
+      "cost": {
+        "usd_offpeak": 0.02006,
+        "usd_peak": 0.04012,
+        "usd_offpeak_cold_estimate": 0.373707,
+        "per_call_usd_offpeak_mean": 0.00055722,
+        "per_call_usd_offpeak_cold_mean": 0.01038074
+      },
+      "latency": {
+        "p50_ms": 1438,
+        "p95_ms": 2120,
+        "mean_ms": 1835.3
+      },
+      "yesno_gold_in_half_breakdown": {
+        "gold_in_half": {
+          "n": 4,
+          "label_acc": 0.75
+        },
+        "gold_not_in_half": {
+          "n": 14,
+          "label_acc": 0.0,
+          "unknown_rate": 0.9286
+        }
+      }
+    },
+    "half_B": {
+      "n": 36,
+      "label_acc": 0.8889,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.8333,
+      "citations": {
+        "intervals_total": 33,
+        "intervals_valid": 33,
+        "entry_valid_rate": 1.0,
+        "q_all_valid": 18,
+        "q_all_valid_rate": 0.5,
+        "q_zero_citation": 18
+      },
+      "parse_failure": {
+        "n": 36,
+        "n_parse_failed": 0,
+        "fail_rate": 0.0
+      },
+      "fabricated_rfids": {
+        "orphan_or_out_of_corpus": 0,
+        "malformed": 0,
+        "not_in_prompt": 0
+      },
+      "invalid_citation_examples": [],
+      "tokens": {
+        "n_calls": 36,
+        "prompt": 2597258,
+        "prompt_cache_hit": 2517760,
+        "prompt_cache_miss": 79498,
+        "completion": 2508,
+        "prompt_per_q_mean": 72146.1
+      },
+      "cost": {
+        "usd_offpeak": 0.020983,
+        "usd_peak": 0.041966,
+        "usd_offpeak_cold_estimate": 0.391093,
+        "per_call_usd_offpeak_mean": 0.00058286,
+        "per_call_usd_offpeak_cold_mean": 0.01086371
+      },
+      "latency": {
+        "p50_ms": 1321,
+        "p95_ms": 2550,
+        "mean_ms": 1443.8
+      },
+      "yesno_gold_in_half_breakdown": {
+        "gold_in_half": {
+          "n": 15,
+          "label_acc": 0.9333
+        },
+        "gold_not_in_half": {
+          "n": 3,
+          "label_acc": 0.0,
+          "unknown_rate": 0.6667
+        }
+      }
+    },
+    "pooled": {
+      "n": 72,
+      "label_acc": 0.7361,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.5278,
+      "citations": {
+        "intervals_total": 51,
+        "intervals_valid": 51,
+        "entry_valid_rate": 1.0,
+        "q_all_valid": 26,
+        "q_all_valid_rate": 0.3611,
+        "q_zero_citation": 46
+      },
+      "parse_failure": {
+        "n": 72,
+        "n_parse_failed": 0,
+        "fail_rate": 0.0
+      },
+      "fabricated_rfids": {
+        "orphan_or_out_of_corpus": 0,
+        "malformed": 0,
+        "not_in_prompt": 0
+      },
+      "invalid_citation_examples": [],
+      "tokens": {
+        "n_calls": 72,
+        "prompt": 5079424,
+        "prompt_cache_hit": 4923520,
+        "prompt_cache_miss": 155904,
+        "completion": 4811,
+        "prompt_per_q_mean": 70547.6
+      },
+      "cost": {
+        "usd_offpeak": 0.041043,
+        "usd_peak": 0.082086,
+        "usd_offpeak_cold_estimate": 0.7648,
+        "per_call_usd_offpeak_mean": 0.00057004,
+        "per_call_usd_offpeak_cold_mean": 0.01062222
+      },
+      "latency": {
+        "p50_ms": 1360,
+        "p95_ms": 2365,
+        "mean_ms": 1639.5
+      }
+    }
+  },
+  "three_method_table": {
+    "rag_off_hybrid_rrf": {
+      "run": "runs/20261026-222529",
+      "label_acc": 0.8056,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.6111,
+      "citation_entry_valid_rate": 1.0,
+      "per_q_input_tokens_mean_same36": 3279.94,
+      "per_q_cost_usd_offpeak_mean_same36": 0.00031118,
+      "per_q_cost_usd_offpeak_cold_mean_same36": 0.00052653,
+      "per_q_input_tokens_mean_all90": 3326.48,
+      "latency_p50_s": 1.48,
+      "latency_p95_s": 2.179,
+      "latency_mean_s": 1.54
+    },
+    "rag_on_hybrid3_rrf": {
+      "run": "runs/20261026-223110",
+      "label_acc": 0.6944,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.3889,
+      "citation_entry_valid_rate": 1.0,
+      "per_q_input_tokens_mean_same36": 3341.61,
+      "per_q_cost_usd_offpeak_mean_same36": 0.00023387,
+      "per_q_cost_usd_offpeak_cold_mean_same36": 0.00053492,
+      "per_q_input_tokens_mean_all90": 3377.51,
+      "latency_p50_s": 1.572,
+      "latency_p95_s": 2.152,
+      "latency_mean_s": 1.63
+    },
+    "fulltext_half_A": {
+      "run": "runs/fulltext_T17",
+      "label_acc": 0.5833,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.2222,
+      "citation_entry_valid_rate": 1.0,
+      "per_q_input_tokens_mean_same36": 68949.1,
+      "per_q_cost_usd_offpeak_mean_same36": 0.00055722,
+      "per_q_cost_usd_offpeak_cold_mean_same36": 0.01038074,
+      "per_q_input_tokens_mean_all90": 68949.1,
+      "latency_p50_s": 1.438,
+      "latency_p95_s": 2.12,
+      "latency_mean_s": 1.8353,
+      "yesno_gold_in_half_label_acc": 0.75,
+      "yesno_gold_in_half_n": 4
+    },
+    "fulltext_half_B": {
+      "run": "runs/fulltext_T17",
+      "label_acc": 0.8889,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.8333,
+      "citation_entry_valid_rate": 1.0,
+      "per_q_input_tokens_mean_same36": 72146.1,
+      "per_q_cost_usd_offpeak_mean_same36": 0.00058286,
+      "per_q_cost_usd_offpeak_cold_mean_same36": 0.01086371,
+      "per_q_input_tokens_mean_all90": 72146.1,
+      "latency_p50_s": 1.321,
+      "latency_p95_s": 2.55,
+      "latency_mean_s": 1.4438,
+      "yesno_gold_in_half_label_acc": 0.9333,
+      "yesno_gold_in_half_n": 15
+    },
+    "fulltext_pooled": {
+      "run": "runs/fulltext_T17",
+      "label_acc": 0.7361,
+      "refusal_correct_unanswerable": 1.0,
+      "no_overrefusal_answerable": 0.5278,
+      "citation_entry_valid_rate": 1.0,
+      "per_q_input_tokens_mean_same36": 70547.6,
+      "per_q_cost_usd_offpeak_mean_same36": 0.00057004,
+      "per_q_cost_usd_offpeak_cold_mean_same36": 0.01062222,
+      "per_q_input_tokens_mean_all90": 70547.6,
+      "latency_p50_s": 1.36,
+      "latency_p95_s": 2.365,
+      "latency_mean_s": 1.6395
+    }
+  },
+  "budget": {
+    "cap_usd_offpeak": 0.4,
+    "full_17_2_usd_offpeak": 0.041043,
+    "full_17_2_usd_peak": 0.082086,
+    "spend_17_1_17_2_usd_offpeak": 0.041043,
+    "note": "冒烟调用哈希与全量重复, 全量费用已含冒烟, 直接取全量值"
+  }
+}

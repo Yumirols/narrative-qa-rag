@@ -1,0 +1,919 @@
+{
+  "task": "T17.3 位置消融(gold 块 首/中/末), lost in the middle 直接证据",
+  "date": "2026-10-27",
+  "selection_rule": "关臂(runs/20261026-222529, hybrid_rrf k=5)检索 gold 命中 top-5 的 yesno 题按 qid 升序取前 10; 候选共 11 题(落选 qid: ['Q53'])",
+  "baseline_run": "runs/20261026-222529",
+  "protocol_reuse": "generate.py SYSTEM_PROMPT + build_fewshot + build_user_message 逐字复用(含 few-shot 与证据头), 唯一自变量 = gold 块在证据列表中的位置(1/3/5), 其余 4 块保持原相对顺序, rank 重编号",
+  "questions": [
+    {
+      "qid": "Q09",
+      "question": "瑚太朗自己也像今宫和西九条那样，因为擅离职守被教官揍了吗？",
+      "gold_verdict": "no",
+      "gold_block": "seen08000_c177",
+      "gold_rank_in_baseline_top5": 4,
+      "n_gold_in_top5": 1,
+      "baseline_verdict": "no",
+      "baseline_answer_head": "没有。证据中瑚太朗自称「被、被揍了。被江坂先生他们揍了」，但随后叙述「我又撒谎了。并没有被揍，只有我逃脱了惩罚」，说明他",
+      "positions": {
+        "first": {
+          "gold_position": 1,
+          "verdict": "no",
+          "answer_head": "没有。证据中瑚太朗对今宫和西九条谎称自己被江坂先生他们揍了,但随后叙述表明「并没有被揍,只有我逃脱了惩罚」。",
+          "evidence_rfids": [
+            [
+              5308,
+              5359
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3741,
+            "completion_tokens": 66,
+            "total_tokens": 3807,
+            "prompt_cache_hit_tokens": 1920,
+            "prompt_cache_miss_tokens": 1821
+          },
+          "latency_ms": 1132,
+          "cost_usd_offpeak": 0.00031851
+        },
+        "middle": {
+          "gold_position": 3,
+          "verdict": "no",
+          "answer_head": "没有。证据中瑚太朗自称「被、被揍了。被江坂先生他们揍了」，但紧接着叙述「我又撒谎了。并没有被揍，只有我逃脱了惩罚」，说明他并未被揍，只是撒谎。",
+          "evidence_rfids": [
+            [
+              5308,
+              5359
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3741,
+            "completion_tokens": 77,
+            "total_tokens": 3818,
+            "prompt_cache_hit_tokens": 2304,
+            "prompt_cache_miss_tokens": 1437
+          },
+          "latency_ms": 1778,
+          "cost_usd_offpeak": 0.00026866
+        },
+        "last": {
+          "gold_position": 5,
+          "verdict": "no",
+          "answer_head": "没有。证据中瑚太朗对今宫和西九条谎称自己被江坂先生他们揍了,但叙述表明他并没有被揍,只有他逃脱了惩罚。",
+          "evidence_rfids": [
+            [
+              5308,
+              5359
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3741,
+            "completion_tokens": 65,
+            "total_tokens": 3806,
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 1181
+          },
+          "latency_ms": 915,
+          "cost_usd_offpeak": 0.00022383
+        }
+      },
+      "verdicts": {
+        "first": "no",
+        "middle": "no",
+        "last": "no"
+      },
+      "stable_across_positions": true,
+      "matches_baseline_all": true,
+      "label_correct_by_position": {
+        "first": true,
+        "middle": true,
+        "last": true
+      }
+    },
+    {
+      "qid": "Q11",
+      "question": "洲崎到死认出了在场「铃木凡人」的真实身份吗？",
+      "gold_verdict": "no",
+      "gold_block": "seen08000_c394",
+      "gold_rank_in_baseline_top5": 1,
+      "n_gold_in_top5": 1,
+      "baseline_verdict": "no",
+      "baseline_answer_head": "没有认出。证据1明确写道「洲崎至死没注意到和他在一起的我就是铃木凡人」。",
+      "positions": {
+        "first": {
+          "gold_position": 1,
+          "verdict": "no",
+          "answer_head": "没有认出。证据1明确写道「洲崎至死没注意到和他在一起的我就是铃木凡人」。",
+          "evidence_rfids": [
+            [
+              12561,
+              12602
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3532,
+            "completion_tokens": 49,
+            "total_tokens": 3581,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 2124
+          },
+          "latency_ms": 1171,
+          "cost_usd_offpeak": 0.00035222
+        },
+        "middle": {
+          "gold_position": 3,
+          "verdict": "no",
+          "answer_head": "没有认出。证据3明确写道「洲崎至死没注意到和他在一起的我就是铃木凡人」。",
+          "evidence_rfids": [
+            [
+              12561,
+              12602
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3532,
+            "completion_tokens": 49,
+            "total_tokens": 3581,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 2124
+          },
+          "latency_ms": 762,
+          "cost_usd_offpeak": 0.00035222
+        },
+        "last": {
+          "gold_position": 5,
+          "verdict": "no",
+          "answer_head": "没有。证据明确说明洲崎至死没注意到和他在一起的就是铃木凡人。",
+          "evidence_rfids": [
+            [
+              12561,
+              12602
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3532,
+            "completion_tokens": 45,
+            "total_tokens": 3577,
+            "prompt_cache_hit_tokens": 2176,
+            "prompt_cache_miss_tokens": 1356
+          },
+          "latency_ms": 757,
+          "cost_usd_offpeak": 0.00023693
+        }
+      },
+      "verdicts": {
+        "first": "no",
+        "middle": "no",
+        "last": "no"
+      },
+      "stable_across_positions": true,
+      "matches_baseline_all": true,
+      "label_correct_by_position": {
+        "first": true,
+        "middle": true,
+        "last": true
+      }
+    },
+    {
+      "qid": "Q12",
+      "question": "训练中长居是指甲首把瑚太朗的橡胶匕首切断的？",
+      "gold_verdict": "yes",
+      "gold_block": "seen08000_c100",
+      "gold_rank_in_baseline_top5": 1,
+      "n_gold_in_top5": 2,
+      "baseline_verdict": "yes",
+      "baseline_answer_head": "是。证据中瑚太朗问「该不会是你用橡胶匕首把我的匕首切断了吧？」长居回答「没有犯规哦」，并张开手指展示被磨平的指甲，瑚太朗",
+      "positions": {
+        "first": {
+          "gold_position": 1,
+          "verdict": "yes",
+          "answer_head": "是。证据中瑚太朗问「该不会是你用橡胶匕首把我的匕首切断了吧？」长居回答「没有犯规哦」，并张开手指展示被磨平的指甲，瑚太朗问「你是用这个…？」长居点头，说明是用指",
+          "evidence_rfids": [
+            [
+              3007,
+              3045
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3595,
+            "completion_tokens": 84,
+            "total_tokens": 3679,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 2187
+          },
+          "latency_ms": 1491,
+          "cost_usd_offpeak": 0.00038267
+        },
+        "middle": {
+          "gold_position": 3,
+          "verdict": "yes",
+          "answer_head": "是。证据中长居承认切断瑚太朗匕首的是她的指甲,瑚太朗也确认她是用指甲切断了较厚的橡胶匕首。",
+          "evidence_rfids": [
+            [
+              3007,
+              3045
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3595,
+            "completion_tokens": 58,
+            "total_tokens": 3653,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 2187
+          },
+          "latency_ms": 1003,
+          "cost_usd_offpeak": 0.00036707
+        },
+        "last": {
+          "gold_position": 5,
+          "verdict": "yes",
+          "answer_head": "是。长居承认切断瑚太朗匕首的是她的指甲,瑚太朗也确认她是用指甲做到的。",
+          "evidence_rfids": [
+            [
+              3007,
+              3045
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3595,
+            "completion_tokens": 51,
+            "total_tokens": 3646,
+            "prompt_cache_hit_tokens": 2048,
+            "prompt_cache_miss_tokens": 1547
+          },
+          "latency_ms": 819,
+          "cost_usd_offpeak": 0.00026879
+        }
+      },
+      "verdicts": {
+        "first": "yes",
+        "middle": "yes",
+        "last": "yes"
+      },
+      "stable_across_positions": true,
+      "matches_baseline_all": true,
+      "label_correct_by_position": {
+        "first": true,
+        "middle": true,
+        "last": true
+      }
+    },
+    {
+      "qid": "Q13",
+      "question": "洲崎最后杀成长居和朱音了吗？",
+      "gold_verdict": "no",
+      "gold_block": "seen08000_c325",
+      "gold_rank_in_baseline_top5": 2,
+      "n_gold_in_top5": 2,
+      "baseline_verdict": "unknown",
+      "baseline_answer_head": "证据中没有提及洲崎最终是否杀死了长居和朱音,缺少相关情节信息,无法判断。",
+      "positions": {
+        "first": {
+          "gold_position": 1,
+          "verdict": "unknown",
+          "answer_head": "证据中没有提及洲崎最终是否杀死了长居和朱音。证据只显示洲崎曾计划让瑚太朗去杀死年幼的后继者并给长居扣上间谍嫌疑,但没有交代结果。",
+          "evidence_rfids": [],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3670,
+            "completion_tokens": 65,
+            "total_tokens": 3735,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 2262
+          },
+          "latency_ms": 867,
+          "cost_usd_offpeak": 0.00038252
+        },
+        "middle": {
+          "gold_position": 3,
+          "verdict": "unknown",
+          "answer_head": "证据中没有说明洲崎最终是否杀死了长居和朱音。证据1只显示洲崎把相关任务交给瑚太朗,瑚太朗表示接受,但未交代结果。",
+          "evidence_rfids": [],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3670,
+            "completion_tokens": 60,
+            "total_tokens": 3730,
+            "prompt_cache_hit_tokens": 1792,
+            "prompt_cache_miss_tokens": 1878
+          },
+          "latency_ms": 1213,
+          "cost_usd_offpeak": 0.00032308
+        },
+        "last": {
+          "gold_position": 5,
+          "verdict": "unknown",
+          "answer_head": "证据中没有提及洲崎最终是否杀死了长居和朱音,只显示洲崎曾计划对后继者下手并想阻断圣女传承,但结果如何缺少信息。",
+          "evidence_rfids": [],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3670,
+            "completion_tokens": 57,
+            "total_tokens": 3727,
+            "prompt_cache_hit_tokens": 2176,
+            "prompt_cache_miss_tokens": 1494
+          },
+          "latency_ms": 1232,
+          "cost_usd_offpeak": 0.00026483
+        }
+      },
+      "verdicts": {
+        "first": "unknown",
+        "middle": "unknown",
+        "last": "unknown"
+      },
+      "stable_across_positions": true,
+      "matches_baseline_all": true,
+      "label_correct_by_position": {
+        "first": false,
+        "middle": false,
+        "last": false
+      }
+    },
+    {
+      "qid": "Q14",
+      "question": "发现的三具死尸是篝杀的吗？",
+      "gold_verdict": "no",
+      "gold_block": "seen08000_c363",
+      "gold_rank_in_baseline_top5": 1,
+      "n_gold_in_top5": 1,
+      "baseline_verdict": "no",
+      "baseline_answer_head": "证据1中瑚太朗判断,根据周围环境的破坏情况,那三具死尸是与刚才的大型魔物不同的其他魔物作战时留下的,而且也不是篝——篝认",
+      "positions": {
+        "first": {
+          "gold_position": 1,
+          "verdict": "no",
+          "answer_head": "证据1中瑚太朗判断,根据周围环境的破坏情况,那三具死尸是与刚才的大型魔物不同的其他魔物作战时留下的,而且也不是篝——篝认真攻击的话切断面会很明显。因此不是篝杀的",
+          "evidence_rfids": [
+            [
+              11578,
+              11591
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3282,
+            "completion_tokens": 80,
+            "total_tokens": 3362,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1874
+          },
+          "latency_ms": 1500,
+          "cost_usd_offpeak": 0.00033332
+        },
+        "middle": {
+          "gold_position": 3,
+          "verdict": "no",
+          "answer_head": "不是。证据3中瑚太朗判断,虽然尸体可能是大西队的人,但从周围破坏情况看是与不同于刚才大型魔物的其他魔物作战留下的,而且也不是篝——篝认真攻击的话切断面会很明显。",
+          "evidence_rfids": [
+            [
+              11578,
+              11591
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3282,
+            "completion_tokens": 77,
+            "total_tokens": 3359,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1874
+          },
+          "latency_ms": 1194,
+          "cost_usd_offpeak": 0.00033152
+        },
+        "last": {
+          "gold_position": 5,
+          "verdict": "no",
+          "answer_head": "不是。证据5中瑚太朗判断,根据周围环境的破坏情况,尸体是与不同于刚才大型魔物的其他魔物作战时留下的,而且也不是篝;篝认真攻击的话切断面会很明显。",
+          "evidence_rfids": [
+            [
+              11578,
+              11591
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3282,
+            "completion_tokens": 72,
+            "total_tokens": 3354,
+            "prompt_cache_hit_tokens": 2048,
+            "prompt_cache_miss_tokens": 1234
+          },
+          "latency_ms": 1087,
+          "cost_usd_offpeak": 0.00023444
+        }
+      },
+      "verdicts": {
+        "first": "no",
+        "middle": "no",
+        "last": "no"
+      },
+      "stable_across_positions": true,
+      "matches_baseline_all": true,
+      "label_correct_by_position": {
+        "first": true,
+        "middle": true,
+        "last": true
+      }
+    },
+    {
+      "qid": "Q43",
+      "question": "瑚太朗在圣歌队里认出的那位熟人，就是井子吗？",
+      "gold_verdict": "yes",
+      "gold_block": "seen08000_c381",
+      "gold_rank_in_baseline_top5": 2,
+      "n_gold_in_top5": 2,
+      "baseline_verdict": "yes",
+      "baseline_answer_head": "是。证据2中瑚太朗在圣歌队里发现熟人并说「井子小姐…」,证据5中井子也认出瑚太朗。",
+      "positions": {
+        "first": {
+          "gold_position": 1,
+          "verdict": "yes",
+          "answer_head": "是。证据1中瑚太朗在圣歌队里发现熟人并说出「井子小姐…」,证据5中井子也认出瑚太朗。",
+          "evidence_rfids": [
+            [
+              12012,
+              12035
+            ],
+            [
+              14172,
+              14207
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3331,
+            "completion_tokens": 70,
+            "total_tokens": 3401,
+            "prompt_cache_hit_tokens": 1664,
+            "prompt_cache_miss_tokens": 1667
+          },
+          "latency_ms": 1161,
+          "cost_usd_offpeak": 0.00029704
+        },
+        "middle": {
+          "gold_position": 3,
+          "verdict": "yes",
+          "answer_head": "是。证据3中瑚太朗在圣歌队里发现熟人并说「井子小姐…」,证据5中井子也认出瑚太朗。",
+          "evidence_rfids": [
+            [
+              12012,
+              12035
+            ],
+            [
+              14172,
+              14207
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3331,
+            "completion_tokens": 70,
+            "total_tokens": 3401,
+            "prompt_cache_hit_tokens": 1664,
+            "prompt_cache_miss_tokens": 1667
+          },
+          "latency_ms": 934,
+          "cost_usd_offpeak": 0.00029704
+        },
+        "last": {
+          "gold_position": 5,
+          "verdict": "yes",
+          "answer_head": "是。证据5中瑚太朗在圣歌队里发现熟人并说「井子小姐…」。",
+          "evidence_rfids": [
+            [
+              12012,
+              12035
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3331,
+            "completion_tokens": 50,
+            "total_tokens": 3381,
+            "prompt_cache_hit_tokens": 2048,
+            "prompt_cache_miss_tokens": 1283
+          },
+          "latency_ms": 1643,
+          "cost_usd_offpeak": 0.00022859
+        }
+      },
+      "verdicts": {
+        "first": "yes",
+        "middle": "yes",
+        "last": "yes"
+      },
+      "stable_across_positions": true,
+      "matches_baseline_all": true,
+      "label_correct_by_position": {
+        "first": true,
+        "middle": true,
+        "last": true
+      }
+    },
+    {
+      "qid": "Q44",
+      "question": "临终之际，江坂对这位背叛者的抉择表示了赞许吗？",
+      "gold_verdict": "yes",
+      "gold_block": "seen08000_c427",
+      "gold_rank_in_baseline_top5": 1,
+      "n_gold_in_top5": 1,
+      "baseline_verdict": "yes",
+      "baseline_answer_head": "是的。江坂对瑚太朗说「高洁这种事情弱者也能做到」「但是胜利，只有强者才能获得」「你是强者呐，挺起胸来吧」，对其抉择表示了",
+      "positions": {
+        "first": {
+          "gold_position": 1,
+          "verdict": "yes",
+          "answer_head": "是的。江坂对瑚太朗说「高洁这种事情弱者也能做到」「但是胜利，只有强者才能获得」「你是强者呐，挺起胸来吧」，对其抉择表示了赞许。",
+          "evidence_rfids": [
+            [
+              13568,
+              13626
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 2971,
+            "completion_tokens": 67,
+            "total_tokens": 3038,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1563
+          },
+          "latency_ms": 1437,
+          "cost_usd_offpeak": 0.00027887
+        },
+        "middle": {
+          "gold_position": 3,
+          "verdict": "yes",
+          "answer_head": "是。证据中江坂对瑚太朗说「你是强者呐，挺起胸来吧」，并认可其胜利，表现出赞许之意。",
+          "evidence_rfids": [
+            [
+              13568,
+              13626
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 2971,
+            "completion_tokens": 58,
+            "total_tokens": 3029,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1563
+          },
+          "latency_ms": 824,
+          "cost_usd_offpeak": 0.00027347
+        },
+        "last": {
+          "gold_position": 5,
+          "verdict": "yes",
+          "answer_head": "是的。江坂说「高洁这种事情弱者也能做到」「但是胜利，只有强者才能获得」「你是强者呐，挺起胸来吧」，对瑚太朗的抉择表示了肯定与赞许。",
+          "evidence_rfids": [
+            [
+              13568,
+              13626
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 2971,
+            "completion_tokens": 69,
+            "total_tokens": 3040,
+            "prompt_cache_hit_tokens": 1792,
+            "prompt_cache_miss_tokens": 1179
+          },
+          "latency_ms": 1263,
+          "cost_usd_offpeak": 0.00022363
+        }
+      },
+      "verdicts": {
+        "first": "yes",
+        "middle": "yes",
+        "last": "yes"
+      },
+      "stable_across_positions": true,
+      "matches_baseline_all": true,
+      "label_correct_by_position": {
+        "first": true,
+        "middle": true,
+        "last": true
+      }
+    },
+    {
+      "qid": "Q48",
+      "question": "地铁隧道遇袭的守护者小队，是瑚太朗救出去的吗？",
+      "gold_verdict": "yes",
+      "gold_block": "seen08000_c439",
+      "gold_rank_in_baseline_top5": 4,
+      "n_gold_in_top5": 1,
+      "baseline_verdict": "unknown",
+      "baseline_answer_head": "证据不足。证据1只描述了守护者实际行动队进入地铁隧道后遭魔物袭击、队伍崩溃,以及叙述者用吹箭和注射器狙击危险个体,但没有",
+      "positions": {
+        "first": {
+          "gold_position": 1,
+          "verdict": "unknown",
+          "answer_head": "证据不足。证据2只描述了守护者实际行动队在建设中的地铁隧道遭魔物袭击、队伍崩溃,以及叙述者在后方用吹箭狙击危险个体;证据1中瑚太朗与今宫、西九条对话,但未说明他",
+          "evidence_rfids": [
+            [
+              13848,
+              13873
+            ],
+            [
+              13887,
+              13944
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3577,
+            "completion_tokens": 105,
+            "total_tokens": 3682,
+            "prompt_cache_hit_tokens": 1920,
+            "prompt_cache_miss_tokens": 1657
+          },
+          "latency_ms": 1308,
+          "cost_usd_offpeak": 0.00031731
+        },
+        "middle": {
+          "gold_position": 3,
+          "verdict": "unknown",
+          "answer_head": "证据不足。证据1只描述了守护者实际行动队在地铁隧道遭魔物袭击、队伍崩溃,以及叙述者在后方用吹箭狙击危险个体,但没有说明瑚太朗是否救出了该小队;其他证据也未涉及此",
+          "evidence_rfids": [],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3577,
+            "completion_tokens": 70,
+            "total_tokens": 3647,
+            "prompt_cache_hit_tokens": 2176,
+            "prompt_cache_miss_tokens": 1401
+          },
+          "latency_ms": 1516,
+          "cost_usd_offpeak": 0.00025868
+        },
+        "last": {
+          "gold_position": 5,
+          "verdict": "unknown",
+          "answer_head": "证据不足。证据1只描述了守护者实际行动队进入地铁隧道后与魔物苦战、队伍崩溃,以及叙述者用吹箭狙击魔物,但没有说明该小队是否被瑚太朗救出;其他证据也未涉及此事。",
+          "evidence_rfids": [],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3577,
+            "completion_tokens": 72,
+            "total_tokens": 3649,
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 1017
+          },
+          "latency_ms": 1572,
+          "cost_usd_offpeak": 0.00020343
+        }
+      },
+      "verdicts": {
+        "first": "unknown",
+        "middle": "unknown",
+        "last": "unknown"
+      },
+      "stable_across_positions": true,
+      "matches_baseline_all": true,
+      "label_correct_by_position": {
+        "first": false,
+        "middle": false,
+        "last": false
+      }
+    },
+    {
+      "qid": "Q50",
+      "question": "键之少女第一次开口发声，就已经能与瑚太朗正常交谈了吗？",
+      "gold_verdict": "yes",
+      "gold_block": "seen08000_c226",
+      "gold_rank_in_baseline_top5": 3,
+      "n_gold_in_top5": 1,
+      "baseline_verdict": "yes",
+      "baseline_answer_head": "是。证据3中键之少女（篝）开口说出「篝。」后，瑚太朗问「这是你的…名字吗？」，她回答「虽然不是名字，但只能这么称呼吧。」",
+      "positions": {
+        "first": {
+          "gold_position": 1,
+          "verdict": "yes",
+          "answer_head": "是。证据中键之少女(篝)开口说话后,瑚太朗与她之间的对话能够成立,并进行了关于毁灭、资格、再生等内容的交流。",
+          "evidence_rfids": [
+            [
+              6749,
+              6811
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3360,
+            "completion_tokens": 63,
+            "total_tokens": 3423,
+            "prompt_cache_hit_tokens": 1920,
+            "prompt_cache_miss_tokens": 1440
+          },
+          "latency_ms": 902,
+          "cost_usd_offpeak": 0.00025956
+        },
+        "middle": {
+          "gold_position": 3,
+          "verdict": "yes",
+          "answer_head": "是。证据3中键之少女（篝）开口说出「篝。」后，瑚太朗问「这是你的…名字吗？」，她回答「虽然不是名字，但只能这么称呼吧。」，随后双方就毁灭、资格、再生等话题持续对",
+          "evidence_rfids": [
+            [
+              6749,
+              6811
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3360,
+            "completion_tokens": 95,
+            "total_tokens": 3455,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1952
+          },
+          "latency_ms": 1804,
+          "cost_usd_offpeak": 0.00035402
+        },
+        "last": {
+          "gold_position": 5,
+          "verdict": "yes",
+          "answer_head": "是。证据中键之少女(篝)开口说出「篝。」后,瑚太朗确认「对话也能成立…能够与,键进行沟通」,随后双方就毁灭、资格、再生等话题进行了连续问答。",
+          "evidence_rfids": [
+            [
+              6749,
+              6811
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3360,
+            "completion_tokens": 77,
+            "total_tokens": 3437,
+            "prompt_cache_hit_tokens": 2304,
+            "prompt_cache_miss_tokens": 1056
+          },
+          "latency_ms": 1012,
+          "cost_usd_offpeak": 0.00021151
+        }
+      },
+      "verdicts": {
+        "first": "yes",
+        "middle": "yes",
+        "last": "yes"
+      },
+      "stable_across_positions": true,
+      "matches_baseline_all": true,
+      "label_correct_by_position": {
+        "first": true,
+        "middle": true,
+        "last": true
+      }
+    },
+    {
+      "qid": "Q52",
+      "question": "森林里盖亚与守护者的大打出手，背后有瑚太朗推波助澜吗？",
+      "gold_verdict": "yes",
+      "gold_block": "seen08000_c351",
+      "gold_rank_in_baseline_top5": 5,
+      "n_gold_in_top5": 1,
+      "baseline_verdict": "yes",
+      "baseline_answer_head": "有。证据5中瑚太朗自述「事实的发展正如我所写的剧本一样」，并「通过契约线，我唤醒了留在现场待命的四头使魔」，让缺乏实战经",
+      "positions": {
+        "first": {
+          "gold_position": 1,
+          "verdict": "unknown",
+          "answer_head": "证据1中叙述者称「事实的发展正如我所写的剧本一样」，并「通过契约线，我唤醒了留在现场待命的四头使魔」，让缺乏实战经验的战斗集团擦枪走火，说明这场冲突背后有叙述者",
+          "evidence_rfids": [
+            [
+              11199,
+              11220
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3524,
+            "completion_tokens": 105,
+            "total_tokens": 3629,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 2116
+          },
+          "latency_ms": 1291,
+          "cost_usd_offpeak": 0.00038462
+        },
+        "middle": {
+          "gold_position": 3,
+          "verdict": "yes",
+          "answer_head": "有。证据3中叙述者称「事实的发展正如我所写的剧本一样」，并说明自己通过契约线唤醒四头使魔，让缺乏实战经验的战斗集团擦枪走火，使守护者先头调查小队失去冷静并尾随魔",
+          "evidence_rfids": [
+            [
+              7439,
+              7492
+            ],
+            [
+              11199,
+              11220
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3524,
+            "completion_tokens": 130,
+            "total_tokens": 3654,
+            "prompt_cache_hit_tokens": 2176,
+            "prompt_cache_miss_tokens": 1348
+          },
+          "latency_ms": 1575,
+          "cost_usd_offpeak": 0.00028673
+        },
+        "last": {
+          "gold_position": 5,
+          "verdict": "yes",
+          "answer_head": "有。证据5中瑚太朗自述「事实的发展正如我所写的剧本一样」，并「通过契约线，我唤醒了留在现场待命的四头使魔」，让缺乏实战经验的战斗集团擦枪走火，守护者先头调查小队",
+          "evidence_rfids": [
+            [
+              11199,
+              11220
+            ]
+          ],
+          "all_citations_valid": true,
+          "parse_failed": false,
+          "usage": {
+            "prompt_tokens": 3524,
+            "completion_tokens": 94,
+            "total_tokens": 3618,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 2116
+          },
+          "latency_ms": 2179,
+          "cost_usd_offpeak": 0.00037802
+        }
+      },
+      "verdicts": {
+        "first": "unknown",
+        "middle": "yes",
+        "last": "yes"
+      },
+      "stable_across_positions": false,
+      "matches_baseline_all": false,
+      "label_correct_by_position": {
+        "first": false,
+        "middle": true,
+        "last": true
+      }
+    }
+  ],
+  "stability": {
+    "n_questions": 10,
+    "stable_across_positions": 9,
+    "flip_within_positions": 1,
+    "all_match_baseline": 9,
+    "flip_vs_baseline_any": 1,
+    "flipped_qids": [
+      "Q52"
+    ],
+    "label_acc_by_position": {
+      "first": 0.7,
+      "middle": 0.8,
+      "last": 0.8
+    }
+  },
+  "cost": {
+    "usd_offpeak": 0.008893,
+    "usd_peak": 0.017786
+  }
+}

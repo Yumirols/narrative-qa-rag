@@ -1,0 +1,4033 @@
+{
+  "config": {
+    "retriever": "hybrid3_rrf",
+    "top_k": 10,
+    "llm": {
+      "provider": "deepseek",
+      "base_url": "https://api.deepseek.com",
+      "model": "deepseek-flash",
+      "thinking": "disabled",
+      "temperature": 0,
+      "max_tokens": 1024,
+      "api_key_env": "DEEPSEEK_API_KEY"
+    },
+    "few_shot": true,
+    "qaset": "E:\\dev\\NLP\\project\\eval\\qaset_v0.json"
+  },
+  "summary": {
+    "n_questions": 90,
+    "parse": {
+      "fail_first": 0,
+      "fail_first_rate": 0.0,
+      "fail_final": 0,
+      "fail_final_rate": 0.0,
+      "parse_path_counts": {
+        "direct": 90
+      }
+    },
+    "citations": {
+      "intervals_total": 97,
+      "intervals_valid": 97,
+      "entry_valid_rate": 1.0,
+      "q_all_valid": 55,
+      "q_all_valid_rate": 0.6111,
+      "q_zero_citation": 35,
+      "invalid_reasons": {}
+    },
+    "tokens": {
+      "prompt": 458584,
+      "completion": 6631,
+      "prompt_cache_hit": 284544,
+      "cost_usd_offpeak": 0.0309,
+      "cost_usd_peak": 0.0619
+    },
+    "latency": {
+      "n_calls": 90,
+      "n_cache_hits": 0,
+      "n_network": 90,
+      "p50_s": 1.098,
+      "p95_s": 1.626,
+      "mean_s": 1.119
+    },
+    "models_observed": [
+      "deepseek-flash"
+    ],
+    "max_reasoning_tokens": null
+  },
+  "questions": [
+    {
+      "qid": "Q01",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.047,
+          "usage": {
+            "prompt_tokens": 5199,
+            "completion_tokens": 54,
+            "total_tokens": 5253,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1999
+          },
+          "content": "{\"answer\": \"证据1中明确说明:瑚太朗对组织撒的两个谎,一个是朱音的事情,另一个是「她」的事。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[5308, 5359]]}",
+          "request_hash": "1ca13dd8145ac5edf6eb04ee71304552489eb44a53b0a7bcf843b90f9873e36e"
+        }
+      ],
+      "prompt_sha": "1ca13dd8145ac5edf6eb04ee71304552489eb44a53b0a7bcf843b90f9873e36e",
+      "retrieved_chunk_ids": [
+        "seen08000_c177",
+        "seen08000_c253",
+        "seen08000_c205",
+        "seen08000_c078",
+        "seen08000_c088",
+        "seen08000_c427",
+        "seen08000_c379",
+        "seen08000_c227",
+        "seen08000_c207",
+        "seen08000_c228"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            5308,
+            5359
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q02",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.049,
+          "usage": {
+            "prompt_tokens": 4540,
+            "completion_tokens": 58,
+            "total_tokens": 4598,
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 1724
+          },
+          "content": "{\"answer\": \"证据5提到,训练要求「在负重80千克的情况下在12个小时内走完60千米的距离」,并称「据说这只是最低标准」。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[2536, 2558]]}",
+          "request_hash": "62e0a26cc64d2be98a3a441ab6484891d822baedae0a684296112dce51024e46"
+        }
+      ],
+      "prompt_sha": "62e0a26cc64d2be98a3a441ab6484891d822baedae0a684296112dce51024e46",
+      "retrieved_chunk_ids": [
+        "seen08000_c083",
+        "seen08000_c119",
+        "seen08000_c079",
+        "seen08000_c113",
+        "seen08000_c084",
+        "seen08000_c082",
+        "seen08000_c081",
+        "seen08000_c252",
+        "seen08000_c348",
+        "seen08000_c085"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            2536,
+            2558
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q03",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.29,
+          "usage": {
+            "prompt_tokens": 4272,
+            "completion_tokens": 92,
+            "total_tokens": 4364,
+            "prompt_cache_hit_tokens": 2688,
+            "prompt_cache_miss_tokens": 1584
+          },
+          "content": "{\"answer\": \"证据中提到,拜恩带剑绿地骑士团是守护者势力的最强战斗集团,正式名称为拜恩带剑绿地骑士团,其历史可追溯到十字军时代的骑士修道会,是作为将历史的阴影作为主战场的超人战斗集团;后来已解散。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[3436, 3438], [6543, 6593]]}",
+          "request_hash": "11c2b94905a38ec5b51830dd79142531fb58cfad4f20f9e8f8ccd69b0ffbd733"
+        }
+      ],
+      "prompt_sha": "11c2b94905a38ec5b51830dd79142531fb58cfad4f20f9e8f8ccd69b0ffbd733",
+      "retrieved_chunk_ids": [
+        "seen08000_c113",
+        "seen08000_c220",
+        "seen08000_c459",
+        "seen08000_c044",
+        "seen08000_c434",
+        "seen08000_c057",
+        "seen08000_c124",
+        "seen08000_c252",
+        "seen08000_c449",
+        "seen08000_c306"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            3436,
+            3438
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            6543,
+            6593
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q04",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.047,
+          "usage": {
+            "prompt_tokens": 5350,
+            "completion_tokens": 43,
+            "total_tokens": 5393,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 2022
+          },
+          "content": "{\"answer\": \"井子在生命最后时刻问瑚太朗:「天空现在是什么颜色的?」\", \"verdict\": \"unknown\", \"evidence_rfids\": [[14208, 14238]]}",
+          "request_hash": "261d28cf45bac91e63cebe98755d25e171b97e01eac5f8c7a657d446dcec56b1"
+        }
+      ],
+      "prompt_sha": "261d28cf45bac91e63cebe98755d25e171b97e01eac5f8c7a657d446dcec56b1",
+      "retrieved_chunk_ids": [
+        "seen08000_c019",
+        "seen08000_c448",
+        "seen08000_c068",
+        "seen08000_c449",
+        "seen08000_c133",
+        "seen08000_c014",
+        "seen08000_c134",
+        "seen08000_c018",
+        "seen08000_c131",
+        "seen08000_c465"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            14208,
+            14238
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q05",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.091,
+          "usage": {
+            "prompt_tokens": 5690,
+            "completion_tokens": 58,
+            "total_tokens": 5748,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 2362
+          },
+          "content": "{\"answer\": \"证据中瑚太朗只是凭直觉觉得「必须要阻止他们不可」，但明确说「没有具体的理由」，无法得知他预感到会发生什么。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[2308, 2367]]}",
+          "request_hash": "b5940321ba47ec38da56e78cbf0c97771aa52984f775714201e2ac852da572b6"
+        }
+      ],
+      "prompt_sha": "b5940321ba47ec38da56e78cbf0c97771aa52984f775714201e2ac852da572b6",
+      "retrieved_chunk_ids": [
+        "seen08000_c077",
+        "seen08000_c307",
+        "seen08000_c308",
+        "seen08000_c078",
+        "seen08000_c273",
+        "seen08000_c367",
+        "seen08000_c056",
+        "seen08000_c309",
+        "seen08000_c076",
+        "seen08000_c386"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            2308,
+            2367
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q06",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.587,
+          "usage": {
+            "prompt_tokens": 5412,
+            "completion_tokens": 54,
+            "total_tokens": 5466,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 2084
+          },
+          "content": "{\"answer\": \"证据中没有说明提交报告的地点；证据6显示瑚太朗向今宫提交了盖亚那边有很多可疑举动的报告。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[11134, 11160]]}",
+          "request_hash": "638f3e596897e28c74d790f7e8df2aabbe0db8a56358bd450dee41201d5154c7"
+        }
+      ],
+      "prompt_sha": "638f3e596897e28c74d790f7e8df2aabbe0db8a56358bd450dee41201d5154c7",
+      "retrieved_chunk_ids": [
+        "seen08000_c297",
+        "seen08000_c176",
+        "seen08000_c380",
+        "seen08000_c255",
+        "seen08000_c248",
+        "seen08000_c348",
+        "seen08000_c061",
+        "seen08000_c364",
+        "seen08000_c004",
+        "seen08000_c284"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            11134,
+            11160
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q07",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.075,
+          "usage": {
+            "prompt_tokens": 5187,
+            "completion_tokens": 41,
+            "total_tokens": 5228,
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 2243
+          },
+          "content": "{\"answer\": \"证据中没有关于江坂初次见到瑚太朗时胡诌职业身份的内容,缺少相关信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "36b244fb44c8872fcb3a67665bc5f15fec697221eeee737e698413044cfb06f8"
+        }
+      ],
+      "prompt_sha": "36b244fb44c8872fcb3a67665bc5f15fec697221eeee737e698413044cfb06f8",
+      "retrieved_chunk_ids": [
+        "seen08000_c046",
+        "seen08000_c279",
+        "seen08000_c057",
+        "seen08000_c048",
+        "seen08000_c315",
+        "seen08000_c189",
+        "seen08000_c392",
+        "seen08000_c289",
+        "seen08000_c221",
+        "seen08000_c105"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q08",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.03,
+          "usage": {
+            "prompt_tokens": 4616,
+            "completion_tokens": 42,
+            "total_tokens": 4658,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1416
+          },
+          "content": "{\"answer\": \"朱音瞬间掌握了四头猛犸型魔物的契约线。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[14359, 14404]]}",
+          "request_hash": "029bf5588eb8ecd516aa0f236b9df42439570c70a195165ab9bc5b31fe29e9bd"
+        }
+      ],
+      "prompt_sha": "029bf5588eb8ecd516aa0f236b9df42439570c70a195165ab9bc5b31fe29e9bd",
+      "retrieved_chunk_ids": [
+        "seen08000_c455",
+        "seen08000_c244",
+        "seen08000_c243",
+        "seen08000_c154",
+        "seen08000_c325",
+        "seen08000_c201",
+        "seen08000_c199",
+        "seen08000_c483",
+        "seen08000_c344",
+        "seen08000_c360"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            14359,
+            14404
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q09",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.104,
+          "usage": {
+            "prompt_tokens": 5963,
+            "completion_tokens": 76,
+            "total_tokens": 6039,
+            "prompt_cache_hit_tokens": 3456,
+            "prompt_cache_miss_tokens": 2507
+          },
+          "content": "{\"answer\": \"没有。证据中瑚太朗自称「被、被揍了。被江坂先生他们揍了」,但紧接着叙述「我又撒谎了。并没有被揍,只有我逃脱了惩罚」,说明他并未被揍。\", \"verdict\": \"no\", \"evidence_rfids\": [[5308, 5359]]}",
+          "request_hash": "ad1f1fb03b5e20a0505f5c222d9a719489b977352bfaeae6f1eca667c01bf066"
+        }
+      ],
+      "prompt_sha": "ad1f1fb03b5e20a0505f5c222d9a719489b977352bfaeae6f1eca667c01bf066",
+      "retrieved_chunk_ids": [
+        "seen08000_c115",
+        "seen08000_c439",
+        "seen08000_c177",
+        "seen08000_c253",
+        "seen08000_c254",
+        "seen08000_c387",
+        "seen08000_c179",
+        "seen08000_c386",
+        "seen08000_c153",
+        "seen08000_c385"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            5308,
+            5359
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q10",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.001,
+          "usage": {
+            "prompt_tokens": 4672,
+            "completion_tokens": 81,
+            "total_tokens": 4753,
+            "prompt_cache_hit_tokens": 2688,
+            "prompt_cache_miss_tokens": 1984
+          },
+          "content": "{\"answer\": \"证据不足。证据中瑚太朗只是自问「必须要…除掉她，么？」,并提到「不能捕获键的话就除掉她」,但没有任何内容表明他最终是否真的除掉了键之少女。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[5243, 5261], [5129, 5159]]}",
+          "request_hash": "343a1f019a4a3731328c9532502123a817582b47a34c59ae4539ce70447b5184"
+        }
+      ],
+      "prompt_sha": "343a1f019a4a3731328c9532502123a817582b47a34c59ae4539ce70447b5184",
+      "retrieved_chunk_ids": [
+        "seen08000_c174",
+        "seen08000_c168",
+        "seen08000_c454",
+        "seen08000_c226",
+        "seen08000_c206",
+        "seen08000_c136",
+        "seen08000_c130",
+        "seen08000_c216",
+        "seen08000_c276",
+        "seen08000_c073"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            5243,
+            5261
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            5129,
+            5159
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q11",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.104,
+          "usage": {
+            "prompt_tokens": 5155,
+            "completion_tokens": 64,
+            "total_tokens": 5219,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 1827
+          },
+          "content": "{\"answer\": \"没有认出。证据1明确写道「洲崎至死没注意到和他在一起的我就是铃木凡人」，说明洲崎直到死都没有识破铃木凡人的真实身份。\", \"verdict\": \"no\", \"evidence_rfids\": [[12561, 12602]]}",
+          "request_hash": "2693149d3e4e5470b4d842d8cdd539492401698a96c1e0bd32ec77685b1a5446"
+        }
+      ],
+      "prompt_sha": "2693149d3e4e5470b4d842d8cdd539492401698a96c1e0bd32ec77685b1a5446",
+      "retrieved_chunk_ids": [
+        "seen08000_c394",
+        "seen08000_c285",
+        "seen08000_c397",
+        "seen08000_c380",
+        "seen08000_c259",
+        "seen08000_c260",
+        "seen08000_c294",
+        "seen08000_c262",
+        "seen08000_c325",
+        "seen08000_c224"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            12561,
+            12602
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q12",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.197,
+          "usage": {
+            "prompt_tokens": 5388,
+            "completion_tokens": 86,
+            "total_tokens": 5474,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 2060
+          },
+          "content": "{\"answer\": \"是。证据中瑚太朗问「该不会是你用橡胶匕首把我的匕首切断了吧？」长居否认犯规，并张开手指展示指甲，瑚太朗问「你是用这个…？」长居点头，说明是用指甲切断的。\", \"verdict\": \"yes\", \"evidence_rfids\": [[3007, 3045], [2942, 2979]]}",
+          "request_hash": "d074bbbafa6a48073d2107d5579be2693a1ad003d9b1856d35574fb15fd0fc5b"
+        }
+      ],
+      "prompt_sha": "d074bbbafa6a48073d2107d5579be2693a1ad003d9b1856d35574fb15fd0fc5b",
+      "retrieved_chunk_ids": [
+        "seen08000_c100",
+        "seen08000_c098",
+        "seen08000_c097",
+        "seen08000_c115",
+        "seen08000_c092",
+        "seen08000_c442",
+        "seen08000_c363",
+        "seen08000_c099",
+        "seen08000_c116",
+        "seen08000_c330"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            3007,
+            3045
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            2942,
+            2979
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q13",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.626,
+          "usage": {
+            "prompt_tokens": 5499,
+            "completion_tokens": 38,
+            "total_tokens": 5537,
+            "prompt_cache_hit_tokens": 3456,
+            "prompt_cache_miss_tokens": 2043
+          },
+          "content": "{\"answer\": \"证据中没有出现洲崎杀害长居和朱音的情节或结果,无法判断。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "02e8c4ea3417c70ab8645842443ede1cde0ab9d6e938a676383461b24b1018fa"
+        }
+      ],
+      "prompt_sha": "02e8c4ea3417c70ab8645842443ede1cde0ab9d6e938a676383461b24b1018fa",
+      "retrieved_chunk_ids": [
+        "seen08000_c319",
+        "seen08000_c325",
+        "seen08000_c323",
+        "seen08000_c322",
+        "seen08000_c100",
+        "seen08000_c300",
+        "seen08000_c298",
+        "seen08000_c098",
+        "seen08000_c295",
+        "seen08000_c101"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q14",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.436,
+          "usage": {
+            "prompt_tokens": 4859,
+            "completion_tokens": 88,
+            "total_tokens": 4947,
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 1915
+          },
+          "content": "{\"answer\": \"不是。证据1中瑚太朗判断,根据周围环境的破坏情况,那三具死尸是与刚才的大型魔物不同的其他魔物作战时留下的,并指出如果是篝认真攻击的话切断面会很明显,而现场折断的树木是被压倒性力量的余波折断的。\", \"verdict\": \"no\", \"evidence_rfids\": [[11578, 11591]]}",
+          "request_hash": "ffef1a73984ed278589eef8a7945e367158f04108e4c90e278e8ffed09229e5d"
+        }
+      ],
+      "prompt_sha": "ffef1a73984ed278589eef8a7945e367158f04108e4c90e278e8ffed09229e5d",
+      "retrieved_chunk_ids": [
+        "seen08000_c363",
+        "seen08000_c341",
+        "seen08000_c342",
+        "seen08000_c416",
+        "seen08000_c371",
+        "seen08000_c204",
+        "seen08000_c405",
+        "seen08000_c365",
+        "seen08000_c310",
+        "seen08000_c251"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            11578,
+            11591
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q15",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.549,
+          "usage": {
+            "prompt_tokens": 5164,
+            "completion_tokens": 97,
+            "total_tokens": 5261,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 2092
+          },
+          "content": "{\"answer\": \"证据显示瑚太朗先接受守护者的基础训练,之后才到作战部露面。证据1中江坂把瑚太朗领到训练设施并让他先接受基础训练;证据5中「三天后我在作战部露面了」,说明到作战部报到在基础训练之后。\", \"verdict\": \"yes\", \"evidence_rfids\": [[2397, 2435], [4154, 4203]]}",
+          "request_hash": "4f89c0bae47e417d829235dd328e10c5fa82e6b26273294cc7919c7e01f7f089"
+        }
+      ],
+      "prompt_sha": "4f89c0bae47e417d829235dd328e10c5fa82e6b26273294cc7919c7e01f7f089",
+      "retrieved_chunk_ids": [
+        "seen08000_c079",
+        "seen08000_c083",
+        "seen08000_c348",
+        "seen08000_c252",
+        "seen08000_c135",
+        "seen08000_c439",
+        "seen08000_c442",
+        "seen08000_c084",
+        "seen08000_c119",
+        "seen08000_c183"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            2397,
+            2435
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            4154,
+            4203
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q16",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.266,
+          "usage": {
+            "prompt_tokens": 4997,
+            "completion_tokens": 114,
+            "total_tokens": 5111,
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 2053
+          },
+          "content": "{\"answer\": \"证据1中江坂约瑚太朗下次去吃水果点心,并提到「从那以后,我跟江坂经常会面」;证据2中清水提到「在基础训练课程的说明开始之前」,瑚太朗表示没听江坂说过工作的事。证据9显示训练开始。但证据未明确给出两件事的先后时间关系,无法判断哪件先发生。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[1632, 1654], [2510, 2535]]}",
+          "request_hash": "31fab9595a33125f969926d038c6ad518fed363be355477f58405d4726651c08"
+        }
+      ],
+      "prompt_sha": "31fab9595a33125f969926d038c6ad518fed363be355477f58405d4726651c08",
+      "retrieved_chunk_ids": [
+        "seen08000_c055",
+        "seen08000_c083",
+        "seen08000_c281",
+        "seen08000_c071",
+        "seen08000_c105",
+        "seen08000_c106",
+        "seen08000_c221",
+        "seen08000_c282",
+        "seen08000_c084",
+        "seen08000_c079"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            1632,
+            1654
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            2510,
+            2535
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q17",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.197,
+          "usage": {
+            "prompt_tokens": 5373,
+            "completion_tokens": 61,
+            "total_tokens": 5434,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 2173
+          },
+          "content": "{\"answer\": \"证据不足以判断。证据中瑚太朗与朱音、与小鸟的对话分别出现在不同场景,但没有给出这些场景的先后顺序信息,无法确定瑚太朗先和谁说话。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "3ca3bfd410342d6c19bb9d666053ad4405d7236e7cf3ee37e076d759a9b5bf9e"
+        }
+      ],
+      "prompt_sha": "3ca3bfd410342d6c19bb9d666053ad4405d7236e7cf3ee37e076d759a9b5bf9e",
+      "retrieved_chunk_ids": [
+        "seen08000_c296",
+        "seen08000_c307",
+        "seen08000_c276",
+        "seen08000_c308",
+        "seen08000_c294",
+        "seen08000_c176",
+        "seen08000_c048",
+        "seen08000_c130",
+        "seen08000_c291",
+        "seen08000_c407"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q18",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.873,
+          "usage": {
+            "prompt_tokens": 5127,
+            "completion_tokens": 75,
+            "total_tokens": 5202,
+            "prompt_cache_hit_tokens": 3712,
+            "prompt_cache_miss_tokens": 1415
+          },
+          "content": "{\"answer\": \"证据中只有「加岛樱建议瑚太朗去接近『键』」的相关内容(证据1),没有「洲崎带瑚太朗参观石制城市」这一事件的任何信息,因此无法判断两者先后顺序。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[8979, 8987]]}",
+          "request_hash": "d2c8d0f83732cacc999ad73a57cad0938aa79292196a1525eb455c9d4662014e"
+        }
+      ],
+      "prompt_sha": "d2c8d0f83732cacc999ad73a57cad0938aa79292196a1525eb455c9d4662014e",
+      "retrieved_chunk_ids": [
+        "seen08000_c288",
+        "seen08000_c300",
+        "seen08000_c287",
+        "seen08000_c299",
+        "seen08000_c068",
+        "seen08000_c069",
+        "seen08000_c380",
+        "seen08000_c298",
+        "seen08000_c450",
+        "seen08000_c319"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            8979,
+            8987
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q19",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.094,
+          "usage": {
+            "prompt_tokens": 5319,
+            "completion_tokens": 46,
+            "total_tokens": 5365,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 2119
+          },
+          "content": "{\"answer\": \"证据中没有关于「瑚太朗向加岛樱送出警告信」的任何信息,无法判断两件事的先后顺序。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "ddc33d92dd9b01c12106c2d94e6272d17bfeac2f412dc7d1b6dad979ffc3b8a2"
+        }
+      ],
+      "prompt_sha": "ddc33d92dd9b01c12106c2d94e6272d17bfeac2f412dc7d1b6dad979ffc3b8a2",
+      "retrieved_chunk_ids": [
+        "seen08000_c324",
+        "seen08000_c066",
+        "seen08000_c319",
+        "seen08000_c323",
+        "seen08000_c322",
+        "seen08000_c397",
+        "seen08000_c068",
+        "seen08000_c259",
+        "seen08000_c067",
+        "seen08000_c300"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q20",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.003,
+          "usage": {
+            "prompt_tokens": 4903,
+            "completion_tokens": 58,
+            "total_tokens": 4961,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1703
+          },
+          "content": "{\"answer\": \"证据中只显示朱音掌握猛犸型魔物契约(证据1),但没有篝对瑚太朗说「谢谢」的相关内容,无法判断两者先后顺序。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "c4afd083a8b3c1cf41a9c4393c83c7d43cfe559412e5b5b90b417dd0eff96d2a"
+        }
+      ],
+      "prompt_sha": "c4afd083a8b3c1cf41a9c4393c83c7d43cfe559412e5b5b90b417dd0eff96d2a",
+      "retrieved_chunk_ids": [
+        "seen08000_c455",
+        "seen08000_c344",
+        "seen08000_c244",
+        "seen08000_c154",
+        "seen08000_c291",
+        "seen08000_c325",
+        "seen08000_c201",
+        "seen08000_c294",
+        "seen08000_c249",
+        "seen08000_c176"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q21",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.995,
+          "usage": {
+            "prompt_tokens": 5543,
+            "completion_tokens": 82,
+            "total_tokens": 5625,
+            "prompt_cache_hit_tokens": 3456,
+            "prompt_cache_miss_tokens": 2087
+          },
+          "content": "{\"answer\": \"证据中只提到瑚太朗用了「随随便便地起了个“适当”的假名」,但并未给出该假名的具体内容,也没有列出他在潜入与日常安排中使用过的其他假名。缺少假名具体名称的信息,无法回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[3784, 3832]]}",
+          "request_hash": "72005944e1e6b23327c538174b57b0eae32d533342de93def78b6a4bf0629c68"
+        }
+      ],
+      "prompt_sha": "72005944e1e6b23327c538174b57b0eae32d533342de93def78b6a4bf0629c68",
+      "retrieved_chunk_ids": [
+        "seen08000_c124",
+        "seen08000_c315",
+        "seen08000_c076",
+        "seen08000_c392",
+        "seen08000_c247",
+        "seen08000_c042",
+        "seen08000_c255",
+        "seen08000_c382",
+        "seen08000_c276",
+        "seen08000_c265"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            3784,
+            3832
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q22",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.387,
+          "usage": {
+            "prompt_tokens": 4951,
+            "completion_tokens": 37,
+            "total_tokens": 4988,
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 2135
+          },
+          "content": "{\"answer\": \"证据中没有关于「结尾场景」的信息,无法确定结尾场景中出声的角色。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "9efed1014a38bf4b14be61a700f40b799b9fd5b9660bb8554aae0928422c1a96"
+        }
+      ],
+      "prompt_sha": "9efed1014a38bf4b14be61a700f40b799b9fd5b9660bb8554aae0928422c1a96",
+      "retrieved_chunk_ids": [
+        "seen08000_c313",
+        "seen08000_c447",
+        "seen08000_c200",
+        "seen08000_c356",
+        "seen08000_c151",
+        "seen08000_c199",
+        "seen08000_c136",
+        "seen08000_c451",
+        "seen08000_c353",
+        "seen08000_c255"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q23",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.886,
+          "usage": {
+            "prompt_tokens": 5369,
+            "completion_tokens": 103,
+            "total_tokens": 5472,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 2041
+          },
+          "content": "{\"answer\": \"证据中涉及缘之家送还朱音的场景(证据1、2、3、7、9)出现的人物有:瑚太朗、井子、朱音、津久野、职员、少女。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[3991, 4043], [9260, 9302], [3937, 3989], [9304, 9329], [4114, 4153]]}",
+          "request_hash": "387e3a74a9f48e7c578ba96cf7ca42c2ea989d1afcadb1db9f037d60473fb7c8"
+        }
+      ],
+      "prompt_sha": "387e3a74a9f48e7c578ba96cf7ca42c2ea989d1afcadb1db9f037d60473fb7c8",
+      "retrieved_chunk_ids": [
+        "seen08000_c131",
+        "seen08000_c295",
+        "seen08000_c130",
+        "seen08000_c322",
+        "seen08000_c294",
+        "seen08000_c154",
+        "seen08000_c296",
+        "seen08000_c177",
+        "seen08000_c134",
+        "seen08000_c455"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            3991,
+            4043
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            9260,
+            9302
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            3937,
+            3989
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            9304,
+            9329
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            4114,
+            4153
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q24",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 2.119,
+          "usage": {
+            "prompt_tokens": 5297,
+            "completion_tokens": 199,
+            "total_tokens": 5496,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 2097
+          },
+          "content": "{\"answer\": \"洲崎制定的计划是:步骤1)揭露津久野的履历,告发其为间谍;步骤2)排除后继人与津久野(杀害);步骤3)对加岛樱进行牵制。计划由与洲崎串通的人在紧急干部会议上提起问题,同时由实际行动部队抓住津久野等人,两人将在组织内被处理掉,成为人工来世魔物扩张用的粮食。结果:会议中加岛樱宣布下一代圣女为千里朱音,并宣布此次圣女继承为最后一次,还坦白原狩猎者之事,以卸任形式负责,将洲崎的发言掩盖;随后驾驶席上的人接到「计划中止…收队」的通知,计划中止。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[10274, 10306], [10345, 10383], [10385, 10417], [10418, 10434]]}",
+          "request_hash": "1e5a5b2414924d5168cbd937c08dc5e026b408b42bd0b84c944c11341286beab"
+        }
+      ],
+      "prompt_sha": "1e5a5b2414924d5168cbd937c08dc5e026b408b42bd0b84c944c11341286beab",
+      "retrieved_chunk_ids": [
+        "seen08000_c319",
+        "seen08000_c322",
+        "seen08000_c324",
+        "seen08000_c323",
+        "seen08000_c320",
+        "seen08000_c287",
+        "seen08000_c259",
+        "seen08000_c284",
+        "seen08000_c285",
+        "seen08000_c267"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            10274,
+            10306
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            10345,
+            10383
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            10385,
+            10417
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            10418,
+            10434
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q25",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.613,
+          "usage": {
+            "prompt_tokens": 4986,
+            "completion_tokens": 141,
+            "total_tokens": 5127,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 1658
+          },
+          "content": "{\"answer\": \"Ｋｏｋｏ１０１０让Ｊａｓｍｉｎｅ２０１５做的事包括:让那边的魔物使帮忙查一下送过去的资料,不管知道什么都报告;解析创造新魔物的资料;更新结束后把聊天记录物理破坏掉;资料全部烧毁、电脑物理性毁坏;比原计划提前两天做好逃跑准备、尽可能连夜撤退。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[8262, 8266], [8276, 8297], [12705, 12719], [12720, 12748], [8222, 8261]]}",
+          "request_hash": "a1a2992376ece9ce3d26483b9f5a34cb630d8d35fa7374cd68db3475989bac7d"
+        }
+      ],
+      "prompt_sha": "a1a2992376ece9ce3d26483b9f5a34cb630d8d35fa7374cd68db3475989bac7d",
+      "retrieved_chunk_ids": [
+        "seen08000_c269",
+        "seen08000_c270",
+        "seen08000_c268",
+        "seen08000_c399",
+        "seen08000_c400",
+        "seen08000_c398",
+        "seen08000_c401",
+        "seen08000_c267",
+        "seen08000_c392",
+        "seen08000_c033"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            8262,
+            8266
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            8276,
+            8297
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            12705,
+            12719
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            12720,
+            12748
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            8222,
+            8261
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q26",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.117,
+          "usage": {
+            "prompt_tokens": 4439,
+            "completion_tokens": 44,
+            "total_tokens": 4483,
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 1495
+          },
+          "content": "{\"answer\": \"证据中没有提及「咲夜」这个名字,也没有说明任何魔物的归属关系,缺少相关信息,无法回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "bdc44896f9845f7e3893d05d18eb1746b5fcb043e2c536b6f15a05ee48009de6"
+        }
+      ],
+      "prompt_sha": "bdc44896f9845f7e3893d05d18eb1746b5fcb043e2c536b6f15a05ee48009de6",
+      "retrieved_chunk_ids": [
+        "seen08000_c245",
+        "seen08000_c085",
+        "seen08000_c463",
+        "seen08000_c432",
+        "seen08000_c318",
+        "seen08000_c438",
+        "seen08000_c339",
+        "seen08000_c260",
+        "seen08000_c279",
+        "seen08000_c343"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q27",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.026,
+          "usage": {
+            "prompt_tokens": 3896,
+            "completion_tokens": 38,
+            "total_tokens": 3934,
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 1080
+          },
+          "content": "{\"answer\": \"证据中没有提及露西娅属于盖亚还是守护者阵营的信息,无法判断。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "e56b9980ddbeeefb31aa63b387b569d57547d684fba2c14e3ba9e89471b01138"
+        }
+      ],
+      "prompt_sha": "e56b9980ddbeeefb31aa63b387b569d57547d684fba2c14e3ba9e89471b01138",
+      "retrieved_chunk_ids": [
+        "seen08000_c219",
+        "seen08000_c476",
+        "seen08000_c351",
+        "seen08000_c372",
+        "seen08000_c230",
+        "seen08000_c083",
+        "seen08000_c474",
+        "seen08000_c475",
+        "seen08000_c113",
+        "seen08000_c479"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q28",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.718,
+          "usage": {
+            "prompt_tokens": 4259,
+            "completion_tokens": 36,
+            "total_tokens": 4295,
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 1443
+          },
+          "content": "{\"answer\": \"证据中没有关于千早拥有奇特大力及其原因的任何信息,无法回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "4f2373236e0c60e953b790e45ad3787fbcb1a1d46d5461b11b3069f8ed67f741"
+        }
+      ],
+      "prompt_sha": "4f2373236e0c60e953b790e45ad3787fbcb1a1d46d5461b11b3069f8ed67f741",
+      "retrieved_chunk_ids": [
+        "seen08000_c482",
+        "seen08000_c474",
+        "seen08000_c481",
+        "seen08000_c477",
+        "seen08000_c480",
+        "seen08000_c045",
+        "seen08000_c388",
+        "seen08000_c478",
+        "seen08000_c298",
+        "seen08000_c479"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q29",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.721,
+          "usage": {
+            "prompt_tokens": 5520,
+            "completion_tokens": 33,
+            "total_tokens": 5553,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 2320
+          },
+          "content": "{\"answer\": \"证据中没有提及瑚太朗的生日信息,无法回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "1d45d42b8775e9757c699e88e9adb7cabff0e90fcbf834ad2ff57fb15f909c27"
+        }
+      ],
+      "prompt_sha": "1d45d42b8775e9757c699e88e9adb7cabff0e90fcbf834ad2ff57fb15f909c27",
+      "retrieved_chunk_ids": [
+        "seen08000_c001",
+        "seen08000_c229",
+        "seen08000_c253",
+        "seen08000_c303",
+        "seen08000_c334",
+        "seen08000_c276",
+        "seen08000_c227",
+        "seen08000_c255",
+        "seen08000_c307",
+        "seen08000_c312"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q30",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.121,
+          "usage": {
+            "prompt_tokens": 4623,
+            "completion_tokens": 45,
+            "total_tokens": 4668,
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 1807
+          },
+          "content": "{\"answer\": \"证据中没有描述静流眼罩下面的样子,只提到她戴着「很带感的眼罩」,缺少相关信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "91260eb34db04c2770d11b9edd402360d3321e949e0d9edc9a5416b8c27cb5bc"
+        }
+      ],
+      "prompt_sha": "91260eb34db04c2770d11b9edd402360d3321e949e0d9edc9a5416b8c27cb5bc",
+      "retrieved_chunk_ids": [
+        "seen08000_c479",
+        "seen08000_c301",
+        "seen08000_c384",
+        "seen08000_c387",
+        "seen08000_c459",
+        "seen08000_c482",
+        "seen08000_c429",
+        "seen08000_c480",
+        "seen08000_c327",
+        "seen08000_c476"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q31",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.09,
+          "usage": {
+            "prompt_tokens": 5295,
+            "completion_tokens": 38,
+            "total_tokens": 5333,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 2095
+          },
+          "content": "{\"answer\": \"证据3提到母神会的活动为「每周两次的活动」。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[264, 282]]}",
+          "request_hash": "ab4d022578ddaadf2ea42241ece778c6c12ed501df949f0166c9b221ce747045"
+        }
+      ],
+      "prompt_sha": "ab4d022578ddaadf2ea42241ece778c6c12ed501df949f0166c9b221ce747045",
+      "retrieved_chunk_ids": [
+        "seen08000_c031",
+        "seen08000_c052",
+        "seen08000_c011",
+        "seen08000_c068",
+        "seen08000_c012",
+        "seen08000_c241",
+        "seen08000_c259",
+        "seen08000_c030",
+        "seen08000_c130",
+        "seen08000_c087"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            264,
+            282
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q32",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.331,
+          "usage": {
+            "prompt_tokens": 5481,
+            "completion_tokens": 37,
+            "total_tokens": 5518,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 2153
+          },
+          "content": "{\"answer\": \"在训练成员42人中排名第42名。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[2749, 2787]]}",
+          "request_hash": "1b8eefab1f78921d42e203f08775318cd452d08dc2897c4dfe724fc9acd0513d"
+        }
+      ],
+      "prompt_sha": "1b8eefab1f78921d42e203f08775318cd452d08dc2897c4dfe724fc9acd0513d",
+      "retrieved_chunk_ids": [
+        "seen08000_c091",
+        "seen08000_c079",
+        "seen08000_c415",
+        "seen08000_c442",
+        "seen08000_c083",
+        "seen08000_c086",
+        "seen08000_c087",
+        "seen08000_c348",
+        "seen08000_c295",
+        "seen08000_c116"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            2749,
+            2787
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q33",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.222,
+          "usage": {
+            "prompt_tokens": 4810,
+            "completion_tokens": 105,
+            "total_tokens": 4915,
+            "prompt_cache_hit_tokens": 2688,
+            "prompt_cache_miss_tokens": 2122
+          },
+          "content": "{\"answer\": \"风祭综合文化大厅占地面积9000平方米、建筑面积6400平方米,是地上八层地下两层的塔状建筑;市里以文化发布为目的建设,但实际上是盖亚主义者(母神会)的一个大型据点。建筑内部没有显眼的宗教装饰,周围气氛庄严,门禁很严,连专门的警卫都有。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[7039, 7062], [7240, 7266]]}",
+          "request_hash": "8ec1d8c0d73a46a58e00786acd0c8fb9f9e6b151e241364893dfd9fc34286496"
+        }
+      ],
+      "prompt_sha": "8ec1d8c0d73a46a58e00786acd0c8fb9f9e6b151e241364893dfd9fc34286496",
+      "retrieved_chunk_ids": [
+        "seen08000_c233",
+        "seen08000_c239",
+        "seen08000_c223",
+        "seen08000_c123",
+        "seen08000_c079",
+        "seen08000_c302",
+        "seen08000_c304",
+        "seen08000_c396",
+        "seen08000_c128",
+        "seen08000_c348"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            7039,
+            7062
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            7240,
+            7266
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q34",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.964,
+          "usage": {
+            "prompt_tokens": 5133,
+            "completion_tokens": 38,
+            "total_tokens": 5171,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1933
+          },
+          "content": "{\"answer\": \"这个高大男子是洲崎的秘书高砂。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[9370, 9420]]}",
+          "request_hash": "edd89084bce8c6e98b99a20ce92ddec76fbddd341154cd699b269bcd47b9cced"
+        }
+      ],
+      "prompt_sha": "edd89084bce8c6e98b99a20ce92ddec76fbddd341154cd699b269bcd47b9cced",
+      "retrieved_chunk_ids": [
+        "seen08000_c298",
+        "seen08000_c240",
+        "seen08000_c076",
+        "seen08000_c001",
+        "seen08000_c168",
+        "seen08000_c434",
+        "seen08000_c333",
+        "seen08000_c116",
+        "seen08000_c247",
+        "seen08000_c085"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            9370,
+            9420
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q35",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.198,
+          "usage": {
+            "prompt_tokens": 5099,
+            "completion_tokens": 90,
+            "total_tokens": 5189,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1899
+          },
+          "content": "{\"answer\": \"长居小时候苦练的是芭蕾舞(从小学六年级起弹跳力突出,被建议朝芭蕾舞方向发展)。守护者带走她时,她提出的交换条件是让她在那个中学一直待到毕业,但这一条件最终没有谈成,她只能转去当社团经理人,因此并未如愿。\", \"verdict\": \"no\", \"evidence_rfids\": [[3046, 3062]]}",
+          "request_hash": "3b24f8a16643aec47c6cd72f1b5507dc9ad3b007108ef0193657386189e5d67c"
+        }
+      ],
+      "prompt_sha": "3b24f8a16643aec47c6cd72f1b5507dc9ad3b007108ef0193657386189e5d67c",
+      "retrieved_chunk_ids": [
+        "seen08000_c334",
+        "seen08000_c100",
+        "seen08000_c295",
+        "seen08000_c082",
+        "seen08000_c099",
+        "seen08000_c252",
+        "seen08000_c115",
+        "seen08000_c348",
+        "seen08000_c101",
+        "seen08000_c391"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            3046,
+            3062
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q36",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.147,
+          "usage": {
+            "prompt_tokens": 4854,
+            "completion_tokens": 87,
+            "total_tokens": 4941,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 1782
+          },
+          "content": "{\"answer\": \"路易斯自白说：过去他曾因一点争吵打了朋友，朋友因此死掉，第二天穿黑衣服的男人们就来了；所谓足球测试是谎话，那个朋友也是比他小的朋友。他之所以志愿来这里，就是为了给自己痛苦，但后来他放弃了这种停滞的生活方式。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[6272, 6322]]}",
+          "request_hash": "9650996d0c6e2c95190b5f97ea370a80d50544e4b250dae23e79abd34375ba1b"
+        }
+      ],
+      "prompt_sha": "9650996d0c6e2c95190b5f97ea370a80d50544e4b250dae23e79abd34375ba1b",
+      "retrieved_chunk_ids": [
+        "seen08000_c189",
+        "seen08000_c208",
+        "seen08000_c211",
+        "seen08000_c209",
+        "seen08000_c201",
+        "seen08000_c204",
+        "seen08000_c205",
+        "seen08000_c206",
+        "seen08000_c001",
+        "seen08000_c198"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            6272,
+            6322
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q37",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.759,
+          "usage": {
+            "prompt_tokens": 5392,
+            "completion_tokens": 37,
+            "total_tokens": 5429,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 2192
+          },
+          "content": "{\"answer\": \"证据中没有提到江坂关于士兵们真正并肩作战理由的说法,缺少相关信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "4e73e37de33a6b8b0d4a9815839b1c5e30dd845ace3cf433684f4fea63b247a8"
+        }
+      ],
+      "prompt_sha": "4e73e37de33a6b8b0d4a9815839b1c5e30dd845ace3cf433684f4fea63b247a8",
+      "retrieved_chunk_ids": [
+        "seen08000_c112",
+        "seen08000_c111",
+        "seen08000_c136",
+        "seen08000_c137",
+        "seen08000_c095",
+        "seen08000_c299",
+        "seen08000_c225",
+        "seen08000_c442",
+        "seen08000_c092",
+        "seen08000_c077"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q38",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.898,
+          "usage": {
+            "prompt_tokens": 4992,
+            "completion_tokens": 69,
+            "total_tokens": 5061,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 1664
+          },
+          "content": "{\"answer\": \"证据中没有说明小鸟操纵各种生物的本领是从哪里学来的。证据1只提到瑚太朗拜托小鸟操纵魔物,证据3提到魔物使之间存在优劣与「相性」,但均未涉及小鸟本领的来源。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "c51e0573e1ceea1ceb5aae5ff181f2ef66c3fcf8e3fd59b11b7dec79b99977aa"
+        }
+      ],
+      "prompt_sha": "c51e0573e1ceea1ceb5aae5ff181f2ef66c3fcf8e3fd59b11b7dec79b99977aa",
+      "retrieved_chunk_ids": [
+        "seen08000_c336",
+        "seen08000_c034",
+        "seen08000_c245",
+        "seen08000_c159",
+        "seen08000_c403",
+        "seen08000_c108",
+        "seen08000_c051",
+        "seen08000_c345",
+        "seen08000_c059",
+        "seen08000_c061"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q39",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.922,
+          "usage": {
+            "prompt_tokens": 5341,
+            "completion_tokens": 81,
+            "total_tokens": 5422,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 2141
+          },
+          "content": "{\"answer\": \"瑚太朗用投枪击落了直升机:他架起投枪,以急速的体重移动将势头传到右手,投出的枪以超常速度贯穿天空,穿透了金发男子的额头并破坏了直升机螺旋桨的根部,使直升机坠落。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[13267, 13297]]}",
+          "request_hash": "76f12f21dd757e869b9d86c15031e6d528b33d245452780be3bb781b2246ec21"
+        }
+      ],
+      "prompt_sha": "76f12f21dd757e869b9d86c15031e6d528b33d245452780be3bb781b2246ec21",
+      "retrieved_chunk_ids": [
+        "seen08000_c415",
+        "seen08000_c257",
+        "seen08000_c433",
+        "seen08000_c410",
+        "seen08000_c296",
+        "seen08000_c271",
+        "seen08000_c274",
+        "seen08000_c424",
+        "seen08000_c211",
+        "seen08000_c382"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            13267,
+            13297
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q40",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.987,
+          "usage": {
+            "prompt_tokens": 5378,
+            "completion_tokens": 81,
+            "total_tokens": 5459,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 2178
+          },
+          "content": "{\"answer\": \"证据不足以判断先后顺序。证据3提到瑚太朗准备了完美的假履历和学历,证据1提到加岛樱问「我在哪儿见过你吗」,但两段证据都没有给出明确的时间先后关系。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[8881, 8907], [8937, 8978]]}",
+          "request_hash": "cf1622829a6906585381de4463017362eed1da1b9d633adafa439276c139b3d7"
+        }
+      ],
+      "prompt_sha": "cf1622829a6906585381de4463017362eed1da1b9d633adafa439276c139b3d7",
+      "retrieved_chunk_ids": [
+        "seen08000_c287",
+        "seen08000_c067",
+        "seen08000_c285",
+        "seen08000_c066",
+        "seen08000_c300",
+        "seen08000_c284",
+        "seen08000_c068",
+        "seen08000_c259",
+        "seen08000_c448",
+        "seen08000_c317"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            8881,
+            8907
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            8937,
+            8978
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q41",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.739,
+          "usage": {
+            "prompt_tokens": 5067,
+            "completion_tokens": 41,
+            "total_tokens": 5108,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1867
+          },
+          "content": "{\"answer\": \"证据1中瑚太朗在逃跑时选择了「西北方」。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[6152, 6184]]}",
+          "request_hash": "5f295a0ea2c6aba8aee3e03985bdef8ba744d24c5f4ca8aded56825560f8b16a"
+        }
+      ],
+      "prompt_sha": "5f295a0ea2c6aba8aee3e03985bdef8ba744d24c5f4ca8aded56825560f8b16a",
+      "retrieved_chunk_ids": [
+        "seen08000_c207",
+        "seen08000_c192",
+        "seen08000_c221",
+        "seen08000_c122",
+        "seen08000_c416",
+        "seen08000_c193",
+        "seen08000_c136",
+        "seen08000_c313",
+        "seen08000_c231",
+        "seen08000_c351"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            6152,
+            6184
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q42",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.969,
+          "usage": {
+            "prompt_tokens": 5114,
+            "completion_tokens": 35,
+            "total_tokens": 5149,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 2042
+          },
+          "content": "{\"answer\": \"证据中没有关于今宫未成年时人生预案的任何信息,无法回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "0481f457e6cdac2803bbc787fef69e51cbb7e0c47373bb51eb9a313aeca949f2"
+        }
+      ],
+      "prompt_sha": "0481f457e6cdac2803bbc787fef69e51cbb7e0c47373bb51eb9a313aeca949f2",
+      "retrieved_chunk_ids": [
+        "seen08000_c359",
+        "seen08000_c281",
+        "seen08000_c314",
+        "seen08000_c440",
+        "seen08000_c274",
+        "seen08000_c135",
+        "seen08000_c091",
+        "seen08000_c451",
+        "seen08000_c035",
+        "seen08000_c317"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q43",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.136,
+          "usage": {
+            "prompt_tokens": 5229,
+            "completion_tokens": 61,
+            "total_tokens": 5290,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 2157
+          },
+          "content": "{\"answer\": \"是。证据2中瑚太朗听到圣歌队的歌声后说「井子小姐…」，表明他在圣歌队里认出的熟人就是井子。\", \"verdict\": \"yes\", \"evidence_rfids\": [[12012, 12035]]}",
+          "request_hash": "8be6f911470230e9f0d0f6ec87c99e31e36fc97be449a287a03fbab2fd8d36ce"
+        }
+      ],
+      "prompt_sha": "8be6f911470230e9f0d0f6ec87c99e31e36fc97be449a287a03fbab2fd8d36ce",
+      "retrieved_chunk_ids": [
+        "seen08000_c447",
+        "seen08000_c381",
+        "seen08000_c014",
+        "seen08000_c349",
+        "seen08000_c131",
+        "seen08000_c448",
+        "seen08000_c031",
+        "seen08000_c133",
+        "seen08000_c019",
+        "seen08000_c134"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            12012,
+            12035
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q44",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.009,
+          "usage": {
+            "prompt_tokens": 4380,
+            "completion_tokens": 75,
+            "total_tokens": 4455,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 1308
+          },
+          "content": "{\"answer\": \"证据1中江坂对瑚太朗说「高洁这种事情弱者也能做到」「但是胜利，只有强者才能获得」「你是强者呐，挺起胸来吧」，表明他对瑚太朗的抉择表示了肯定与赞许。\", \"verdict\": \"yes\", \"evidence_rfids\": [[13568, 13626]]}",
+          "request_hash": "3851de4cb3dccb63b81217c565abddacee56c7405583c1a990de4f1ac5dd3efd"
+        }
+      ],
+      "prompt_sha": "3851de4cb3dccb63b81217c565abddacee56c7405583c1a990de4f1ac5dd3efd",
+      "retrieved_chunk_ids": [
+        "seen08000_c427",
+        "seen08000_c182",
+        "seen08000_c379",
+        "seen08000_c372",
+        "seen08000_c394",
+        "seen08000_c206",
+        "seen08000_c452",
+        "seen08000_c241",
+        "seen08000_c461",
+        "seen08000_c076"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            13568,
+            13626
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q45",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.046,
+          "usage": {
+            "prompt_tokens": 5329,
+            "completion_tokens": 63,
+            "total_tokens": 5392,
+            "prompt_cache_hit_tokens": 3456,
+            "prompt_cache_miss_tokens": 1873
+          },
+          "content": "{\"answer\": \"证据中瑚太朗明确表示「没有相当特殊的事情发生的话…是不能实现那个的」，并劝小鸟放弃，说明让逝去的双亲复活这件事无法实现。\", \"verdict\": \"no\", \"evidence_rfids\": [[9819, 9865]]}",
+          "request_hash": "63c089d707c597ed9bc4594d780a3b2bb91d51adba97c832e1eea345c92d6458"
+        }
+      ],
+      "prompt_sha": "63c089d707c597ed9bc4594d780a3b2bb91d51adba97c832e1eea345c92d6458",
+      "retrieved_chunk_ids": [
+        "seen08000_c276",
+        "seen08000_c309",
+        "seen08000_c408",
+        "seen08000_c275",
+        "seen08000_c406",
+        "seen08000_c154",
+        "seen08000_c193",
+        "seen08000_c412",
+        "seen08000_c173",
+        "seen08000_c439"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            9819,
+            9865
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q46",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.987,
+          "usage": {
+            "prompt_tokens": 4862,
+            "completion_tokens": 46,
+            "total_tokens": 4908,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1662
+          },
+          "content": "{\"answer\": \"证据中没有提到江坂丢下不管的铺子,也没有关于该铺子是否盼着赚钱的信息,无法回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "bd1f5f13ecf371a3d7a0ad618e926e8a04fafa5a01cafd712d7075d34ba6a6f4"
+        }
+      ],
+      "prompt_sha": "bd1f5f13ecf371a3d7a0ad618e926e8a04fafa5a01cafd712d7075d34ba6a6f4",
+      "retrieved_chunk_ids": [
+        "seen08000_c279",
+        "seen08000_c277",
+        "seen08000_c131",
+        "seen08000_c306",
+        "seen08000_c483",
+        "seen08000_c401",
+        "seen08000_c349",
+        "seen08000_c424",
+        "seen08000_c278",
+        "seen08000_c027"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q47",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.108,
+          "usage": {
+            "prompt_tokens": 5156,
+            "completion_tokens": 39,
+            "total_tokens": 5195,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 2084
+          },
+          "content": "{\"answer\": \"证据中没有关于加岛樱追查警告信送信人的任何信息,无法判断。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "d9bf692c1bb564992e096499377fce30537e77653b48237d98a9e70abd3d6985"
+        }
+      ],
+      "prompt_sha": "d9bf692c1bb564992e096499377fce30537e77653b48237d98a9e70abd3d6985",
+      "retrieved_chunk_ids": [
+        "seen08000_c284",
+        "seen08000_c067",
+        "seen08000_c285",
+        "seen08000_c069",
+        "seen08000_c299",
+        "seen08000_c287",
+        "seen08000_c300",
+        "seen08000_c066",
+        "seen08000_c317",
+        "seen08000_c403"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q48",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.202,
+          "usage": {
+            "prompt_tokens": 5234,
+            "completion_tokens": 78,
+            "total_tokens": 5312,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 1906
+          },
+          "content": "{\"answer\": \"证据不足。证据1只描述了守护者小队在地铁隧道遭魔物袭击、队伍崩溃、有人被干掉,以及叙述者用吹箭和注射器狙击危险个体,但没有说明这些守护者是否被瑚太朗救出。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[13848, 13873]]}",
+          "request_hash": "d7a1f732ff3116435b5ec98d130d942fd0ce48f0ba8adf9a4e14c46101106de8"
+        }
+      ],
+      "prompt_sha": "d7a1f732ff3116435b5ec98d130d942fd0ce48f0ba8adf9a4e14c46101106de8",
+      "retrieved_chunk_ids": [
+        "seen08000_c436",
+        "seen08000_c353",
+        "seen08000_c204",
+        "seen08000_c207",
+        "seen08000_c439",
+        "seen08000_c206",
+        "seen08000_c175",
+        "seen08000_c295",
+        "seen08000_c351",
+        "seen08000_c086"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            13848,
+            13873
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q49",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.739,
+          "usage": {
+            "prompt_tokens": 5208,
+            "completion_tokens": 35,
+            "total_tokens": 5243,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 2136
+          },
+          "content": "{\"answer\": \"证据中没有关于那座地下城市供水供电系统的任何信息,无法判断。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "23cfeb5ded6c33944f257abbde3724fdddd18bb017e516de671678be8da83c66"
+        }
+      ],
+      "prompt_sha": "23cfeb5ded6c33944f257abbde3724fdddd18bb017e516de671678be8da83c66",
+      "retrieved_chunk_ids": [
+        "seen08000_c391",
+        "seen08000_c133",
+        "seen08000_c252",
+        "seen08000_c301",
+        "seen08000_c441",
+        "seen08000_c307",
+        "seen08000_c302",
+        "seen08000_c236",
+        "seen08000_c412",
+        "seen08000_c449"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q50",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.09,
+          "usage": {
+            "prompt_tokens": 4789,
+            "completion_tokens": 71,
+            "total_tokens": 4860,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1589
+          },
+          "content": "{\"answer\": \"证据不足。证据5中键之少女仅以「………」回应,没有显示她开口说话;证据3中篝能对话,但无法确认那是否为她第一次开口发声。缺少键之少女首次发声时的具体对话内容。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "8336777dec92b9dc475c1fe3643a28246b0a3c4e854b294faa50fe0ee358f434"
+        }
+      ],
+      "prompt_sha": "8336777dec92b9dc475c1fe3643a28246b0a3c4e854b294faa50fe0ee358f434",
+      "retrieved_chunk_ids": [
+        "seen08000_c048",
+        "seen08000_c300",
+        "seen08000_c226",
+        "seen08000_c168",
+        "seen08000_c174",
+        "seen08000_c130",
+        "seen08000_c057",
+        "seen08000_c100",
+        "seen08000_c126",
+        "seen08000_c183"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q51",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.274,
+          "usage": {
+            "prompt_tokens": 5832,
+            "completion_tokens": 122,
+            "total_tokens": 5954,
+            "prompt_cache_hit_tokens": 3712,
+            "prompt_cache_miss_tokens": 2120
+          },
+          "content": "{\"answer\": \"证据中没有显示今宫下令处决瑚太朗。证据8中瑚太朗被清水审问,清水说「没有审问的时间了,在这儿就干掉他吧」并拔刀,随后今宫说「在这之前,能稍微听我说两句吗?」,清水回应「要是求我饶他一命的话我是不会答应的」。可见下令处决的是清水,今宫只是请求先听他说两句,并未下令处决。\", \"verdict\": \"no\", \"evidence_rfids\": [[13747, 13789]]}",
+          "request_hash": "65aefdadf4368832baffbd004657aca0452299eb30033b9eaac32ad0d2dfd54d"
+        }
+      ],
+      "prompt_sha": "65aefdadf4368832baffbd004657aca0452299eb30033b9eaac32ad0d2dfd54d",
+      "retrieved_chunk_ids": [
+        "seen08000_c439",
+        "seen08000_c177",
+        "seen08000_c254",
+        "seen08000_c281",
+        "seen08000_c387",
+        "seen08000_c300",
+        "seen08000_c178",
+        "seen08000_c433",
+        "seen08000_c179",
+        "seen08000_c271"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            13747,
+            13789
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q52",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.215,
+          "usage": {
+            "prompt_tokens": 5237,
+            "completion_tokens": 101,
+            "total_tokens": 5338,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 1909
+          },
+          "content": "{\"answer\": \"有。证据6中瑚太朗自述「事实的发展正如我所写的剧本一样」，并称「通过契约线，我唤醒了留在现场待命的四头使魔」，使守护者先头调查小队因魔物突袭而失去冷静、尾随魔物进行报复性行动，可见这场冲突背后有他推波助澜。\", \"verdict\": \"yes\", \"evidence_rfids\": [[11199, 11220]]}",
+          "request_hash": "aa80c3347f6a37792e8161aad36b9f0cc3df3bcb042f32e58ad1d4d1d22855ad"
+        }
+      ],
+      "prompt_sha": "aa80c3347f6a37792e8161aad36b9f0cc3df3bcb042f32e58ad1d4d1d22855ad",
+      "retrieved_chunk_ids": [
+        "seen08000_c230",
+        "seen08000_c250",
+        "seen08000_c247",
+        "seen08000_c427",
+        "seen08000_c085",
+        "seen08000_c351",
+        "seen08000_c251",
+        "seen08000_c389",
+        "seen08000_c337",
+        "seen08000_c368"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            11199,
+            11220
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q53",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.221,
+          "usage": {
+            "prompt_tokens": 4286,
+            "completion_tokens": 90,
+            "total_tokens": 4376,
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 1726
+          },
+          "content": "{\"answer\": \"有。证据1中瑚太朗推测篝的树木化与歌声有关,并认为必须让这首歌停下来,否则会对篝和世界产生致命影响;证据2也指出篝是受到歌声影响,膝下开始变成植物根一样的东西。\", \"verdict\": \"yes\", \"evidence_rfids\": [[13371, 13391], [13724, 13745]]}",
+          "request_hash": "71106cd7d3b46a0f74be02ecca6dfd796910f97745b0413726f120c283ae9861"
+        }
+      ],
+      "prompt_sha": "71106cd7d3b46a0f74be02ecca6dfd796910f97745b0413726f120c283ae9861",
+      "retrieved_chunk_ids": [
+        "seen08000_c418",
+        "seen08000_c432",
+        "seen08000_c447",
+        "seen08000_c010",
+        "seen08000_c443",
+        "seen08000_c363",
+        "seen08000_c031",
+        "seen08000_c396",
+        "seen08000_c381",
+        "seen08000_c330"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            13371,
+            13391
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            13724,
+            13745
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q54",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.421,
+          "usage": {
+            "prompt_tokens": 5417,
+            "completion_tokens": 83,
+            "total_tokens": 5500,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 2089
+          },
+          "content": "{\"answer\": \"证据不足以判断先后顺序。证据2提到加岛樱受瑚太朗双亲所托与其见面,证据9提到江坂介绍瑚太朗进入某处,但两段证据均未给出可比较的时间信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[1983, 2019], [2841, 2878]]}",
+          "request_hash": "8b17ace13088dfb670d5536fbb03d4b4f96d62eedbd77b44d5f77ef03d9b89aa"
+        }
+      ],
+      "prompt_sha": "8b17ace13088dfb670d5536fbb03d4b4f96d62eedbd77b44d5f77ef03d9b89aa",
+      "retrieved_chunk_ids": [
+        "seen08000_c300",
+        "seen08000_c066",
+        "seen08000_c287",
+        "seen08000_c068",
+        "seen08000_c298",
+        "seen08000_c067",
+        "seen08000_c046",
+        "seen08000_c299",
+        "seen08000_c094",
+        "seen08000_c045"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            1983,
+            2019
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            2841,
+            2878
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q55",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.949,
+          "usage": {
+            "prompt_tokens": 5042,
+            "completion_tokens": 55,
+            "total_tokens": 5097,
+            "prompt_cache_hit_tokens": 2816,
+            "prompt_cache_miss_tokens": 2226
+          },
+          "content": "{\"answer\": \"证据中没有提到「结尾结伴同行的五名少女」这一情节,也没有说明其中谁曾与瑚太朗同属一支守护者小队,缺少相关信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "f54324510011c303344890a41e42e8c051e62b5e3039aa00ec344248c4f8f192"
+        }
+      ],
+      "prompt_sha": "f54324510011c303344890a41e42e8c051e62b5e3039aa00ec344248c4f8f192",
+      "retrieved_chunk_ids": [
+        "seen08000_c206",
+        "seen08000_c086",
+        "seen08000_c454",
+        "seen08000_c168",
+        "seen08000_c353",
+        "seen08000_c351",
+        "seen08000_c441",
+        "seen08000_c275",
+        "seen08000_c427",
+        "seen08000_c012"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q56",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.041,
+          "usage": {
+            "prompt_tokens": 4918,
+            "completion_tokens": 67,
+            "total_tokens": 4985,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 1590
+          },
+          "content": "{\"answer\": \"证据不足,无法判断先后顺序。证据2提到瑚太朗体能测试排名第42名(垫底),证据1提到三国把训练楼墙壁开洞,但两段证据均未给出可比较的时间信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "37456e5a8905fd89e536f3327ddf4405d03b58d0cc0fad2cd119c95e70894607"
+        }
+      ],
+      "prompt_sha": "37456e5a8905fd89e536f3327ddf4405d03b58d0cc0fad2cd119c95e70894607",
+      "retrieved_chunk_ids": [
+        "seen08000_c094",
+        "seen08000_c091",
+        "seen08000_c105",
+        "seen08000_c117",
+        "seen08000_c097",
+        "seen08000_c112",
+        "seen08000_c446",
+        "seen08000_c092",
+        "seen08000_c156",
+        "seen08000_c104"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q57",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.685,
+          "usage": {
+            "prompt_tokens": 4936,
+            "completion_tokens": 45,
+            "total_tokens": 4981,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1736
+          },
+          "content": "{\"answer\": \"证据中没有出现「篝要对朱音下杀手」这一事件的相关信息,无法比较两件事的先后顺序。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "a4bd906faf9bf98e8ef932adb39da45ba1790f8d042a20a24bb66fe32156dba9"
+        }
+      ],
+      "prompt_sha": "a4bd906faf9bf98e8ef932adb39da45ba1790f8d042a20a24bb66fe32156dba9",
+      "retrieved_chunk_ids": [
+        "seen08000_c323",
+        "seen08000_c397",
+        "seen08000_c324",
+        "seen08000_c451",
+        "seen08000_c322",
+        "seen08000_c319",
+        "seen08000_c223",
+        "seen08000_c267",
+        "seen08000_c233",
+        "seen08000_c239"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q58",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.767,
+          "usage": {
+            "prompt_tokens": 4869,
+            "completion_tokens": 83,
+            "total_tokens": 4952,
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 1925
+          },
+          "content": "{\"answer\": \"证据不足。证据3显示洲崎把圆筒交给瑚太朗,证据1显示加岛樱建议瑚太朗去接近「键」,但两段证据均未标明各自发生的时间,无法判断先后顺序。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[8060, 8085], [8979, 8987]]}",
+          "request_hash": "5eb7abbb8829f5f7ae977b6d4152c3652872d567402194d99954a00f2d1912be"
+        }
+      ],
+      "prompt_sha": "5eb7abbb8829f5f7ae977b6d4152c3652872d567402194d99954a00f2d1912be",
+      "retrieved_chunk_ids": [
+        "seen08000_c288",
+        "seen08000_c287",
+        "seen08000_c262",
+        "seen08000_c299",
+        "seen08000_c300",
+        "seen08000_c285",
+        "seen08000_c286",
+        "seen08000_c317",
+        "seen08000_c325",
+        "seen08000_c380"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            8060,
+            8085
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            8979,
+            8987
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q59",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.13,
+          "usage": {
+            "prompt_tokens": 5207,
+            "completion_tokens": 72,
+            "total_tokens": 5279,
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 2263
+          },
+          "content": "{\"answer\": \"证据不足,无法判断先后顺序。证据中瑚太朗绞杀黑犬救下朱音(证据4)与三国战死(证据8中今宫提及)分别出现,但没有任何信息说明这两件事在时间上的先后关系。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "9620f6bd9f9e3f2a413e983f887590d68114cd587e3ff2521516e8d4a7883bd1"
+        }
+      ],
+      "prompt_sha": "9620f6bd9f9e3f2a413e983f887590d68114cd587e3ff2521516e8d4a7883bd1",
+      "retrieved_chunk_ids": [
+        "seen08000_c162",
+        "seen08000_c166",
+        "seen08000_c155",
+        "seen08000_c165",
+        "seen08000_c094",
+        "seen08000_c121",
+        "seen08000_c095",
+        "seen08000_c177",
+        "seen08000_c141",
+        "seen08000_c279"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q60",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.49,
+          "usage": {
+            "prompt_tokens": 5713,
+            "completion_tokens": 125,
+            "total_tokens": 5838,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 2385
+          },
+          "content": "{\"answer\": \"证据1(rfid 2369-2396)中瑚太朗答应带小鸟逛祭典,并说「我回来了的话就给你当导游」;证据5(rfid 8365-8425)中瑚太朗离家出走后,小鸟在森林里与他再会。证据5提到「我离家出走之后不久」发生事故,而证据1中瑚太朗尚未离家,因此约定在先。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[2369, 2396], [8365, 8425]]}",
+          "request_hash": "c2f430d3d3ac9c4ad98042d72a059eab6e3a9dddb0b287a6d44534b37309a247"
+        }
+      ],
+      "prompt_sha": "c2f430d3d3ac9c4ad98042d72a059eab6e3a9dddb0b287a6d44534b37309a247",
+      "retrieved_chunk_ids": [
+        "seen08000_c078",
+        "seen08000_c408",
+        "seen08000_c077",
+        "seen08000_c307",
+        "seen08000_c273",
+        "seen08000_c060",
+        "seen08000_c309",
+        "seen08000_c289",
+        "seen08000_c367",
+        "seen08000_c062"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            2369,
+            2396
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            8365,
+            8425
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q61",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.306,
+          "usage": {
+            "prompt_tokens": 4549,
+            "completion_tokens": 96,
+            "total_tokens": 4645,
+            "prompt_cache_hit_tokens": 2688,
+            "prompt_cache_miss_tokens": 1861
+          },
+          "content": "{\"answer\": \"证据不足以判断先后顺序。证据中虽有瑚太朗杀死大西的场景(rfid 11630-11649),也有篝的藏身处移入监视者区域(rfid 8298-8327)以及篝从公寓房间逃走(rfid 12896-12929)等内容,但没有任何信息标明这些事件的时间先后关系。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "21c19cb5514a3f8d81611f2622042950e86007076e8ef467f9b2a4a016a789b8"
+        }
+      ],
+      "prompt_sha": "21c19cb5514a3f8d81611f2622042950e86007076e8ef467f9b2a4a016a789b8",
+      "retrieved_chunk_ids": [
+        "seen08000_c272",
+        "seen08000_c363",
+        "seen08000_c354",
+        "seen08000_c271",
+        "seen08000_c366",
+        "seen08000_c349",
+        "seen08000_c365",
+        "seen08000_c405",
+        "seen08000_c336",
+        "seen08000_c406"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q62",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.028,
+          "usage": {
+            "prompt_tokens": 5696,
+            "completion_tokens": 103,
+            "total_tokens": 5799,
+            "prompt_cache_hit_tokens": 3456,
+            "prompt_cache_miss_tokens": 2240
+          },
+          "content": "{\"answer\": \"证据4(rfid 12111-12154)中西九条把静流介绍给瑚太朗;证据1(rfid 12267-12331)中今宫提议三人叠手结为战友。证据4的rfid区间在证据1之前,因此西九条介绍静流先发生。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[12111, 12154], [12267, 12331]]}",
+          "request_hash": "888746d7419bd06d38894e2b94fe520adae4119bacdcea4601ad1ece9f74a98f"
+        }
+      ],
+      "prompt_sha": "888746d7419bd06d38894e2b94fe520adae4119bacdcea4601ad1ece9f74a98f",
+      "retrieved_chunk_ids": [
+        "seen08000_c387",
+        "seen08000_c442",
+        "seen08000_c253",
+        "seen08000_c384",
+        "seen08000_c439",
+        "seen08000_c386",
+        "seen08000_c153",
+        "seen08000_c254",
+        "seen08000_c385",
+        "seen08000_c151"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            12111,
+            12154
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            12267,
+            12331
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q63",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.068,
+          "usage": {
+            "prompt_tokens": 5498,
+            "completion_tokens": 75,
+            "total_tokens": 5573,
+            "prompt_cache_hit_tokens": 3456,
+            "prompt_cache_miss_tokens": 2042
+          },
+          "content": "{\"answer\": \"证据中没有关于瑚太朗为取得盖亚信任而在「过去」上做文章的信息。证据10仅提到组织给他护照上的名字写作「风祭凡人」,但未说明这是为取得盖亚信任而编造过去。缺少相关情节信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "dde7eccc057703c25ca995cd74045618f893a96dc9e11a293e52ec630c30f34d"
+        }
+      ],
+      "prompt_sha": "dde7eccc057703c25ca995cd74045618f893a96dc9e11a293e52ec630c30f34d",
+      "retrieved_chunk_ids": [
+        "seen08000_c211",
+        "seen08000_c230",
+        "seen08000_c250",
+        "seen08000_c416",
+        "seen08000_c427",
+        "seen08000_c248",
+        "seen08000_c392",
+        "seen08000_c353",
+        "seen08000_c380",
+        "seen08000_c123"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q64",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.098,
+          "usage": {
+            "prompt_tokens": 5520,
+            "completion_tokens": 89,
+            "total_tokens": 5609,
+            "prompt_cache_hit_tokens": 3328,
+            "prompt_cache_miss_tokens": 2192
+          },
+          "content": "{\"answer\": \"证据中没有明确记载瑚太朗开枪的具体经历。证据1中瑚太朗表示「不，我能做到的」并下定决心在该出手时出手,但未写明他是否开枪;证据2中开枪的是路易斯。缺少瑚太朗实际开枪的明确描述。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[127, 159], [5958, 5999]]}",
+          "request_hash": "68010275dc18fa8925d5a0b0f026f0d2a65011bfddc792f244426df5b82403d3"
+        }
+      ],
+      "prompt_sha": "68010275dc18fa8925d5a0b0f026f0d2a65011bfddc792f244426df5b82403d3",
+      "retrieved_chunk_ids": [
+        "seen08000_c005",
+        "seen08000_c202",
+        "seen08000_c208",
+        "seen08000_c181",
+        "seen08000_c094",
+        "seen08000_c261",
+        "seen08000_c254",
+        "seen08000_c003",
+        "seen08000_c155",
+        "seen08000_c227"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            127,
+            159
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            5958,
+            5999
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q65",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.684,
+          "usage": {
+            "prompt_tokens": 4718,
+            "completion_tokens": 189,
+            "total_tokens": 4907,
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 1774
+          },
+          "content": "{\"answer\": \"证据显示西九条灯花的变化轨迹:早期(证据4)她沉默寡言但说话直截了当,批评今宫驱使人跑腿、希望静心提高能力并离开这个垫底队伍;中期(证据2、8)她与今宫一同消除了迷惘、变得更强,外表和气质像换了个人,直爽开朗而华美,并已在指导后进人员;后期(证据5)她表示想让自己带的孩子也体会到这条路上的喜悦,并参与绑架母神会要员的计划;最后(证据7)她受托保护一个女孩子,答应不把她交给组织。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[2789, 2828], [7705, 7741], [7743, 7804], [12156, 12209], [13887, 13944]]}",
+          "request_hash": "d55536d47d0b0855a4d24fe45c5e3227824152ed895cb3b32cbece67ca42465e"
+        }
+      ],
+      "prompt_sha": "d55536d47d0b0855a4d24fe45c5e3227824152ed895cb3b32cbece67ca42465e",
+      "retrieved_chunk_ids": [
+        "seen08000_c093",
+        "seen08000_c254",
+        "seen08000_c150",
+        "seen08000_c092",
+        "seen08000_c385",
+        "seen08000_c153",
+        "seen08000_c439",
+        "seen08000_c253",
+        "seen08000_c063",
+        "seen08000_c151"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            2789,
+            2828
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            7705,
+            7741
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            7743,
+            7804
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            12156,
+            12209
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            13887,
+            13944
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q66",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.172,
+          "usage": {
+            "prompt_tokens": 4668,
+            "completion_tokens": 110,
+            "total_tokens": 4778,
+            "prompt_cache_hit_tokens": 2688,
+            "prompt_cache_miss_tokens": 1980
+          },
+          "content": "{\"answer\": \"证据中出现「江坂先生的教诲」共三次:Part2 讲健康中心作为简易暂住设施是Best of best;Part3 讲吐槽与装傻的技巧(装傻须说出与事实明显相反的发言);Part1 讲实战要简洁而高效地运用火力,不要依赖小聪明和心理战。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[3834, 3840], [8705, 8739], [3351, 3402]]}",
+          "request_hash": "dc41aa4ea905fde2971a5520cc9ffbbc0875e8cf132ac6ad6d17c74081bed35e"
+        }
+      ],
+      "prompt_sha": "dc41aa4ea905fde2971a5520cc9ffbbc0875e8cf132ac6ad6d17c74081bed35e",
+      "retrieved_chunk_ids": [
+        "seen08000_c125",
+        "seen08000_c280",
+        "seen08000_c111",
+        "seen08000_c283",
+        "seen08000_c073",
+        "seen08000_c105",
+        "seen08000_c427",
+        "seen08000_c221",
+        "seen08000_c429",
+        "seen08000_c282"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            3834,
+            3840
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            8705,
+            8739
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            3351,
+            3402
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q67",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.406,
+          "usage": {
+            "prompt_tokens": 4722,
+            "completion_tokens": 158,
+            "total_tokens": 4880,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 1650
+          },
+          "content": "{\"answer\": \"证据中地龙直接出场的场景有:证据2(rfid 14071-14112)中地龙从大厅魔法圈走出并与瑚太朗对话;证据3(rfid 11492-11535)中地龙以巨大魔物形态出现、对狩猎者发言后离开;证据6(rfid 14052-14070)中地龙在神殿大厅发声;证据1(rfid 14113-14129)中地龙与瑚太朗继续对话。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[14071, 14112], [11492, 11535], [14052, 14070], [14113, 14129]]}",
+          "request_hash": "39962beba72eaf49084dd06848abcd0eab744abb60f226774983aae7de3bbb99"
+        }
+      ],
+      "prompt_sha": "39962beba72eaf49084dd06848abcd0eab744abb60f226774983aae7de3bbb99",
+      "retrieved_chunk_ids": [
+        "seen08000_c445",
+        "seen08000_c444",
+        "seen08000_c361",
+        "seen08000_c159",
+        "seen08000_c346",
+        "seen08000_c443",
+        "seen08000_c392",
+        "seen08000_c317",
+        "seen08000_c356",
+        "seen08000_c041"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            14071,
+            14112
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            11492,
+            11535
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            14052,
+            14070
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            14113,
+            14129
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q68",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.523,
+          "usage": {
+            "prompt_tokens": 4969,
+            "completion_tokens": 141,
+            "total_tokens": 5110,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1769
+          },
+          "content": "{\"answer\": \"证据中提到的风祭市怪异传闻或超常现象有:神隐现象很多(理由与现实世界和异次元空间的复写性质有关,波长相合的人会被拉进来);有通往异次元空间的道路的都市传说;以及蔓延开来的「歌声」流言——简直不是这个世间的声音,既有听得见的人也有听不见的人,若即若离地流淌,仿佛是人之外的生命在合唱,只有几家收集超自然现象的个人网站向一部分狂热分子报道了这一现象。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[9612, 9650], [12625, 12665]]}",
+          "request_hash": "15b15c73478393f9b78f89cda825bfde57f3ce1fcbcb8a450d960fdca176b5d1"
+        }
+      ],
+      "prompt_sha": "15b15c73478393f9b78f89cda825bfde57f3ce1fcbcb8a450d960fdca176b5d1",
+      "retrieved_chunk_ids": [
+        "seen08000_c304",
+        "seen08000_c123",
+        "seen08000_c396",
+        "seen08000_c079",
+        "seen08000_c302",
+        "seen08000_c469",
+        "seen08000_c021",
+        "seen08000_c233",
+        "seen08000_c128",
+        "seen08000_c121"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            9612,
+            9650
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            12625,
+            12665
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q69",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.796,
+          "usage": {
+            "prompt_tokens": 5210,
+            "completion_tokens": 33,
+            "total_tokens": 5243,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 2010
+          },
+          "content": "{\"answer\": \"证据中没有提及风祭市市长的信息,无法回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "c7e068bc8b84c16f2b7e1c5e76d77e65a5d41613fffce31676bd901a7eebb356"
+        }
+      ],
+      "prompt_sha": "c7e068bc8b84c16f2b7e1c5e76d77e65a5d41613fffce31676bd901a7eebb356",
+      "retrieved_chunk_ids": [
+        "seen08000_c079",
+        "seen08000_c123",
+        "seen08000_c303",
+        "seen08000_c304",
+        "seen08000_c256",
+        "seen08000_c469",
+        "seen08000_c302",
+        "seen08000_c128",
+        "seen08000_c403",
+        "seen08000_c404"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q70",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.051,
+          "usage": {
+            "prompt_tokens": 4912,
+            "completion_tokens": 34,
+            "total_tokens": 4946,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 1840
+          },
+          "content": "{\"answer\": \"证据中没有提及盖亚的初代圣女是谁,缺少相关信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "6337751b73081cadd7cba3fdcc5dd0d29d48b2828e41590b84da335bff49c13c"
+        }
+      ],
+      "prompt_sha": "6337751b73081cadd7cba3fdcc5dd0d29d48b2828e41590b84da335bff49c13c",
+      "retrieved_chunk_ids": [
+        "seen08000_c324",
+        "seen08000_c267",
+        "seen08000_c319",
+        "seen08000_c322",
+        "seen08000_c234",
+        "seen08000_c397",
+        "seen08000_c432",
+        "seen08000_c066",
+        "seen08000_c284",
+        "seen08000_c230"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q71",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.806,
+          "usage": {
+            "prompt_tokens": 4964,
+            "completion_tokens": 32,
+            "total_tokens": 4996,
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 2020
+          },
+          "content": "{\"answer\": \"证据中没有提及守护者组织的创始人是谁,缺少相关信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "34ca309ee6f95c0797cdab3399e0be67afbb3960d0b62e3d8f5680d97171103d"
+        }
+      ],
+      "prompt_sha": "34ca309ee6f95c0797cdab3399e0be67afbb3960d0b62e3d8f5680d97171103d",
+      "retrieved_chunk_ids": [
+        "seen08000_c206",
+        "seen08000_c219",
+        "seen08000_c284",
+        "seen08000_c079",
+        "seen08000_c267",
+        "seen08000_c427",
+        "seen08000_c402",
+        "seen08000_c317",
+        "seen08000_c371",
+        "seen08000_c337"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q72",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.691,
+          "usage": {
+            "prompt_tokens": 5152,
+            "completion_tokens": 39,
+            "total_tokens": 5191,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 2080
+          },
+          "content": "{\"answer\": \"证据中没有提及路易斯的姓氏,只说明他出身巴西/拉美,无法回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "714830ba247f563d3dfcf40dcdfb22760e184b64f617a1e40b7489875ccc3c6d"
+        }
+      ],
+      "prompt_sha": "714830ba247f563d3dfcf40dcdfb22760e184b64f617a1e40b7489875ccc3c6d",
+      "retrieved_chunk_ids": [
+        "seen08000_c211",
+        "seen08000_c189",
+        "seen08000_c208",
+        "seen08000_c209",
+        "seen08000_c213",
+        "seen08000_c187",
+        "seen08000_c204",
+        "seen08000_c205",
+        "seen08000_c190",
+        "seen08000_c001"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q73",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.71,
+          "usage": {
+            "prompt_tokens": 5480,
+            "completion_tokens": 33,
+            "total_tokens": 5513,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 2280
+          },
+          "content": "{\"answer\": \"证据中没有提及三国的魔物是什么动物,缺少相关信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "6a7eef0662de7287feb07009dff4d5031660d17fdf923a07a27be66f5d78603a"
+        }
+      ],
+      "prompt_sha": "6a7eef0662de7287feb07009dff4d5031660d17fdf923a07a27be66f5d78603a",
+      "retrieved_chunk_ids": [
+        "seen08000_c245",
+        "seen08000_c361",
+        "seen08000_c161",
+        "seen08000_c086",
+        "seen08000_c085",
+        "seen08000_c115",
+        "seen08000_c095",
+        "seen08000_c291",
+        "seen08000_c044",
+        "seen08000_c260"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q74",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.133,
+          "usage": {
+            "prompt_tokens": 5000,
+            "completion_tokens": 43,
+            "total_tokens": 5043,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 1928
+          },
+          "content": "{\"answer\": \"证据中只提到小鸟「在本地的小学」就读,没有给出小学的具体名称,缺少该信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "88f3af22b84fcf78ef00e7a3cf4f80b6132602c90f02402323898ac74cb62e8b"
+        }
+      ],
+      "prompt_sha": "88f3af22b84fcf78ef00e7a3cf4f80b6132602c90f02402323898ac74cb62e8b",
+      "retrieved_chunk_ids": [
+        "seen08000_c289",
+        "seen08000_c048",
+        "seen08000_c050",
+        "seen08000_c051",
+        "seen08000_c062",
+        "seen08000_c273",
+        "seen08000_c271",
+        "seen08000_c480",
+        "seen08000_c013",
+        "seen08000_c014"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q75",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.209,
+          "usage": {
+            "prompt_tokens": 4977,
+            "completion_tokens": 66,
+            "total_tokens": 5043,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 1905
+          },
+          "content": "{\"answer\": \"证据中只提到一个「键」的名字为「篝」(Kagari),并说明这并非名字、只是只能这么称呼;没有提供历代其他「键」各自名字的信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[6749, 6811]]}",
+          "request_hash": "0787ea9364df6541418a6e1ebb73f43b07c66e9b69c49a7bb165be0bcf8814f5"
+        }
+      ],
+      "prompt_sha": "0787ea9364df6541418a6e1ebb73f43b07c66e9b69c49a7bb165be0bcf8814f5",
+      "retrieved_chunk_ids": [
+        "seen08000_c224",
+        "seen08000_c135",
+        "seen08000_c257",
+        "seen08000_c343",
+        "seen08000_c412",
+        "seen08000_c226",
+        "seen08000_c138",
+        "seen08000_c014",
+        "seen08000_c013",
+        "seen08000_c480"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            6749,
+            6811
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q76",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.214,
+          "usage": {
+            "prompt_tokens": 4595,
+            "completion_tokens": 55,
+            "total_tokens": 4650,
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 1651
+          },
+          "content": "{\"answer\": \"证据中只提到全日本仅有数人拥有「目」这种资质,并提到大西是其中之一,但没有给出其他「目」的具体姓名,无法回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "3c2ad7bf028b5c755b571c8f8b16c751148f011f91c32a0e4fda3e1237974c71"
+        }
+      ],
+      "prompt_sha": "3c2ad7bf028b5c755b571c8f8b16c751148f011f91c32a0e4fda3e1237974c71",
+      "retrieved_chunk_ids": [
+        "seen08000_c348",
+        "seen08000_c349",
+        "seen08000_c395",
+        "seen08000_c363",
+        "seen08000_c362",
+        "seen08000_c364",
+        "seen08000_c365",
+        "seen08000_c366",
+        "seen08000_c262",
+        "seen08000_c282"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q77",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.214,
+          "usage": {
+            "prompt_tokens": 4809,
+            "completion_tokens": 65,
+            "total_tokens": 4874,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1609
+          },
+          "content": "{\"answer\": \"证据中只提到洲崎询问报告中目击到「带着小孩的成人」一事,瑚太朗回答自己没看见,并未说明该人物是谁,缺少其身份信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[11964, 12011]]}",
+          "request_hash": "1abdbab0e08263bb9a113705c5e52a548e8a8582b88388c5f1f9c7d6d29fdbf9"
+        }
+      ],
+      "prompt_sha": "1abdbab0e08263bb9a113705c5e52a548e8a8582b88388c5f1f9c7d6d29fdbf9",
+      "retrieved_chunk_ids": [
+        "seen08000_c176",
+        "seen08000_c012",
+        "seen08000_c297",
+        "seen08000_c284",
+        "seen08000_c380",
+        "seen08000_c472",
+        "seen08000_c298",
+        "seen08000_c149",
+        "seen08000_c459",
+        "seen08000_c281"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            11964,
+            12011
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q78",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.712,
+          "usage": {
+            "prompt_tokens": 5243,
+            "completion_tokens": 203,
+            "total_tokens": 5446,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 2043
+          },
+          "content": "{\"answer\": \"证据中「人工来世」是洲崎推进的计划：它是小规模的第二个地球，如同置于超巨大魔物母胎内的小世界，即使现世毁灭也能维持生态稳定，可移植小规模生态系统、保留丰饶绿地，但人口只能限定在数万人程度，管理那里的人大概会得到等同于神的荣誉；洲崎向上流社会老者高价出售来世居住权，连刚买权利就死掉的老人都有。此外，在针对津久野等人的计划中，被处理掉的人会成为「人工来世的魔物扩张用的粮食」，强制契约导致寿命瞬间枯竭、只留白骨。加岛樱的陷阱则是把人工来世从现世割裂出去，成为泡沫世界。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[9689, 9718], [10130, 10151], [10274, 10306], [14281, 14316]]}",
+          "request_hash": "03caf888b6cbae183b5e019b0afecc147a145b028e85945074467646990872a9"
+        }
+      ],
+      "prompt_sha": "03caf888b6cbae183b5e019b0afecc147a145b028e85945074467646990872a9",
+      "retrieved_chunk_ids": [
+        "seen08000_c306",
+        "seen08000_c316",
+        "seen08000_c320",
+        "seen08000_c312",
+        "seen08000_c451",
+        "seen08000_c260",
+        "seen08000_c303",
+        "seen08000_c323",
+        "seen08000_c261",
+        "seen08000_c224"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            9689,
+            9718
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            10130,
+            10151
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            10274,
+            10306
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            14281,
+            14316
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q79",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.492,
+          "usage": {
+            "prompt_tokens": 5022,
+            "completion_tokens": 138,
+            "total_tokens": 5160,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 1950
+          },
+          "content": "{\"answer\": \"证据中缺少关于「最终决战前后」风祭市与外界异常景象的完整信息。可确认的相关片段有:证据5提到市外人群毫无秩序地涌向市内、车站被人群淹没,混杂许多魔物使,向文化大厅周围聚集,市内交通瘫痪,森林那边魔物使一起撤退、魔物踪影完全不见;证据7提到石制城市、街道无人影一片寂静。但证据未明确这些是否发生在最终决战前后,无法据此完整回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[12806, 12853], [9537, 9573]]}",
+          "request_hash": "c6a03e598ff6b8100a6624cc44f99c8de8a241083028469bd1ca0a6ae09ae260"
+        }
+      ],
+      "prompt_sha": "c6a03e598ff6b8100a6624cc44f99c8de8a241083028469bd1ca0a6ae09ae260",
+      "retrieved_chunk_ids": [
+        "seen08000_c123",
+        "seen08000_c079",
+        "seen08000_c304",
+        "seen08000_c469",
+        "seen08000_c403",
+        "seen08000_c348",
+        "seen08000_c302",
+        "seen08000_c128",
+        "seen08000_c002",
+        "seen08000_c121"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            12806,
+            12853
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            9537,
+            9573
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q80",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.153,
+          "usage": {
+            "prompt_tokens": 5543,
+            "completion_tokens": 106,
+            "total_tokens": 5649,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 2343
+          },
+          "content": "{\"answer\": \"证据中瑚太朗设想过或实施过的做法包括:向星球展示人类的可能性(证据8);考虑过移民其他星球、发展观测技术、调查资源等方案(证据4);此外他选择帮助篝、背叛组织,并最终对篝下手以停止救济(证据7)。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[12492, 12532], [13026, 13085], [14610, 14651]]}",
+          "request_hash": "25c631161c13ed1f12ba6545f27d762593ab1792c0d263df26a632e2751c135d"
+        }
+      ],
+      "prompt_sha": "25c631161c13ed1f12ba6545f27d762593ab1792c0d263df26a632e2751c135d",
+      "retrieved_chunk_ids": [
+        "seen08000_c228",
+        "seen08000_c381",
+        "seen08000_c229",
+        "seen08000_c392",
+        "seen08000_c305",
+        "seen08000_c226",
+        "seen08000_c466",
+        "seen08000_c408",
+        "seen08000_c236",
+        "seen08000_c433"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            12492,
+            12532
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            13026,
+            13085
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            14610,
+            14651
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q81",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.836,
+          "usage": {
+            "prompt_tokens": 5690,
+            "completion_tokens": 44,
+            "total_tokens": 5734,
+            "prompt_cache_hit_tokens": 3456,
+            "prompt_cache_miss_tokens": 2234
+          },
+          "content": "{\"answer\": \"证据中没有说明瑚太朗青年时代被派驻的战乱小镇位于哪个国家,缺少该地点所属国家的信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "dbfb6e5c96bfc2b29be8b1325f07fbc15f9960f2f7339296135184c912c5079a"
+        }
+      ],
+      "prompt_sha": "dbfb6e5c96bfc2b29be8b1325f07fbc15f9960f2f7339296135184c912c5079a",
+      "retrieved_chunk_ids": [
+        "seen08000_c255",
+        "seen08000_c088",
+        "seen08000_c349",
+        "seen08000_c149",
+        "seen08000_c220",
+        "seen08000_c211",
+        "seen08000_c235",
+        "seen08000_c297",
+        "seen08000_c290",
+        "seen08000_c228"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q82",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.821,
+          "usage": {
+            "prompt_tokens": 4918,
+            "completion_tokens": 34,
+            "total_tokens": 4952,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1718
+          },
+          "content": "{\"answer\": \"证据中没有提及「教区」的最高负责人是谁,缺少相关信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "7967fed1565c86be4b197dcccbdafdb37a5ce45e15e09882e7c0dd5aedcea341"
+        }
+      ],
+      "prompt_sha": "7967fed1565c86be4b197dcccbdafdb37a5ce45e15e09882e7c0dd5aedcea341",
+      "retrieved_chunk_ids": [
+        "seen08000_c372",
+        "seen08000_c253",
+        "seen08000_c348",
+        "seen08000_c349",
+        "seen08000_c394",
+        "seen08000_c081",
+        "seen08000_c423",
+        "seen08000_c192",
+        "seen08000_c275",
+        "seen08000_c279"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q83",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.986,
+          "usage": {
+            "prompt_tokens": 5240,
+            "completion_tokens": 67,
+            "total_tokens": 5307,
+            "prompt_cache_hit_tokens": 3456,
+            "prompt_cache_miss_tokens": 1784
+          },
+          "content": "{\"answer\": \"证据6提到「派罗的死对小鸟造成的心理创伤，应该还没有痊愈。是因为在意那个所以才进行的家庭旅行吗」，说明派罗离世在先，小鸟一家出门远游在后。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[2308, 2367]]}",
+          "request_hash": "7de0a386097291d8da2b04580e926c71af4d7015f15fa9e825fce664e4a2bd37"
+        }
+      ],
+      "prompt_sha": "7de0a386097291d8da2b04580e926c71af4d7015f15fa9e825fce664e4a2bd37",
+      "retrieved_chunk_ids": [
+        "seen08000_c060",
+        "seen08000_c058",
+        "seen08000_c059",
+        "seen08000_c056",
+        "seen08000_c062",
+        "seen08000_c077",
+        "seen08000_c061",
+        "seen08000_c057",
+        "seen08000_c063",
+        "seen08000_c276"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            2308,
+            2367
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q84",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.271,
+          "usage": {
+            "prompt_tokens": 5527,
+            "completion_tokens": 83,
+            "total_tokens": 5610,
+            "prompt_cache_hit_tokens": 3584,
+            "prompt_cache_miss_tokens": 1943
+          },
+          "content": "{\"answer\": \"证据中只出现了瑚太朗与少年相遇、提及打架获胜的片段(rfid 1009-1071),但没有关于「在僻静林子里被一群猎手压制到昏死过去」的任何信息,因此无法判断两件事的先后顺序。缺少后一事件的相关证据。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "6dc176a7965cd266614962141a4140cfe33ec81fd76facca2fdc78f07290a6ec"
+        }
+      ],
+      "prompt_sha": "6dc176a7965cd266614962141a4140cfe33ec81fd76facca2fdc78f07290a6ec",
+      "retrieved_chunk_ids": [
+        "seen08000_c204",
+        "seen08000_c216",
+        "seen08000_c276",
+        "seen08000_c448",
+        "seen08000_c039",
+        "seen08000_c215",
+        "seen08000_c211",
+        "seen08000_c188",
+        "seen08000_c141",
+        "seen08000_c205"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q85",
+      "type": "temporal",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.866,
+          "usage": {
+            "prompt_tokens": 5599,
+            "completion_tokens": 77,
+            "total_tokens": 5676,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 2399
+          },
+          "content": "{\"answer\": \"证据不足以判断先后顺序。证据5(初次见面、别扭气氛下的对答)与证据2(张贴寻狗启示时的搭话)分别出现,但没有任何证据标明两者的时间先后关系。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[1376, 1435], [1753, 1789]]}",
+          "request_hash": "8b5caa450afeebfaacf15bb5e67e6da1677ca1df92c78fe7dc4456564bbb38e8"
+        }
+      ],
+      "prompt_sha": "8b5caa450afeebfaacf15bb5e67e6da1677ca1df92c78fe7dc4456564bbb38e8",
+      "retrieved_chunk_ids": [
+        "seen08000_c057",
+        "seen08000_c059",
+        "seen08000_c056",
+        "seen08000_c060",
+        "seen08000_c048",
+        "seen08000_c062",
+        "seen08000_c289",
+        "seen08000_c053",
+        "seen08000_c077",
+        "seen08000_c309"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            1376,
+            1435
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            1753,
+            1789
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q86",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 0.854,
+          "usage": {
+            "prompt_tokens": 4960,
+            "completion_tokens": 59,
+            "total_tokens": 5019,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1760
+          },
+          "content": "{\"answer\": \"证据中只提到手提箱里是「几乎和普通手枪一样大的，军用自动手枪和弹匣」，并未说明具体型号，缺少型号信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[12930, 12960]]}",
+          "request_hash": "cc22732c0b1de51da8eac3c27b540e873b5930a450d04227d9e93a2f512d0661"
+        }
+      ],
+      "prompt_sha": "cc22732c0b1de51da8eac3c27b540e873b5930a450d04227d9e93a2f512d0661",
+      "retrieved_chunk_ids": [
+        "seen08000_c406",
+        "seen08000_c420",
+        "seen08000_c240",
+        "seen08000_c208",
+        "seen08000_c457",
+        "seen08000_c225",
+        "seen08000_c312",
+        "seen08000_c434",
+        "seen08000_c416",
+        "seen08000_c337"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            12930,
+            12960
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q87",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.118,
+          "usage": {
+            "prompt_tokens": 5171,
+            "completion_tokens": 38,
+            "total_tokens": 5209,
+            "prompt_cache_hit_tokens": 3200,
+            "prompt_cache_miss_tokens": 1971
+          },
+          "content": "{\"answer\": \"证据中没有提到这门生意被法院或检察机关立案追究的任何信息,缺少相关情节。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "403c20427b0a456bdaae0191f8567fd9aa39ec2cf8c0e39ee608eea302b67562"
+        }
+      ],
+      "prompt_sha": "403c20427b0a456bdaae0191f8567fd9aa39ec2cf8c0e39ee608eea302b67562",
+      "retrieved_chunk_ids": [
+        "seen08000_c306",
+        "seen08000_c284",
+        "seen08000_c380",
+        "seen08000_c393",
+        "seen08000_c297",
+        "seen08000_c316",
+        "seen08000_c320",
+        "seen08000_c339",
+        "seen08000_c451",
+        "seen08000_c260"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q88",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.2,
+          "usage": {
+            "prompt_tokens": 4979,
+            "completion_tokens": 126,
+            "total_tokens": 5105,
+            "prompt_cache_hit_tokens": 3072,
+            "prompt_cache_miss_tokens": 1907
+          },
+          "content": "{\"answer\": \"证据中只提到瑚太朗把守护者用的手机扔到河里，并将最后的窃听器安在守护者本部，设置为平时待机、只在通话时工作；对盖亚方面，证据提到他因守护者防间谍意识高而连一个窃听器都无法放置，但没有说明他对盖亚安装窃听器或录音机的具体行动。因此无法完整回答对盖亚和守护者分别做过哪些事。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[12896, 12929], [11134, 11160]]}",
+          "request_hash": "7247e85b720136ed04d0e324013b9c0a55d7725d485447b6b250a51e5c6384bb"
+        }
+      ],
+      "prompt_sha": "7247e85b720136ed04d0e324013b9c0a55d7725d485447b6b250a51e5c6384bb",
+      "retrieved_chunk_ids": [
+        "seen08000_c405",
+        "seen08000_c351",
+        "seen08000_c370",
+        "seen08000_c247",
+        "seen08000_c427",
+        "seen08000_c348",
+        "seen08000_c389",
+        "seen08000_c371",
+        "seen08000_c230",
+        "seen08000_c402"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            12896,
+            12929
+          ],
+          "reason": null
+        },
+        {
+          "rfid": [
+            11134,
+            11160
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q89",
+      "type": "aggregate",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.112,
+          "usage": {
+            "prompt_tokens": 5174,
+            "completion_tokens": 90,
+            "total_tokens": 5264,
+            "prompt_cache_hit_tokens": 3584,
+            "prompt_cache_miss_tokens": 1590
+          },
+          "content": "{\"answer\": \"证据中只明确提到长居是采伐系能力者(证据2),并说明超人能力分为狩猎系、采伐系、污染系三个系统;但未给出江坂、瑚太朗、今宫、三国、路易斯各自属于哪一类的信息,因此无法完整回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": [[2980, 3005]]}",
+          "request_hash": "d783189bda8626fe0414f7ce971c841f9492e2dfd8e507ed104b92f38e7b5ee0"
+        }
+      ],
+      "prompt_sha": "d783189bda8626fe0414f7ce971c841f9492e2dfd8e507ed104b92f38e7b5ee0",
+      "retrieved_chunk_ids": [
+        "seen08000_c094",
+        "seen08000_c099",
+        "seen08000_c121",
+        "seen08000_c181",
+        "seen08000_c112",
+        "seen08000_c120",
+        "seen08000_c441",
+        "seen08000_c122",
+        "seen08000_c205",
+        "seen08000_c334"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            2980,
+            3005
+          ],
+          "reason": null
+        }
+      ]
+    },
+    {
+      "qid": "Q90",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": false,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.116,
+          "usage": {
+            "prompt_tokens": 4911,
+            "completion_tokens": 71,
+            "total_tokens": 4982,
+            "prompt_cache_hit_tokens": 3584,
+            "prompt_cache_miss_tokens": 1327
+          },
+          "content": "{\"answer\": \"篝曾这样描述她与行星的联系:「篝如同行星的化身。」「代替没有意志的行星，进入社会，学习人类，做出判断…借用你们多彩的语言来说，那是个巨大的系统。」\", \"verdict\": \"unknown\", \"evidence_rfids\": [[6813, 6862]]}",
+          "request_hash": "dfca74e598ada5e3b90d291404cf451caa130e54c5592b9ab332fdb914fc69cb"
+        }
+      ],
+      "prompt_sha": "dfca74e598ada5e3b90d291404cf451caa130e54c5592b9ab332fdb914fc69cb",
+      "retrieved_chunk_ids": [
+        "seen08000_c227",
+        "seen08000_c226",
+        "seen08000_c328",
+        "seen08000_c236",
+        "seen08000_c228",
+        "seen08000_c237",
+        "seen08000_c467",
+        "seen08000_c231",
+        "seen08000_c174",
+        "seen08000_c168"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            6813,
+            6862
+          ],
+          "reason": null
+        }
+      ]
+    }
+  ]
+}

@@ -68,7 +68,8 @@ AUDIT_TEMPLATE_VERSION = "v1"     # --audit 模式的审计提示版本
 GENERATIVE_TYPES = ("fact", "temporal", "aggregate")   # 54 道生成类可评题
 JUDGE_MAX_TOKENS = 512            # 评审 JSON 输出短, 512 足够(沿 generate 的 1024 收紧)
 SAMPLE_SEED = 0                   # 人工抽检抽样种子(计划 §4 配置草案, 固定保证复现)
-TOP_K = 5                         # 生成层实际送 prompt 的证据数(generation.top_k)
+TOP_K = 5                         # 缺省证据数(被评 run 的 config_copy.yaml 缺 generation.top_k 时兜底);
+                                  # 实际取值 = 被评 run 生成时的 generation.top_k(T16 k∈{3,5,10} 消融)
 
 # ---------- 评审协议(计划 §3 rubric 基线) ----------
 
@@ -295,9 +296,20 @@ def default_arm(run_dir: Path) -> str:
     return cfg["generation"]["retriever"]
 
 
-def top5_of(entry: dict) -> list[dict]:
-    """retrieval_results 单题条目 → 按 rank 排序的前 5 个 top 项(生成送 prompt 的证据)。"""
-    return sorted(entry["top"], key=lambda t: t["rank"])[:TOP_K]
+def run_top_k(run_dir: Path) -> int:
+    """被评 run 生成时实际送 prompt 的证据数(config_copy.yaml 的 generation.top_k, 缺省 5)。
+
+    T16 k 消融: k=3/k=10 run 的证据数与 k=5 不同, 评审证据须与该 run 生成时严格同量
+    (retrieval_results 的 top 按 rank 取前 k 个), 与 generation_log.retrieved_chunk_ids
+    的逐题核对即验证该一致性。
+    """
+    cfg = load_config(run_dir / "config_copy.yaml")
+    return int(cfg.get("generation", {}).get("top_k", TOP_K))
+
+
+def top5_of(entry: dict, top_k: int = TOP_K) -> list[dict]:
+    """retrieval_results 单题条目 → 按 rank 排序的前 top_k 个 top 项(生成送 prompt 的证据)。"""
+    return sorted(entry["top"], key=lambda t: t["rank"])[:top_k]
 
 
 # ---------- 单题评审 ----------
@@ -419,6 +431,7 @@ def write_agreement(run_dir: Path, details: list[dict], arm: str,
 def run_judge(args, cfg: dict, paths: dict) -> None:
     run_dir = resolve_run_dir(args.run)
     arm = args.arm or default_arm(run_dir)
+    top_k = run_top_k(run_dir)   # 评审证据数 = 该 run 生成时的 generation.top_k(T16)
     qaset = load_qaset(paths["qaset"])
     answers = {json.loads(l)["qid"]: json.loads(l)
                for l in (run_dir / "answers.jsonl").read_text(encoding="utf-8").splitlines()
@@ -440,7 +453,8 @@ def run_judge(args, cfg: dict, paths: dict) -> None:
 
     llm_cfg = {**cfg["generation"]["llm"], "max_tokens": JUDGE_MAX_TOKENS}
     client = LLMClient(llm_cfg)
-    print(f"== LLM-as-judge ==\n  被评 run={run_dir.name}  臂={arm}  生成类题={len(questions)}"
+    print(f"== LLM-as-judge ==\n  被评 run={run_dir.name}  臂={arm}  top_k={top_k}  "
+          f"生成类题={len(questions)}"
           f"  模型={llm_cfg['model']}(max_tokens={JUDGE_MAX_TOKENS})  "
           f"模板={JUDGE_TEMPLATE_VERSION}")
 
@@ -449,7 +463,7 @@ def run_judge(args, cfg: dict, paths: dict) -> None:
     n_mismatch = 0
     with open(details_path, "w", encoding="utf-8", newline="\n") as f:   # 逐题落盘
         for i, q in enumerate(questions, 1):
-            top5 = top5_of(rmap[q["qid"]])
+            top5 = top5_of(rmap[q["qid"]], top_k)
             ev_blocks = [format_evidence(t["rank"], chunk_by_id[t["chunk_id"]])
                          for t in top5]
             if q["qid"] in gen_retrieved:
@@ -470,7 +484,7 @@ def run_judge(args, cfg: dict, paths: dict) -> None:
                       f"幻觉={'是' if row['hallucination'] else '否'} "
                       f"引用{len(row['citations'])}条(支持{n_sup}) [{cache}]")
     if gen_retrieved:
-        print(f"  证据一致性: top-5 与 generation_log.retrieved_chunk_ids 核对 "
+        print(f"  证据一致性: top-{top_k} 与 generation_log.retrieved_chunk_ids 核对 "
               f"{len(questions) - n_mismatch}/{len(questions)} 一致"
               + ("  [告警:存在不一致!]" if n_mismatch else ""))
 
@@ -517,13 +531,14 @@ def run_judge(args, cfg: dict, paths: dict) -> None:
 
 # ---------- T15.4 缺证边界审计 ----------
 
-def audit_one(client: LLMClient, q: dict, a: dict, ev_blocks: list[str]) -> dict:
+def audit_one(client: LLMClient, q: dict, a: dict, ev_blocks: list[str],
+              top_k: int = TOP_K) -> dict:
     """一次审计调用: 合理否定推断 vs 无证据猜测。"""
     messages = [
         {"role": "system", "content": AUDIT_SYSTEM_PROMPT},
         {"role": "user", "content": (
             f"【问题】{q['question']}(正确答案:否)\n\n"
-            f"【证据】(检索 top-{TOP_K},均未命中出题方标注的金标证据块)\n"
+            f"【证据】(检索 top-{top_k},均未命中出题方标注的金标证据块)\n"
             + "\n\n".join(ev_blocks)
             + f"\n\n【被评答案】\nverdict: {a['verdict']}\nanswer: {a['answer']}\n"
               f"evidence_rfids: {json.dumps(a.get('evidence_rfids') or [], ensure_ascii=False)}\n\n"
@@ -565,6 +580,8 @@ def run_audit(args, cfg: dict, paths: dict) -> None:
     cmp_dir = resolve_run_dir(args.compare_run)          # 开臂(对照)
     arm = args.arm or default_arm(run_dir)
     cmp_arm = default_arm(cmp_dir)
+    top_k = run_top_k(run_dir)          # 各侧证据数 = 该 run 生成时的 generation.top_k(T16)
+    cmp_top_k = run_top_k(cmp_dir)
 
     qaset = load_qaset(paths["qaset"])
     chunk_by_id = {c["chunk_id"]: c for c in load_chunks(paths["scenes"])}
@@ -581,18 +598,18 @@ def run_audit(args, cfg: dict, paths: dict) -> None:
     res, ans = load_side(run_dir, arm)
     res_o, ans_o = load_side(cmp_dir, cmp_arm)
 
-    def hit5(rmap, qid) -> bool:
-        return any(t["hit"] for t in top5_of(rmap[qid]))
+    def hit5(rmap, qid, k) -> bool:
+        return any(t["hit"] for t in top5_of(rmap[qid], k))
 
-    def cross(rmap, amap) -> dict:
-        cells = {k: [] for k in ("gold_hit|correct", "gold_hit|wrong",
-                                 "gold_miss|correct", "gold_miss|wrong")}
+    def cross(rmap, amap, k) -> dict:
+        cells = {k_: [] for k_ in ("gold_hit|correct", "gold_hit|wrong",
+                                   "gold_miss|correct", "gold_miss|wrong")}
         targets: list[str] = []
         for q in qaset["questions"]:
             if q["type"] != "yesno":
                 continue
             qid = q["qid"]
-            hit, pred = hit5(rmap, qid), amap[qid]["verdict"]
+            hit, pred = hit5(rmap, qid, k), amap[qid]["verdict"]
             correct = pred == q["gold_verdict"]          # evaluate.py 口径
             key = ("gold_hit" if hit else "gold_miss") + ("|correct" if correct else "|wrong")
             cells[key].append(f"{qid}({q['gold_verdict']}->{pred})")
@@ -601,8 +618,8 @@ def run_audit(args, cfg: dict, paths: dict) -> None:
         return {"cells": {k: {"n": len(v), "qids": v} for k, v in cells.items()},
                 "audit_targets": targets}
 
-    closed_cross = cross(res, ans)
-    open_cross = cross(res_o, ans_o)
+    closed_cross = cross(res, ans, top_k)
+    open_cross = cross(res_o, ans_o, cmp_top_k)
     una = [q for q in qaset["questions"] if q["type"] == "unanswerable"]
     una_bad = [{"qid": q["qid"], "verdict": ans[q["qid"]]["verdict"]}
                for q in una if ans[q["qid"]]["verdict"] != "unknown"]
@@ -617,8 +634,8 @@ def run_audit(args, cfg: dict, paths: dict) -> None:
             q = next(x for x in qaset["questions"] if x["qid"] == qid)
             a = ans[qid]
             ev_blocks = [format_evidence(t["rank"], chunk_by_id[t["chunk_id"]])
-                         for t in top5_of(res[qid])]
-            r = audit_one(client, q, a, ev_blocks)
+                         for t in top5_of(res[qid], top_k)]
+            r = audit_one(client, q, a, ev_blocks, top_k)
             open_pred = ans_o[qid]["verdict"]
             audits.append({
                 "qid": qid, "question": q["question"], "answer": a["answer"],
@@ -628,9 +645,9 @@ def run_audit(args, cfg: dict, paths: dict) -> None:
                 "open_arm": {"arm": cmp_arm, "run_dir": cmp_dir.name,
                              "verdict": open_pred,
                              "correct": open_pred == q["gold_verdict"],
-                             "gold_hit_top5": hit5(res_o, qid),
+                             "gold_hit_top5": hit5(res_o, qid, cmp_top_k),
                              "same_verdict_as_closed": open_pred == a["verdict"]},
-                "evidence_top5_chunk_ids": [t["chunk_id"] for t in top5_of(res[qid])],
+                "evidence_top5_chunk_ids": [t["chunk_id"] for t in top5_of(res[qid], top_k)],
                 **r})
             tag = r["classification"] or "[解析失败]"
             print(f"  {qid}: {tag}  (开臂 verdict={open_pred})")
@@ -642,7 +659,7 @@ def run_audit(args, cfg: dict, paths: dict) -> None:
         "compare_arm": cmp_arm, "compare_run_dir": cmp_dir.name,
         "template_version": AUDIT_TEMPLATE_VERSION,
         "criteria": {
-            "gold_hit": f"该臂 top-{TOP_K} 内任一 gold chunk 命中(retrieval_results hit 标志)",
+            "gold_hit": f"该臂 top-{top_k} 内任一 gold chunk 命中(retrieval_results hit 标志)",
             "verdict_correct": "pred verdict == gold_verdict(evaluate.py 口径)",
             "audit_target": "type=yesno 且 gold_verdict=no 且检索 miss 且 verdict 正确",
             "audit_judge": "classification: reasonable_negation_inference(邻近证据合理"
