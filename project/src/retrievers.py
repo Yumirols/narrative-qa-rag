@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""检索器工厂(T1 检索器化重构): config 的 retrievers 条目 → 统一接口的检索器实例。
+"""检索器工厂: config 的 retrievers 条目 → 统一接口的检索器实例。
 
-统一接口(= 报告对比表的"列"抽象,评测代码零改动的前提):
+统一接口(= 结果对比表的"列"抽象,评测代码零改动的前提):
     search(query, k) -> [{rank, idx, chunk_id, score, rfid_start, rfid_end}, ...]
     stats()          -> 索引统计 dict(落 run 日志)
 
@@ -20,7 +20,7 @@ def build_retriever(entry: dict, chunks: list[dict], paths: dict,
                     index_cfg: dict | None = None, built: dict | None = None):
     """按 config 条目构建检索器。
 
-    entry: {"name", "type", ...各自超参}; name 作 metrics 键(报告列名)。
+    entry: {"name", "type", ...各自超参}; name 作 metrics 键(结果表列名)。
     index_cfg: bm25 型的共享默认超参(config 的 index: 节),条目内同名字段可逐臂覆盖。
     built: {name: 检索器实例} 已构建实例表(hybrid 型按名引用臂, 复用实例不重建)。
     """
@@ -50,7 +50,7 @@ def build_retriever(entry: dict, chunks: list[dict], paths: dict,
                            min_count=entry.get("min_count", 1), name=entry["name"])
 
     if rtype == "bge":
-        # T4 稠密臂: 只 import src.index_vector(模块级仅 numpy); torch /
+        # 稠密臂: 只 import src.index_vector(模块级仅 numpy); torch /
         # sentence_transformers 由 BGEIndex.__init__ 内部延迟导入——
         # bm25-only 运行零 torch 依赖的性质不变(同文件头约束)。
         # 缺省值与 BGEIndex.__init__ 签名一致(device="cpu"/batch_size=32/use_cache=True)。
@@ -63,7 +63,7 @@ def build_retriever(entry: dict, chunks: list[dict], paths: dict,
                         name=entry.get("name", "bge"))
 
     if rtype == "hybrid":
-        # T6 融合臂: 按名引用同级 retrievers 条目对应的已建实例(单一配置源,
+        # 融合臂: 按名引用同级 retrievers 条目对应的已建实例(单一配置源,
         # 臂超参不内联复制);被引用臂必须排在 hybrid 条目之前, 违反即显式报错。
         # 实现见 src/index_hybrid.py, 零 LLM、零新依赖。
         from src.index_hybrid import HybridRRFIndex
@@ -74,11 +74,11 @@ def build_retriever(entry: dict, chunks: list[dict], paths: dict,
                               name=entry["name"])
 
     if rtype == "graph":
-        # T11 图扩展臂: 实体路(T9 实体-场景索引, T9.3 交集门槛)+ 卡片路(T10
-        # 事件卡小 BM25)+ 扩展路(基座 seed + 图 1 跳邻居)三路臂内 RRF。base 按
+        # 图扩展臂: 实体路(实体-场景索引, 多实体交集门槛)+ 卡片路(事件卡
+        # 小 BM25)+ 扩展路(基座 seed + 图 1 跳邻居)三路臂内 RRF。base 按
         # 名引用同级已建臂(机制同 hybrid 的 arms 引用, 单一配置源);实现见
         # src/index_graph.py。卡片 BM25 超参缺省取 index 节(与 bm25 型同源);
-        # seed_top 缺省 20(T6 depth 先验: ≥ 评测/生成侧一切 k)。
+        # seed_top 缺省 20(depth 先验: ≥ 评测/生成侧一切 k)。
         from src.index_graph import GraphExpandIndex
 
         base_name = entry.get("base", "bm25_bigram")

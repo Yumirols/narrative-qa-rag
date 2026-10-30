@@ -24,7 +24,7 @@
       "next: 文件序(rfid 单调)相邻连边; branch_ids 互斥对不连(实测 2 对, 与 choices branches 互证)",
       "has_participant: 卡片非 suspect 参与者->实体名; 实体节点存 graph_entities.json, 不重复入本文件",
       "choice_at/branch_to: 47 selbtn_start 节点; branch_to weight=选项 idx, 空 chunk_ids 控制流分支不建边",
-      "same_participant_top 不在建图期截断(移作 T11 检索期参数, 图数据完整)"
+      "same_participant_top 不在建图期截断(留作检索期参数, 图数据完整)"
     ],
     "sources": [
       "graph_cards.jsonl",

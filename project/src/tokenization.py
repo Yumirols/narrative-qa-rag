@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""检索字段的归一化与双分词臂(知识框架 §3.2 / §3.3)。
+"""检索字段的归一化与双分词臂。
 
 - normalize():      全角字母数字符号 → 半角,仅用于检索字段;
                     证据展示永远用原文 text(半角化 ２５岁→25岁 属于改写)。
 - jieba_tokenize(): 词典分词臂,加载 data/user_dict.txt(说话人真值+专名)。
-- bigram_tokenize():字符 bigram 臂,绕过词典——原理点①(分词/子词影响下游)的对照。
+- bigram_tokenize():字符 bigram 臂,绕过词典——用于对照分词粒度对检索的影响。
 
 两臂通过 get_tokenizer() 以同一接口注入 BM25 索引。
 注意:jieba 的自定义词典只能增量加载、无法卸载。run_all.py 先用默认词典
@@ -95,7 +95,7 @@ def get_tokenizer(name: str, userdict: str | Path | None = None):
     """按名字返回分词函数。
 
     jieba  臂在首次调用时加载自定义词典;
-    raw    臂 = jieba 默认词典,不触发加载——原理点①的"无词典"对照。
+    raw    臂 = jieba 默认词典,不触发加载——与 jieba 臂对照,隔离自定义词典的增益。
     注意 raw 与 jieba 两臂不可在同一进程内混用(jieba 词典加载后无法卸载):
     raw 须先建,或各自在独立进程中运行(CLI 每次调用天然是新进程)。
     """

@@ -11,3 +11,14 @@ Rewrite_terra/data/
 Rewrite_terra/data_v1/
 Rewrite_terra/structure/**
 !Rewrite_terra/structure/**/*.py
+
+# —— 运行期配置(不进 git/不进 zip; 2026-10-30 模板化): 真实配置记录开发机上级目录路径,
+#    提交版一律用同名 .yaml.example(项目内相对路径); 本地按模板复制后即可照常运行 ——
+project/configs/main.yaml
+project/configs/ablation_topk/*.yaml
+
+# —— 配置模板默认落位对应的可再生/版权内容(仅 README 说明入库) ——
+project/models/
+project/data/corpus/*.json
+project/data/corpus/*.jsonl
+project/data/corpus/*.tsv

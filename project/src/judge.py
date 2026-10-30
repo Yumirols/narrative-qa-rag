@@ -1,33 +1,33 @@
 # -*- coding: utf-8 -*-
-"""LLM-as-judge 评审层(T14)——独立评审员对生成类答案打分 + 引用语义支持性复核 + 人工抽检模板。
+"""LLM-as-judge 评审层——独立评审员对生成类答案打分 + 引用语义支持性复核 + 人工抽检模板。
 
-管线(阶段五计划 §2 T14 / §3 rubric):
-    被评 run 的 answers.jsonl + retrieval_results.json(取生成臂, top-5 证据确定性重建)
-    + qaset_v0(gold_answer/accept_criteria) + scenes.jsonl(chunk 原文)
+管线:
+    被评 run 的 answers.jsonl + retrieval_results.json(取生成臂, 按该 run 的 top_k
+    确定性重建证据)+ qaset_v0(gold_answer/accept_criteria)+ scenes.jsonl(chunk 原文)
     → 系统提示(独立评审员) + few-shot 2 例(自编防泄漏) + 实际案例(仅末条 user)
     → src/llm.py 客户端(chat_json / sha256 缓存 / temperature=0 / thinking 关)
     → 归一化 → judge_details.jsonl / judge_metrics.json / judge_run_log.json
     →(可选 --sample) judge_agreement.json(人工抽检模板, 人工列留 null 待填)
 
-设计决策(计划 §3/§6 与已定决策①②):
+设计要点:
   - 评审对象 = 54 道生成类可评题(fact/temporal/aggregate)——label_acc 只覆盖 36 道
-    verdict 题, 其余 60% 可评面由本层补齐(计划 §1.1);
-  - 证据与被评 run 生成时严格一致: retrieval_results 该臂 top 按 rank 取前 5, 与
+    verdict 题, 其余 60% 可评面由本层补齐;
+  - 证据与被评 run 生成时严格一致: retrieval_results 该臂 top 按 rank 取前 top_k, 与
     generation_log.retrieved_chunk_ids 逐题核对(不一致即告警, 不静默);
   - 消息布局 [system, user例1, asst例1, user例2, asst例2, user实际]——系统提示+
     few-shot 前缀逐字节稳定, 实际案例只在末条 user(DeepSeek 前缀缓存降费);
-  - 拒答不扣忠实性: verdict=unknown 且证据确实不足 → faithfulness=5(计划 §3 第 5 条),
+  - 拒答不扣忠实性: verdict=unknown 且证据确实不足 → faithfulness=5,
     防止把"诚实的不知道"误判为缺陷; v2 起完整性按金标交付量计(拒答=零交付→1),
     总分"诚实拒答=3"——与人工口径卡同参照系(v1 曾按证据内口径给 4~5,校准分歧来源);
   - citations 逐条判**语义支持性**(被引用原文是否支持答案断言), 不是判存在性——
-    规则层 entry_valid_rate=1.0 只验 rfid 落在 prompt 内, 语义面在此复核(计划 §1.2);
+    规则层 entry_valid_rate=1.0 只验 rfid 落在 prompt 内, 语义面在此复核;
   - judge_metrics.json 零非确定字段(无时间戳; 全部由 details 的评分与 usage 推导),
-    缓存命中重跑逐字节一致(验收底线 1); 时间/环境/CLI 参数全进 judge_run_log.json
-    ——details/metrics 与 log 分离纪律沿 generate.py;
+    缓存命中重跑逐字节一致; 时间/环境/CLI 参数全进 judge_run_log.json
+    ——details/metrics 与 log 分离的同一纪律;
   - 自评偏差(judge 与被评同模型)以评审员角色隔离 + 20% 人工抽检一致率(≥0.85)校准,
-    不引入第二家 API(已定决策①); 主推臂裁定走计划 §6 预注册规则, 不在本脚本内。
+    不引入第二家 API; 主推臂裁定走事先定好的规则, 不在本脚本内。
 
-附加 --audit 模式(T15.4 缺证边界 mini-audit): 交叉表纯脚本计算(不调 LLM); 对
+附加 --audit 模式(缺证边界 mini-audit): 交叉表纯脚本计算(不调 LLM); 对
 "gold_verdict=no 且检索 miss 且答对"题逐例做一次审计 LLM 调用(合理否定推断 vs
 无证据猜测), 产物 judge_missing_evidence_audit.json 写入关臂 run 目录(两臂共用)。
 
@@ -36,7 +36,7 @@
     python src/judge.py --run runs/20261026-223110 --limit 5 --sample 0   # 冒烟(前 5 题)
     python src/judge.py --run runs/20261026-222529 --sample 11            # 抽检模板(缓存命中 $0)
     python src/judge.py --run runs/20261026-222529 \
-        --compare-run runs/20261026-223110 --audit                        # T15.4 缺证审计
+        --compare-run runs/20261026-223110 --audit                        # 缺证审计
 """
 from __future__ import annotations
 
@@ -63,15 +63,15 @@ from src.llm import LLMClient, cost_usd
 
 JUDGE_TEMPLATE_VERSION = "v2"     # v2(2026-10-27): 完整性改金标交付口径+新增拒答 few-shot——
                                   # v1 人工校准 0.8182<0.85, 归因=完整性参照系分歧(v1 证据内口径
-                                  # "证据确实不足给4~5" vs 注册口径卡金标覆盖度), 对齐口径卡(预注册分支)
+                                  # "证据确实不足给4~5" vs 注册口径卡金标覆盖度), 对齐口径卡(预定分支)
 AUDIT_TEMPLATE_VERSION = "v1"     # --audit 模式的审计提示版本
 GENERATIVE_TYPES = ("fact", "temporal", "aggregate")   # 54 道生成类可评题
 JUDGE_MAX_TOKENS = 512            # 评审 JSON 输出短, 512 足够(沿 generate 的 1024 收紧)
-SAMPLE_SEED = 0                   # 人工抽检抽样种子(计划 §4 配置草案, 固定保证复现)
+SAMPLE_SEED = 0                   # 人工抽检抽样种子(固定保证复现)
 TOP_K = 5                         # 缺省证据数(被评 run 的 config_copy.yaml 缺 generation.top_k 时兜底);
-                                  # 实际取值 = 被评 run 生成时的 generation.top_k(T16 k∈{3,5,10} 消融)
+                                  # 实际取值 = 被评 run 生成时的 generation.top_k(支持 k∈{3,5,10} 等消融)
 
-# ---------- 评审协议(计划 §3 rubric 基线) ----------
+# ---------- 评审协议(rubric 基线) ----------
 
 JUDGE_SYSTEM_PROMPT = """你是叙事问答系统的独立评审员,对被评系统生成的答案进行质量评分。你只能依据用户消息中给出的材料(问题/参考要点/证据块原文/被评答案)评分,严禁使用材料之外的任何知识,严禁臆测材料外的情节。你是独立评审员而不是答题者:不要自己重新作答,只评被评答案。
 
@@ -168,7 +168,7 @@ FEWSHOT = [(_FS1_EVIDENCE, _FS1_CASE, _FS1_JUDGE),
            (_FS2_EVIDENCE, _FS2_CASE, _FS2_JUDGE),
            (_FS3_EVIDENCE, _FS3_CASE, _FS3_JUDGE)]
 
-# ---------- 审计协议(T15.4, 独立于评审 rubric) ----------
+# ---------- 审计协议(独立于评审 rubric) ----------
 
 AUDIT_SYSTEM_PROMPT = """你是叙事问答系统的独立审计员。被评系统对一个否定型判断题(正确答案为「否/没有」)给出了否定回答,且检索证据并未命中出题方标注的金标证据块。你的任务是审计:这个否定回答是从检索到的邻近证据合理推断出来的,还是在没有证据依据的情况下猜测的。只依据用户消息给出的材料判断,严禁使用材料之外的任何知识。
 
@@ -187,7 +187,7 @@ AUDIT_RETRY_HINT = ("你上一次的输出不是符合审计协议的合法 JSON
 # ---------- 通用小工具 ----------
 
 def format_evidence(rank: int, chunk: dict) -> str:
-    """证据块头部标注 + chunk 全文原文(展示分离红线)。
+    """证据块头部标注 + chunk 全文原文(展示分离)。
 
     与 generate.format_evidence 同款式;此处就地复制而非 import——generate 模块
     顶层会连带引入检索器/向量索引等重依赖, 评审层不需要。
@@ -299,9 +299,8 @@ def default_arm(run_dir: Path) -> str:
 def run_top_k(run_dir: Path) -> int:
     """被评 run 生成时实际送 prompt 的证据数(config_copy.yaml 的 generation.top_k, 缺省 5)。
 
-    T16 k 消融: k=3/k=10 run 的证据数与 k=5 不同, 评审证据须与该 run 生成时严格同量
-    (retrieval_results 的 top 按 rank 取前 k 个), 与 generation_log.retrieved_chunk_ids
-    的逐题核对即验证该一致性。
+    评审证据须与该 run 生成时严格同量(retrieval_results 的 top 按 rank 取前 k 个),
+    与 generation_log.retrieved_chunk_ids 的逐题核对即验证该一致性。
     """
     cfg = load_config(run_dir / "config_copy.yaml")
     return int(cfg.get("generation", {}).get("top_k", TOP_K))
@@ -431,7 +430,7 @@ def write_agreement(run_dir: Path, details: list[dict], arm: str,
 def run_judge(args, cfg: dict, paths: dict) -> None:
     run_dir = resolve_run_dir(args.run)
     arm = args.arm or default_arm(run_dir)
-    top_k = run_top_k(run_dir)   # 评审证据数 = 该 run 生成时的 generation.top_k(T16)
+    top_k = run_top_k(run_dir)   # 评审证据数 = 该 run 生成时的 generation.top_k
     qaset = load_qaset(paths["qaset"])
     answers = {json.loads(l)["qid"]: json.loads(l)
                for l in (run_dir / "answers.jsonl").read_text(encoding="utf-8").splitlines()
@@ -529,7 +528,7 @@ def run_judge(args, cfg: dict, paths: dict) -> None:
           f"      {run_dir / 'judge_run_log.json'}")
 
 
-# ---------- T15.4 缺证边界审计 ----------
+# ---------- 缺证边界审计 ----------
 
 def audit_one(client: LLMClient, q: dict, a: dict, ev_blocks: list[str],
               top_k: int = TOP_K) -> dict:
@@ -580,7 +579,7 @@ def run_audit(args, cfg: dict, paths: dict) -> None:
     cmp_dir = resolve_run_dir(args.compare_run)          # 开臂(对照)
     arm = args.arm or default_arm(run_dir)
     cmp_arm = default_arm(cmp_dir)
-    top_k = run_top_k(run_dir)          # 各侧证据数 = 该 run 生成时的 generation.top_k(T16)
+    top_k = run_top_k(run_dir)          # 各侧证据数 = 该 run 生成时的 generation.top_k
     cmp_top_k = run_top_k(cmp_dir)
 
     qaset = load_qaset(paths["qaset"])
@@ -681,7 +680,7 @@ def run_audit(args, cfg: dict, paths: dict) -> None:
 # ---------- CLI ----------
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="LLM-as-judge 评审层(T14/T15.4)")
+    ap = argparse.ArgumentParser(description="LLM-as-judge 评审层(常规评审 + 缺证审计)")
     ap.add_argument("--run", required=True,
                     help="被评 run 目录(runs/ 下名字或绝对路径; audit 模式=关臂)")
     ap.add_argument("--config", default="configs/main.yaml")
@@ -691,7 +690,7 @@ def main() -> None:
     ap.add_argument("--sample", type=int, default=11,
                     help="人工抽检抽样题数(0=不生成 judge_agreement.json)")
     ap.add_argument("--audit", action="store_true",
-                    help="T15.4 缺证审计模式(交叉表+逐例审计, 不做常规评审)")
+                    help="缺证审计模式(交叉表+逐例审计, 不做常规评审)")
     ap.add_argument("--compare-run", default=None, help="audit 模式的对照臂 run 目录")
     args = ap.parse_args()
 

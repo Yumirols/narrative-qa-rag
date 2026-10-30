@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""BM25 检索层(知识框架 §4.1,任务书基线①)。
+"""BM25 检索层(字面匹配基线)。
 
 rank_bm25.BM25Okapi 的输入是分好词的 token 列表,分词质量直接影响它——
 jieba(自定义词典)与字符 bigram 两臂经 get_tokenizer() 注入同一接口。
 
 规模决策: 480 chunks 重建毫秒级,索引不持久化(工具越少越可复现);
 chunk 元数据里 rfid 区间全局唯一且已验证互不重叠,随检索结果一并返回,
-作为 5.2 输出协议与 8.2 引用校验的统一锚点。
+作为答案输出协议与引用校验的统一锚点。
 
 用法:
   python src/index_bm25.py "路易斯是什么国籍？" [--arm jieba] [-k 5]
@@ -64,7 +64,11 @@ class BM25Index:
 
 
 def load_chunks(scenes_path: Path) -> list[dict]:
-    with open(scenes_path, encoding="utf-8") as f:
+    p = Path(scenes_path)
+    if not p.is_file():
+        raise SystemExit(f"[语料] 找不到 {p}\n"
+                         f"  按 README §1.2 放好语料, 或改配置里的 paths.scenes 指向实际位置。")
+    with open(p, encoding="utf-8") as f:
         return [json.loads(l) for l in f]
 
 

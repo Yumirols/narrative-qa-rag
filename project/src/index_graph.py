@@ -1,52 +1,52 @@
 # -*- coding: utf-8 -*-
-"""图扩展召回臂(阶段四 T11,框架 §6.3c)——实体维/转述维/结构维三路进检索。
+"""图扩展召回臂——实体维/转述维/结构维三路进检索。
 
 GraphExpandIndex(base): 第七列检索臂,统一 search(query,k) 接口。臂内三路,
-各产出一个 rank 从 1 起的命中列表后 RRF 融合(融合函数复用 index_hybrid.rrf_fuse,
-机制与 T6 完全同源——本臂 = 把"多检索器融合"下沉到图机制层):
+各产出一个 rank 从 1 起的命中列表后 RRF 融合(融合函数复用 index_hybrid.rrf_fuse
+——本臂即把"多检索器融合"下沉到图机制层):
 
-  实体路(graph_entities.json,T9 零 LLM)——T9.3 门槛:仅高精度时投票。
+  实体路(graph_entities.json,零 LLM)——高精度门槛:仅高精度时投票。
       识别实体后,仅当 **多实体命中且非空交集 ≤ entity_top** 时,交集内按基座臂
       全量打分重排发全权重票(交集小而具体,如 洲崎∩加岛∩樱→6 块,才是高精度
-      证据);单实体命中(瑢太朗 313 chunk 星型)/空交集并集回退/宽交集均
-      **不发独立票**(实体集退居过滤角色)。机制迭代依据(消融诊断,2026-10-26):
+      证据);单实体命中(瑚太朗 313 chunk 星型)/空交集并集回退/宽交集均
+      **不发独立票**(实体集退居过滤角色)。机制依据(2026-10-26 实测):
       无门槛版本把基座候选二次加权,而 gold 常为第一人称叙述、不在实体候选内
-      (T9 gold 覆盖诊断:Q24 交集 6 块含 gold 1/5、Q63 交集 0/3),字面 gold
+      (gold 覆盖诊断:Q24 交集 6 块含 gold 1/5、Q63 交集 0/3),字面 gold
       被系统性压出 top-5(Q31 gold 基座第 2 → 融合第 6);且实体票×邻居票的
       "辅助信号互相叠加"(Q33 融合第 1 = 实体 1/64 + 邻居 1/88)进一步放大毒化。
-  卡片路(graph_cards.jsonl,T10 LLM 离线产物):
+  卡片路(graph_cards.jsonl,LLM 离线产物):
       事件卡文本 = events[].event 规范化转述 + chunk_summary 建小 BM25
-      (483 卡,轻量;分词沿基座臂 bigram——阶段二已证 bigram 臂优于 jieba 臂,
-      实测 jieba 卡片路总体回退;leads_to_hint 不入索引,已定决策②)
+      (483 卡,轻量;分词沿基座臂 bigram——bigram 臂在本语料优于 jieba 臂,
+      实测 jieba 卡片路总体回退;leads_to_hint 不入索引,只作展示)
       → 命中卡回带原 chunk,零分卡过滤。卡片是 LLM 规范化转述,弥合换说法
       lexical gap,是 semantic_gap 层的主增益引擎(消融实测)。
-      已知失败面(如实记录,报告第⑥节素材):转述抽签可能再换一套词
+      已知失败面:转述抽签可能再换一套词
       (Q46 铺子→古董店/Q49 供电未抽出)或用规范名替换查询别名(Q10 键之少女
-      →篝,单字名 bigram 不可匹配)——此类三向词面失配需稠密卡片向量
-      (T13/future work),词法层不可解。
-  扩展路(graph_events.json,T10.3 确定性边表)——基座强度载体 + 邻接补充:
-      基座臂 top-seed_top 为种子(seed_top=20 先验沿 T6 depth:≥ 评测/生成侧
+      →篝,单字名 bigram 不可匹配)——此类三向词面失配需稠密卡片向量,
+      词法层不可解。
+  扩展路(graph_events.json,确定性边表)——基座强度载体 + 邻接补充:
+      基座臂 top-seed_top 为种子(seed_top=20 先验:≥ 评测/生成侧
       一切 k,即 mrr_depth=10 / generation top_k=5 / hybrid depth=20),种子
       按基座排名在前;图上 hop(=1) 跳邻居在后,邻居三源:
         时序前后件(next 边双向,已含分支段互斥跳过)、
         同参与者(has_participant 二部,按共享参与者数加权取 top-neighbor_top,
-          即 T10.3 移作检索期的 same_participant_top 截断——主角星型防稀释)、
+          即建图期不做、留到检索期的 same_participant_top 截断——主角星型防稀释)、
         同 label(scenes 元数据 label,按 chunk 序距离取 top-neighbor_top),
       总序 = (层, 源优先级[时序>共参与>同label], seed 排名, 源内序, idx)。
-      邻居在 RRF 中拿到的是固定的尾部小分值 1/(rrf_k+m+i),即计划所述
-      "固定小分值并入融合":邻居只与基座/卡片票叠加时起强化作用,单凭邻居票
-      进不了 top-20;种子承载基座字面强度——图信号全空时臂输出 = 基座 top-k
+      邻居在 RRF 中拿到的是固定的尾部小分值 1/(rrf_k+m+i),即"固定小分值并入
+      融合":邻居只与基座/卡片票叠加时起强化作用,单凭邻居票进不了 top-20;
+      种子承载基座字面强度——图信号全空时臂输出 = 基座 top-k
       (literal 不回退的机制保证)。
 
-降级(无 Key 环境红线,与 T12.3 run_all 口径一致):entities 文件缺失报错
+降级(无 Key 环境同样可用,与 run_all 口径一致):entities 文件缺失报错
 (零 LLM 产物,先跑 graph_build.py);cards / events 缺失则对应路静默降级
 (stats 与 extra_logs 记录 degraded),实体路 + 扩展路种子仍可用,臂永不全断。
 
 确定性:全部排序键显式固定,同输入同输出(实测重建实例逐指标一致)。
-先验默认参数(敏感性纪律沿 T6:不据评测集调参;机制迭代为消融归因驱动,
-非参数网格搜索,过程留痕于阶段报告):entity_top/card_top/neighbor_top/hop
-取计划 §4 先验值;实体路门槛 cap = entity_top(交集超过路线可承载的条数即
-不具体,零新增超参);seed_top=20 沿 T6 depth 先验;rrf_k=60 文献默认;
+先验默认参数(不据评测集调参;机制迭代为消融归因驱动,
+非参数网格搜索):entity_top/card_top/neighbor_top/hop 取先验值;
+实体路门槛 cap = entity_top(交集超过路线可承载的条数即
+不具体,零新增超参);seed_top=20 为 depth 先验;rrf_k=60 文献默认;
 卡片 BM25 的 k1/b 缺省取 index 节(与 bm25 型同一默认源)。
 
 用法:
@@ -85,7 +85,7 @@ class GraphExpandIndex:
     """图扩展检索器: 基座臂 + 实体/卡片/扩展三路臂内 RRF。
 
     接口与 BM25Index / HybridRRFIndex 完全同构(search/stats),另有:
-      search_routes(query,k) -> 各路命中明细(T11 验收诊断用)
+      search_routes(query,k) -> 各路命中明细(诊断/CLI 演示用)
       extra_logs -> runs/<ts>/graph_config_<name>.json(参数/图统计/降级状态/
                     实体路触发计数——确定性计数器, 重跑一致)
     """
@@ -109,15 +109,15 @@ class GraphExpandIndex:
         self.n_entity_multi = 0
         self.n_entity_fired = 0
 
-        # ---- 实体路数据(T9,必需) ----
+        # ---- 实体路数据(必需) ----
         ent_path = paths.get("entities")
         if not ent_path or not Path(ent_path).exists():
             raise FileNotFoundError(
-                f"graph 检索器 {name!r} 需要 {ent_path or 'paths.entities'}(T9 实体-场景索引)——"
+                f"graph 检索器 {name!r} 需要 {ent_path or 'paths.entities'}(实体-场景索引)——"
                 f"先运行 python src/graph_build.py(零 LLM,确定性)")
         self.entity_index = EntityIndex.from_file(ent_path)
 
-        # ---- 卡片路数据(T10,可选: 缺失降级) ----
+        # ---- 卡片路数据(可选: 缺失降级) ----
         self.card_ok, self.card_bm25 = False, None
         self._card_rows: list[int] = []      # 卡片序 → 语料 idx
         self._card_tokens = 0
@@ -126,7 +126,7 @@ class GraphExpandIndex:
         if cards_path and Path(cards_path).exists():
             self._build_card_bm25(Path(cards_path), k1, b)
 
-        # ---- 扩展路图数据(T10.3,可选: 缺失降级为纯 seed) ----
+        # ---- 扩展路图数据(可选: 缺失降级为纯 seed) ----
         self.graph_ok = False
         self._succ: dict[str, list[str]] = defaultdict(list)
         self._pred: dict[str, list[str]] = defaultdict(list)
@@ -149,7 +149,7 @@ class GraphExpandIndex:
             i = self._idx_of.get(r["chunk_id"])
             if i is None:
                 continue                     # 防御: 非本语料的卡(冒烟/异档)不入索引
-            # 规范化转述 + 概要;leads_to_hint 决策②不入召回依据
+            # 规范化转述 + 概要;leads_to_hint 不入召回依据
             text = " ".join(e["event"] for e in r.get("events", [])) + " " + r.get("chunk_summary", "")
             docs.append((i, text))
         if not docs:
@@ -186,7 +186,7 @@ class GraphExpandIndex:
         return out
 
     def _entity_route(self, query: str, base_full: list[dict]) -> list[dict]:
-        """T9.3 门槛实体路: 多实体非空交集 ≤ entity_top 才发全权重票;
+        """门槛实体路: 多实体非空交集 ≤ entity_top 才发全权重票;
         交集内按基座全量打分重排(实体不独立排序)。单实体/空交集/宽交集
         → 不发独立票(过滤角色),计数供诊断。"""
         hits = self.entity_index.recognize(query)
@@ -289,7 +289,7 @@ class GraphExpandIndex:
             "params": {"entity_top": self.entity_top, "card_top": self.card_top,
                        "neighbor_top": self.neighbor_top, "hop": self.hop,
                        "seed_top": self.seed_top, "rrf_k": self.rrf_k},
-            "entity_gate": {"rule": "多实体非空交集<=entity_top 才发全权重票(T9.3)",
+            "entity_gate": {"rule": "多实体非空交集<=entity_top 才发全权重票",
                             "n_multi_entity_queries": self.n_entity_multi,
                             "n_fired": self.n_entity_fired},
             "routes": {

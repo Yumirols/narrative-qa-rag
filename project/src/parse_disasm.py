@@ -1,19 +1,19 @@
 """Parse seen08000.dat.txt disassembly -> lines.jsonl, scenes.jsonl, choices.json
 
-输入: structure/seen08000.dat.txt (siglus-ssu -x --disam 产物)
-      structure/speaker_map.tsv (#NAMAE 导出的 说话人归一化映射)
-输出: data/lines.jsonl   行级真值结构(每条台词一行)
-      data/scenes.jsonl  三级边界信号切分后的 chunk
-      data/choices.json  选择肢节点
+输入: seen08000.dat.txt (siglus-ssu -x --disam 产物)
+      speaker_map.tsv (#NAMAE 导出的 说话人归一化映射)
+输出: lines.jsonl   行级真值结构(每条台词一行)
+      scenes.jsonl  三级边界信号切分后的 chunk
+      choices.json  选择肢节点
 v2: 选择肢真伪标注(has_branch) + 分支状态机切分(branch_ids) + 终点检测(terminal/ending)
-    旧版输出备份在 data_v1/ 供对比
 """
 import json
 import re
 from collections import Counter
 from pathlib import Path
 
-BASE = Path(r"E:/dev/NLP/Rewrite_terra")
+# 根据实际文件位置请自行修改路径
+BASE = Path(__file__).resolve().parent.parent / "Rewrite_terra"
 DAT = BASE / "structure" / "seen08000.dat.txt"
 SPEAKER_MAP = BASE / "structure" / "speaker_map.tsv"
 OUT = BASE / "data"

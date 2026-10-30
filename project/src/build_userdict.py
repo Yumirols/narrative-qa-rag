@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""构建 jieba 自定义词典的候选发现脚本(知识框架 §3.3)。
+"""构建 jieba 自定义词典的候选发现脚本。
 
 词典 data/user_dict.txt 的选词依据(三源,最终人工审核定稿):
   1. 真值种子: lines.jsonl 的 speaker_norm(73 个去重说话人)——引擎 CD_NAME
@@ -34,8 +34,10 @@ if sys.platform == "win32":
 
 sys.path.insert(0, str(PROJECT_ROOT))
 
-DEFAULT_SCENES = Path(r"E:/dev/NLP/Rewrite_terra/data/scenes.jsonl")
-DEFAULT_LINES = Path(r"E:/dev/NLP/Rewrite_terra/data/lines.jsonl")
+# 语料默认位置: 项目根下的 data/corpus/(与 README §1.2 的落位建议一致)。
+# 语料放在别处时用 --lines / --scenes 传入实际路径,不要改这里的常量。
+DEFAULT_SCENES = PROJECT_ROOT / "data" / "corpus" / "scenes.jsonl"
+DEFAULT_LINES = PROJECT_ROOT / "data" / "corpus" / "lines.jsonl"
 
 CANDIDATE_TERMS = [
     # 组织 / 地名 / 领域术语候选,输出频次供人工挑选择收录
@@ -70,8 +72,10 @@ def check_userdict(userdict: Path, sentences: list[str]) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser(description="自定义词典候选发现")
     ap.add_argument("--check", action="store_true", help="检查现有 user_dict.txt 的切分效果")
-    ap.add_argument("--lines", type=Path, default=DEFAULT_LINES)
-    ap.add_argument("--scenes", type=Path, default=DEFAULT_SCENES)
+    ap.add_argument("--lines", type=Path, default=DEFAULT_LINES,
+                    help="lines.jsonl 路径(默认 data/corpus/lines.jsonl)")
+    ap.add_argument("--scenes", type=Path, default=DEFAULT_SCENES,
+                    help="scenes.jsonl 路径(默认 data/corpus/scenes.jsonl)")
     args = ap.parse_args()
 
     if args.check:
@@ -83,6 +87,10 @@ def main() -> None:
             "ＯＫ，２５岁，全角归一化检查。",
         ])
         return
+
+    for p in (args.lines, args.scenes):
+        if not p.is_file():
+            ap.error(f"找不到语料文件: {p}；用 --lines / --scenes 指定实际路径")
 
     spk = speaker_freq(args.lines)
     tf = term_freq(args.scenes)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""实体-场景索引与图数据结构(阶段四 T9,框架 §6.3 a/e)——零 LLM,纯确定性。
+"""实体-场景索引与图数据结构——零 LLM,纯确定性。
 
 产物 data/graph_entities.json,三块内容:
 
@@ -17,19 +17,19 @@
    - 单字名(樱/篝/键/源/？)不做自身名文本匹配(篝火/樱花类子串歧义),
      但 ≥2 字的别名形(键之少女)照常匹配。
    别名来源(全部可溯源):user_dict nr 全名含说话人名(神户小鸟→小鸟 等 3 例,
-   实测无假阳性)+ 人工核定例外 篝←键之少女(框架 §3.1:鍵の少女＿篝 语义映射,
-   键之少女 speaker 实体并入篝)+ 全角显示名与词典 ASCII 名归一化合并
-   (Ｋｏｋｏ１０１０ ↔ Koko1010)。
+   实测无假阳性)+ 人工核定例外 篝←键之少女(游戏脚本说话人表 NAMAE 中
+   鍵の少女＿篝 为篝的称号形态,键之少女 speaker 实体并入篝)+ 全角显示名与
+   词典 ASCII 名归一化合并(Ｋｏｋｏ１０１０ ↔ Koko1010)。
 
 2. 选择肢节点(choices):choices.json 的 47 个 selbtn_start 真值交互节点
    (选项文本/rfid/label/src_line/挂载 chunk_id;has_branch 标真分支),零 LLM。
 
 3. EntityIndex:查询侧实体识别器(最长匹配,全角归一+小写)+ 候选 chunk 集
-   (多实体取交集,空则并集;单实体返回其全集)——T11 图扩展臂的实体路直接消费。
-   主角基数缓解(计划坑 1)体现在数据侧:每实体带 n_chunks,瑚太朗 313 chunk
-   类高基数实体由调用方(T11)降权为过滤/加权,不作独立排序。
+   (多实体取交集,空则并集;单实体返回其全集)——图扩展臂的实体路直接消费。
+   主角基数缓解体现在数据侧:每实体带 n_chunks,瑚太朗 313 chunk
+   类高基数实体由调用方降权为过滤/加权,不作独立排序。
 
-确定性红线:无时间戳/无随机性/固定序列化,同输入重建逐字节一致(--check 验收)。
+确定性:无时间戳/无随机性/固定序列化,同输入重建逐字节一致(--check 验收)。
 
 用法:
   python src/graph_build.py                       # 构建 + 落盘 + 统计摘要
@@ -58,8 +58,8 @@ from src.tokenization import normalize
 SCHEME_VERSION = "entities_v1"
 DEFAULT_OUT = PROJECT_ROOT / "data" / "graph_entities.json"
 
-# 人工核定的语义别名(计划 §2 T9.1;唯一一处人工输入,依据框架 §3.1 的
-# NAMAE 表语义映射 鍵の少女＿篝→键之少女:键之少女即篝的称号形态)。
+# 人工核定的语义别名(唯一一处人工输入,依据游戏脚本说话人表 NAMAE 的
+# 语义映射 鍵の少女＿篝→键之少女:键之少女即篝的称号形态)。
 # 键之少女 作为 speaker 的 chunk 并入篝,键之少女 不再是独立实体。
 ALIAS_OVERRIDES: dict[str, list[str]] = {"篝": ["键之少女"]}
 
@@ -180,7 +180,7 @@ def build_entities(chunks: list[dict], userdict: Path) -> list[dict]:
 
 def build_choices_nodes(choices_path: Path) -> list[dict]:
     """choices.json → selbtn_start 节点(字段原样保留,含 branches/gate_values
-    时一并落盘供 T10.3 分支边用),按 rfid 排序(=脚本推进序)。"""
+    时一并落盘供事件图谱的分支边用),按 rfid 排序(=脚本推进序)。"""
     data = json.loads(choices_path.read_text(encoding="utf-8"))
     nodes = [c for c in data["choices"] if c["kind"] == "selbtn_start"]
     return sorted(nodes, key=lambda c: c["rfid"])
@@ -206,7 +206,7 @@ def build_index_doc(chunks: list[dict], userdict: Path, choices_path: Path) -> d
             "rules": [
                 "说话人名文本匹配以 user_dict 为界: 具名做叙述提及匹配回接, 泛指角色名(男人/学生/少女 等不在词典者)不做",
                 "文本匹配 = 全角归一+小写后子串匹配, 仅 len>=2 的 CJK 形或 ASCII 形",
-                "别名 = user_dict nr 全名含说话人名(3 例) + 语义例外 篝<-键之少女(框架 3.1) + 全角显示名归一合并",
+                "别名 = user_dict nr 全名含说话人名(3 例) + 语义例外 篝<-键之少女 + 全角显示名归一合并",
                 "user_dict 词性 nr/nt/ns/nz 入实体, 普通名词 n 不入; 语料零提及专名不建实体",
             ],
             "sources": ["scenes.jsonl", "user_dict.txt", "choices.json"],
@@ -222,14 +222,14 @@ def dump_json(doc: dict) -> str:
 
 
 class EntityIndex:
-    """查询侧实体识别器 + 候选 chunk 集(T11 实体路直接消费)。
+    """查询侧实体识别器 + 候选 chunk 集(图扩展臂的实体路直接消费)。
 
     recognize(query): 最长匹配扫描归一化查询,返回去重后的命中实体
         [{entity, forms, n_chunks, source}](forms = 该实体被命中的表面形)。
         词汇表剔除纯标点形(？→'?')——否则每个中文问句的句末问号都会命中
         匿名说话人"？"实体并污染交集;数据表仍保留该实体(说话真值)。
         泛指角色名(学生/少女…)在词汇表内,查询误触属已知噪声——
-        候选只作过滤/加权,排序交给 T11 的基座臂重排(计划坑 1)。
+        候选只作过滤/加权,排序交给图扩展臂的基座臂重排。
     candidate_chunks(hits): ≥2 实体取 chunk 集交集(空则并集);
         单实体返回其全集。顺序 = 命中中基数最小实体的语料序(最具体者定序)。
     """
@@ -251,7 +251,7 @@ class EntityIndex:
 
     def canonical(self, name: str) -> str | None:
         """表面形 → 规范实体名(别名/全角形自动归并);未收录返回 None。
-        T10 事件卡 participants 白名单校验的判据:suspect = canonical() 为 None。
+        事件卡 participants 白名单校验的判据:suspect = canonical() 为 None。
         精确名回退兜底:识别词汇表剔除的纯标点形(？)在 participants 归一时
         仍应命中(它不在 _by_form 里,但确为真实说话实体)。"""
         c = self._by_form.get(_norm_form(name))
@@ -297,7 +297,7 @@ class EntityIndex:
 # ---------- CLI ----------
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="T9 实体-场景索引构建(零 LLM,确定性)")
+    ap = argparse.ArgumentParser(description="实体-场景索引构建(零 LLM,确定性)")
     ap.add_argument("--config", default="configs/main.yaml")
     ap.add_argument("--out", default=None, help="缺省 config paths.entities(无则 data/graph_entities.json)")
     ap.add_argument("--check", action="store_true", help="重建并与盘上文件逐字节比对(确定性验收)")
@@ -339,7 +339,7 @@ def main() -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(blob, encoding="utf-8", newline="\n")
     top = sorted(doc["entities"], key=lambda e: -e["n_chunks"])[:5]
-    print(f"== T9 实体-场景索引 ==\n  语料 {m['n_chunks']} chunk → 实体 {m['n_entities']} "
+    print(f"== 实体-场景索引 ==\n  语料 {m['n_chunks']} chunk → 实体 {m['n_entities']} "
           f"(说话人 {m['n_speaker_entities']} + 文本接地 {m['n_text_entities']}, "
           f"别名 {m['n_aliases']} 形)\n  选择肢节点 {m['n_choices']}(真分支 "
           f"{m['n_choices_branch']})\n  基数 top5: "

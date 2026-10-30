@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
-"""混合召回 + RRF 融合(T6)——多路检索结果的确定性融合层。
+"""混合召回 + RRF 融合——多路检索结果的确定性融合层。
 
-动机(T5 分层互补实证, runs/20261025-154043/metrics.json):
+动机(字面臂与稠密臂的分层互补, 如 runs/20261025-154043/metrics.json):
     literal 层      bm25_bigram R@3=0.8889 碾压 bge_base 0.5833(字面匹配);
     semantic_gap 层 bge_base   R@3=0.4318 反超 bigram 0.1818 约 2.4 倍(同义改写);
-    两范式强项落在不同题层 → 各取 top-depth 后 RRF 融合, 应同时保住两层。
-    本模块回答"互补性是否转化为总体增益"(T6 核心问题, 数字见阶段报告)。
+    两范式强项落在不同题层 → 各取 top-depth 后 RRF 融合, 应同时保住两层;
+    本模块把这种互补性转化为单一排序。
 
 RRF(reciprocal rank fusion, Cormack et al. 2009):
     score(d) = Σ_arms 1 / (rrf_k + rank_d_in_arm)     rank 从 1 起, rrf_k=60
     只用排名不用原始分数 → BM25 分数与 bge 余弦天然不可比的问题被绕开,
-    无量纲、无超参缩放;rrf_k=60 为文献默认, 融合对 k 的取值不敏感(报告讨论点)。
+    无量纲、无超参缩放;rrf_k=60 为文献默认, 融合对 k 的取值不敏感。
 
-确定性(阶段纪律: 同配置重跑 metrics 逐字节一致):
+确定性(同配置重跑 metrics 逐字节一致):
     各臂自身确定性(BM25 稳定排序 / bge CPU 推理 / 固定 seed w2v)+ 融合层
     纯算术 → 同分 tie-break 按 idx 升序(与 BM25/W2V/BGE 的"同分按 idx"同一契约)。
 
@@ -23,7 +23,7 @@ RRF(reciprocal rank fusion, Cormack et al. 2009):
      bge 重载模型, 且顺序约束给了显式报错)。融合层零自身索引、零新依赖。
   2. depth(每臂取 top-depth 进融合)默认 20 ≥ 评测/生成侧一切 k(mrr_depth=10,
      generation top_k=5);search(query, k) 传入 k > depth 时自动抬到 k, 不截断。
-  3. 输出 dict 与单臂完全同构(rank/idx/chunk_id/score/rfid 起止), score 换为
+    3. 输出 dict 与单臂完全同构(rank/idx/chunk_id/score/rfid 起止), score 换为
      RRF 融合分(量纲 1/(rrf_k+rank), 与单臂分数不可比, 仅作排序展示)——
      eval_retrieval 零改动, hybrid 自动成为主表第六列。
 
@@ -52,7 +52,7 @@ from src.retrievers import build_retriever
 
 def rrf_fuse(hit_lists: list[list[dict]], rrf_k: int, k: int,
              chunks: list[dict]) -> list[dict]:
-    """多路命中列表 → RRF 融合 top-k(T6 机制, T11 图扩展臂臂内复用)。
+    """多路命中列表 → RRF 融合 top-k(图扩展臂臂内复用同一机制)。
 
     输入每路 = 统一命中 dict 列表(rank 从 1 起, idx 为语料序);融合只用 rank
     不用原始分数, 同分按 idx 升序(与各单臂的稳定排序契约一致)。

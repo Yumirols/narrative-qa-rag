@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
-"""bge 稠密检索(T4)——BGEIndex 检索器 + 查询前缀常量 + HF 缓存重定向 + 前缀方向冒烟。
+"""bge 稠密检索——BGEIndex 检索器 + 查询前缀常量 + HF 缓存重定向 + 前缀方向冒烟。
 
 本模块固化三件影响全局正确性的事:
 
-1. QUERY_PREFIX —— BGE 官方查询侧指令前缀(报告素材)。**只加查询侧, 文档侧不加**:
-   该指令在预训练时绑定"把本句当作待检索的查询"的角色; 误放文档侧会静默劣化
-   (坑 8)。smoke_prefix_direction() 是坑 8 的冒烟验证, 干两件事:
-   (a) 配线实证: 模型自 models/ 离线加载成功(= 重定向生效, 坑 6)+ 前缀非空操作
+1. QUERY_PREFIX —— BGE 官方查询侧指令前缀。**只加查询侧, 文档侧不加**:
+   该指令在预训练时绑定"把本句当作待检索的查询"的角色; 误放文档侧会静默劣化。
+   smoke_prefix_direction() 验证该约束, 干两件事:
+   (a) 配线实证: 模型自 models/ 离线加载成功(= 重定向生效)+ 前缀非空操作
        检验(cos(q, P+q) 显著小于 1, 证明前缀没被分词器吞掉、确实改变了表示);
    (b) 方向敏感性记录: 官方(查询+前缀) / 反向(文档+前缀) / 无前缀 三配方在
        评测集全量上的 R@k / MRR 对比。**方向决策不依据该对比**——评测集就是
-       报告的测试集, 据它调方向 = 测试集泄漏; 方向按 BGE 官方用法常量写死
-       (设计决策表), 敏感性差异如实进报告讨论(指令为 web 检索调优, 本叙事
-       语料存在域偏移, 实测收益中性偏负)。
+       测试集, 据它调方向即测试集泄漏; 方向按 BGE 官方用法常量写死,
+       敏感性差异只作结论记录(指令为 web 检索调优, 本叙事语料存在域偏移,
+       实测收益中性偏负)。
 
 2. apply_hf_cache_redirect —— HF_HOME/HF_HUB_CACHE setdefault 到 paths.models
-   (仓库根 models/, 不占 C 盘、不进 zip)。**必须在 import sentence_transformers /
+   (仓库根 models/, 不占 C 盘、不进压缩包)。**必须在 import sentence_transformers /
    huggingface_hub 之前调用**: 缓存路径常量在 import 时固化, 事后改环境变量不生效,
-   会静默回落 C 盘(坑 6)。因此本模块对 HF 系一律延迟导入, 且 import 前只做
+   会静默回落 C 盘。因此本模块对 HF 系一律延迟导入, 且 import 前只做
    os.environ 操作。首次下载配 HF_ENDPOINT=https://hf-mirror.com +
    HF_HUB_DISABLE_XET=1; 模型就位后设 HF_HUB_OFFLINE=1 可全程离线(离线加载成功
    本身就是重定向生效的实证——C 盘缓存不存在可加载的模型)。
@@ -26,8 +26,8 @@
    归一化后内积即余弦; **文档侧不加 QUERY_PREFIX**, 官方用法, 方向已由
    smoke_prefix_direction 冒烟验证), search()/stats() 与 BM25Index / W2VAvgIndex
    完全同构, 评测代码零改动。文档向量落 cache/ 的 emb_<model_slug>_<hash8>.npy +
-   同名 .meta.json(坑 9): 命中条件 = 文本哈希/模型名/形状一致, 否则重编码覆写;
-   截尾统计(坑 5)只落日志不改切分; revision 读本地 refs/main, 绝不联网(坑 6 同源)。
+   同名 .meta.json: 命中条件 = 文本哈希/模型名/形状一致, 否则重编码覆写;
+   截尾只统计不处置, 只落日志不改切分; revision 读本地 refs/main, 绝不联网。
 
 用法(两模式共用 --model/--device/--batch-size/--offline):
   # 模式一: 前缀方向冒烟(退出码 0=前缀生效且实验完整; 模型已预取时 --offline 全离线)
@@ -62,13 +62,13 @@ from src.config import PROJECT_ROOT, load_config, resolve_paths
 from src.evaluate import RfidLocator, gold_intervals, load_qaset
 from src.index_bm25 import load_chunks
 
-QUERY_PREFIX = "为这个句子生成表示以用于检索相关文章："   # BGE 官方查询侧指令, 文档侧不加(坑 8)
+QUERY_PREFIX = "为这个句子生成表示以用于检索相关文章："   # BGE 官方查询侧指令, 文档侧不加
 
 DEFAULT_MODELS = ["BAAI/bge-small-zh-v1.5", "BAAI/bge-base-zh-v1.5"]
 
 DEFAULT_DEMO_MODEL = "BAAI/bge-small-zh-v1.5"   # demo 模式缺省模型(开发迭代只用 small)
 
-CACHE_DIR = PROJECT_ROOT / "cache"   # 坑 9: 文档向量编码缓存目录(project/cache/)
+CACHE_DIR = PROJECT_ROOT / "cache"   # 文档向量编码缓存目录(project/cache/)
 
 # 配对观察用三元组(句子取自语料/既有 demo 查询, 只作现象记录, 不参与判定):
 # gold = 含查询答案的文档, rand = 与查询无关的文档
@@ -86,7 +86,7 @@ def apply_hf_cache_redirect(models_dir: str | Path) -> None:
     """HF 缓存重定向到 models_dir(setdefault: 外部已设则尊重外部)。
 
     调用时机是正确性的全部: 必须先于任何 sentence_transformers /
-    huggingface_hub 的 import(坑 6, 路径常量 import 时固化)。
+    huggingface_hub 的 import(路径常量在 import 时固化)。
     """
     models_dir = Path(models_dir).resolve()
     models_dir.mkdir(parents=True, exist_ok=True)
@@ -107,12 +107,12 @@ def _rank_metrics(q_emb: np.ndarray, d_emb: np.ndarray, gold_sets: list[set[str]
                   chunk_ids: list[str], k_values: list[int], mrr_depth: int) -> dict:
     """余弦全库排序 → R@k / MRR——**命中率口径**(仅冒烟/敏感性实验用)。
 
-    口径声明(T4 §3.3, 两套 R@k 不可互比):
+    口径声明(两套 R@k 不可互比):
       本函数  : 命中率口径——每题任一 gold chunk 进 top-k 记 1;
       evaluate.py(正式): 逐题 gold 占比均值口径——每题 |gold∩topk|/|gold| 再对题求均值,
       多 gold 题(如 structural 层均值 3.68 个 gold)命中一部分只给部分分。
       同一 run 同一臂两口径数字不同(如 bge_small R@3 命中率 0.5417 vs 占比均值 0.3389),
-      引用冒烟数字必须注明口径; 正式报告一律用 evaluate.py 口径(与历史数字可比)。
+      引用冒烟数字必须注明口径; 正式指标一律用 evaluate.py 口径(与历史数字可比)。
     """
     scores = q_emb @ d_emb.T
     hit_ranks: list[int | None] = []
@@ -132,7 +132,7 @@ def smoke_prefix_direction(model_name: str, questions: list[dict], locator,
                            chunk_texts: list[str], chunk_ids: list[str],
                            device: str, batch_size: int,
                            k_values: list[int], mrr_depth: int) -> dict:
-    """坑 8 冒烟: 前缀放查询侧(官方) vs 放文档侧(反向) vs 不加(对照)。
+    """前缀方向冒烟: 前缀放查询侧(官方) vs 放文档侧(反向) vs 不加(对照)。
 
     三配方在真实评测集 × 全库排序上对比(敏感性记录, 不作方向决策依据):
       A 官方  query=P+q, corpus=d      B 反向  query=q, corpus=P+d
@@ -185,7 +185,7 @@ def smoke_prefix_direction(model_name: str, questions: list[dict], locator,
             "metrics": metrics, "pairs": pairs, "q_prefix_cos": noop_sim}
 
 
-# ---- 坑 9: 文档向量编码缓存(small 全库编码约 20~40s, 缓存让开发迭代只付一次) ----
+# ---- 文档向量编码缓存(small 全库编码约 20~40s, 缓存让开发迭代只付一次) ----
 
 def _sha256_texts(texts: list[str]) -> str:
     """全部 chunk 文本按序 + 显式分隔符("\\0", 正文不可能出现)拼接后 sha256。
@@ -203,7 +203,7 @@ def _sha256_texts(texts: list[str]) -> str:
 def _read_revision(model_name: str) -> str:
     """从本地 HF 缓存读 <HF_HUB_CACHE>/models--<org>--<name>/refs/main 的 commit sha。
 
-    只碰本地文件、绝不为此联网(坑 6 同源约束); 读不到或内容不像 40 位 hex
+    只碰本地文件、绝不为此联网; 读不到或内容不像 40 位 hex
     一律填 "(unknown)"。必须在 apply_hf_cache_redirect 之后调用(HF_HUB_CACHE 才就位)。
     """
     root = os.environ.get("HF_HUB_CACHE")
@@ -218,17 +218,17 @@ def _read_revision(model_name: str) -> str:
 
 
 class BGEIndex:
-    """BGE 稠密检索器: 文档向量全库预编码 + 查询侧官方前缀(坑 8)。
+    """BGE 稠密检索器: 文档向量全库预编码 + 查询侧官方前缀。
 
     接口与 BM25Index / W2VAvgIndex 完全同构(search/stats), 另有:
       extra_logs -> runs/<ts>/bge_encode_log.json(编码耗时/缓存命中/截尾统计)
-      hf_info    -> 阶段三 run_all 接线用(model/revision/device/dim/缓存状态)
+      hf_info    -> run_all 接线用(model/revision/device/dim/缓存状态)
     """
 
     def __init__(self, chunks: list[dict], model_name: str, models_dir: str | Path,
                  device: str = "cpu", batch_size: int = 32, use_cache: bool = True,
                  name: str = "bge"):
-        # 坑 6 顺序: 重定向必须先于一切 HF 系 import(缓存路径常量 import 时固化)
+        # 顺序: 重定向必须先于一切 HF 系 import(缓存路径常量 import 时固化)
         apply_hf_cache_redirect(models_dir)
         from sentence_transformers import SentenceTransformer
 
@@ -250,16 +250,16 @@ class BGEIndex:
         self.cache_hit = False
         self.emb = self._load_or_encode(use_cache)
 
-        # 坑 5: 截尾只统计不处置——超长 chunk 由 encode 内部截断, 损失如实落日志
+        # 截尾只统计不处置——超长 chunk 由 encode 内部截断, 损失如实落日志
         # (不截断地数 token; ST 6.1.0 属性名是 max_seq_length, 即 encode 实际生效的截尾上限)
         tok_lens = [len(ids) for ids in
                     self.model.tokenizer(self.texts, add_special_tokens=True)["input_ids"]]
         self.n_truncated = sum(1 for n in tok_lens if n > self.model.max_seq_length)
 
     def _load_or_encode(self, use_cache: bool) -> np.ndarray:
-        """全库文档向量: 缓存命中读 npy(毫秒级), 否则编码并覆写缓存(坑 9)。
+        """全库文档向量: 缓存命中读 npy(毫秒级), 否则编码并覆写缓存。
 
-        文档侧绝不加 QUERY_PREFIX(坑 8, BGE 官方用法); normalize 后内积即余弦,
+        文档侧绝不加 QUERY_PREFIX(BGE 官方用法); normalize 后内积即余弦,
         与查询侧同一套分数口径。use_cache=False 时跳过缓存读写。
         """
         # 文件名 emb_<model_slug>_<hash8>: model_slug 把 "/" 换成 "--"(路径里不能有 "/")
@@ -297,7 +297,7 @@ class BGEIndex:
                     "created_at": datetime.now().isoformat(timespec="seconds")}
             meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2),
                                  encoding="utf-8")
-            # 坑 9 卫生: 文件名含 hash8, 语料演进后同模型旧哈希的 npy+meta 成为
+            # 缓存卫生: 文件名含 hash8, 语料演进后同模型旧哈希的 npy+meta 成为
             # 永不命中的孤儿——覆写缓存时顺手清掉(只清同 slug, 不同模型互不影响)
             for old in CACHE_DIR.glob(f"emb_{slug}_*"):
                 if old in (npy_path, meta_path):
@@ -312,7 +312,7 @@ class BGEIndex:
 
     def search(self, query: str, k: int = 5) -> list[dict]:
         q = np.asarray(self.model.encode(
-            [QUERY_PREFIX + query], batch_size=self.batch_size,   # 只加查询侧(坑 8)
+            [QUERY_PREFIX + query], batch_size=self.batch_size,   # 只加查询侧
             normalize_embeddings=True))[0]
         sims = self.emb @ q
         # 同分按 idx 升序稳定排序(与 BM25/W2V 同一契约)
@@ -329,7 +329,7 @@ class BGEIndex:
         # bge 无词表/分词概念: 为满足 run_all.py:106-107 的打印键(chunks/tokens/
         # avg/vocab)并保持与 W2VAvgIndex.stats 同含 dim 键的风格——n_tokens/
         # avg_tokens 退化为字符数, vocab 填 "<dim>d" 字符串(无词表可数, 整数是编造)。
-        # 注意: vocab 是字符串, 阶段三把 bge 臂接入 run_all.py:107 时该键不能走
+        # 注意: vocab 是字符串, run_all.py:107 的统计打印不能走
         # 现模板的 "{:,}" 数字格式(会 ValueError), 接入时同步改打印
         n_chars = sum(len(t) for t in self.texts)
         return {"n_chunks": len(self.chunks), "n_tokens": n_chars,
@@ -337,9 +337,9 @@ class BGEIndex:
                 "vocab": f"{self.dim}d", "dim": self.dim}
 
     # ---- 日志接口: run_all 经 extra_logs 逐检索器落盘 ----
-    # 文件名必须含检索器名(T5 修复, T4 §8.1-1): 五臂循环逐个写盘时, 不含名的
+    # 文件名必须含检索器名: 五臂循环逐个写盘时, 不含名的
     # "bge_encode_log.json" 会被后建的 bge_base 覆盖掉 bge_small 条目,
-    # 验收 4 要求的"两模型各自耗时对比"随之丢失。
+    # 两模型各自耗时对比随之丢失。
     @property
     def extra_logs(self) -> dict:
         return {f"bge_encode_log_{self.name}.json": {
@@ -357,7 +357,7 @@ class BGEIndex:
 
     @property
     def hf_info(self) -> dict:
-        """模型侧信息(阶段三 run_all 会 getattr 读它)。"""
+        """模型侧信息(run_all 会 getattr 读它)。"""
         return {"model": self.model_name, "revision": self.revision,
                 "device": self.device, "dim": self.dim,
                 "encode_seconds": self.encode_seconds, "cache_hit": self.cache_hit}
@@ -374,7 +374,7 @@ def _run_demo(args, paths: dict, chunks: list[dict]) -> None:
     print(f"  {model_name} rev={rev[:8] if len(rev) == 40 else rev} dim={hf['dim']} "
           f"vocab={st['vocab']} chunks={st['n_chunks']} 编码={hf['encode_seconds']}s "
           f"缓存={'命中' if hf['cache_hit'] else '重编码'} "
-          f"截尾={index.n_truncated}/{st['n_chunks']}(坑5,仅落日志)")
+          f"截尾={index.n_truncated}/{st['n_chunks']}(仅落日志)")
     for r in index.search(args.query, args.k):
         text = chunks[r["idx"]]["text"][:60].replace("\n", " ")
         print(f"  #{r['rank']} {r['chunk_id']} score={r['score']} "
@@ -383,7 +383,7 @@ def _run_demo(args, paths: dict, chunks: list[dict]) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(
-        description="bge 稠密检索 demo + 查询前缀方向冒烟(T4 步骤1~2)")
+        description="bge 稠密检索 demo + 查询前缀方向冒烟")
     ap.add_argument("query", nargs="?", default=None,
                     help="给出则走 BGEIndex 检索 demo; 缺省走前缀方向冒烟")
     ap.add_argument("--config", default="configs/main.yaml")
@@ -401,7 +401,7 @@ def main() -> None:
     cfg = load_config(PROJECT_ROOT / args.config)
     paths = resolve_paths(cfg)
 
-    # ---- HF 环境变量全部就位后, 才允许第一次 import HF 系(坑 6 的顺序要求) ----
+    # ---- HF 环境变量全部就位后, 才允许第一次 import HF 系(顺序要求) ----
     if args.offline:
         os.environ.setdefault("HF_HUB_OFFLINE", "1")
     apply_hf_cache_redirect(paths["models"])
@@ -458,7 +458,7 @@ def main() -> None:
         print(f"  --> 前缀非空操作: mean cos(q, P+q) = {r['q_prefix_cos']:.4f} "
               f"{'(前缀确实生效)' if noop_ok else '(≈1, 前缀疑似未生效!)'}")
         print(f"  --> 方向敏感性: 最优配方 = {best}; 官方 vs 无前缀 MRR 差 = {delta:+.4f}"
-              f"(如实进报告讨论)")
+              f"(仅作记录, 不据此调方向)")
         print("  --> 决策: 维持 BGE 官方用法(只加查询侧, 常量写死)——方向不据评测集调整\n")
 
     final = all(r["q_prefix_cos"] < 0.995 for r in results)

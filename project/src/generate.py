@@ -1,25 +1,25 @@
 # -*- coding: utf-8 -*-
-"""生成层(T7.2/7.3)——检索 top-k 证据块 → Prompt 组装 → DeepSeek → 结构化答案落盘。
+"""生成层——检索 top-k 证据块 → Prompt 组装 → DeepSeek → 结构化答案落盘。
 
-管线(阶段计划 §1.1): 问题 → hybrid 检索 top-k → 证据块组装(chunk 全文原文)
+管线: 问题 → hybrid 检索 top-k → 证据块组装(chunk 全文原文)
 → 系统提示 + few-shot + 用户消息 → src/llm.py 客户端 → JSON 解析(失败重试一次)
 → 引用规则校验 → answers.jsonl + generation_log.json。
 
-红线与决策(阶段计划 §5/§7 坑 2/3/7):
+约束与设计:
   - 检索/展示分离: 检索用分词/向量, 展示永远 chunk 全文原文(全角保留);
   - few-shot 证据取自语料真实 chunk 且**排除当前评测集全部 gold chunk**,
-    提问为元数据锚定(说话人出场/喜好类), 绝不引入评测集题目本体(防泄漏,
-    坑 7——unanswerable 里真有"生日"题, 拒答示例话题已避开);
+    提问为元数据锚定(说话人出场/喜好类), 绝不引入评测集题目本体(防泄漏——
+    unanswerable 里真有"生日"题, 拒答示例话题已避开);
   - 不可回答题照走完整流程: 检索照样返回字面相似块, 拒答只靠 prompt 约束
     ——这正是要测的东西;
-  - evidence_rfids 归一解析(int/[起,止] 兼容, 坑 3)后做两条确定性校验
-    (坑 2: RfidLocator 对孤儿 rfid 抛 KeyError 必须 catch, 不崩评测):
+  - evidence_rfids 归一解析(int/[起,止] 兼容)后做两条确定性校验
+    (RfidLocator 对孤儿 rfid 抛 KeyError 必须 catch, 不崩评测):
       (a) 区间可落到具体 chunk(孤儿/越界 → invalid);
       (b) 引用 chunk ∈ 本次送入 prompt 的证据集合(防"引用了没给它的块")。
   - 两次解析都失败不丢弃该题: 落一行 parse_failed 答案(verdict=unknown),
     计入失败率;
   - answers.jsonl 行内不含时间戳/延迟/缓存标记等非确定字段——缓存命中重跑
-    逐字节一致(阶段验收 2);usage/延迟/原始响应全在 generation_log.json。
+    逐字节一致;usage/延迟/原始响应全在 generation_log.json。
 
 用法:
     python src/generate.py --config configs/main.yaml                 # 90 题正式集
@@ -85,7 +85,7 @@ def build_generation_retriever(cfg: dict, chunks: list[dict], paths: dict):
 # ---------- Prompt 组装 ----------
 
 def format_evidence(rank: int, chunk: dict) -> str:
-    """证据块 = 头部(chunk_id / rfid 区间 / speakers)+ chunk 全文原文(展示分离红线)。"""
+    """证据块 = 头部(chunk_id / rfid 区间 / speakers)+ chunk 全文原文(展示分离)。"""
     speakers = "、".join(chunk["speakers"]) if chunk["speakers"] else "无"
     return (f"[证据{rank} | {chunk['chunk_id']} | rfid {chunk['rfid_start']}-"
             f"{chunk['rfid_end']} | 出场: {speakers}]\n{chunk['text']}")
@@ -102,7 +102,7 @@ def build_fewshot(chunks: list[dict], qaset: dict, locator: RfidLocator) -> list
     """3 例 few-shot: 正常作答(非是非题→verdict unknown)/ 是非题 yes / 拒答。
 
     证据块取语料真实 chunk, 但排除当前评测集的**全部 gold chunk**——示例若与
-    某题 gold 证据同块, 其问答内容可能泄漏该题答案(坑 7 的实质面);题目本体
+    某题 gold 证据同块, 其问答内容可能泄漏该题答案;题目本体
     则全部另行编写(元数据锚定), 与评测集题目无重叠。选择按语料序确定性取前 3。
     """
     gold_ids: set[str] = set()
@@ -142,7 +142,7 @@ def build_fewshot(chunks: list[dict], qaset: dict, locator: RfidLocator) -> list
              "evidence_rfids": [[b["rfid_start"], b["rfid_end"]]]})
 
     # 例3 拒答: 喜好类信息证据必无 → unknown + 说明缺口 + 空引用
-    # (话题避开评测集不可回答题——其中有"生日"题, 坑 7)
+    # (话题避开评测集不可回答题——其中有"生日"题)
     sp_c = c["speakers"][0]
     m3 = qa(c, f"「{sp_c}」最喜欢的食物是什么?",
             {"answer": f"证据中没有关于「{sp_c}」喜欢什么食物的任何信息,无法回答。",
@@ -158,7 +158,7 @@ def build_fewshot(chunks: list[dict], qaset: dict, locator: RfidLocator) -> list
 # ---------- 解析归一与引用校验(确定性) ----------
 
 def schema_ok(parsed) -> bool:
-    """协议最低要求: 是对象, answer 为字符串, evidence_rfids 为数组(坑 3 归一入口)。"""
+    """协议最低要求: 是对象, answer 为字符串, evidence_rfids 为数组(归一入口)。"""
     return (isinstance(parsed, dict) and isinstance(parsed.get("answer"), str)
             and isinstance(parsed.get("evidence_rfids"), list))
 
@@ -167,7 +167,7 @@ def normalize_rfids(raw) -> tuple[list[tuple[int, int]], int]:
     """evidence_rfids → [(s,e), ...];复用 gold_intervals 的 int/区间兼容口径。
 
     不可归一的条目(非整数/非二元组/起>止)计 malformed 不抛异常——模型输出
-    漂移不弄崩评测, 由引用校验标 invalid(坑 3)。
+    漂移不弄崩评测, 由引用校验标 invalid。
     """
     intervals: list[tuple[int, int]] = []
     malformed = 0
@@ -192,7 +192,7 @@ def validate_citations(intervals: list[tuple[int, int]], locator: RfidLocator,
     """两条规则校验, 返回 [(区间, 失败原因|None)];原因 None = 该条引用有效。
 
     (a) 区间能落到具体 chunk: 越界/孤儿 rfid(3281/14785/14898 等)由
-        RfidLocator 抛 KeyError, 此处 catch 标 invalid(坑 2, 不崩评测);
+        RfidLocator 抛 KeyError, 此处 catch 标 invalid(不崩评测);
     (b) 区间覆盖的 chunk 全部 ∈ 本次送入 prompt 的证据集合。
     """
     out = []
@@ -259,7 +259,7 @@ def generate_one(client: LLMClient, q: dict, messages: list[dict], hits: list[di
     if n_malformed:
         row["n_malformed_rfids"] = n_malformed
     # n_invalid_citations 供 evaluate.eval_citations 从 answers.jsonl 直接算条级有效率
-    # (T8.2;向后兼容字段,旧 answers 行缺省按 0 无效)
+    # 向后兼容字段, 旧 answers 行缺省按 0 无效
     if n_invalid:
         row["n_invalid_citations"] = n_invalid
     row["all_citations_valid"] = n_invalid == 0 and n_malformed == 0
@@ -337,7 +337,7 @@ def run_generation(cfg: dict, chunks: list[dict], locator: RfidLocator, retrieve
                    llm_client=None, verbose: bool = True, qaset_label: str = "") -> dict:
     """全量生成并落盘 answers/generation_log, 返回 summary(指标同键名进 run 日志)。
 
-    run_all(T8.1)直接传入其已建好的检索器实例(零重复加载)与 run 目录输出路径;
+    run_all 直接传入其已建好的检索器实例(零重复加载)与 run 目录输出路径;
     CLI(main)传 config 构建的检索器与 --out/--log。llm_client 注入点供离线桩测试。
     """
     gen_cfg = cfg["generation"]

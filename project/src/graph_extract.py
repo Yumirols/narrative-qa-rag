@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
-"""事件卡片抽取(阶段四 T10.1/10.2,框架 §6.3b)——每 chunk 一次 LLM 调用。
+"""事件卡片抽取——每 chunk 一次 LLM 调用。
 
-管线:chunk 全文原文 + 环境上下文(speakers/bgm/bg/选择肢选项文本,框架 §6.3e)
+管线:chunk 全文原文 + 环境上下文(speakers/bgm/bg/选择肢选项文本)
 → 抽取 prompt(系统协议 + 用户消息)→ LLMClient(DeepSeek flash,缓存优先)
 → JSON 三级解析(失败重试一次,仍败 needs_review)→ participants 白名单
 校验/归一(别名→规范名;越界名保留但标 suspect)→ 事件条数截断
 → data/graph_cards.jsonl(确定性)+ 抽取日志(usage/延迟/原始响应)。
 
-关键决策(阶段计划 §2 T10/§5):
+关键设计:
 
 - **event 必须规范化转述**(prompt 显式约束"标准语汇概括,不照抄原文")——
-  卡片文本将建 BM25 索引(T11 卡片路),是弥合换说法 lexical gap 的机制核心;
+  卡片文本将建 BM25 索引(图扩展臂的卡片路),是弥合换说法 lexical gap 的机制核心;
 - **needs_review 降级不崩建图**:两次解析全败的 chunk,卡片 participants 回退
-  speakers 真值、events/summary 置空——T10.3 参与者边对这类块仍然可用;
+  speakers 真值、events/summary 置空——参与者边对这类块仍然可用;
 - **participants 白名单 = 实体词典全集**(EntityIndex.canonical):命中别名
   (神户小鸟/Ｋｏｋｏ１０１０)自动归并规范名;None → suspect(统计单列,
   模型幻觉参与者不静默入图);
-- **确定性红线**:cards 文件行内只有确定性字段(模型名/模板版本/计数),
+- **确定性**:cards 文件行内只有确定性字段(模型名/模板版本/计数),
   usage/延迟/缓存标记/原始响应全在日志文件——缓存命中重跑 cards 逐字节一致
   (与 generate 的 answers/generation_log 同一分离模式);
 - 模板版本常量 EXTRACT_TEMPLATE_VERSION:改模板必升版本(缓存键随 messages
@@ -119,7 +119,7 @@ RETRY_HINT = ("你上一次的输出不是合法的 JSON 对象,不符合输出�
 
 def build_user_message(chunk: dict, seq_options: dict[int, list[str]],
                        context_meta: bool = True) -> str:
-    """环境上下文 + chunk 全文原文(展示分离红线:原文直入 prompt)。"""
+    """环境上下文 + chunk 全文原文(展示分离:原文直入 prompt)。"""
     lines = [f"【剧本文本】(块 {chunk['chunk_id']})"]
     if context_meta:
         speakers = "、".join(chunk["speakers"]) if chunk["speakers"] else "无"
@@ -213,7 +213,7 @@ def normalize_card(parsed, chunk: dict, ent_idx: EntityIndex,
     card = {
         "chunk_id": chunk["chunk_id"],
         "rfid": [chunk["rfid_start"], chunk["rfid_end"]],
-        "participants": participants + suspects,   # suspects 保留(计划:越界名保留但标 suspect)
+        "participants": participants + suspects,   # suspects 保留(越界名保留但标 suspect)
         "events": events[:max_events],
         "chunk_summary": summary.strip() if isinstance(summary, str) else "",
         "extraction": {
@@ -229,7 +229,7 @@ def normalize_card(parsed, chunk: dict, ent_idx: EntityIndex,
 
 def fallback_card(chunk: dict) -> dict:
     """两次解析全败的降级卡:participants 回退 speakers 真值、事件/概要置空。
-    T10.3 参与者边对 needs_review 块仍可用(说话人接地是引擎真值)。"""
+    参与者边对 needs_review 块仍可用(说话人接地是引擎真值)。"""
     return {
         "chunk_id": chunk["chunk_id"],
         "rfid": [chunk["rfid_start"], chunk["rfid_end"]],
@@ -385,7 +385,7 @@ def run_extraction(cfg: dict, chunks: list[dict], ent_idx: EntityIndex,
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="T10.2 事件卡片抽取(每 chunk 一次 LLM 调用)")
+    ap = argparse.ArgumentParser(description="事件卡片抽取(每 chunk 一次 LLM 调用)")
     ap.add_argument("--config", default="configs/main.yaml")
     ap.add_argument("--limit", type=int, default=0,
                     help="冒烟:等距抽样 n 块(0=全量 483);产物写 *_smoke 文件")
@@ -396,9 +396,9 @@ def main() -> None:
     cfg = load_config(PROJECT_ROOT / args.config)
     paths = resolve_paths(cfg)
     if not paths.get("entities") or not Path(paths["entities"]).exists():
-        sys.exit("缺少实体索引:先运行 python src/graph_build.py(阶段四 T9 产物)")
+        sys.exit("缺少实体索引:先运行 python src/graph_build.py(零 LLM 产物)")
     if not paths.get("cards"):
-        sys.exit("config 缺 paths.cards(阶段计划 §4)")
+        sys.exit("config 缺 paths.cards")
 
     out_path = Path(args.out) if args.out else Path(paths["cards"])
     if args.limit and not args.out:
@@ -413,7 +413,7 @@ def main() -> None:
                    json.loads(Path(paths["choices"]).read_text(encoding="utf-8"))["choices"]}
     indices = sample_indices(chunks, args.limit) if args.limit else list(range(len(chunks)))
 
-    print(f"== T10 事件卡片抽取 ==\n  模板={EXTRACT_TEMPLATE_VERSION}  "
+    print(f"== 事件卡片抽取 ==\n  模板={EXTRACT_TEMPLATE_VERSION}  "
           f"选块 {len(indices)}/{len(chunks)}  模型={cfg['generation']['llm']['model']}  "
           f"产物={out_path.name}")
     try:

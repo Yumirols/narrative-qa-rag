@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-"""事件图谱组装(阶段四 T10.3/10.4)——确定性边表 + networkx 组装落盘。
+"""事件图谱组装——确定性边表 + networkx 组装落盘。
 
-输入(全部已有产物,零 LLM):graph_cards.jsonl(T10.2 抽取卡)+ graph_entities.json
-(T9 实体表/选择肢节点)+ scenes.jsonl(时序真值)→ 输出 data/graph_events.json
+输入(全部已有产物,零 LLM):graph_cards.jsonl(抽取卡)+ graph_entities.json
+(实体表/选择肢节点)+ scenes.jsonl(时序真值)→ 输出 data/graph_events.json
 (节点表 + 边表 + meta),一条命令确定性完成。
 
-三类边全部确定性推导(已定决策②,不让 LLM 标跨 chunk 关系):
+三类边全部确定性推导(不让 LLM 标跨 chunk 关系):
 
 - next(时序):chunk 文件序(= rfid 单调序,已验证)相邻连边;**branch_ids 互斥的
   相邻对不连**——Terra 实测仅 2 对(c169[0]/c170[1] 即 seq20 的 bad_end 分叉、
   c173[0,1]/c174[2] 三级分支),互斥判定与 choices.json 自带的 branches 分解
-  互相印证;rfid 顺序 ≠ 游玩时序,框架 §8.1 已注记;
+  互相印证;rfid 顺序 ≠ 游玩时序(脚本可跨 rfid 段跳转);
 - has_participant(二部):卡片非 suspect 参与者 → 实体名。**实体节点不入本文件**
   (存于 graph_entities.json,边 dst 按名引用,单一数据源);suspect 参与者
   (母神会/派罗/魔物 等真域外提及)不建边——它们是词表增长候选,不是图节点;
@@ -20,12 +20,12 @@
   不建边)。5 个 selbtn 续接条目不入节点表(与 selbtn_start 同区域子菜单,
   分支信息冗余,seq 10-13 已覆盖)。
 
-参与者边不做建图期基数截断:计划 §4 的 same_participant_top 移作 T11 检索期
-参数(检索时对高基数实体邻接取 top-k)——图数据保持完整,消融轴才可调;
+参与者边不做建图期基数截断:same_participant_top 留在检索期生效
+(检索时对高基数实体邻接取 top-k)——图数据保持完整,消融轴才可调;
 瑚太朗 ~315 度星型对 JSON 毫无压力。
 
 networkx 仅用于组装校验与统计(弱连通组件/度分布),序列化为自有 JSON 格式
-(非 pickle),跨版本可读(复现红线)。确定性:同输入重建逐字节一致(--check)。
+(非 pickle),跨版本可读。确定性:同输入重建逐字节一致(--check)。
 
 用法:
     python src/graph_assemble.py            # 组装 + 落盘 + 统计
@@ -191,7 +191,7 @@ def assemble(cfg: dict, chunks: list[dict], cards: list[dict], ent_idx: EntityIn
                 "next: 文件序(rfid 单调)相邻连边; branch_ids 互斥对不连(实测 2 对, 与 choices branches 互证)",
                 "has_participant: 卡片非 suspect 参与者->实体名; 实体节点存 graph_entities.json, 不重复入本文件",
                 "choice_at/branch_to: 47 selbtn_start 节点; branch_to weight=选项 idx, 空 chunk_ids 控制流分支不建边",
-                "same_participant_top 不在建图期截断(移作 T11 检索期参数, 图数据完整)",
+                "same_participant_top 不在建图期截断(留作检索期参数, 图数据完整)",
             ],
             "sources": ["graph_cards.jsonl", "graph_entities.json", "scenes.jsonl"],
         },
@@ -208,7 +208,7 @@ def dump_json(doc: dict) -> str:
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="T10.3/10.4 事件图谱组装(零 LLM,确定性)")
+    ap = argparse.ArgumentParser(description="事件图谱组装(零 LLM,确定性)")
     ap.add_argument("--config", default="configs/main.yaml")
     ap.add_argument("--out", default=None, help="缺省 config paths.events(无则 data/graph_events.json)")
     ap.add_argument("--check", action="store_true", help="重建并与盘上文件逐字节比对")
@@ -218,7 +218,7 @@ def main() -> None:
     paths = resolve_paths(cfg)
     for key in ("cards", "entities", "scenes"):
         if not paths.get(key) or not Path(paths[key]).exists():
-            sys.exit(f"缺少输入 {key}: {paths.get(key)}(先完成 T9/T10.2)")
+            sys.exit(f"缺少输入 {key}: {paths.get(key)}(先运行 graph_build/graph_extract)")
     out_path = Path(args.out) if args.out else paths.get("events", DEFAULT_OUT)
     cards_log = Path(paths["cards"]).with_name(
         Path(paths["cards"]).stem + "_extract_log.json")
@@ -245,7 +245,7 @@ def main() -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(blob, encoding="utf-8", newline="\n")
     m = doc["meta"]
-    print(f"== T10.4 事件图谱组装 ==\n  节点 {m['n_card_nodes']} 卡 + "
+    print(f"== 事件图谱组装 ==\n  节点 {m['n_card_nodes']} 卡 + "
           f"{m['n_choice_nodes']} 选择肢  边 {m['n_edges']}(分布 {m['edges_by_type']})"
           f"\n  时序互斥跳过 {m['temporal_skipped_exclusive']} 对  参与者未解析 "
           f"{m['participant_unresolved']} 条\n  弱连通组件 {m['stats']['n_weakly_connected']}"

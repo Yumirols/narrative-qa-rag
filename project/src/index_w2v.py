@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
-"""词向量平均检索基线(知识框架 §4.2,任务书基线②)。
+"""词向量平均检索基线。
 
 课程 `02_word_representation/word2vec_skipgram.py` 的 skip-gram + 负采样实现,
 面向本项目改造(课程文件本身不动,数学更新式与课程逐行对应):
   1. 训练输入从 sentences(str 列表 .split())改为**已分词 token 流**——与
      bm25_jieba 臂同一 get_tokenizer("jieba", user_dict),保证方法间可比;
   2. 负采样把课程逐次 rng.choice(p=) 换成预算 cumsum + searchsorted 逆变换
-     (同分布;前者每次调用重建 O(V) 累积分布,是规划坑 2 预先点名的慢点);
+     (同分布;前者每次调用重建 O(V) 累积分布,是全量训练的主要慢点);
   3. 词频统计从课程 O(V·N) 的 tokens.count 改为 Counter(语料 10 万 token 必须);
   4. 超参 config 可调,逐 epoch 平均 loss 返回 → runs/<ts>/w2v_train_log.json。
 
-句向量 = chunk 内词向量**朴素平均**(§4.2 的定义,刻意不做 IDF/SIF 加权,
-缺陷本身是报告素材),L2 归一化后检索 = 余弦 top-k;接口与 BM25Index 完全
-一致,评测代码零改动。预期指标低于 bm25_jieba——负结果即 §4.2 要的发现:
+句向量 = chunk 内词向量**朴素平均**(刻意不做 IDF/SIF 加权,
+这一简化本身是该基线的设计意图),L2 归一化后检索 = 余弦 top-k;接口与 BM25Index
+完全一致,评测代码零改动。预期指标低于 bm25_jieba——负结果同样有信息量:
 平均丢词序(伤时序题)/静态词义/OOV(查询侧未登录词跳过并计数落日志)。
 
 用法:
@@ -54,7 +54,7 @@ def train_skipgram_stream(token_streams, dim: int = 100, window: int = 2, neg_k:
 
     token_streams: 每条 = 一个训练单元的 token 列表(本项目用 chunk 分词流,
     与检索单元同粒度)。返回 (W_in, vocab, vid, loss_curve)。
-    固定 seed + 无 shuffle → 同环境重跑结果一致(确定性,规划验收标准 2)。
+    固定 seed + 无 shuffle → 同环境重跑结果一致(确定性要求)。
     """
     rng = np.random.default_rng(seed)
 
@@ -144,7 +144,7 @@ class W2VAvgIndex:
                 if n > 0:
                     self.normed[i] = v / n
 
-        # 训练后 sanity check: 专名最近邻(落训练日志,报告/调试两用)
+        # 训练后 sanity check: 专名最近邻(落训练日志, 供结果核对与调试)
         self.sanity = self._nearest_bulk(sanity_words or DEFAULT_SANITY_WORDS, 5)
 
         self._qoov_tokens = 0
@@ -214,7 +214,7 @@ class W2VAvgIndex:
                         "note": "min_count=1 时文档侧恒为 0(词表来自训练语料本身)"},
             "query_oov": {"n_oov": self._qoov_tokens, "n_queries": self._n_queries,
                           "rate": round(self._qoov_tokens / max(self._n_queries, 1), 6),
-                          "note": "评测期累计;§4.2 缺陷③(OOV)的量化证据"},
+                          "note": "评测期累计;OOV 缺陷的量化证据"},
         }}
 
 

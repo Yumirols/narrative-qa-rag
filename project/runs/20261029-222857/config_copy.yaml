@@ -2,7 +2,7 @@
 # 所有相对路径相对于 project/ 根目录
 
 paths:
-  scenes: ../Rewrite_terra/data/scenes.jsonl   # Day 1 真值切分产物 (480 chunks)
+  scenes: ../Rewrite_terra/data/scenes.jsonl   # Day 1 真值切分产物 (483 chunks; P0 口径核对 2026-10-28 实测)
   user_dict: data/user_dict.txt                # jieba 自定义词典
   qaset: eval/qaset_v0.json                    # 正式评测集(90 题冻结稿;报告对比表数字来源)
   answers: eval/answers.jsonl                  # 答案层输入(Day 4 生成模块产出;不存在则跳过)
@@ -52,8 +52,8 @@ retrievers:           # 检索器列表: name=metrics 键=报告列名; 工厂�
      depth: 20, rrf_k: 60}
 
 generation:            # T6.4 定生成侧默认值; T7 接入 run_all 时消费并扩展 llm/prompt 子节
-  retriever: hybrid3_rrf # T16 消融变体(图谱开臂): 与 main.yaml 仅 generation.{retriever,top_k} 两处不同
-  top_k: 3             # T16 消融轴 {3,5,10}
+  retriever: hybrid_rrf # T18 回填 R3 终裁(T15)+k 消融(T16)确认的默认臂; 图谱开对照切 hybrid3_rrf
+  top_k: 5             # structural 层 gold 均值 3.68 chunk → 下界; T16 消融确认 k=5 最优(label_acc 0.8056)
   llm:                 # T7.1;规格对照阶段计划 §3(2026-10-25 官方文档核对)
     provider: deepseek
     base_url: https://api.deepseek.com

@@ -1,27 +1,27 @@
 # -*- coding: utf-8 -*-
-"""DeepSeek 客户端层(T7.1)——OpenAI 兼容 SDK + 环境变量 Key + 响应缓存 + JSON 解析。
+"""DeepSeek 客户端层——OpenAI 兼容 SDK + 环境变量 Key + 响应缓存 + JSON 解析。
 
-固化四件影响正确性/复现性的事(阶段计划 §3/§7 坑 1/4/5/6/10):
+固化四件影响正确性/复现性的事:
 
-1. Key 只读 os.environ["DEEPSEEK_API_KEY"](红线③: 绝不进代码/config/仓库/zip);
+1. Key 只读 os.environ["DEEPSEEK_API_KEY"](绝不进代码/config/仓库/压缩包);
    可选 project/.env 文件兜底加载——十余行手写解析器, 不引入 python-dotenv
    (轻依赖纪律)。.env 已进 .gitignore, 仓库只有 .env.example 空键名模板。
 
 2. 思考模式显式关闭: extra_body={"thinking": {"type": "disabled"}}——端点默认
-   enabled, 不关则 temperature 无效 + reasoning token 抬高延迟费用(坑 4)。
+   enabled, 不关则 temperature 无效 + reasoning token 抬高延迟费用。
    temperature=0; seed 端点不支持、不发送(该事实由本文件常量+日志落盘,
    复现性真正兜底是缓存); frequency/presence_penalty 已废弃不使用。
 
-3. 响应缓存 = 复现 + 省钱双红线: 键 = sha256(model+thinking+temperature+
-   max_tokens+response_format+messages 全量规范序列化)——漏任一参数会串缓存
-   (坑 10)。缓存 JSON 落 project/cache/llm_<hash16>.json(含原始响应/usage/
-   延迟), 与 emb_*.npy 同目录约定: 可再生、不进 zip。命中即零二次请求,
-   同 prompt 重跑逐字节一致(阶段验收 2)。
+3. 响应缓存 = 复现 + 省钱: 键 = sha256(model+thinking+temperature+
+   max_tokens+response_format+messages 全量规范序列化)——漏任一参数会串缓存。
+   缓存 JSON 落 project/cache/llm_<hash16>.json(含原始响应/usage/
+   延迟), 与 emb_*.npy 同目录约定: 可再生、不进压缩包。命中即零二次请求,
+   同 prompt 重跑逐字节一致。
 
 4. 结构化输出: response_format={"type":"json_object"}(要求 prompt 含 "json"
    字样——generate 的协议模板天然满足); 官方注明偶发空 content, 由调用方
    (generate 的重试一次)覆盖。解析三级降级: 直接 loads → 剥代码围栏 → 括号
-   配平扫描, 降级路径逐调用落日志(§7.3 工程指标)。
+   配平扫描, 降级路径逐调用落日志。
 
 延迟与成本核算: 每次调用记录墙钟延迟与 usage 细项(prompt_cache_hit_tokens /
 prompt_cache_miss_tokens / reasoning_tokens——DeepSeek 私有字段, SDK 模型
@@ -41,10 +41,10 @@ from pathlib import Path
 
 from src.config import PROJECT_ROOT
 
-# flash 谷时定价 USD/1M tokens(阶段计划 §3, 峰时[工作日北京时间 09-12/14-18]×2)
+# flash 谷时定价 USD/1M tokens(峰时[工作日北京时间 09-12/14-18]×2)
 PRICING_PER_MTOK = {"input_miss": 0.15, "input_hit": 0.003, "output": 0.60}
 
-# seed 不在端点参数表——不发送, 复现性由响应缓存兜底(§3"不支持/不使用"行)
+# seed 不在端点参数表——不发送, 复现性由响应缓存兜底
 UNSUPPORTED_PARAMS = ("seed", "frequency_penalty", "presence_penalty")
 
 
@@ -81,7 +81,7 @@ def get_api_key(llm_cfg: dict) -> str:
         f"无 Key 环境下 run_all 的生成阶段会整段跳过, 检索层不受影响。")
 
 
-# ---------- JSON 三级解析(§7.3 降级链) ----------
+# ---------- JSON 三级解析(降级链) ----------
 
 def extract_json(text: str) -> tuple[dict | None, str]:
     """content → (解析出的 dict 或 None, 路径标签)。
@@ -155,7 +155,7 @@ class LLMClient:
     # ---- 请求规范化与缓存键 ----
 
     def _request_spec(self, messages: list[dict]) -> dict:
-        """参与缓存键的全量请求参数(坑 10: 漏参数 = 换模型/开关思考串缓存)。"""
+        """参与缓存键的全量请求参数(漏参数 = 换模型/开关思考串缓存)。"""
         return {"model": self.model,
                 "thinking": {"type": self.thinking},
                 "temperature": self.temperature,

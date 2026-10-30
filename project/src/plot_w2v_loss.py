@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""渲染 w2v 训练 loss 曲线图(报告图表素材;数据只来自 runs/ 日志,禁止手绘——红线②)。
+"""渲染 w2v 训练 loss 曲线图(数据只来自 runs/ 日志,禁止手绘)。
 
 读取 runs/<ts>/w2v_train_log.json(必需;run_all 落盘)与
 w2v_divergence_reference.json(可选;修复前发散参考,一次性诊断产物),
 输出同目录 w2v_loss_curve.png:
   - 面板1: 现行代码的逐 epoch 平均损失,附随机初始化理论起点参考线
-    ((1+neg_k)·ln2 ≈ 3.47,W_out 零初始化 → 全部 σ≈0.5)——坑 2 的判读锚点;
-  - 面板2(有参考产物时): 修复前发散曲线对照,报告"实现细节/复现性"的审计证据。
+    ((1+neg_k)·ln2 ≈ 3.47,W_out 零初始化 → 全部 σ≈0.5)——判读曲线的锚点;
+  - 面板2(有参考产物时): 修复前发散曲线对照,用于核对实现细节/复现性。
 
 用法:
   python src/plot_w2v_loss.py                    # 默认渲染含 w2v 日志的最新 run
@@ -42,11 +42,23 @@ def _baseline(neg_k: int) -> float:
     return (1 + neg_k) * LN2
 
 
+def _tuck_title(fig, title, axes, gap: float = 0.036) -> None:
+    """把总标题收到坐标区上方:tight_layout 为 suptitle 预留的空白按 rect 与文字包围盒
+    双重扣除,两行标题下会留下近 1/6 图高的空档;这里按实际包围盒重设位置。"""
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    inv = fig.transFigure.inverted()
+    axes_top = max(a.get_tightbbox(renderer).transformed(inv).y1 for a in axes)
+    height = title.get_window_extent(renderer).transformed(inv).height
+    title.set_position((0.5, axes_top + gap + height))
+
+
 def _annotate(ax, curve: list[float]) -> None:
     ax.annotate(f"{curve[0]:.2f}", (1, curve[0]),
                 xytext=(6, 4), textcoords="offset points", fontsize=8)
+    # 末点贴底,标注放上方空白处,避开底轴与末尾刻度标签
     ax.annotate(f"{curve[-1]:.2f}", (len(curve), curve[-1]),
-                xytext=(-6, -12), textcoords="offset points", fontsize=8)
+                xytext=(-4, 8), textcoords="offset points", fontsize=8)
 
 
 def main() -> None:
@@ -103,8 +115,9 @@ def main() -> None:
     p = (f"dim={params['dim']}  window={params['window']}  neg_k={params['neg_k']}  "
          f"epochs={params['epochs']}  lr={params['lr']}  seed={params['seed']}  "
          f"vocab={log['vocab']:,}  训练={log['train_seconds']}s")
-    fig.suptitle(f"w2v_avg skip-gram 训练损失 — {run_dir.name}\n{p}", fontsize=10)
-    fig.tight_layout(rect=(0, 0, 1, 0.88))
+    st = fig.suptitle(f"w2v_avg skip-gram 训练损失 — {run_dir.name}\n{p}", fontsize=10)
+    fig.tight_layout(rect=(0, 0, 1, 1))
+    _tuck_title(fig, st, axes)
     out = run_dir / "w2v_loss_curve.png"
     fig.savefig(out)
     print(f"已渲染: {out}")

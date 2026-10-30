@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-"""评测脚本骨架(知识框架 §8,任务书评分项④)。
+"""评测脚本:检索层与答案层指标。
 
-检索层(本阶段出真数字,诊断"错在检索还是生成"):
+检索层(诊断"错在检索还是生成"):
     Recall@k = |gold_chunks ∩ top_k| / |gold_chunks|
     MRR      = mean(1 / 首个命中 gold 的排名)
     gold rfid → chunk: chunk 的 [rfid_start, rfid_end] 已验证严格递增不重叠,
     二分查表确定映射;rfid 落在区间外 → 金标标注错误,立刻报错(防静默错评)。
     gold_evidence_rfids 为空(不可回答题)不计入检索指标,留给答案层拒答评测。
 
-答案层(骨架,Day 4 接入 generate 后喂 eval/answers.jsonl):
+答案层(读取 generate 产出的 answers.jsonl):
     每行 {"qid", "verdict": "yes|no|unknown", "answer", "evidence_rfids"};
     标签准确率 = verdict 与 gold_verdict 一致的题占比(是否发生过/不可回答题);
     拒答正确率 = 不可答题 predicted unknown + 可答题 predicted 非 unknown。
@@ -148,7 +148,7 @@ def eval_retrieval(index, locator: RfidLocator, qaset: dict, k_values: list[int]
     return metrics, per_q
 
 
-# ---------- 答案层指标(T7 生成接入, T8.2 扩展引用/解析指标) ----------
+# ---------- 答案层指标(生成接入 + 引用/解析指标) ----------
 
 def _load_answers(answers_path: Path) -> list[dict]:
     with open(answers_path, encoding="utf-8") as f:
@@ -156,7 +156,7 @@ def _load_answers(answers_path: Path) -> list[dict]:
 
 
 def eval_citations(rows: list[dict]) -> dict:
-    """引用规则校验指标(T8.2, 确定性): 从 answers.jsonl 行内字段直接计算。
+    """引用规则校验指标(确定性): 从 answers.jsonl 行内字段直接计算。
 
     条级 = 有效引用区间数 / 总引用区间数(无效 = n_invalid_citations, 生成侧两规则
     校验的失败计数);题级 = "全部引用有效且至少 1 条引用"的题占比;零引用题单列
@@ -177,7 +177,7 @@ def eval_citations(rows: list[dict]) -> dict:
 
 
 def eval_parse_failures(rows: list[dict]) -> dict:
-    """JSON 解析失败率(重试后终态, §7.3 工程指标;逐次尝试口径在 generation_log)。"""
+    """JSON 解析失败率(重试后终态;逐次尝试口径在 generation_log)。"""
     n = len(rows)
     failed = sum(1 for r in rows if r.get("parse_failed"))
     return {"n": n, "n_parse_failed": failed,
@@ -185,7 +185,7 @@ def eval_parse_failures(rows: list[dict]) -> dict:
 
 
 def eval_label_accuracy(qaset: dict, answers_path: Path) -> dict | None:
-    """verdict 标签准确率 + 拒答正确率 + 引用/解析指标(T8.2)。answers 不存在返回 None。"""
+    """verdict 标签准确率 + 拒答正确率 + 引用/解析指标。answers 不存在返回 None。"""
     if not answers_path.exists():
         return None
     gold = {q["qid"]: q for q in qaset["questions"] if q.get("gold_verdict")}

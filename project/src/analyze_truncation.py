@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""512 截尾影响评估(T5 主体, 计划坑 5 的量化收口; 切分不迁就模型, 只评估)。
+"""512 截尾影响评估(切分不迁就模型, 只评估)。
 
 回答三个层面的问题(三级口径, 防止单一数字被误读):
   块级暴露: 多少 chunk 的 token 数 > bge max_seq_len=512(编码时尾部被截);
@@ -11,7 +11,7 @@
   与 scenes.jsonl 的 text 逐块比对(应 483/483 一致); 逐行 token 数之和+2 应等于
   整块编码 token 数([CLS]/[SEP] 各 1, 可加性验证); 由此得到每行在 chunk 内的
   token 偏移, gold rfid 行的偏移与 510(=512-2 个特殊符) 比较即知证据是否被截。
-  已知近似: 截尾上限按 base 臂 tokenizer 计(small 臂仅 1 块边界差异, 见 T4 报告)。
+  已知近似: 截尾上限按 base 臂 tokenizer 计(small 臂仅 1 块边界差异)。
 
 分组对照(截尾×检索命中, 观察性结论——截尾与"长文池化稀释"完全共线, 机制不可分):
   A 组: gold chunk 全部未截;  B 组: gold 被截但证据行存活;  C 组: 证据行完整落入截尾。
@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import statistics
 import sys
 from bisect import bisect_right
@@ -57,14 +58,20 @@ def render_line(l: dict) -> str:
 
 
 def latest_run_dir(runs_root: Path) -> Path:
-    dirs = sorted(d for d in runs_root.iterdir() if d.is_dir())
+    """最新 run 目录 = runs/<YYYYMMDD-HHMMSS>/。
+
+    只认时间戳命名: runs/ 下还有 fulltext/ 这类扩展实验目录与 *.md 汇总,
+    按字典序取末位会选错(且那些目录没有 retrieval_results.json)。
+    """
+    dirs = sorted(d for d in runs_root.iterdir()
+                  if d.is_dir() and re.fullmatch(r"\d{8}-\d{6}", d.name))
     if not dirs:
-        raise SystemExit(f"runs/ 下没有运行目录: {runs_root}")
+        raise SystemExit(f"runs/ 下没有时间戳命名的运行目录: {runs_root}")
     return dirs[-1]
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="512 截尾影响评估(T5)")
+    ap = argparse.ArgumentParser(description="512 截尾影响评估")
     ap.add_argument("--config", default="configs/main.yaml")
     ap.add_argument("--run", default=None, help="runs/ 下的目录名; 缺省取最新")
     ap.add_argument("--model", default=DEFAULT_MODEL, help="截尾判定用的 tokenizer")
@@ -79,7 +86,7 @@ def main() -> None:
     if not res_path.exists():
         raise SystemExit(f"找不到 {res_path}")
 
-    # HF 环境先就位, 再允许 import transformers(坑 6 同源时机约束)
+    # HF 环境先就位, 再允许 import transformers(缓存重定向的时机约束)
     if args.offline:
         import os
         os.environ.setdefault("HF_HUB_OFFLINE", "1")
