@@ -14,9 +14,11 @@
      两者在草稿模式只出警告,冻结模式升级为报错(层标签由 calibrate_qaset.py 标定,
      本脚本只做复核,判定标准见 src/qaset_analysis.py)。
 用法: python eval/validate_qaset.py eval/qaset_v0_draft.json
+      语料缺省读项目内 data/corpus/(README §1.2 落位); 放在别处时 --scenes/--lines 指定。
 """
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -33,7 +35,7 @@ from src.qaset_analysis import CorpusStats, load_entities, overlap_stats
 from src.tokenization import get_tokenizer
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT.parent / "Rewrite_terra" / "data"
+DATA = ROOT / "data/corpus"   # 语料缺省落位(README §1.2); 可用 --scenes/--lines 覆盖
 USER_DICT = ROOT / "data/user_dict.txt"
 VALID_TYPES = {"fact", "yesno", "temporal", "aggregate", "unanswerable"}
 VALID_LAYERS = {"literal", "semantic_gap", "structural", "floor"}
@@ -112,11 +114,23 @@ def check_overlaps(qaset: dict, locator: RfidLocator, chunk_by_id: dict,
 
 
 def main() -> None:
-    qaset_path = ROOT / sys.argv[1] if len(sys.argv) > 1 else ROOT / "eval/qaset_v0_draft.json"
+    ap = argparse.ArgumentParser(description="qaset 冻结门槛八项机检")
+    ap.add_argument("qaset", nargs="?", default="eval/qaset_v0_draft.json",
+                    help="评测集路径(相对项目根; 缺省草稿)")
+    ap.add_argument("--scenes", default=None, help="scenes.jsonl 位置; 缺省 data/corpus/")
+    ap.add_argument("--lines", default=None, help="lines.jsonl 位置; 缺省 data/corpus/")
+    args = ap.parse_args()
+    qaset_path = ROOT / args.qaset
+    scenes_path = Path(args.scenes) if args.scenes else DATA / "scenes.jsonl"
+    lines_path = Path(args.lines) if args.lines else DATA / "lines.jsonl"
+    for p in (scenes_path, lines_path):
+        if not p.exists():
+            raise SystemExit(f"缺语料文件 {p} —— 按 README §1.2 放入 data/corpus/, "
+                             f"或用 --scenes/--lines 指定实际位置")
     qaset = json.loads(qaset_path.read_text(encoding="utf-8"))
-    chunks = [json.loads(l) for l in (DATA / "scenes.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
+    chunks = [json.loads(l) for l in scenes_path.read_text(encoding="utf-8").splitlines() if l.strip()]
     lines = {}
-    for l in (DATA / "lines.jsonl").read_text(encoding="utf-8").splitlines():
+    for l in lines_path.read_text(encoding="utf-8").splitlines():
         if l.strip():
             d = json.loads(l)
             lines[d["rfid"]] = d

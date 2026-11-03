@@ -1,7 +1,4 @@
-# NLP 算法最小实现(第 1–15 讲)+ 课程项目工作区
-
-对应课程:《自然语言处理》2026—2027 秋季学期
-课程主页:<https://6ccfkuh9.qwenwork.host/>
+# NLP 算法最小实现(第 1–15 讲)+ 项目工作区
 
 本仓库包含两部分内容:
 
@@ -96,7 +93,7 @@ python "09_rag/inference_cost.py"                 # KV Cache / 量化 / IVF
 
 ## 课程项目语料工作区(Rewrite_terra/)
 
-课程项目选题为**方向 A:领域 RAG 问答**,语料取自 galgame《Rewrite》Terra 线汉化剧本
+课程项目选题为**领域 RAG 问答**,语料取自 galgame《Rewrite》Terra 线汉化剧本
 (约 19.5 万汉字)。该目录负责把游戏剧本二进制还原成**行级真值结构**,供后续 RAG 链路使用。
 
 ### 提取链路
@@ -120,31 +117,3 @@ data/choices.json   选择肢节点
 `speaker_labels_filled.xlsx`)、`namae_map.tsv`(全部说话人 188 项)、
 `speaker_map.tsv`(Terra 线归一化映射 83 项)、`gameexe_orig.ini / gameexe_chs.ini`(原版/汉化配置对照)。
 `data/seen08000_jp.ss` 为日文原版场景脚本,可作对照。
-
-### 注意事项
-
-- **版权红线**:剧本为版权文本(Key/VisualArt's),按任务书要求**不打包进提交 zip**,
-  只提交提取脚本 + 来源声明,报告写明仅课程使用。
-- 提取脚本内使用的是绝对路径(如 `E:/dev/NLP/Rewrite_terra/...`),换机器运行需先改路径;
-  `_make_txt.py` 引用的 `E:/dev/NLP/seen08000.dat.csv` 现已移入本目录,路径待同步。
-- `structure/` 与根目录下的 `seen08000.dat.txt` 是同一份反汇编产物的副本,改脚本时以
-  `structure/seen08000.dat.txt`(parse_disasm.py 的输入)为准。
-
-## 与课程项目(RAG 剧本问答)的衔接
-
-项目规则速查见 `课程项目任务书_要点整理.md`(评分细则、交付物、红线),
-技术路线与知识梳理见 `项目知识框架_剧本问答.md`。涉及的课程章节与对应代码:
-
-| 课程内容 | 对应代码 | 在项目中的用途 |
-|---|---|---|
-| 第 2 讲 正则清洗 | `01_text_processing/regex_cleaning.py` | 清洗脚本基础(说话人归一化、全角转半角) |
-| 第 4 讲 分词与 BPE | `01_text_processing/tokenization_bpe.py` | 原理点①:子词/字符级检索对照 |
-| 第 5 讲 词向量 | `02_word_representation/word2vec_skipgram.py` | 基线②:词向量平均检索直接复用训练 |
-| 第 7 讲 N-gram | `04_language_models/ngram_lm.py` | 困惑度概念(备用原理点素材) |
-| 第 10 讲 注意力 | `05_attention_seq2seq/attention_seq2seq.py` | Q/K/V 软检索 = 图扩展召回的思想源头 |
-| 第 10 讲 解码与 BLEU | `05_attention_seq2seq/decoding_bleu.py` | 评测协议参照:n-gram 指标的局限 → 为什么用 LLM-as-judge |
-| 第 11 讲 Transformer | `06_transformer/transformer_minimal.py` | bge / LLM 的骨架;位置编码与 lost-in-the-middle 位置消融的原理基础 |
-| 第 12 讲 预训练目标 | `07_pretrained_lm/pretrain_objectives.py` | 「上下文相关表示优于静态词向量」的机理(原理点②) |
-| 第 14 讲 提示与评估 | `08_prompting_eval/decoding_prompting.py` | 输出协议(JSON+拒答)与 LLM-as-judge 偏差校正的最小原型 |
-| 第 15 讲 RAG | `09_rag/rag_minimal.py` | 项目主链路同构:切块→混合检索→RRF→重排→三条约束→四类指标 |
-| 第 15 讲 推理优化 | `09_rag/inference_cost.py` | 成本 / 延迟测量(任务书拉分点)与 KV Cache、量化、ANN 的量级直觉 |

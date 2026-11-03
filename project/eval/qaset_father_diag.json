@@ -1,0 +1,44 @@
+{
+ "version": "diag-20261030",
+ "targets": {},
+ "questions": [
+  {
+   "qid": "QF01",
+   "type": "fact",
+   "question": "瑚太朗的父亲叫什么名字？",
+   "gold_answer": "数夫",
+   "gold_evidence_rfids": [
+    [
+     833,
+     845
+    ],
+    [
+     1360,
+     1374
+    ]
+   ],
+   "anchor_layer": "semantic_gap",
+   "accept_criteria": "答「数夫」即可；证据 c032/c047",
+   "distractor_note": "诊断题：四臂 top-10 全脱靶，验证查询侧功能词淹没"
+  },
+  {
+   "qid": "QF02",
+   "type": "fact",
+   "question": "数夫是谁？",
+   "gold_answer": "瑚太朗的父亲（天王寺数夫）",
+   "gold_evidence_rfids": [
+    [
+     833,
+     845
+    ],
+    [
+     1360,
+     1374
+    ]
+   ],
+   "anchor_layer": "literal",
+   "accept_criteria": "答出数夫是瑚太朗（天王寺家）的父亲即可",
+   "distractor_note": "点名型对照查询"
+  }
+ ]
+}

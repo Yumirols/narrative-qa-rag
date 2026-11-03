@@ -75,11 +75,28 @@ huggingface_hub 1.33.0、PyYAML 6.0.3（numpy 要求 ≥1.24）。实测环境�
    将前三份文件放入项目根目录的 `data/corpus/` 即可——`configs/main.yaml.example` 的
    `paths.scenes` / `paths.choices` 已经指向该位置，无需再改（该目录内的 `README.md` 列出了
    应放的文件与 sha256 校验命令）。若改放到别处，只需同步修改这两行
-   （以及 `paths.models`，见下一条）；使用 §8.2 的其他配置时同理。`speaker_map.tsv` 仅在 §3.4
+   （以及 `paths.models`，见第 3 条）；使用 §8.2 的其他配置时同理。`speaker_map.tsv` 仅在 §3.4
    重建语料时使用，文件校验值见 §3.6。
-2. **模型**：`BAAI/bge-small-zh-v1.5`（512 维）与 `BAAI/bge-base-zh-v1.5`（768 维）。缓存根由
-   `paths.models` 指定，模板默认 `models`（即项目根内的 `models/`，含两个模型的完整 HF 缓存约
-   900MB，不随提交包分发）。首次运行自动下载到该位置；若沿用开发机已有的缓存，把该行改成缓存
+2. **图谱派生数据**：`graph_expand` 与 `hybrid3_rrf` 两臂（§8.1 末两行）与 §8.2 的“图谱开”
+   三列都依赖 `data/` 下的四份图数据。其中事件卡是 LLM 抽取产物——冷启动重抽需自备 Key 并产生
+   费用，且不保证与本文数值逐字节一致——故这四份文件与语料同样通过与前面相同的网盘链接中的
+   “图数据”文件夹来获取下列文件，放入项目根目录的 `data/` 即可；`configs/main.yaml.example` 的
+   `paths.entities` / `paths.cards` / `paths.events` 已指向该位置，无需再改（合计约 1.5 MB）：
+
+   ```text
+   graph_entities.json            实体-场景索引（零 LLM）
+   graph_cards.jsonl              事件卡（LLM 抽取，483 卡）
+   graph_cards_extract_log.json   抽取日志（usage / 费用 / 原始响应）
+   graph_events.json              事件图谱（节点表 + 边表）
+   ```
+
+   缺失时其余六臂不受影响：`graph_entities.json` 每次运行零 LLM 确定性重建（§5.1），
+   `graph_cards.jsonl` / `graph_events.json` 缺失则图臂卡片路与扩展路自动降级（见 §1.3），
+   此时 §8.1 的 `graph_expand` / `hybrid3_rrf` 两行会不同。按 §5.1 自行重建亦可，但事件卡
+   抽取需自备 Key 并付费。校验值见 §3.6。
+3. **模型**：`BAAI/bge-small-zh-v1.5`（512 维）与 `BAAI/bge-base-zh-v1.5`（768 维）。缓存根由
+   `paths.models` 指定，模板默认 `models`（即项目根内的 `models/`，两个模型的完整 HF 缓存，
+   不随提交包分发）。首次运行自动下载到该位置；若沿用开发机已有的缓存，把该行改成缓存
    实际所在目录即可。首次运行需联网下载一次：
 
    ```bash
@@ -89,7 +106,7 @@ huggingface_hub 1.33.0、PyYAML 6.0.3（numpy 要求 ≥1.24）。实测环境�
 
    之后可设 `HF_HUB_OFFLINE=1` 全程离线。缓存重定向由 `src/index_vector.apply_hf_cache_redirect`
    在 import `sentence_transformers` 之前完成（缓存路径常量在 import 时固化，重定向必须前置）。
-3. **API Key**（仅生成层需要）：`export DEEPSEEK_API_KEY=sk-…`，或复制 `.env.example` 为
+4. **API Key**（仅生成层需要）：`export DEEPSEEK_API_KEY=sk-…`，或复制 `.env.example` 为
    `.env` 并填写。Key 只从环境变量 / `.env` 读取，不写入代码、配置或任何运行产物。
 
 ### 1.3 一条命令
@@ -107,7 +124,7 @@ python run_all.py --config configs/main.yaml
 `eval/answers.jsonl`。`data/graph_cards.jsonl` 或 `graph_events.json` 缺失时，图臂对应路
 自动降级（卡片路关闭、扩展路仅保留同 label 邻居、实体路与基座排名不变），控制台与
 `env_info.json` 会打印降级面——此时 `graph_expand` / `hybrid3_rrf` 两行指标会不同于 §8.1，
-其余六臂不受影响。按 §5.1 重建图数据后即可复现完整八臂。
+其余六臂不受影响。按 §1.2 第 2 条从网盘“图数据”取得四份文件（或按 §5.1 重建）即可复现完整八臂。
 
 ### 1.4 预期输出
 
@@ -151,8 +168,9 @@ python run_all.py --config configs/main.yaml
 
 设置有 Key 时，检索评测与答案层之间还会多出 `== 生成阶段 ==` 一节，打印解析失败率、引用条级
 有效率、费用（谷/峰）、P50/P95 延迟与缓存命中数；无 Key 时该节替换为一行 `[跳过] 缺少
-DEEPSEEK_API_KEY…`，答案层改用随包的 `eval/answers.jsonl` 复评（数值与有 Key 时一致，因为生成层
-的输出由响应缓存锁定）。若该文件也不存在，答案层一并跳过，此时复现的是检索层八臂指标（§8.1）。
+DEEPSEEK_API_KEY…`，答案层改用随包的 `eval/answers.jsonl` 复评（随包产物即有 Key 运行的落盘
+结果，复评口径与有 Key 时一致；若跨机器在冷缓存下重新生成，则如 §9 所述只承诺方向与量级一致，
+引用条数等细节可能有出入）。若该文件也不存在，答案层一并跳过，此时复现的是检索层八臂指标（§8.1）。
 
 本机 CPU 实测：缓存就绪时全流程约 4–5 分钟（w2v 每轮重训约 215–250 s，为主要耗时）。首次运行另需
 下载模型并做 bge 全库编码（CPU 上 small 约 20–40 s、base 约 4–5 分钟）。`w2v_avg` 每次运行都会
@@ -166,40 +184,44 @@ DEEPSEEK_API_KEY…`，答案层改用随包的 `eval/answers.jsonl` 复评（�
 | `runs/<timestamp>/retrieval_results.json` | 每题各臂 top-k 结果与命中标记、demo 查询 |
 | `runs/<timestamp>/answers.jsonl` | 生成层 90 行结构化答案（不含时间戳等非确定字段） |
 | `runs/<timestamp>/generation_log.json` | 每题 prompt 哈希、usage、延迟、原始响应、引用校验明细 |
-| `runs/<timestamp>/env_info.json` | Python 与全部依赖版本、模型 revision、完整配置、生成与图数据段环境 |
+| `runs/<timestamp>/env_info.json` | Python 与全部依赖版本、模型 revision（首跑冷缓存时为 `(unknown)`，见 §9）、完整配置、生成与图数据段环境 |
 | `runs/<timestamp>/config_copy.yaml` | 本次运行配置快照 |
 | `runs/<timestamp>/segmentation_demo.txt` | 分词对照（词典前/后） |
 | `runs/<timestamp>/graph_build_log.json` | 实体索引重建动作、事件图谱统计、图臂降级面 |
 | `runs/<timestamp>/w2v_train_log.json` | w2v 逐 epoch loss、词表、OOV 统计 |
 | `runs/<timestamp>/bge_encode_log_<臂名>.json` | 各 bge 臂编码耗时、缓存命中、截尾统计 |
 | `runs/<timestamp>/hybrid_config_<臂名>.json`、`graph_config_graph_expand.json` | 融合/图臂参数与门槛计数 |
+| `runs/<timestamp>/truncation_analysis.json` | 512 截尾三级口径分析（§11.1）——仅由 `python src/analyze_truncation.py --offline` 单独生成，主流程产物不含此文件 |
 
 ## 2. 系统架构
 
 ```text
 data/corpus/{lines,scenes,choices}.json[l]   剧本行级真值（§3；实际位置由 configs 的 paths.* 指定）
-          │
-          ├─ 检索层
-          │    tokenization.py ─┬─ index_bm25.py    BM25：jieba / 字符 bigram
-          │                     ├─ index_w2v.py     skip-gram 词向量平均
-          │                     └─ index_vector.py  BGE 稠密（small / base）
-          │    index_hybrid.py   RRF 融合 → hybrid_rrf（bigram ∥ bge_base）
-          │
-          ├─ 图谱管线（§5）
-          │    graph_build.py（零 LLM）→ graph_extract.py（LLM）→ graph_assemble.py（确定性）
-          │    index_graph.py    graph_expand（实体 / 卡片 / 扩展三路 RRF）
-          │                      hybrid3_rrf（bigram ∥ bge ∥ graph）
-          │
-          ├─ evaluate.py         检索层 Recall@k / MRR（八臂同构评测）
-          │
-          └─ 生成层（§6）
-               generate.py       top-k 证据 → prompt → DeepSeek → JSON → 引用校验 → answers.jsonl
-                    │
-                    ├─ evaluate.py  答案层：标签准确率 / 拒答 / 引用 / 解析失败
-                    └─ judge.py     LLM-as-judge：54 道生成类题的三维评分
+
+src/
+  │
+  ├─ 检索层（src/）
+  │    tokenization.py ─┬─ index_bm25.py    BM25：jieba / 字符 bigram
+  │                     ├─ index_w2v.py     skip-gram 词向量平均
+  │                     └─ index_vector.py  BGE 稠密（small / base）
+  │    index_hybrid.py   RRF 融合 → hybrid_rrf（bigram ∥ bge_base）
+  │
+  ├─ 图谱管线（§5，src/）
+  │    graph_build.py（零 LLM）→ graph_extract.py（LLM）→ graph_assemble.py（确定性）
+  │    index_graph.py    graph_expand（实体 / 卡片 / 扩展三路 RRF）
+  │                      hybrid3_rrf（bigram ∥ bge ∥ graph）
+  │
+  ├─ evaluate.py         检索层 Recall@k / MRR（八臂同构评测）
+  │
+  └─ 生成层（§6，src/）
+       generate.py       top-k 证据 → prompt → DeepSeek → JSON → 引用校验 → answers.jsonl
+           │
+           ├─ evaluate.py  答案层：标签准确率 / 拒答 / 引用 / 解析失败
+           └─ judge.py     LLM-as-judge：54 道生成类题的三维评分
 ```
 
-所有检索臂统一实现 `search(query, k)` / `stats()` 接口（工厂见 `src/retrievers.py`），因此评测与
+图中各 `.py` 模块均位于 `src/`（`data/corpus/` 只放语料，完整文件树见 §13）。所有检索臂统一实现
+`search(query, k)` / `stats()` 接口（工厂见 `src/retrievers.py`），因此评测与
 生成代码对各臂完全同构，新增检索器只需在 `configs/main.yaml` 的 `retrievers` 列表加一条。
 
 ## 3. 数据
@@ -223,7 +245,7 @@ data/corpus/{lines,scenes,choices}.json[l]   剧本行级真值（§3；实际�
 
 ### 3.3 图谱派生数据
 
-`data/` 下（进 git，不进提交包；重建链路见 §5）：
+`data/` 下（进 git，不进提交包；与语料同走 §1.2 网盘“图数据”文件夹，重建链路见 §5）：
 
 | 文件 | 内容 |
 | --- | --- |
@@ -232,6 +254,9 @@ data/corpus/{lines,scenes,choices}.json[l]   剧本行级真值（§3；实际�
 | `graph_cards_extract_log.json` | 抽取日志：模板版本、逐块状态、usage 与费用 |
 | `graph_events.json` | 530 个序列化节点 + 1,634 条边（`next` 480、`has_participant` 985、`branch_to` 122、`choice_at` 47），meta 含抽取溯源 |
 | `graph_cards_smoke.jsonl` | 冒烟产物（隔离存放，不参与评测） |
+
+四份正式文件见 §1.2 第 2 条的网盘清单；`graph_cards_smoke*` 只是 `--limit n` 的冒烟输出，
+不参与评测，也不在网盘中提供。
 
 ### 3.4 重建链路
 
@@ -270,6 +295,11 @@ ea1f298b8e8c85c0e1d1e2106ebaf9a948501246fa31a2515d0a92700a4e49fb  lines.jsonl
 c46aec2bbf8ce978f977f78ac931d03dcbc5472105755ac4bd121ab5ef2abcf5  choices.json
 # eval/（评测集，§7.1）
 f5cb670afdcaee311c4b238e31c1d5e148008589f206632e8c6dcb3ec0a1e34f  qaset_v0.json
+# 图谱派生数据（§3.3，位置由 paths.entities / paths.cards / paths.events 指定；本文按 data/ 记录）
+1ec9cd5debabc4f1f59ddceba58317db02755f8eea0f9d8d8276d241d9fd4b0c  graph_entities.json
+d27867aa0ebcb126fc2113aa70d8b96164a6fe9c8a2b95205cec15a7387440e7  graph_cards.jsonl
+366a737dcf1c1292b8bda01f49af6c4f627cd4f8f8a6804bbf8d8dc5c66dd128  graph_cards_extract_log.json
+b13488c988a1fc42d580f44ddb5efda2952c515cb9a491294a76b3cf8f2f98cb  graph_events.json
 ```
 
 ## 4. 检索层
@@ -321,6 +351,10 @@ python src/graph_assemble.py              # 边表组装；--check 逐字节比�
 实体索引与边表组装两步完全确定性，`--check` 可逐字节验证；事件卡是 LLM 抽取产物，但响应
 缓存在 `cache/llm_*.json`，**从缓存重抽零费用且逐字节一致**。抽取模板版本号写入卡片与日志，
 改模板自动换缓存键。
+
+复现实验无需执行本节：四份产物直接从 §1.2 第 2 条的网盘“图数据”文件夹取得即可。仅当需要
+自行重建（改语料、改模板或验证确定性）时才走上面的命令；此时 `cache/` 为空意味着事件卡冷启动
+抽取，需自备 Key 并付费（483 次调用，本文实测谷时 $0.0967，见 §5.2）。
 
 ### 5.2 图统计
 
@@ -404,6 +438,9 @@ python src/graph_assemble.py              # 边表组装；--check 逐字节比�
 python eval/validate_qaset.py eval/qaset_v0.json    # 冻结门槛八项机检
 python eval/calibrate_qaset.py eval/qaset_v0.json   # BM25 标定与难度档案
 ```
+
+两脚本语料缺省读项目内 `data/corpus/`（§1.2 落位）；语料放在别处时用 `--scenes` / `--lines`
+指定（`merge_qaset.py` 为 `--data`），不依赖任何包外路径。
 
 对冻结稿 `qaset_v0.json` 运行 validator 会在「问题清单」列出 7 条启发式提示（Q01/Q03/Q09/Q11/Q18/
 Q23/Q25），全部来自层标签判据的已知盲区（df 过滤、专名切分、单锚阈值、别名词面锚、全角句柄），
@@ -565,7 +602,9 @@ gold 块位置（复现命令见 §12 的 `--position --rag-off-run ...`）：
   缓存命中重跑下同样逐字节一致。
 - **"重跑一致"限定同机器、同依赖版本**：浮点实现与库版本相关，全部版本号落在 `env_info.json`
   （Python、jieba、numpy、torch、sentence-transformers、transformers、openai、模型 revision、
-  生成配置）。换机器或换版本只承诺方向与量级一致。
+  生成配置）。其中 bge 的模型 revision 取自本地 HF 缓存元数据：**首次运行（冷缓存、模型当次
+  下载）时记为 `(unknown)`，自第二次运行起为真实 revision 哈希**——核验留档以第二次及之后的
+  run 为准。换机器或换版本只承诺方向与量级一致。
 - **缓存**：bge 文档向量缓存命中时纯矩阵加载（毫秒级）；w2v 每 run 重训（约 247 s，loss 曲线
   落 `w2v_train_log.json`，作为训练可复现的指纹）。
 
@@ -612,7 +651,8 @@ usage 记账。全文臂因前缀缓存命中，P50 1.36 s 与 RAG 持平（见 
    B = 被截但证据存活、C = 证据全丢）：`bge_small` R@3 为 0.573 / 0.276 / 0.233，`bm25_jieba`
    为 0.385 / 0.330 / 0.267——gold 被截的题上 bge 显著失分，BM25 几乎不动（BM25 全文入索引，
    无 512 限制）。截断与长文池化稀释完全共线，组间差是联合效应；切分不迁就模型（真值结构决定），
-   分析产物见 `runs/<timestamp>/truncation_analysis.json`。
+   分析产物 `truncation_analysis.json` 由 `python src/analyze_truncation.py --offline` 单独生成
+   （写入 `runs/` 下最新或 `--run` 指定的运行目录，见 §12），主流程不生成该文件。
 2. **w2v 平均在全部题型垫底**（R@3 0.1368）：静态词义、丢词序、OOV（评测期累计 120 个查询
    token OOV）、长 chunk 平均稀释，四个缺陷共同作用。这一负结果本身说明上下文相关表示的必要性。
 3. **专名判别与字面匹配的分工**：literal 层上 `bm25_jieba` R@3 0.8611，而 `bge_small` 仅 0.5000；
@@ -696,7 +736,7 @@ python src/plot_w2v_loss.py                                        # 渲染 loss
 基线目录、检索臂、top-k、实际题量）与 `config_copy.yaml`，同名产物已存在时需 `--force` 才覆盖。
 冒烟判定只认本实验目录内的 `fulltext_smoke_log.json`，其它目录的旧冒烟文件不参与本次判定。
 两类脚本都需要 `DEEPSEEK_API_KEY`；`judge.py` 的产物写回被评 run 目录，全文/位置消融的产物写入
-各自的实验目录。复现流程与历史问题记录见
+各自的实验目录。
 
 ## 13. 目录结构
 
@@ -736,7 +776,7 @@ python src/plot_w2v_loss.py                                        # 渲染 loss
 ├── data/
 │   ├── user_dict.txt        # jieba 自定义词典
 │   ├── corpus/              # 语料落位目录；内含 README.md 说明放什么与校验方式（语料本身不进提交包）
-│   └── graph_*.json[l]      # 图谱派生数据（可重建，见 §5）
+│   └── graph_*.json[l]      # 图谱派生数据（网盘“图数据”取得，见 §1.2 第 2 条；亦可重建，见 §5）
 ├── eval/
 │   ├── qaset_v0.json        # 正式评测集 90 题（冻结；表格数字唯一来源）
 │   ├── qaset_seed.json      # 10 题冒烟集（数字不进报告）
@@ -753,7 +793,7 @@ python src/plot_w2v_loss.py                                        # 渲染 loss
 
 包含：`README.md`（由本文作为提交版）、`run_all.py`、`src/`（全部源码）、`configs/` 下的
 **模板文件**（`main.yaml.example` 与 `ablation_topk/*.yaml.example`，均为项目内相对路径）、
-`requirements.txt`、`.env.example`、`全文与位置消融复现流程待办说明.md`、
+`requirements.txt`、`.env.example`、
 `data/user_dict.txt`、`data/corpus/README.md`（语料落位与校验说明）、`eval/` 的评测集
 （`qaset_v0.json`、`qaset_seed.json`、
 `qaset_calibration.json`）、评测工具链（`validate_qaset.py`、`calibrate_qaset.py`、
@@ -768,17 +808,16 @@ python src/plot_w2v_loss.py                                        # 渲染 loss
 会跳过答案层，检索层指标不受影响，答案层与 judge 指标则需自备 Key 重跑。
 
 语料与映射通过 §1.2 的网盘“数据集”文件夹提供：`lines.jsonl`、`scenes.jsonl`、`choices.json`、
-`speaker_map.tsv`，仅供课程复现实验。提交源码根目录即本项目目录，不包含上级 `NLP/` 仓库；
-独立运行的路径设置见 §1.2。
+`speaker_map.tsv`，仅供课程复现实验；图谱派生数据通过同一网盘的“图数据”文件夹提供（§1.2 第 2 条）。
 
 源码包不含以下可下载或可再生内容：
 
 | 内容 | 原因 | 复现方式 |
 | --- | --- | --- |
-| `models/`（bge 权重，约 900MB） | 体积超限，可从公共仓库获取 | §1.2，首次运行自动下载 |
+| `models/`（bge 权重） | 体积超限，可从公共仓库获取 | §1.2，首次运行自动下载 |
 | `cache/`（向量与 LLM 响应） | 可再生 | 运行 `run_all.py` 或对应模块时自动重建 |
 | `runs/`（运行日志） | 主流程日志可再生，体积随实验次数增长 | `run_all.py` 生成新 run；全文/位置消融用 `--rag-off-run`/`--rag-on-run` 指定基线后重新生成 |
-| `data/graph_*`（图谱派生数据） | 可重建 | §5.1，实体索引与边表组装不调用 LLM；事件卡抽取需 Key，完整响应缓存命中时无新增 API 费用，冷启动需付费 |
+| `data/graph_*`（图谱派生数据，约 1.5 MB） | 事件卡是付费 LLM 抽取产物，冷启动重抽不保证逐字节一致；与语料同源，故不进包 | §1.2 第 2 条，网盘“图数据”直接取得；或按 §5.1 重建（实体索引与边表不调用 LLM，事件卡抽取需 Key 并付费） |
 | `eval/answers_smoke*.jsonl`、`eval/answers_generation_log.json`、`eval/qaset_v0_draft.json`、`eval/qaset_v1_candidates_*.json` | 冒烟产物与构建期中间文件 | 运行 `generate.py` 重新生成 |
 
 `.env` 与 `DEEPSEEK_API_KEY` 不进入任何提交物。

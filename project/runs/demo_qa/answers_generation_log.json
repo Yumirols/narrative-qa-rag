@@ -1,0 +1,160 @@
+{
+  "config": {
+    "retriever": "hybrid_rrf",
+    "top_k": 5,
+    "llm": {
+      "provider": "deepseek",
+      "base_url": "https://api.deepseek.com",
+      "model": "deepseek-flash",
+      "thinking": "disabled",
+      "temperature": 0,
+      "max_tokens": 1024,
+      "api_key_env": "DEEPSEEK_API_KEY"
+    },
+    "few_shot": true,
+    "qaset": "eval\\qaset_demo3.json"
+  },
+  "summary": {
+    "n_questions": 3,
+    "parse": {
+      "fail_first": 0,
+      "fail_first_rate": 0.0,
+      "fail_final": 0,
+      "fail_final_rate": 0.0,
+      "parse_path_counts": {
+        "direct": 3
+      }
+    },
+    "citations": {
+      "intervals_total": 1,
+      "intervals_valid": 1,
+      "entry_valid_rate": 1.0,
+      "q_all_valid": 1,
+      "q_all_valid_rate": 0.3333,
+      "q_zero_citation": 2,
+      "invalid_reasons": {}
+    },
+    "tokens": {
+      "prompt": 9247,
+      "completion": 134,
+      "prompt_cache_hit": 4224,
+      "cost_usd_offpeak": 0.0008,
+      "cost_usd_peak": 0.0017
+    },
+    "latency": {
+      "n_calls": 3,
+      "n_cache_hits": 3,
+      "n_network": 0,
+      "p50_s": null,
+      "p95_s": null,
+      "mean_s": null
+    },
+    "models_observed": [
+      "deepseek-flash"
+    ],
+    "max_reasoning_tokens": null
+  },
+  "questions": [
+    {
+      "qid": "Q02",
+      "type": "fact",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.166,
+          "usage": {
+            "prompt_tokens": 3064,
+            "completion_tokens": 34,
+            "total_tokens": 3098,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1656
+          },
+          "content": "{\"answer\": \"证据中没有提到守护者基础训练的最低达标标准,缺少相关信息。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "2e050fd73a51f365414fbe88cc01655555c3c31ac2dfd93ae07e6a4a0c32af2b"
+        }
+      ],
+      "prompt_sha": "2e050fd73a51f365414fbe88cc01655555c3c31ac2dfd93ae07e6a4a0c32af2b",
+      "retrieved_chunk_ids": [
+        "seen08000_c083",
+        "seen08000_c119",
+        "seen08000_c113",
+        "seen08000_c079",
+        "seen08000_c082"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q29",
+      "type": "unanswerable",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.347,
+          "usage": {
+            "prompt_tokens": 3212,
+            "completion_tokens": 33,
+            "total_tokens": 3245,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1804
+          },
+          "content": "{\"answer\": \"证据中没有提及瑚太朗的生日信息,无法回答。\", \"verdict\": \"unknown\", \"evidence_rfids\": []}",
+          "request_hash": "08ffda57d02b02b3f4239f3ce4d245f1c51670547245af8708af61db0cc44248"
+        }
+      ],
+      "prompt_sha": "08ffda57d02b02b3f4239f3ce4d245f1c51670547245af8708af61db0cc44248",
+      "retrieved_chunk_ids": [
+        "seen08000_c001",
+        "seen08000_c229",
+        "seen08000_c221",
+        "seen08000_c075",
+        "seen08000_c253"
+      ],
+      "citations": []
+    },
+    {
+      "qid": "Q44",
+      "type": "yesno",
+      "attempts": [
+        {
+          "cache_hit": true,
+          "parse_path": "direct",
+          "finish_reason": "stop",
+          "model": "deepseek-flash",
+          "latency_seconds": 1.437,
+          "usage": {
+            "prompt_tokens": 2971,
+            "completion_tokens": 67,
+            "total_tokens": 3038,
+            "prompt_cache_hit_tokens": 1408,
+            "prompt_cache_miss_tokens": 1563
+          },
+          "content": "{\"answer\": \"是的。江坂对瑚太朗说「高洁这种事情弱者也能做到」「但是胜利，只有强者才能获得」「你是强者呐，挺起胸来吧」，对其抉择表示了赞许。\", \"verdict\": \"yes\", \"evidence_rfids\": [[13568, 13626]]}",
+          "request_hash": "f7e99e7f0400faf5510a16d8c8ce40a82e95c05a60f810465fb310279291a1ea"
+        }
+      ],
+      "prompt_sha": "f7e99e7f0400faf5510a16d8c8ce40a82e95c05a60f810465fb310279291a1ea",
+      "retrieved_chunk_ids": [
+        "seen08000_c427",
+        "seen08000_c182",
+        "seen08000_c379",
+        "seen08000_c372",
+        "seen08000_c206"
+      ],
+      "citations": [
+        {
+          "rfid": [
+            13568,
+            13626
+          ],
+          "reason": null
+        }
+      ]
+    }
+  ]
+}

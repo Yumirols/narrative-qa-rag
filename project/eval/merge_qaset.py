@@ -38,7 +38,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from src.evaluate import RfidLocator  # noqa: E402
 
-DATA = ROOT.parent / "Rewrite_terra" / "data"
+DATA = ROOT / "data/corpus"   # 语料缺省落位(README §1.2); 可用 --data 覆盖
 DRAFT = ROOT / "eval/qaset_v0_draft.json"
 POOL = ROOT / "eval/qaset_v1_candidates_aggregate.json"
 VALID_TYPES = {"fact", "yesno", "temporal", "aggregate", "unanswerable"}
@@ -156,12 +156,14 @@ def main() -> None:
     ap.add_argument("--all", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--remove", default=None, help="从草稿移除指定 qid(如 Q31)")
+    ap.add_argument("--data", default=None, help="语料目录(含 lines.jsonl/scenes.jsonl); 缺省 data/corpus/")
     args = ap.parse_args()
 
     draft = json.loads(DRAFT.read_text(encoding="utf-8"))
     pool = json.loads(POOL.read_text(encoding="utf-8"))
-    lines = {d["rfid"]: d for d in load_jsonl(DATA / "lines.jsonl")}
-    locator = RfidLocator(load_jsonl(DATA / "scenes.jsonl"))
+    data_dir = Path(args.data) if args.data else DATA
+    lines = {d["rfid"]: d for d in load_jsonl(data_dir / "lines.jsonl")}
+    locator = RfidLocator(load_jsonl(data_dir / "scenes.jsonl"))
 
     if args.remove:
         qid = args.remove

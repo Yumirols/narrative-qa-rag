@@ -72,12 +72,14 @@ def main() -> None:
     ap.add_argument("qaset", default="eval/qaset_v0_draft.json", nargs="?")
     ap.add_argument("--apply", action="store_true", help="按保守边界写回 anchor_layer/distractor_note")
     ap.add_argument("--arms", nargs="*", default=[], help="附加对照臂(仅 bigram 可用)")
+    ap.add_argument("--lines", default=None, help="lines.jsonl 位置; 缺省 data/corpus/")
     args = ap.parse_args()
 
     cfg = load_config(PROJECT_ROOT / "configs/main.yaml")
     paths = resolve_paths(cfg)
     chunks = [json.loads(l) for l in Path(paths["scenes"]).read_text(encoding="utf-8").splitlines() if l.strip()]
-    lines = [json.loads(l) for l in (ROOT.parent / "Rewrite_terra/data/lines.jsonl")
+    lines_path = Path(args.lines) if args.lines else ROOT / "data/corpus/lines.jsonl"
+    lines = [json.loads(l) for l in lines_path
              .read_text(encoding="utf-8").splitlines() if l.strip()]
     qaset_path = ROOT / args.qaset
     qaset = json.loads(qaset_path.read_text(encoding="utf-8"))

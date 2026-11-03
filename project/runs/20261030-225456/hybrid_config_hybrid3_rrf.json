@@ -1,0 +1,31 @@
+{
+  "arms": [
+    "bm25_bigram",
+    "bge_base",
+    "graph_expand"
+  ],
+  "depth": 20,
+  "rrf_k": 60,
+  "arm_stats": {
+    "bm25_bigram": {
+      "n_chunks": 483,
+      "n_tokens": 143259,
+      "avg_tokens": 296.6,
+      "vocab": 42062
+    },
+    "bge_base": {
+      "n_chunks": 483,
+      "n_tokens": 214958,
+      "avg_tokens": 445.0,
+      "vocab": "768d",
+      "dim": 768
+    },
+    "graph_expand": {
+      "n_chunks": 483,
+      "n_tokens": 192131,
+      "avg_tokens": 96065.5,
+      "vocab": "graph(bm25_bigram: ent80+card+1hop)",
+      "n_arms": 3
+    }
+  }
+}

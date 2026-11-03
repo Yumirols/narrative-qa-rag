@@ -269,12 +269,12 @@ def main() -> None:
     qaset_label = Path(paths["qaset"]).stem
     print(f"\n== 检索评测({qaset_label}: 评 {m0['n_evaluated']} 题, "
           f"不可回答跳过 {m0['n_skipped_unanswerable']} 题) ==")
-    head = "retriever".ljust(12) + "".join(f"Recall@{k}".ljust(11) for k in ks) + "MRR"
+    head = "retriever".ljust(13) + "".join(f"Recall@{k}".ljust(11) for k in ks) + "MRR"
     print("  " + head)
     for name, m in all_metrics.items():
         if "overall" not in m:   # label_accuracy 等答案层块无 overall, 不进检索表
             continue
-        row = name.ljust(12) + "".join(f"{m['overall'][f'recall@{k}']:<11}" for k in ks)
+        row = name.ljust(13) + "".join(f"{m['overall'][f'recall@{k}']:<11}" for k in ks)
         print("  " + row + f"{m['overall']['mrr']}")
     for name, m in all_metrics.items():
         if "overall" not in m:

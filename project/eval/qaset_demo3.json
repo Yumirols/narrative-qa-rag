@@ -1,0 +1,75 @@
+{
+ "version": "v0-20261023-demo3",
+ "targets": {
+  "by_layer": {
+   "fact": {
+    "literal": 8,
+    "semantic_gap": 10,
+    "structural": 2
+   },
+   "yesno": {
+    "literal": 4,
+    "semantic_gap": 8,
+    "structural": 6
+   },
+   "temporal": {
+    "literal": 4,
+    "semantic_gap": 4,
+    "structural": 10
+   },
+   "aggregate": {
+    "literal": 2,
+    "semantic_gap": 0,
+    "structural": 13
+   }
+  },
+  "unans_subtype": {
+   "entity_absent": 6,
+   "fact_absent": 6,
+   "mentioned_unknown": 6
+  },
+  "yesno_verdict": {
+   "yes": 9,
+   "no": 9
+  },
+  "floor_max": 2
+ },
+ "questions": [
+  {
+   "qid": "Q02",
+   "type": "fact",
+   "question": "守护者基础训练的最低达标标准是什么？",
+   "gold_answer": "负重８０千克的情况下在１２个小时内走完６０千米的距离（据说这只是最低标准）。",
+   "gold_evidence_rfids": [
+    2544,
+    2545
+   ],
+   "anchor_layer": "semantic_gap",
+   "accept_criteria": "三要素齐全：负重80千克＋12小时以内＋走完60千米（全角/半角数字均可）；「据说只是最低标准」加分不强制。",
+   "distractor_note": "标定回填: seen08000_c284(score=12.2978)「内部调查，继续着。\n情报被向守护者这边泄露了。\n…」; seen08000_c079(score=11.8838)「我加入的这个组织，并没有一个在人前的固定称呼。\n…」; seen08000_c083(score=11.82)「那个时候，我还只是刚和江坂认识。\n所以没有什么特…」"
+  },
+  {
+   "qid": "Q29",
+   "type": "unanswerable",
+   "gold_verdict": "unknown",
+   "question": "瑚太朗的生日是哪一天？",
+   "gold_answer": "语料中无瑚太朗生日的记载，应拒答。",
+   "gold_evidence_rfids": [],
+   "unans_subtype": "fact_absent"
+  },
+  {
+   "qid": "Q44",
+   "type": "yesno",
+   "gold_verdict": "yes",
+   "anchor_layer": "semantic_gap",
+   "question": "临终之际，江坂对这位背叛者的抉择表示了赞许吗？",
+   "gold_answer": "表示了。他问明瑚太朗「哪边都不是，是为了终止盖亚和守护者的斗争、同时保护着键」后说「那么，我认可了」，并催他赶快离开、去完成给键看最后的工作成果。",
+   "gold_evidence_rfids": [
+    [
+     13599,
+     13648
+    ]
+   ]
+  }
+ ]
+}

@@ -76,6 +76,7 @@ def main() -> None:
     ap.add_argument("--run", default=None, help="runs/ 下的目录名; 缺省取最新")
     ap.add_argument("--model", default=DEFAULT_MODEL, help="截尾判定用的 tokenizer")
     ap.add_argument("--offline", action="store_true", help="HF_HUB_OFFLINE=1(import 前设)")
+    ap.add_argument("--lines", default=None, help="lines.jsonl 位置; 缺省 data/corpus/")
     args = ap.parse_args()
 
     cfg = load_config(PROJECT_ROOT / args.config)
@@ -95,9 +96,9 @@ def main() -> None:
     tok = AutoTokenizer.from_pretrained(args.model)
 
     chunks = load_chunks(paths["scenes"])
+    lines_path = Path(args.lines) if args.lines else PROJECT_ROOT / "data/corpus/lines.jsonl"
     lines = [json.loads(l) for l in
-             (PROJECT_ROOT.parent / "Rewrite_terra" / "data" / "lines.jsonl")
-             .read_text(encoding="utf-8").splitlines() if l.strip()]
+             lines_path.read_text(encoding="utf-8").splitlines() if l.strip()]
     by_rfid = {l["rfid"]: l for l in lines}
 
     # ---- 1. 逐行 token 剖面 + 双重验证(重建一致 / 分词可加) ----

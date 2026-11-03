@@ -1,0 +1,23 @@
+{
+  "arms": [
+    "bm25_bigram",
+    "bge_base"
+  ],
+  "depth": 20,
+  "rrf_k": 60,
+  "arm_stats": {
+    "bm25_bigram": {
+      "n_chunks": 483,
+      "n_tokens": 143259,
+      "avg_tokens": 296.6,
+      "vocab": 42062
+    },
+    "bge_base": {
+      "n_chunks": 483,
+      "n_tokens": 214958,
+      "avg_tokens": 445.0,
+      "vocab": "768d",
+      "dim": 768
+    }
+  }
+}

@@ -1,8 +1,9 @@
 # eval/ 评测集工具链说明
 
 > 适用于 qaset schema v2（`anchor_layer` / `unans_subtype` / `accept_criteria` / `targets`）。
-> 所有命令默认在 `project/` 根目录执行；涉及语料的脚本读
-> `../Rewrite_terra/data/{lines.jsonl, scenes.jsonl}`（只读，不修改语料）。
+> 所有命令默认在项目根目录执行；涉及语料的脚本读项目内 `data/corpus/{lines.jsonl, scenes.jsonl}`
+> （只读，不修改语料；README §1.2 落位），语料放在别处时用 `--scenes` / `--lines`（merge 为
+> `--data`）指定。
 
 ## 一、目录内容
 
@@ -66,7 +67,7 @@ python eval/merge_qaset.py --remove Q31                         # 复核否决�
 # 3. 收口校验（问题清单须 0；分布缺口须全部为 0 才可冻结）：
 python eval/validate_qaset.py eval/qaset_v0_draft.json
 
-# 4. 五臂评测（by_layer 分层表自动进 metrics.json）：
+# 4. 八臂评测（by_layer 分层表自动进 metrics.json）：
 python run_all.py --config configs/main.yaml
 ```
 
@@ -129,7 +130,7 @@ python src/evaluate.py --config configs/main.yaml --arm jieba   # 单臂调试
 ```
 
 检索层 Recall@{3,5,10}/MRR（不可回答题跳过，留给答案层拒答评测）；metrics.json 含
-`by_type` 与 `by_layer` 两套分解——报告的分层对比表（语义落差层上五臂对比）直接取自后者。
+`by_type` 与 `by_layer` 两套分解——报告的分层对比表（语义落差层上八臂对比）直接取自后者。
 
 ## 五、冻结流程 checklist
 
